@@ -32,8 +32,10 @@ addErrors(ajv);
 const signupDtoSchema = Type.Object(
   {
     fullname: Type.String({
+      minLength: 2,
       errorMessage: {
         type: "El fullname debe ser un String",
+        minLength: "El fullname debe tener más de un carácter",
       },
     }),
     email: Type.String({
