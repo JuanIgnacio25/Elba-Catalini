@@ -1,9 +1,13 @@
 import Users from "@/models/user/user";
 
 class UserDao {
+  constructor(){
+    this.collection = Users;
+  }
+
   async getAllUsers() {
     try {
-      const users = await Users.find();
+      const users = await this.collection.find();
       return users;
     } catch (error) {
       throw error;
@@ -12,7 +16,7 @@ class UserDao {
 
   async getUserByEmail(email) {
     try {
-      const user = await Users.findOne({ email }).select("+password");
+      const user = await this.collection.findOne({ email }).select("+password");
       return user;
     } catch (error) {
       throw error;
@@ -22,7 +26,7 @@ class UserDao {
   async createUser(user) {
     try {
       user.rol = "user";
-      const createdUser = await Users.create(user);
+      const createdUser = await this.collection.create(user);
       return createdUser;
     } catch (error) {
       throw error;
