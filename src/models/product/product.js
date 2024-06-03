@@ -1,9 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from "@/libs/mongodb";
+import AutoIncrementFactory from "mongoose-sequence";
+
+const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const options = { discriminatorKey: "kind" };
 
 const ProductSchema = new mongoose.Schema(
   {
+    productId: {
+      type: Number,
+      unique: true,
+    },
     name: {
       type: String,
       required: [true, "El nombre es requerido"],
@@ -27,15 +34,18 @@ const ProductSchema = new mongoose.Schema(
   options
 );
 
+ProductSchema.plugin(AutoIncrement, { inc_field: "productId" });
+
 const Product =
   mongoose.models.Product || mongoose.model("Product", ProductSchema);
 
 const BaimlSchema = new mongoose.Schema({
-  set: {
+  productSet: {
     type: Number,
   },
 });
 
-const Baiml = Product.discriminators.Baiml || Product.discriminator("Baiml", BaimlSchema);
+const Baiml =
+  Product.discriminators?.Baiml || Product.discriminator("Baiml", BaimlSchema);
 
 export { Product, Baiml };
