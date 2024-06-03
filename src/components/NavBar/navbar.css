@@ -1,0 +1,16 @@
+.nav-bar{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar ul{
+  display: flex;
+  flex-flow: row wrap;
+  padding: 15px;
+}
+
+.nav-bar-menu{
+  gap:15px;
+}
