@@ -43,6 +43,8 @@ function LoginPage() {
       callbackUrl: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}auth/login`
     });
 
+    console.log(nextAuthResponse);
+
     if (!nextAuthResponse.ok) return setError(nextAuthResponse.error);
 
     if (nextAuthResponse.ok) {
