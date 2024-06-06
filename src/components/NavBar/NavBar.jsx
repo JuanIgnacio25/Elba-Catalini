@@ -9,7 +9,7 @@ import "./navbar.css";
 function NavBar() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  console.log(session, status);
+  
   const handleSignout = async () => {
     await signOut({ redirect: false });
     router.push("/");
@@ -25,10 +25,10 @@ function NavBar() {
       </ul>
       <ul className="nav-bar-menu">
         <li>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/admin/dashboard">Dashboard</Link>
         </li>
         <li>
-          <Link href="/about">About</Link>
+          <Link href="/products/baiml">Productos baiml</Link>
         </li>
         {session ? (
           <li onClick={handleSignout}>Signout</li>

@@ -1,11 +1,11 @@
 import ProductDao from "@/models/product/ProductDao";
 
-class ProductService{
-  constructor(){
+class ProductService {
+  constructor() {
     this.dao = new ProductDao();
   }
 
-  async getAllProducts(){
+  async getAllProducts() {
     try {
       const products = await this.dao.getAllProducts();
       return products;
@@ -14,10 +14,28 @@ class ProductService{
     }
   }
 
-  async createProduct(product){
+  async findProductById(id) {
+    try {
+      const product = await this.dao.findProductById(id);
+      return product;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async createProduct(product) {
     try {
       const newProduct = await this.dao.createProduct(product);
       return newProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteProduct(id) {
+    try {
+      const deleteProduct = await this.dao.deleteProduct(id);
+      return deleteProduct;
     } catch (error) {
       throw error;
     }
