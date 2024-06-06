@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-function dashboardPage() {
+function DashboardPage() {
   const options = ["Posicion trasero", "Plafonier", "Ilumina Patente"];
 
   const [products , setProducts] = useState([]);
@@ -128,4 +128,4 @@ function dashboardPage() {
   );
 }
 
-export default dashboardPage;
+export default DashboardPage;

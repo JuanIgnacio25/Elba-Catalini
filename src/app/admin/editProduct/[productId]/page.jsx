@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 
-function updateProductPage() {
+function UpdateProductPage() {
   const params = useParams();
   const { productId } = params;
 
@@ -126,4 +126,4 @@ function updateProductPage() {
   );
 }
 
-export default updateProductPage;
+export default UpdateProductPage;

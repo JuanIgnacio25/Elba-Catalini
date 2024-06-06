@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function baimlProductsPage() {
+function BaimlProductsPage() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ function baimlProductsPage() {
   );
 }
 
-export default baimlProductsPage;
+export default BaimlProductsPage;
