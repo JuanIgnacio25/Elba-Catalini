@@ -15,6 +15,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, request) {
         await connectDB();
+        console.log({credentials:credentials});
         const userFound = await userService.getUserByEmail(credentials.email);
         if (!userFound) throw new Error("Email o cotraseña invalidos");
 
@@ -29,10 +30,21 @@ const handler = NextAuth({
   ],
   callbacks: {
     jwt({ account, token, profile, user, session }) {
+      console.log({jwt: {
+        account,
+        token,
+        profile,
+        user,
+        session
+      }})
       if (user) token.user = user;
       return token;
     },
     session({ session, token }) {
+      console.log({session:{
+        session,
+        token
+      }})
       if(token.user){
         session.user = token.user;
       }
@@ -42,11 +54,11 @@ const handler = NextAuth({
   pages: {
     signIn: "/auth/login",
   },
-  session: {
+  /* session: {
     jwt: true,
     maxAge: 7 * 24 * 60 * 60, // Duración de la sesión en segundos (7 días)
     updateAge: 24 * 60 * 60, // Tiempo en segundos para actualizar la sesión (1 día)
-  },
+  }, */
   /* cookies: {
     sessionToken: {
       name: `__Secure-next-auth.session-token`,
