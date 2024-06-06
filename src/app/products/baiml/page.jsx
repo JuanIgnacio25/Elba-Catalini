@@ -11,6 +11,7 @@ function BaimlProductsPage() {
       const res = await axios.get("/api/products");
       setProducts(res.data.products);
       console.log(res.data.products);
+      console.log(products);
     };
 
     fetchProducts();
