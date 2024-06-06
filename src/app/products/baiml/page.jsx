@@ -8,10 +8,14 @@ function BaimlProductsPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios.get("/api/products");
-      setProducts(res.data.products);
-      console.log(res.data.products);
-      console.log(products);
+      try {
+        const res = await axios.get("/api/products");
+        setProducts(res.data.products || []); // Asegurarse de que siempre se establezca un array
+        console.log(res.data.products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+        setProducts([]); // Establecer un array vacío en caso de error
+      }
     };
 
     fetchProducts();
