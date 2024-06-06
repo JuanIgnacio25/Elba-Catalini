@@ -14,15 +14,26 @@ export async function middleware(req) {
     return NextResponse.redirect(url);
   }
 
-  if (req.nextUrl.pathname === "/dashboard" && token.user.rol !== "admin") {
-    url.pathname = "/";
-    url.searchParams.set("error", "No tienes permiso para acceder a esta página");
-    return NextResponse.redirect(url);
+  if (req.nextUrl.pathname.startsWith("/admin")) {
+    if (token.user.rol !== "admin") {
+      url.pathname = "/";
+      url.searchParams.set("error", "No tienes permiso para acceder a esta página");
+      return NextResponse.redirect(url);
+    }
+  }
+
+  if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
+    if (token.user.rol !== "admin") {
+      return NextResponse.json(
+        { message: "no tiene permiso para hacer esta peticion" },
+        { status: 401 }
+      );
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/about","/dashboard"],
+  matcher: ["/about", "/admin/:path*", "/api/products"],
 };
