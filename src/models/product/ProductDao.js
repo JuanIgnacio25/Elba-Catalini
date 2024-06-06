@@ -36,7 +36,7 @@ class ProductDao {
 
   async findProductById(productId) {
     try {
-      const product = await this.collection.findOne({productId});
+      const product = await this.collection.findOne({ productId });
       return product;
     } catch (error) {
       throw error;
@@ -45,11 +45,29 @@ class ProductDao {
 
   async deleteProduct(productId) {
     try {
-      const deleteProduct = await this.collection.findOneAndDelete({productId});
+      const deleteProduct = await this.collection.findOneAndDelete({
+        productId,
+      });
       if (!deleteProduct) {
         throw new Error("El producto no existe");
       }
       return deleteProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateProduct(productToUpdate, productId) {
+    try {
+      const updateProduct = await this.collection.findOneAndUpdate(
+        { productId },
+        productToUpdate,
+        { new: true, runValidators: true }
+      );
+      if (!updateProduct) {
+        throw new Error("El producto no existe");
+      }
+      return updateProduct;
     } catch (error) {
       throw error;
     }

@@ -40,6 +40,15 @@ class ProductService {
       throw error;
     }
   }
+
+  async updateProduct(productToUpdate,id) {
+    try {
+      const updateProduct = await this.dao.updateProduct(productToUpdate,id);
+      return updateProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ProductService;
