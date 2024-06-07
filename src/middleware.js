@@ -24,18 +24,18 @@ export async function middleware(req) {
     }
   }
 
-  if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
+ /*  if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
     if (token.user.rol !== "admin") {
       return NextResponse.json(
         { message: "no tiene permiso para hacer esta peticion" },
         { status: 401 }
       );
     }
-  }
+  } */
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/products"],
+  matcher: ["/admin/:path*", /* "/api/products" */],
 };
