@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function middleware(req) {
   console.log(req);
-  const token = await getToken({ req });
+  console.log({secret:process.env.JWT_SECRET});
+  const token = await getToken({ req, secret: process.env.JWT_SECRET });
   console.log({token:token});
   const url = req.nextUrl.clone();
   console.log({url:url});
