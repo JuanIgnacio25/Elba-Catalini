@@ -9,6 +9,7 @@ export async function middleware(req) {
 
   if (!token) {
     const destination = req.nextUrl.pathname + req.nextUrl.search;
+    console.log({destination:destination});
     url.pathname = "/auth/login";
     url.searchParams.set("error", "Primero debes iniciar sesion");
     url.searchParams.set("callbackUrl", destination);
