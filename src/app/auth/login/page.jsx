@@ -46,7 +46,7 @@ function LoginPage() {
       email: email,
       password: password,
       redirect: false,
-      callbackUrl: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}auth/login`,
+      /* callbackUrl: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}auth/login`, */
     });
 
     console.log(nextAuthResponse);
