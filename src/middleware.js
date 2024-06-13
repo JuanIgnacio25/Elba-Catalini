@@ -9,15 +9,21 @@ export async function middleware(req) {
 
   if (!token) {
     const destination = req.nextUrl.pathname + req.nextUrl.search;
-    console.log({destination:destination});
+    console.log({ destination: destination });
+
     url.pathname = "/auth/login";
     url.searchParams.set("error", "Primero debes iniciar sesion");
     url.searchParams.set("callbackUrl", destination);
 
-    const fullUrl = url.toString();
-    console.log({ fullUrl: fullUrl });
+    try {
+      const fullUrl = url.toString();
+      console.log({ fullUrl: fullUrl });
 
-    return NextResponse.redirect('https://la-casa-del-accesorio-production.up.railway.app/auth/login');
+      return NextResponse.redirect(fullUrl);
+    } catch (error) {
+      console.error('Error constructing redirect URL:', error);
+      return NextResponse.error();
+    }
   }
 
   if (req.nextUrl.pathname.startsWith("/admin")) {
