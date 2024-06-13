@@ -14,8 +14,10 @@ export async function middleware(req) {
     url.searchParams.set("error", "Primero debes iniciar sesion");
     url.searchParams.set("callbackUrl", destination);
 
-    console.log({url:url});
-    return NextResponse.redirect(url);
+    const fullUrl = url.toString();
+    console.log({ fullUrl: fullUrl });
+
+    return NextResponse.redirect(fullUrl);
   }
 
   if (req.nextUrl.pathname.startsWith("/admin")) {
