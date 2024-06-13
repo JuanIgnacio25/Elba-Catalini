@@ -15,16 +15,16 @@ export async function middleware(req) {
     url.searchParams.set("error", "Primero debes iniciar sesion");
     url.searchParams.set("callbackUrl", destination);
 
-    try {
-      const fullUrl = url.toString();
-      console.log({ fullUrl: fullUrl });
-
-      return NextResponse.redirect(fullUrl);
-    } catch (error) {
-      console.error('Error constructing redirect URL:', error);
-      return NextResponse.error();
-    }
-  }
+    try { 
+      const fullUrl = url.toString(); 
+      console.log({ fullUrl: fullUrl }); 
+ 
+      return NextResponse.redirect(fullUrl); 
+    } catch (error) { 
+      console.error("Error constructing redirect URL:", error); 
+      return NextResponse.error(); 
+    } 
+  } 
 
   if (req.nextUrl.pathname.startsWith("/admin")) {
     if (token.user.rol !== "admin") {
