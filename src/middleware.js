@@ -17,7 +17,7 @@ export async function middleware(req) {
     const fullUrl = url.toString();
     console.log({ fullUrl: fullUrl });
 
-    return NextResponse.redirect(fullUrl);
+    return NextResponse.redirect('https://la-casa-del-accesorio-production.up.railway.app/auth/login');
   }
 
   if (req.nextUrl.pathname.startsWith("/admin")) {
