@@ -10,13 +10,11 @@ export async function middleware(req) {
         : "__Secure-next-auth.session-token",
     secret: process.env.NEXTAUTH_SECRET,
   });
-  console.log({ token: token });
+
   const url = req.nextUrl.clone();
-  console.log({ url: url });
 
   if (!token) {
     const destination = req.nextUrl.pathname + req.nextUrl.search;
-    console.log({ destination: destination });
 
     url.pathname = "/auth/login";
     url.searchParams.set("error", "Primero debes iniciar sesion");
@@ -24,7 +22,6 @@ export async function middleware(req) {
 
     try {
       const fullUrl = url.toString();
-      console.log({ fullUrl: fullUrl });
 
       return NextResponse.redirect(fullUrl);
     } catch (error) {
@@ -44,18 +41,18 @@ export async function middleware(req) {
     }
   }
 
-  /*  if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
+   if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
     if (token.user.rol !== "admin") {
       return NextResponse.json(
         { message: "no tiene permiso para hacer esta peticion" },
         { status: 401 }
       );
     }
-  } */
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*" /* "/api/products" */],
+  matcher: ["/admin/:path*" , "/api/products"],
 };

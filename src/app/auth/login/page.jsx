@@ -36,12 +36,6 @@ function LoginPage() {
     e.preventDefault();
     setError("");
 
-    console.log({
-      userFront: email,
-      password,
-      callbackUrl: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}auth/login`,
-    });
-
     const nextAuthResponse = await signIn("credentials", {
       email: email,
       password: password,

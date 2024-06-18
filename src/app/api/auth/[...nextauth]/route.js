@@ -15,8 +15,9 @@ const handler = NextAuth({
       async authorize(credentials, request) {
         try {
           await connectDB();
-          console.log({ credentials });
+          
           const userFound = await userService.getUserByEmail(credentials.email);
+
           if (!userFound) throw new Error("Email o contraseña inválidos");
 
           const passwordMatch = await bcrypt.compare(
@@ -40,22 +41,10 @@ const handler = NextAuth({
   ],
   callbacks: {
     jwt({ account, token, profile, user, session }) {
-      console.log({
-        jwt: {
-          token,
-          user,
-        },
-      });
       if (user) token.user = user;
       return token;
     },
     session({ session, token }) {
-      console.log({
-        session: {
-          session,
-          token,
-        },
-      });
       if (token.user) {
         session.user = token.user;
       }
