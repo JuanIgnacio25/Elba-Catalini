@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from "@/libs/mongodb";
+import AutoIncrementFactory from "mongoose-sequence";
+
+const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const usersSchema = new mongoose.Schema({
+  userId: {
+    type: Number,
+    unique: true,
+  },
   fullname: {
     type: String,
     required: [true, "El nombre es requerido"],
@@ -22,5 +29,7 @@ const usersSchema = new mongoose.Schema({
     required: true
   }
 });
+
+usersSchema.plugin(AutoIncrement, { inc_field: "userId" });
 
 export default mongoose.models.users || mongoose.model("users", usersSchema);

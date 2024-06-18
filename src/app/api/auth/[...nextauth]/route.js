@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcryp from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 import { connectDB } from "@/libs/mongodb";
 import UserService from "@/models/user/UserService";
@@ -11,19 +11,31 @@ const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "credentials",
-      credentials: {
-      },
+      credentials: {},
       async authorize(credentials, request) {
-        await connectDB();
-        const userFound = await userService.getUserByEmail(credentials.email);
-        if (!userFound) throw new Error("Email o cotraseña invalidos");
+        try {
+          await connectDB();
+          
+          const userFound = await userService.getUserByEmail(credentials.email);
 
-        const passwordMatch = await bcryp.compare(
-          credentials.password,
-          userFound.password
-        );
-        if (!passwordMatch) throw new Error("Email o contraseña invalidos");
-        return {email:userFound.email,fullname:userFound.fullname,id:userFound._id,rol:userFound.rol};
+          if (!userFound) throw new Error("Email o contraseña inválidos");
+
+          const passwordMatch = await bcrypt.compare(
+            credentials.password,
+            userFound.password
+          );
+          if (!passwordMatch) throw new Error("Email o contraseña inválidos");
+
+          return {
+            email: userFound.email,
+            fullname: userFound.fullname,
+            id: userFound._id,
+            rol: userFound.rol,
+          };
+        } catch (error) {
+          console.error("Error in authorize function:", error);
+          throw new Error("Error al autenticar. Por favor, intente de nuevo.");
+        }
       },
     }),
   ],
@@ -33,7 +45,7 @@ const handler = NextAuth({
       return token;
     },
     session({ session, token }) {
-      if(token.user){
+      if (token.user) {
         session.user = token.user;
       }
       return session;
