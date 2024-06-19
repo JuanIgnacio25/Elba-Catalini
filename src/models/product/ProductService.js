@@ -1,4 +1,5 @@
 import ProductDao from "@/models/product/ProductDao";
+import { isValidBaimlProduct } from "@/utils/validateBaimlProducts";
 
 class ProductService {
   constructor() {
@@ -25,6 +26,8 @@ class ProductService {
 
   async createProduct(product) {
     try {
+      isValidBaimlProduct(product);
+      product.kind = "Baiml";
       const newProduct = await this.dao.createProduct(product);
       return newProduct;
     } catch (error) {
@@ -43,6 +46,9 @@ class ProductService {
 
   async updateProduct(productToUpdate,id) {
     try {
+      console.log(productToUpdate);
+      isValidBaimlProduct(productToUpdate);
+      productToUpdate.kind = "Baiml";
       const updateProduct = await this.dao.updateProduct(productToUpdate,id);
       return updateProduct;
     } catch (error) {

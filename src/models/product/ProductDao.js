@@ -58,10 +58,13 @@ class ProductDao {
   }
 
   async updateProduct(productToUpdate, productId) {
+
+    const { kind, ...productData } = productToUpdate;
+    
     try {
-      const updateProduct = await this.collection.findOneAndUpdate(
+      const updateProduct = await this.discriminators[kind].findOneAndUpdate(
         { productId },
-        productToUpdate,
+        productData,
         { new: true, runValidators: true }
       );
       if (!updateProduct) {

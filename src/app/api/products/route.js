@@ -12,6 +12,7 @@ export async function POST(request) {
     const newProduct = await productService.createProduct(product);
     return NextResponse.json(newProduct,{status: 201});
   } catch (error) {
+    console.log(error);
     return NextResponse.json({message: error.message} , {status: 400});
   }
 }

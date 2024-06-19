@@ -39,7 +39,7 @@ export async function PATCH(req, {params}) {
 
   try {
     await connectDB();
-    const updateProduct = productService.updateProduct(productToUpdate,Number(id));
+    const updateProduct = await productService.updateProduct(productToUpdate,Number(id));
     return NextResponse.json(updateProduct);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });

@@ -9,7 +9,7 @@ const userService = new UserService();
 
 export async function POST(request) {
   const data = await request.json();
-  console.log({ data: data });
+
   let signupError = undefined;
   try {
     isValidSignup(data);

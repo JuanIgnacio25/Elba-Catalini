@@ -13,6 +13,7 @@ function DashboardPage() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [unit, setUnit] = useState("");
+  const [productSet, setProductSet] = useState();
 
   const router = useRouter();
 
@@ -32,13 +33,14 @@ function DashboardPage() {
       category,
       description,
       unit,
+      productSet: Number(productSet),
     };
 
     try {
       const res = await axios.post("/api/products", newProduct);
       fetchProducts();
     } catch (error) {
-      console.log({error:error.response.data});
+      console.log(error.response.data);
     }
   };
 
@@ -97,6 +99,14 @@ function DashboardPage() {
           required={true}
           onChange={(e) => setUnit(e.target.value)}
         />
+        <input
+          type="number"
+          placeholder="2"
+          name="productSet"
+          autoComplete="set"
+          required={true}
+          onChange={(e) => setProductSet(e.target.value)}
+        />
         <button className="bg-white">Add product</button>
       </form>
 
@@ -108,6 +118,7 @@ function DashboardPage() {
           <th>Categoria</th>
           <th>Descripcion</th>
           <th>Unidad</th>
+          <th>Juegos</th>
         </tr>
       </thead>
       <tbody>
@@ -118,12 +129,23 @@ function DashboardPage() {
             <td>{prod.category}</td>
             <td>{prod.description}</td>
             <td>{prod.unit}</td>
+            <td>{prod.productSet}</td>
             <td ><button onClick={() => handleDelete(prod.productId)}>Eliminar</button></td>
             <td><button onClick={() => router.push(`/admin/editProduct/${prod.productId}`)}>Editar</button></td>
           </tr>
         ))}
       </tbody>
     </table>
+    <div>
+      <button onClick={async() => {
+        try {
+          const res = await axios.post("/api/products",{name:"123",description:'hola',category:'vllc',unit:'12',productSet:2});
+          console.log(res);
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      }}>Crear</button>
+    </div>
     </div>
   );
 }
