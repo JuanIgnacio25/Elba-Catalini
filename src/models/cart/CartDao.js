@@ -7,7 +7,7 @@ class CartDao {
 
   async createCart() {
     try {
-      const createdCart = await this.collection.create();
+      const createdCart = await this.collection.create({});
       return createdCart;
     } catch (error) {
       throw error;

@@ -17,17 +17,6 @@ export async function POST(request) {
     return NextResponse.json({message: error.message}, {status: 400});
   }
 
-  /* let signupError = undefined;
-  try {
-    isValidSignup(user);
-  } catch (error) {
-    signupError = error.message;
-  }
-
-  if (signupError) {
-    return NextResponse.json({ message: signupError }, { status: 400 });
-  } */
-
   try {
     await connectDB();
     const userFound = await userService.getUserByEmail(user.email);
@@ -40,9 +29,7 @@ export async function POST(request) {
     }
 
     const createdCart = await cartService.createCart();
-    console.log({createdCart:createdCart});
     user.cartId = createdCart.cartId;
-    console.log(user);
 
     const savedUser = await userService.createUser(user);
 
