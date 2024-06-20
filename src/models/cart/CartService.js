@@ -5,7 +5,7 @@ class CartService {
     this.dao = new CartDao();
   }
 
-  async createUser() {
+  async createCart() {
     try {
       const createdCart = this.dao.createCart();
       return createdCart;

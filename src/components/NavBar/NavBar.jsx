@@ -40,6 +40,9 @@ function NavBar() {
         <li>
           <Link href="/auth/register">Register</Link>
         </li>
+        <li>
+          <Link href="/">Carrito</Link>
+        </li>
       </ul>
     </nav>
   );

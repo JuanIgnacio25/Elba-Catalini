@@ -12,6 +12,6 @@ const cartSchema = new mongoose.Schema({
   products: { type: [{ type: Schema.Types.Mixed }], default: [] },
 });
 
-usersSchema.plugin(AutoIncrement, { inc_field: "cartId" });
+cartSchema.plugin(AutoIncrement, { inc_field: "cartId" });
 
 export default mongoose.models.cart || mongoose.model("cart", cartSchema);

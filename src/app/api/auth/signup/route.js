@@ -1,29 +1,36 @@
 import { NextResponse } from "next/server";
-import bcryp from "bcryptjs";
 
 import { connectDB } from "@/libs/mongodb";
-import { isValidSignup } from "@/utils/validateAjv";
+import { isValidSignup } from "@/utils/validateUser";
 import UserService from "@/models/user/UserService";
+import CartService from "@/models/cart/CartService";
 
 const userService = new UserService();
+const cartService = new CartService();
 
 export async function POST(request) {
-  const data = await request.json();
+  const user = await request.json();
 
-  let signupError = undefined;
   try {
-    isValidSignup(data);
+    isValidSignup(user);
+  } catch (error) {
+    return NextResponse.json({message: error.message}, {status: 400});
+  }
+
+  /* let signupError = undefined;
+  try {
+    isValidSignup(user);
   } catch (error) {
     signupError = error.message;
   }
 
   if (signupError) {
     return NextResponse.json({ message: signupError }, { status: 400 });
-  }
+  } */
 
   try {
     await connectDB();
-    const userFound = await userService.getUserByEmail(data.email);
+    const userFound = await userService.getUserByEmail(user.email);
 
     if (userFound) {
       return NextResponse.json(
@@ -32,15 +39,12 @@ export async function POST(request) {
       );
     }
 
-    const hashedPassword = await bcryp.hash(data.password, 12);
+    const createdCart = await cartService.createCart();
+    console.log({createdCart:createdCart});
+    user.cartId = createdCart.cartId;
+    console.log(user);
 
-    const newUser = {
-      fullname: data.fullname,
-      email: data.email,
-      password: hashedPassword,
-    };
-
-    const savedUser = await userService.createUser(newUser);
+    const savedUser = await userService.createUser(user);
 
     return NextResponse.json(
       { email: savedUser.email, fullname: savedUser.fullname },

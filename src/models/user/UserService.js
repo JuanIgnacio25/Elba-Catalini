@@ -1,4 +1,5 @@
 import UserDao from "./UserDao";
+import bcryp from "bcryptjs";
 
 class UserService {
   constructor() {
@@ -25,6 +26,8 @@ class UserService {
 
   async createUser(user) {
     try {
+      const hashedPassword = await bcryp.hash(user.password, 12);
+      user.password = hashedPassword;
       const createdUser = this.dao.createUser(user);
       return createdUser;
     } catch (error) {
