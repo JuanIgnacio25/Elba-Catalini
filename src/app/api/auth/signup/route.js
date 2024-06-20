@@ -36,7 +36,7 @@ export async function POST(request) {
     return NextResponse.json(
       { email: savedUser.email, fullname: savedUser.fullname },
       { status: 201 }
-    ); 
+    );
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
