@@ -33,8 +33,7 @@ const handler = NextAuth({
             rol: userFound.rol,
           };
         } catch (error) {
-          console.error("Error in authorize function:", error);
-          throw new Error("Error al autenticar. Por favor, intente de nuevo.");
+          throw error;
         }
       },
     }),

@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import { useState } from "react";
-/* import { signIn } from "next-auth/react"; */
 import { useRouter } from "next/navigation";
 
 function Register() {
@@ -24,11 +23,6 @@ function Register() {
         password,
       });
 
-      /*  const nextAuthResponse = await signIn("credentials", {
-        email: res.data.email,
-        password: password,
-        redirect: false,
-      }); */
       router.refresh();
       router.push("/auth/login");
     } catch (error) {
