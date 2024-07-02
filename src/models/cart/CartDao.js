@@ -13,6 +13,28 @@ class CartDao {
       throw error;
     }
   }
+
+  async getCartById(cartId) {
+    try {
+      const cart = await this.collection.findOne({ cartId });
+      return cart;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addProductToCart(cartId, product) {
+    try {
+      const addedProduct = this.collection.findOneAndUpdate(
+        { cartId},
+        { $push: { products: product } },
+        { new: true, useFindAndModify: false }
+      );
+      return addedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default CartDao;
