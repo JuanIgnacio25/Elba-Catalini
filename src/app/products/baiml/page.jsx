@@ -14,7 +14,8 @@ function BaimlProductsPage() {
 
   const handleAddToCart = async (id) => {
     try {
-      const res = await axios.get(`/api/carts/${id}`);
+      const res = await axios.put(`/api/carts/${id}`,{});
+      console.log(res);
     } catch (error) {
       console.log(error.response.data);
       router.push(`/auth/login/?error=para añadir productos al carrito, primero debes iniciar sesion`);
