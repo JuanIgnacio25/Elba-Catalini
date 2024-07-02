@@ -16,6 +16,14 @@ export async function middleware(req) {
       url.searchParams.set("error", "Primero debes iniciar sesión");
       return NextResponse.redirect(url);
     }
+
+    if(req.nextUrl.pathname.startsWith("/cart")){
+      url.pathname = "/auth/login";
+      url.searchParams.set("callbackUrl", req.nextUrl.pathname + req.nextUrl.search);
+      url.searchParams.set("error", "Para ver tu carrito , primero debes iniciar sesión");
+      return NextResponse.redirect(url);
+    }
+
     if(req.nextUrl.pathname.startsWith("/api/carts")){
       return NextResponse.json({message:'no tenes permitido padre'},{status:401});
     }
@@ -42,5 +50,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/products" , "/api/carts/:path*"],
+  matcher: ["/admin/:path*", "/api/products" , "/api/carts/:path*" , "/cart/:path*"],
 };

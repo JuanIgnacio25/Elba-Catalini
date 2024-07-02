@@ -25,8 +25,12 @@ function LoginPage() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      const callbackUrl = searchParams.get("callbackUrl") || "/";
-      router.push(callbackUrl);
+      let callbackUrl = searchParams.get("callbackUrl") || "/";
+      
+      if(callbackUrl.startsWith('/cart/')){
+        callbackUrl = `/cart/${session.user.cartId}`
+      }
+      window.location.assign(callbackUrl);
     }
   }, [status, session, router, searchParams]);
 
@@ -42,10 +46,16 @@ function LoginPage() {
 
     if (!nextAuthResponse.ok) return setError(nextAuthResponse.error);
 
-    if (nextAuthResponse.ok) {
-      const callbackUrl = searchParams.get("callbackUrl") || "/";
+   /*  if (nextAuthResponse.ok) {
+      let callbackUrl = searchParams.get("callbackUrl") || "/";
+      console.log(nextAuthResponse);
+      console.log(session);
+      if(callbackUrl.startsWith("/cart/")){
+        callbackUrl = `/cart/${session.user.cartId}`
+      }
+      
       window.location.assign(callbackUrl);
-    }
+    } */
   };
 
   return (

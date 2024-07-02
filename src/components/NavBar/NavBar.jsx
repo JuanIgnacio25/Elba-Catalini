@@ -9,7 +9,7 @@ import "./navbar.css";
 function NavBar() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  
+
   const handleSignout = async () => {
     await signOut({ redirect: false });
     router.push("/");
@@ -40,9 +40,15 @@ function NavBar() {
         <li>
           <Link href="/auth/register">Register</Link>
         </li>
-        <li>
-          <Link href="/">Carrito</Link>
-        </li>
+        {session ? (
+          <li>
+            <Link href={`/cart/${session.user.cartId}`}>Carrito</Link>
+          </li>
+        ) : (
+          <li>
+            <Link href={"/cart/0"}>Carrito</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
