@@ -31,6 +31,7 @@ const handler = NextAuth({
             fullname: userFound.fullname,
             id: userFound._id,
             rol: userFound.rol,
+            cartId: userFound.cartId
           };
         } catch (error) {
           throw error;
