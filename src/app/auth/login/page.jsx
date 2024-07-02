@@ -26,9 +26,9 @@ function LoginPage() {
   useEffect(() => {
     if (status === "authenticated") {
       let callbackUrl = searchParams.get("callbackUrl") || "/";
-      
-      if(callbackUrl.startsWith('/cart/')){
-        callbackUrl = `/cart/${session.user.cartId}`
+
+      if (callbackUrl.startsWith("/cart/")) {
+        callbackUrl = `/cart/${session.user.cartId}`;
       }
       window.location.assign(callbackUrl);
     }
@@ -46,7 +46,7 @@ function LoginPage() {
 
     if (!nextAuthResponse.ok) return setError(nextAuthResponse.error);
 
-   /*  if (nextAuthResponse.ok) {
+    /*  if (nextAuthResponse.ok) {
       let callbackUrl = searchParams.get("callbackUrl") || "/";
       console.log(nextAuthResponse);
       console.log(session);
