@@ -9,13 +9,15 @@ export async function middleware(req) {
   });
 
   const url = req.nextUrl.clone();
-
   if (!token) {
-    if (req.nextUrl.pathname.startsWith("/admin")) {
+    if (req.nextUrl.pathname.startsWith("/admin") ) {
       url.pathname = "/auth/login";
       url.searchParams.set("callbackUrl", req.nextUrl.pathname + req.nextUrl.search);
       url.searchParams.set("error", "Primero debes iniciar sesión");
       return NextResponse.redirect(url);
+    }
+    if(req.nextUrl.pathname.startsWith("/api/carts")){
+      return NextResponse.json({message:'no tenes permitido padre'},{status:401});
     }
   }
 
@@ -40,5 +42,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/products"],
+  matcher: ["/admin/:path*", "/api/products" , "/api/carts/:path*"],
 };
