@@ -23,14 +23,30 @@ class CartDao {
     }
   }
 
+
   async addProductToCart(cartId, product) {
     try {
+      
       const addedProduct = this.collection.findOneAndUpdate(
-        { cartId},
+        { cartId : cartId},
         { $push: { products: product } },
         { new: true, useFindAndModify: false }
       );
+
       return addedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeProductFromCart(cartId, productId) {
+    try {
+  
+      const result = await this.collection.updateOne(
+        { cartId : cartId },
+        { $pull: { products: { productId: productId } } }
+      );
+
     } catch (error) {
       throw error;
     }

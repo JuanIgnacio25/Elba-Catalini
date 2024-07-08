@@ -25,7 +25,7 @@ export async function middleware(req) {
     }
 
     if(req.nextUrl.pathname.startsWith("/api/carts")){
-      return NextResponse.json({message:'no tenes permitido padre'},{status:401});
+      return NextResponse.json({message:'Debes iniciar sesion primero'},{status:401});
     }
   }
 

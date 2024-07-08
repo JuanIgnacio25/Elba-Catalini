@@ -14,11 +14,15 @@ function BaimlProductsPage() {
 
   const handleAddToCart = async (id) => {
     try {
-      const res = await axios.put(`/api/carts/${id}`,{});
-      console.log(res);
+      await axios.post(`/api/carts/products/${id}`, {});
+      
     } catch (error) {
+      if (error.request.status == 401) {
+        router.push(
+          `/auth/login/?error=para añadir productos al carrito, primero debes iniciar sesion`
+        );
+      }
       console.log(error.response.data);
-      router.push(`/auth/login/?error=para añadir productos al carrito, primero debes iniciar sesion`);
     }
   };
 
