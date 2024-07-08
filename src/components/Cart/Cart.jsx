@@ -20,17 +20,19 @@ function Cart({ cart }) {
 
   return (
     <div>
-      {cart.products.map((e) => {
-        return (
-          <div key={e.productId}>
-            <p>{e.name}</p>
-            <p>{e.category}</p>
-            <p>{e.description}</p>
-            <p>{e.unit}</p>
-            <button style={{background:"white",color:"black"}}onClick={() => handleDelete(e.productId)}>Delete</button>
-          </div>
-        );
-      })}
+      {cart.products.length == 0 ? (<p>El carrito esta vacio</p>) : (
+        cart.products.map((e) => {
+          return (
+            <div key={e.productId}>
+              <p>{e.name}</p>
+              <p>{e.category}</p>
+              <p>{e.description}</p>
+              <p>{e.unit}</p>
+              <button style={{background:"white",color:"black"}}onClick={() => handleDelete(e.productId)}>Delete</button>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }
