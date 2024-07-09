@@ -18,6 +18,15 @@ function Cart({ cart }) {
     }
   }
 
+  const handleCloseOrder = async () => {
+    try {
+      const res = await axios.get(`/api/orders`);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       {cart.products.length == 0 ? (<p>El carrito esta vacio</p>) : (
@@ -28,11 +37,12 @@ function Cart({ cart }) {
               <p>{e.category}</p>
               <p>{e.description}</p>
               <p>{e.unit}</p>
-              <button style={{background:"white",color:"black"}}onClick={() => handleDelete(e.productId)}>Delete</button>
+              <button style={{background:"white",color:"black"}} onClick={() => handleDelete(e.productId)}>Delete</button>
             </div>
           );
         })
       )}
+      <button style={{background:"white",color:"black"}} onClick={() => handleCloseOrder()}>Cerrar pedido</button>
     </div>
   );
 }
