@@ -2,7 +2,7 @@ import createTransporter from "@/libs/nodemailer";
 
 async function sendEmail({ to, subject, text }) {
   try {
-    const transporter = await createTransporter();
+    const transporter = createTransporter();
 
     const mailOptions = {
       from: process.env.EMAIL_USER,

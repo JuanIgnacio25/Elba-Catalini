@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+/* import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 
 const CLIENT_ID = process.env.GMAIL_CLIENT_ID;
@@ -13,8 +13,13 @@ oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 async function createTransporter() {
   const accessToken = await oAuth2Client.getAccessToken();
 
+  console.log({codigodeacceso:accessToken});
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
+    host:"smtp.gmail.com",
+    port:465,
+    secure:true,
     auth: {
       type: 'OAuth2',
       user: process.env.EMAIL_USER,
@@ -25,7 +30,30 @@ async function createTransporter() {
     },
   });
 
+  console.log({transporte:transporter});
+
   return transporter;
 }
+
+export default createTransporter; */
+
+import nodemailer from 'nodemailer';
+
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD; // Contraseña de aplicación
+
+const createTransporter = () => {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true para el puerto 465, false para el puerto 587
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASSWORD,
+    },
+  });
+
+  return transporter;
+};
 
 export default createTransporter;
