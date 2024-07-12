@@ -16,7 +16,7 @@ class CartService {
 
   async getCartById(id){
     try {
-      const cart = await this.dao.getCartById(id);
+      const cart = await this.dao.getCartById(Number(id));
       return cart;
     } catch (error) {
       throw error;
