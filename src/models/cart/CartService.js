@@ -58,6 +58,16 @@ class CartService {
       throw error;
     }
   }
+
+  async clearCart(id){
+    try {
+      console.log(typeof id);
+      const clearedCart = await this.dao.clearCart(id);
+      return clearedCart;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default CartService;

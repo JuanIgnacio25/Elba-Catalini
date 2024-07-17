@@ -20,7 +20,7 @@ function Cart({ cart }) {
 
   const handleCloseOrder = async () => {
     try {
-      const res = await axios.get(`/api/orders`);
+      const res = await axios.post(`/api/orders/close-order`);
       console.log(res);
     } catch (error) {
       console.log(error);

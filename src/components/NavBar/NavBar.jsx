@@ -46,7 +46,7 @@ function NavBar() {
           </li>
         ) : (
           <li>
-            <Link href={"/cart/0"}>Carrito</Link>
+            <Link href={"/cart"}>Carrito</Link>
           </li>
         )}
       </ul>

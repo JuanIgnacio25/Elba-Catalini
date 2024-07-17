@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import {getToken} from "next-auth/jwt"
 
 import { connectDB } from "@/libs/mongodb";
+
 import sendMail from "@/utils/mail";
 
 export async function GET(request) {
