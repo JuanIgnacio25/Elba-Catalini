@@ -15,6 +15,7 @@ function UpdateProductPage() {
     description: "",
     name: "",
     unit: "",
+    productSet: ""
   });
 
   const router = useRouter();
@@ -42,6 +43,7 @@ function UpdateProductPage() {
       category:product.category,
       description:product.description,
       unit:product.unit,
+      productSet: Number(product.productSet)
     };
 
     try {
@@ -49,7 +51,7 @@ function UpdateProductPage() {
       console.log(res);
       router.push('/admin/dashboard');
     } catch (error) {
-      console.log({ error: error });
+      console.log(error);
     }
   };
 
@@ -111,12 +113,26 @@ function UpdateProductPage() {
           placeholder="12"
           name="unit"
           autoComplete="unit"
-          required={true}
+          /* required={true} */
           value={product.unit}
           onChange={(e) => {
             setProduct((prevProduct) => ({
               ...prevProduct,
               unit: e.target.value,
+            }));
+          }}
+        />
+        <input
+          type="number"
+          placeholder="2"
+          name="productSet"
+          autoComplete="set"
+          /* required={true} */
+          value={product.productSet}
+          onChange={(e) => {
+            setProduct((prevProduct) => ({
+              ...prevProduct,
+              productSet: e.target.value,
             }));
           }}
         />

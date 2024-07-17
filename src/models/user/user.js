@@ -8,6 +8,10 @@ const usersSchema = new mongoose.Schema({
     type: Number,
     unique: true,
   },
+  cartId: {
+    type: Number,
+    unique: true,
+  },
   fullname: {
     type: String,
     required: [true, "El nombre es requerido"],

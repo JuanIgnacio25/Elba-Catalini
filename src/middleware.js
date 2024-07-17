@@ -4,47 +4,43 @@ import { NextResponse } from "next/server";
 export async function middleware(req) {
   const token = await getToken({
     req,
-    cookieName:
-      process.env.NODE_ENV === "development"
-        ? "next-auth.session-token"
-        : "__Secure-next-auth.session-token",
+    cookieName: process.env.NODE_ENV === "development" ? "next-auth.session-token" : "__Secure-next-auth.session-token",
     secret: process.env.NEXTAUTH_SECRET,
   });
 
   const url = req.nextUrl.clone();
-
   if (!token) {
-    const destination = req.nextUrl.pathname + req.nextUrl.search;
+    if (req.nextUrl.pathname.startsWith("/admin") ) {
+      url.pathname = "/auth/login";
+      url.searchParams.set("callbackUrl", req.nextUrl.pathname + req.nextUrl.search);
+      url.searchParams.set("error", "Primero debes iniciar sesión");
+      return NextResponse.redirect(url);
+    }
 
-    url.pathname = "/auth/login";
-    url.searchParams.set("error", "Primero debes iniciar sesion");
-    url.searchParams.set("callbackUrl", destination);
+    if(req.nextUrl.pathname.startsWith("/cart")){
+      url.pathname = "/auth/login";
+      url.searchParams.set("callbackUrl", req.nextUrl.pathname + req.nextUrl.search);
+      url.searchParams.set("error", "Para ver tu carrito , primero debes iniciar sesión");
+      return NextResponse.redirect(url);
+    }
 
-    try {
-      const fullUrl = url.toString();
-
-      return NextResponse.redirect(fullUrl);
-    } catch (error) {
-      console.error("Error constructing redirect URL:", error);
-      return NextResponse.error();
+    if(req.nextUrl.pathname.startsWith("/api/carts")){
+      return NextResponse.json({message:'Debes iniciar sesion primero'},{status:401});
     }
   }
 
   if (req.nextUrl.pathname.startsWith("/admin")) {
     if (token.user.rol !== "admin") {
       url.pathname = "/";
-      url.searchParams.set(
-        "error",
-        "No tienes permiso para acceder a esta página"
-      );
+      url.searchParams.set("error", "No tienes permiso para acceder a esta página");
       return NextResponse.redirect(url);
     }
   }
 
-   if (req.nextUrl.pathname === "/api/products" && req.method === "POST") {
-    if (token.user.rol !== "admin") {
+  if (req.nextUrl.pathname === "/api/products" && req.method !== "GET") {
+    if (!token || token.user.rol !== "admin") {
       return NextResponse.json(
-        { message: "no tiene permiso para hacer esta peticion" },
+        { message: "No tiene permiso para hacer esta petición" },
         { status: 401 }
       );
     }
@@ -54,5 +50,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*" , "/api/products"],
+  matcher: ["/admin/:path*", "/api/products" , "/api/carts/:path*" , "/cart/:path*"],
 };

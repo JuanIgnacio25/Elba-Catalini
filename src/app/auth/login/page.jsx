@@ -2,35 +2,37 @@
 
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
 
   const router = useRouter();
-
   const { status, data: session } = useSession();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    setError("");
-    const params = new URLSearchParams(window.location.search);
-    const errorMessage = params.get("error");
+    const errorMessage = searchParams.get("error");
     if (errorMessage) {
       setError(errorMessage);
+    } else {
+      setError("");
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (status === "authenticated") {
-      const params = new URLSearchParams(window.location.search);
-      const callbackUrl = params.get("callbackUrl") || "/";
-      router.push(callbackUrl);
+      let callbackUrl = searchParams.get("callbackUrl") || "/";
+
+      if (callbackUrl.startsWith("/cart/")) {
+        callbackUrl = `/cart/${session.user.cartId}`;
+      }
+      window.location.assign(callbackUrl);
     }
-  }, [status, session, router]);
+  }, [status, session, router, searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,20 +42,20 @@ function LoginPage() {
       email: email,
       password: password,
       redirect: false,
-      /* callbackUrl: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}auth/login`, */
     });
-
-    console.log(nextAuthResponse);
 
     if (!nextAuthResponse.ok) return setError(nextAuthResponse.error);
 
-    if (nextAuthResponse.ok) {
-      const params = new URLSearchParams(window.location.search);
-      const callbackUrl = params.get("callbackUrl") || "/";
-      /* router.push(callbackUrl);
-      router.refresh(); */
+    /*  if (nextAuthResponse.ok) {
+      let callbackUrl = searchParams.get("callbackUrl") || "/";
+      console.log(nextAuthResponse);
+      console.log(session);
+      if(callbackUrl.startsWith("/cart/")){
+        callbackUrl = `/cart/${session.user.cartId}`
+      }
+      
       window.location.assign(callbackUrl);
-    }
+    } */
   };
 
   return (

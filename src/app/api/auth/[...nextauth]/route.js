@@ -31,10 +31,10 @@ const handler = NextAuth({
             fullname: userFound.fullname,
             id: userFound._id,
             rol: userFound.rol,
+            cartId: userFound.cartId
           };
         } catch (error) {
-          console.error("Error in authorize function:", error);
-          throw new Error("Error al autenticar. Por favor, intente de nuevo.");
+          throw error;
         }
       },
     }),

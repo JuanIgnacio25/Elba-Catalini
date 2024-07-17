@@ -1,12 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import axios from "axios";
 
 function BaimlProductsPage() {
+  const router = useRouter();
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleAddToCart = async (id) => {
+    try {
+      await axios.post(`/api/carts/products/${id}`, {});
+      
+    } catch (error) {
+      if (error.request.status == 401) {
+        router.push(
+          `/auth/login/?error=para añadir productos al carrito, primero debes iniciar sesion`
+        );
+      }
+      console.log(error.response.data);
+    }
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,6 +63,12 @@ function BaimlProductsPage() {
           <p>{prod.description}</p>
           <p>{prod.category}</p>
           <p>{prod.unit}</p>
+          <button
+            style={{ background: "white", color: "black" }}
+            onClick={() => handleAddToCart(prod.productId)}
+          >
+            Agregar al carrito
+          </button>
         </div>
       ))}
     </div>
