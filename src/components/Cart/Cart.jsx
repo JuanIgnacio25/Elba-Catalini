@@ -27,6 +27,10 @@ function Cart({ cart }) {
     }
   }
 
+  if (!cart) {
+    return <div>El carrito no existe</div>;
+  }
+
   return (
     <div>
       {cart.products.length == 0 ? (<p>El carrito esta vacio</p>) : (
