@@ -8,52 +8,49 @@ function Cart() {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const router = useRouter();
+
+  const fetchCart = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get('/api/carts');
+      if (res.data && res.data.cart) {
+        setCart(res.data.cart);
+      } else {
+        console.error("Formato de respuesta no válido", res.data);
+        setError("Formato de respuesta no válido");
+      }
+    } catch (error) {
+      console.error("Error al obtener el carrito", error);
+      setError("Error al obtener el carrito");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const res = await axios.get('/api/carts');
-        if (res.data && res.data.cart) {
-          setCart(res.data.cart);
-        } else {
-          console.error("Invalid response format", res.data);
-          setError("Invalid response format");
-        }
-      } catch (error) {
-        console.error("Error fetching cart", error);
-        setError("Error fetching cart");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchCart();
   }, []);
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/api/carts/products/${id}`);
-      const updatedCart = await axios.get('/api/carts');
-      setCart(updatedCart.data.cart);
+      fetchCart();
     } catch (error) {
-      console.error('Error deleting product:', error);
-    } finally {
-      router.refresh();
+      console.error('Error al eliminar el producto:', error);
     }
   };
 
   const handleCloseOrder = async () => {
     try {
       const res = await axios.post(`/api/orders/close-order`);
-      console.log(res);
+      fetchCart();
     } catch (error) {
-      console.error('Error closing order:', error);
+      console.error('Error al cerrar el pedido:', error);
     }
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Cargando...</div>;
   }
 
   if (error) {
@@ -73,7 +70,7 @@ function Cart() {
           <p>{e.description}</p>
           <p>{e.unit}</p>
           <button style={{ background: "white", color: "black" }} onClick={() => handleDelete(e.productId)}>
-            Delete
+            Eliminar
           </button>
         </div>
       ))}
