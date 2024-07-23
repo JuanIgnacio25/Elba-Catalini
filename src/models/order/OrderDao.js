@@ -5,9 +5,9 @@ class OrderDao {
     this.collection = Order;
   }
 
-  async createOrder(products) {
+  async createOrder(order) {
     try {
-      const createdOrder = await this.collection.create({products});
+      const createdOrder = await this.collection.create(order);
       return createdOrder;
     } catch (error) {
       throw error;

@@ -25,15 +25,15 @@ export async function POST(req) {
     if (cart.products.length == 0)
       throw new Error("No se puede completar la compra de un carrito vacio");
 
-    const order = await orderService.closeOrder(cart.products,token.user);
+    const order = await orderService.closeOrder(cart.products, token.user);
     await cartService.clearCart(token.user.cartId);
-    console.log(
+    /* console.log(
       order.createdAt.toLocaleString("es-AR", {
         timeZone: "America/Argentina/Buenos_Aires",
         dateStyle: "medium",
         timeStyle: "medium",
       })
-    );
+    ); */
 
     return NextResponse.json("Email Enviado");
   } catch (error) {
