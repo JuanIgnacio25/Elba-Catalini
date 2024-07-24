@@ -43,6 +43,10 @@ function Orders() {
     return <div>Cargando...</div>;
   }
 
+  if (orders.length == 0) {
+    return <div>No tienes pedidos aun</div>
+  }
+
   if (error) {
     return <div>{error}</div>;
   }
