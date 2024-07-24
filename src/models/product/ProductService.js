@@ -1,5 +1,5 @@
 import ProductDao from "@/models/product/ProductDao";
-import { isValidBaimlProduct } from "@/utils/validateBaimlProducts";
+import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 
 class ProductService {
   constructor() {

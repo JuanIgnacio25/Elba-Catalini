@@ -1,6 +1,6 @@
 import OrderDao from "@/models/order/OrderDao";
-import createAndSendExcelEmail from "@/utils/sendOfficeMail";
-import sendOrderEmail from "@/utils/sendClientMail";
+import createAndSendExcelEmail from "@/utils/mail/sendOfficeMail";
+import sendOrderEmail from "@/utils/mail/sendClientMail";
 
 class OrderService {
   constructor() {
