@@ -37,6 +37,17 @@ class CartDao {
     }
   }
 
+  async addProductsArrayToCart(cartId,products){
+    try {
+      return Cart.updateOne(
+        { cartId:cartId },
+        { $push: { products: { $each: products } } }
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async removeProductFromCart(cartId, productId) {
     try {
       const result = await this.collection.updateOne(

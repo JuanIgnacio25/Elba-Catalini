@@ -48,6 +48,15 @@ class CartService {
     }
   }
 
+  async addProductsArrayToCart(cartId,products){
+    try {
+      const addedProducts = this.dao.addProductsArrayToCart(cartId,products);
+      return addedProducts;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async removeProductFromCart(cartId,productId){
     try {
       const cart = await this.getCartById(cartId);
@@ -61,7 +70,6 @@ class CartService {
 
   async clearCart(id){
     try {
-      console.log(typeof id);
       const clearedCart = await this.dao.clearCart(id);
       return clearedCart;
     } catch (error) {
