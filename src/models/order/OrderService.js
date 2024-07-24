@@ -9,8 +9,8 @@ class OrderService {
 
   async closeOrder(products, user) {
     try {
-      const order = {userId:user.id,products};
-      
+      const order = { userId: user.id, products };
+
       const createdOrder = await this.dao.createOrder(order);
 
       sendOrderEmail(user.email, products);
@@ -23,9 +23,21 @@ class OrderService {
     }
   }
 
-  async findOrderByUserId(id) {
+  async findOrdersByUserId(id) {
     try {
-      console.log(typeof id);
+      const orders = this.dao.findOrdersByUserId(id);
+      return orders;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+//busca las ordenes con el mismo userId y despues filtra por el orderId y devuelve esa orden
+  async findOrdersByUserIdAndOrderId(userId, orderId) {
+    try {
+      const orders = await this.findOrdersByUserId(userId);
+      const filteredOrder = orders.find((e) => e.orderId == orderId);
+      return filteredOrder;
     } catch (error) {
       throw error;
     }

@@ -13,6 +13,15 @@ class OrderDao {
       throw error;
     }
   }
+
+  async findOrdersByUserId(id){
+    try {
+      const orders = await this.collection.find({userId:id});
+      return orders;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default OrderDao;

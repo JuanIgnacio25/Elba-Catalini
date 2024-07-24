@@ -8,7 +8,10 @@ import OrderService from "@/models/order/OrderService";
 const orderService = new OrderService();
 const cartService = new CartService();
 
-export async function POST(req) {
+export async function POST(req, { params }) {
+
+  const { id: orderId } = params;
+
   const token = await getToken({
     req,
     cookieName:
@@ -20,15 +23,15 @@ export async function POST(req) {
 
   try {
     await connectDB();
-    const cart = await cartService.getCartById(token.user.cartId);
 
-    if (cart.products.length == 0)
-      throw new Error("No se puede completar la compra de un carrito vacio");
+    const order = await orderService.findOrdersByUserIdAndOrderId(token.user.id,orderId);
+    if(!order) throw new Error('No se encontro la orden');
 
-    const order = await orderService.closeOrder(cart.products, token.user);
     await cartService.clearCart(token.user.cartId);
 
-    return NextResponse.json("Email Enviado");
+    await cartService.addProductsArrayToCart(token.user.cartId,order.products);
+
+    return NextResponse.json({ order }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
