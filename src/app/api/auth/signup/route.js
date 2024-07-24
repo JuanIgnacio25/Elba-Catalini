@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { connectDB } from "@/libs/mongodb";
-import { isValidSignup } from "@/utils/validateUser";
+import { isValidSignup } from "@/utils/validate/validateUser";
 import UserService from "@/models/user/UserService";
 import CartService from "@/models/cart/CartService";
 
@@ -9,9 +9,12 @@ const userService = new UserService();
 const cartService = new CartService();
 
 export async function POST(request) {
-  const user = await request.json();
+  const fullUser = await request.json();
+
+  const {validatePassword, ...user} = fullUser;
 
   try {
+    if(user.password !== validatePassword) throw new Error("Las contraseñas no coinciden")
     isValidSignup(user);
   } catch (error) {
     return NextResponse.json({message: error.message}, {status: 400});
