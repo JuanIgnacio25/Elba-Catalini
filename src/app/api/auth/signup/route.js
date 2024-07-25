@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 
 import { connectDB } from "@/libs/mongodb";
 import { isValidSignup } from "@/utils/validate/validateUser";
+import generateVerificationToken from "@/utils/token/generateVerificationToken";
+import sendVerificationMail from "@/utils/mail/sendVerificationMail";
 import UserService from "@/models/user/UserService";
-import CartService from "@/models/cart/CartService";
+import TemporalUserService from "@/models/temporalUser/TemporalUserService"
 
 const userService = new UserService();
-const cartService = new CartService();
+const temporalUserService = new TemporalUserService();
 
 export async function POST(request) {
   const fullUser = await request.json();
@@ -32,13 +34,24 @@ export async function POST(request) {
       );
     }
 
-    const createdCart = await cartService.createCart();
-    user.cartId = createdCart.cartId;
+    const temporalUserFound = await temporalUserService.getTemporalUserByEmail(user.email);
 
-    const savedUser = await userService.createUser(user);
+    if(temporalUserFound) {
+      return NextResponse.json(
+        {message: "El usuario ya existe, verifique su correo electronico"},
+        {status: 409}
+      )
+    }
+
+    const verificationToken = generateVerificationToken(user.email);
+    user.verificationToken = verificationToken;
+
+
+    const savedTemporalUser = await temporalUserService.createTemporalUser(user);
+    await sendVerificationMail(savedTemporalUser.email,savedTemporalUser.verificationToken);
 
     return NextResponse.json(
-      { email: savedUser.email, fullname: savedUser.fullname },
+      { email: savedTemporalUser.email, fullname: savedTemporalUser.fullname },
       { status: 201 }
     );
   } catch (error) {
