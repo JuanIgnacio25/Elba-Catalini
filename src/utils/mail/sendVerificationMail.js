@@ -9,7 +9,7 @@ const sendVerificationMail = async (userEmail, verificationToken) => {
       to: userEmail,
       subject: "Link de verificacion de cuenta",
       text: `Verifique su cuenta clickeando en el siguiente link:
-       ${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/api/auth/verify-account/${verificationToken}`,
+       ${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/auth/verify-account/${verificationToken}`,
     });
   } catch (error) {
     throw error;

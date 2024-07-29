@@ -24,9 +24,9 @@ function Register() {
         password,
         validatePassword
       });
-
+      
       router.refresh();
-      router.push("/auth/login");
+      router.push("/auth/verifying-account");
     } catch (error) {
       console.log(error.response);
       setError(error.response.data.message);
