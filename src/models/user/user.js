@@ -28,10 +28,18 @@ const usersSchema = new mongoose.Schema({
     required: [true, "La contraseña es requerida"],
     select: false,
   },
-  rol:{
-    type:String,
-    required: true
-  }
+  rol: {
+    type: String,
+    required: true,
+  },
+  recoveryToken: {
+    type: String,
+    default: "",
+  },
+  recoveryTokenExpires: {
+    type: Date,
+    default: null,
+  },
 });
 
 usersSchema.plugin(AutoIncrement, { inc_field: "userId" });
