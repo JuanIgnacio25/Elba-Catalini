@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -81,6 +82,7 @@ function Login() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button className="bg-white">Login</button>
       </form>
+      <p><Link href={"/auth/password-recovery"}>Olvidaste tu contraseña?</Link></p>
     </div>
   );
 }
