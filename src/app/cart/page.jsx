@@ -1,10 +1,8 @@
+import Cart from "@/components/Cart/Cart";
 
-function CartPage() {
-  return (
-    <div>
-      Primero debes logear
-    </div>
-  )
+async function CartPage() {
+  
+  return <Cart></Cart>;
 }
 
-export default CartPage
+export default CartPage;

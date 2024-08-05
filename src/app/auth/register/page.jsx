@@ -8,6 +8,7 @@ function Register() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validatePassword, setValidatePassword] = useState("");
 
   const [error, setError] = useState("");
 
@@ -21,10 +22,11 @@ function Register() {
         fullname,
         email,
         password,
+        validatePassword
       });
-
+      
       router.refresh();
-      router.push("/auth/login");
+      router.push("/auth/verifying-account");
     } catch (error) {
       console.log(error.response);
       setError(error.response.data.message);
@@ -55,6 +57,13 @@ function Register() {
           name="password"
           required={true}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="********"
+          name="validate-password"
+          required={true}
+          onChange={(e) => setValidatePassword(e.target.value)}
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button className="bg-white">Register</button>

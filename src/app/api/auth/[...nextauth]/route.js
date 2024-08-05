@@ -29,7 +29,7 @@ const handler = NextAuth({
           return {
             email: userFound.email,
             fullname: userFound.fullname,
-            id: userFound._id,
+            id: userFound.userId,
             rol: userFound.rol,
             cartId: userFound.cartId
           };

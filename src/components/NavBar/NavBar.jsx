@@ -40,15 +40,12 @@ function NavBar() {
         <li>
           <Link href="/auth/register">Register</Link>
         </li>
-        {session ? (
-          <li>
-            <Link href={`/cart/${session.user.cartId}`}>Carrito</Link>
-          </li>
-        ) : (
-          <li>
-            <Link href={"/cart"}>Carrito</Link>
-          </li>
-        )}
+        <li>
+          <Link href={`/cart`}>Carrito</Link>
+        </li>
+        <li>
+          <Link href={"/historyOrder"}>Pedidos</Link>
+        </li>
       </ul>
     </nav>
   );

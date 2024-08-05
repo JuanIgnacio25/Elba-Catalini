@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 const EMAIL_USER = process.env.EMAIL_USER;
-const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD; // Contraseña de aplicación
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
 const createTransporter = () => {
   const transporter = nodemailer.createTransport({

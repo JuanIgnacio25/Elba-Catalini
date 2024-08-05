@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     unique: true,
   },
+  userId: { type: Number , required: [true, "El id del usuario es requerido"]},
   products: { type: [{ type: Schema.Types.Mixed }] },
   createdAt: {
     type: Date,

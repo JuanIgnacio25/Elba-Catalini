@@ -3,12 +3,8 @@ import AutoIncrementFactory from "mongoose-sequence";
 
 const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
-const usersSchema = new mongoose.Schema({
-  userId: {
-    type: Number,
-    unique: true,
-  },
-  cartId: {
+const temporalUsersSchema = new mongoose.Schema({
+  temporalUserId: {
     type: Number,
     unique: true,
   },
@@ -28,20 +24,17 @@ const usersSchema = new mongoose.Schema({
     required: [true, "La contraseña es requerida"],
     select: false,
   },
-  rol: {
+  verificationToken: {
     type: String,
-    required: true,
+    required: [true, "Debe tener un token de validacion"],
   },
-  recoveryToken: {
-    type: String,
-    default: "",
-  },
-  recoveryTokenExpires: {
-    type: Date,
-    default: null,
-  },
-});
+}, {timestamps:true});
 
-usersSchema.plugin(AutoIncrement, { inc_field: "userId" });
+temporalUsersSchema.plugin(AutoIncrement, { inc_field: "temporalUserId" });
+temporalUsersSchema.index(
+  { createdAt: 1 },
+  { expireAfterSeconds: 3600 }
+);
 
-export default mongoose.models.users || mongoose.model("users", usersSchema);
+export default mongoose.models.temporalUsers ||
+  mongoose.model("temporalUsers", temporalUsersSchema);
