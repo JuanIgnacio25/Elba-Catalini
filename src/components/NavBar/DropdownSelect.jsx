@@ -10,13 +10,13 @@ import { IoIosArrowDown } from "react-icons/io";
 const DropdownSelect = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
+  /* const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted || status === 'loading') return null;
+  if (!mounted || status === 'loading') return null; */
 
   const options = [];
 

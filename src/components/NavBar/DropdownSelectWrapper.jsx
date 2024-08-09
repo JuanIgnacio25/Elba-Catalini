@@ -1,25 +1,17 @@
-"use client";
-
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
 import DropdownSelectFallback from "@/components/Fallbacks/DropdownSelectFallback";
 
-const DropdownSelect = React.lazy(() => import('@/components/NavBar/DropdownSelect'));
+const DropdownSelect = dynamic(
+  () => import("@/components/NavBar/DropdownSelect"),
+  { ssr: false, loading: () => <DropdownSelectFallback /> }
+);
 
 const DropdownSelectWrapper = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoaded(true);
-    }, 1500); 
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
-    <Suspense fallback={DropdownSelectFallback}>
-      {isLoaded ? <DropdownSelect /> : <DropdownSelectFallback/>}
+    <Suspense fallback={<DropdownSelectFallback />}>
+      <DropdownSelect />
     </Suspense>
   );
 };
