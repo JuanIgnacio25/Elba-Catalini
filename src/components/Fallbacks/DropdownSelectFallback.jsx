@@ -3,16 +3,15 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const DropdownSelectFallback = () => {
   return (
-    <div className="nav-main-menu-fallback-select-container">
-      <div className="nav-main-menu-fallback-select">
-        <div className="nav-main-menu-fallback-placeholder">
-          <FaRegUser className="nav-main-menu-fallback-icon-user" />
-          <span>Cuenta</span>
-        </div>
-        <IoIosArrowDown className="nav-main-menu-fallback-select-arrow" />
+   
+    <div className="nav-main-menu-select-fallback">
+      <div className="nav-main-menu-select-fallback-placeholder">
+        <FaRegUser/>
+        <span>Cuenta</span>
       </div>
+      <IoIosArrowDown/>
     </div>
-  );
+  )
 };
 
 export default DropdownSelectFallback;

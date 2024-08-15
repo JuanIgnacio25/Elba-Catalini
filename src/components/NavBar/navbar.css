@@ -1,8 +1,48 @@
+
 /* NavHeader */
+
 .nav-header-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 4vh;
-  background: var(--red);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  font-size: 14px;
+  color: var(--black);
+  background: var(--soft-grey);
+}
+
+
+.nav-header-socialmedia {
+  display:flex;
+  flex-flow:row wrap;
+  width:30%;
+  gap:3px;
+  padding: 0px 10px;
+}
+
+.nav-header-text-container{
+  width:30%;
+  text-align:center;
+}
+
+.nav-header-items-container{
+  display:flex;
+  flex-flow:row wrap;
+  justify-content:end;
+  width:30%;
+}
+
+.nav-header-items {
+  display:flex;
+  flex-flow:row wrap;
+  align-items:center;
+  padding: 0px 10px;
+  gap: 3px;
 }
 
 /* NavMain */
@@ -11,24 +51,34 @@
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  top: 4vh;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 12vh;
+  background: var(--light-grey);
 }
 
 .nav-main ul {
   display: flex;
   flex-flow: row wrap;
-  padding: 15px;
+  padding: 15px 0px;
 }
 
 /*NavMain Image */
+.nav-main-responsive-image-container {
+  width:18%;
+}
 
 .nav-main-responsive-image {
-  width: 300px;
+  width: 100%;
   height: auto;
 }
 
 /* NavMain Search */
 .nav-main-search-container {
-  width: 40%;
+  width: 35%;
 }
 
 .nav-main-search {
@@ -39,10 +89,10 @@
 
 .nav-main-search input {
   width: 100%;
-  height: 55px;
+  height: 100%;
   padding: 10px;
   border-radius: 11px 0px 0px 11px;
-  border: 2px solid var(--light-grey);
+  border: 2px solid var(--soft-grey);
   border-right: none;
   font-size: 15px;
   font-weight: bold;
@@ -58,11 +108,11 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  height: 55px;
+  height: 100%;
   padding: 10px;
   font-size: 25px;
   background: none;
-  border: 2px solid var(--light-grey);
+  border: 2px solid var(--soft-grey);
   border-left: none;
   border-radius: 0px 11px 11px 0px;
   color: var(--dark-grey);
@@ -87,7 +137,13 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  gap: 30px;
+  width:20%;
+  gap: 20px;
+}
+
+.nav-main-menu-cart-container {
+  display: flex;
+  width:15%;
 }
 
 .nav-main-menu-icon-cart {
@@ -96,47 +152,29 @@
 
 /* NanMain Menu FallBack start */
 
-/* Estilos generales para el fallback */
-
-.nav-main-menu-fallback-select-container{
-  padding: 0 10px;
-  background: var(--red);
-  border-radius: 10px;
-  width: 100%;
-}
-
-.nav-main-menu-fallback-select {
-  display: flex;
-  align-items: center;
+.nav-main-menu-select-fallback{
+  display:flex;
+  flex-flow:row wrap;
+  align-items:center;
   justify-content:center;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.nav-main-menu-fallback-placeholder {
-  display: flex;
-  align-items: center;
-  height:38px;
-  gap: 3px;
-  padding: 0 10px;
-}
-
-.nav-main-menu-fallback-select-arrow{
+  background:var(--red);
+  color:#fff;
   font-size:16px;
+  font-weight:bold;
+  border-radius:10px;
+  padding:7px 10px;
+}
+
+.nav-main-menu-select-fallback-placeholder{
+  display:flex;
+  flex-flow:row wrap;
+  align-items:center;
+  gap:3px;
+  padding: 0px 10px;
 }
 
 /* NavMain Menu Fallback end */
-.nav-main-menu-select {
-  display: flex;
-  align-items: center;
-  background: var(--red);
-  color: white;
-  border-radius: 10px;
-  padding: 10px;
-  position: relative;
-  width: 100%;
-}
+
 
 .nav-main-menu-placeholder {
   display: flex;
@@ -150,7 +188,7 @@
 }
 
 .nav-main-menu-select-arrow {
-  color: var(--light-grey);
+  color: #fff;
   pointer-events: none;
 }
 
@@ -179,4 +217,59 @@
 .css-1n7v3ny-option:hover {
   background-color: var(--red) !important;
   color: white !important;
+}
+
+/* NavDesktop */
+
+.nav-desktop {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 16vh; 
+  left: 0;
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  background: var(--red);
+  color: var(--white);
+}
+
+/* NavBar Media query */
+@media (max-width: 900px){
+  /* NavBar header */
+  .nav-header-container {
+    display:none;
+  }
+  /* NavMain */
+    .nav-main{
+      top: 0vh;
+    }
+
+    .nav-main-search input{
+      height: 80%;
+    }
+
+    .nav-main-search button{
+      height: 80%;
+    }
+
+    .nav-main-menu-cart-container{
+      display:none;
+    }
+  /* NavMain Menu Fallback */
+  .nav-main-menu-select-fallback-placeholder span{
+    display:none;
+  }
+  .nav-main-menu-select-fallback{
+    padding: 11px 10px;
+  }
+
+  /* NavDesktop */
+
+  .nav-desktop{
+    top:12vh;
+  }
 }

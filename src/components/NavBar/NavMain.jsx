@@ -8,7 +8,7 @@ import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper";
 function NavMain() {
   return (
     <nav className="nav-main">
-      <ul>
+      <ul className="nav-main-responsive-image-container">
         <li>
           <Link href="/">
             <Image
@@ -31,12 +31,12 @@ function NavMain() {
         </li>
       </ul>
       <ul className="nav-main-menu">
-        <li>
+        <li className="nav-main-menu-cart-container">
           <Link href="/cart">
             <BsCart3 className="nav-main-menu-icon-cart" />
           </Link>
         </li>
-        <li>
+        <li >
           <DropdownSelectWrapper/>
         </li>
       </ul>

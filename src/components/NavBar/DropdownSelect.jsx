@@ -10,13 +10,19 @@ import { IoIosArrowDown } from "react-icons/io";
 const DropdownSelect = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  /* const [mounted, setMounted] = useState(false);
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
 
-  if (!mounted || status === 'loading') return null; */
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const options = [];
 
@@ -64,6 +70,7 @@ const DropdownSelect = () => {
       backgroundColor: 'var(--red)',
       color: 'var(--light-grey)',
       borderRadius: '10px',
+      fontSize:"16px",
       padding: '0px 10px',
       height: '35px',
       boxShadow: 'none',
@@ -83,7 +90,7 @@ const DropdownSelect = () => {
     }),
     option: (provided, state) => ({
       ...provided,
-      fontSize: '14px',
+      fontSize: '13px',
       backgroundColor: state.isFocused ? 'var(--red)' : 'white',
       color: state.isFocused ? 'white' : 'grey',
       padding: '10px',
@@ -105,24 +112,22 @@ const DropdownSelect = () => {
   };
 
   return (
-    <div className="nav-main-menu-select">
-      <Select
-        options={options}
-        styles={customStyles}
-        placeholder={
-          <div className="nav-main-menu-placeholder">
-            <FaRegUser className="nav-main-menu-icon-user" />
-            <span>Cuenta</span>
-          </div>
-        }
-        onChange={handleChange}
-        components={{
-          DropdownIndicator: () => <IoIosArrowDown className="nav-main-menu-select-arrow" />,
-        }}
-        isSearchable={false}
-        value={null}
-      />
-    </div>
+    <Select
+      options={options}
+      styles={customStyles}
+      placeholder={
+        <div className="nav-main-menu-placeholder">
+          <FaRegUser className="nav-main-menu-icon-user" />
+          {screenWidth > 900 && <span>Cuenta</span>}
+        </div>
+      }
+      onChange={handleChange}
+      components={{
+        DropdownIndicator: () => <IoIosArrowDown className="nav-main-menu-select-arrow" />,
+      }}
+      isSearchable={false}
+      value={null}
+    />
   );
 };
 

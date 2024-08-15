@@ -4,11 +4,16 @@
 
 :root{
   --black:#000000;
+  --white:#ffffff;
   --red: #D72323;
   --dark-grey:#3E3636;
+  --soft-grey: #cdc8c6;
   --light-grey:#F5EDED;
 }
 
 body {
-  background: #fff;
+  display:flex;
+  flex-flow:column wrap;
+  background: var(--light-grey);
+  margin-top:35vh;
 }
