@@ -5,7 +5,7 @@ function NavDesktop() {
     <nav className="nav-desktop">
       <ul className="nav-desktop-menu">
         <li>
-          <Link href="/products/baiml">PRODUCTOS</Link>
+          <Link href="/products/baiml">Productos Baiml</Link>
         </li>
       </ul>
     </nav>

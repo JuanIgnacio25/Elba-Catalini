@@ -248,6 +248,10 @@
       top: 0vh;
     }
 
+    .nav-main-responsive-image-container {
+      width:162px;
+    }
+
     .nav-main-search input{
       height: 80%;
     }
@@ -255,7 +259,7 @@
     .nav-main-search button{
       height: 80%;
     }
-
+    
     .nav-main-menu-cart-container{
       display:none;
     }
@@ -271,5 +275,24 @@
 
   .nav-desktop{
     top:12vh;
+  }
+}
+
+@media (max-width: 475px){
+  .nav-main-responsive-image-container {
+    width:120px;
+  }
+
+  .nav-main-search input{
+    font-size:10px;
+  }
+
+  .nav-main-search input::placeholder {
+    font-size:10px;
+  }
+  
+
+  .nav-main-search button{
+    font-size:15px;
   }
 }
