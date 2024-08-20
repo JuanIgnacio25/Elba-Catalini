@@ -14,6 +14,12 @@
   font-size: 14px;
   color: var(--black);
   background: var(--soft-grey);
+  opacity:1;
+  transition:opacity 0.2s ease-in-out;
+}
+
+.nav-header-container-scrolled {
+  opacity:0;
 }
 
 
@@ -58,6 +64,11 @@
   width: 100%;
   height: 12vh;
   background: var(--light-grey);
+  transition: top 0.3s ease-in-out;
+}
+
+.nav-main-scrolled{
+  top:0vh;
 }
 
 .nav-main ul {
@@ -235,6 +246,11 @@
   font-weight: bold;
   background: var(--red);
   color: var(--white);
+  transition:top 0.3s ease-in-out;
+}
+
+.nav-desktop-scrolled{
+  top: 11vh;
 }
 
 /* NavBar Media query */
@@ -274,7 +290,7 @@
   /* NavDesktop */
 
   .nav-desktop{
-    top:12vh;
+    top:11vh;
   }
 }
 

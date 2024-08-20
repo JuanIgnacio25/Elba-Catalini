@@ -1,3 +1,6 @@
+"use client"
+
+import {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsCart3 } from "react-icons/bs";
@@ -6,8 +9,28 @@ import { IoSearchSharp } from "react-icons/io5";
 import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper";
 
 function NavMain() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="nav-main">
+    <nav className={`nav-main ${isScrolled ? "nav-main-scrolled":""}`}>
       <ul className="nav-main-responsive-image-container">
         <li>
           <Link href="/">
