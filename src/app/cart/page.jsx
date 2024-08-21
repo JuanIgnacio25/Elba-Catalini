@@ -1,4 +1,4 @@
-import Cart from "@/components/Cart/Cart";
+import Cart from "@/components/views/Cart/Cart";
 
 async function CartPage() {
   

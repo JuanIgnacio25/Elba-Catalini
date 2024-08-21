@@ -1,6 +1,6 @@
 
 import { Suspense } from "react";
-import Login from "@/components/Login/Login";
+import Login from "@/components/views/auth/Login/Login";
 
 function LoginPage() {
   return (
