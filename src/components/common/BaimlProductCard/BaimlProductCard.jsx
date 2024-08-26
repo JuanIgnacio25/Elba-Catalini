@@ -7,7 +7,7 @@ import "./baimlProductCard.css"
 
 function ProductCard({ prod }) {
   const router = useRouter();
-  
+
   const handleAddToCart = async (id) => {
     try {
       await axios.post(`/api/carts/products/${id}`, {});
@@ -23,7 +23,7 @@ function ProductCard({ prod }) {
   };
 
   return (
-    <div key={prod.productId} className="baiml-p-card">
+    <div className="baiml-p-card">
       <div className="baiml-p-card-img-container">
         <Link href="/" className="baiml-p-card-img-link">
           <Image

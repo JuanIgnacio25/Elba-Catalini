@@ -45,7 +45,7 @@ function BaimlPCards() {
     <div className="baiml-p-main-cards-container">
           {products.map((prod) => {
             return(
-              <BaimlProductCard prod={prod}/>
+              <BaimlProductCard prod={prod} key={prod.productId}/>
             )
           })}
         </div>
