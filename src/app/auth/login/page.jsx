@@ -1,13 +1,9 @@
+import Login from "@/components/views/auth/Login/Login"
 
-import { Suspense } from "react";
-import Login from "@/components/views/auth/Login/Login";
-
-function LoginPage() {
+function loginPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Login/>
-    </Suspense>
-  );
+    <Login/>
+  )
 }
 
-export default LoginPage;
+export default loginPage

@@ -74,6 +74,7 @@ const DropdownSelect = () => {
       padding: '0px 10px',
       height: '35px',
       boxShadow: 'none',
+      cursor: 'pointer',
       border: 'none',
       '&:hover': {
         border: 'none',
@@ -91,9 +92,9 @@ const DropdownSelect = () => {
     option: (provided, state) => ({
       ...provided,
       fontSize: '13px',
-      backgroundColor: state.isFocused ? 'var(--red)' : 'white',
-      color: state.isFocused ? 'white' : 'grey',
-      padding: '10px',
+      backgroundColor: state.isOptionSelected ? 'var(--red)' : state.isFocused ? 'var(--red)' : 'white',
+      color: state.isSelected ? 'white' : state.isFocused ? 'white' : 'grey',
+      padding: '8px',
       cursor: 'pointer',
     }),
     dropdownIndicator: () => ({
@@ -108,6 +109,7 @@ const DropdownSelect = () => {
       backgroundColor: 'white',
       borderRadius: '0 0 10px 10px',
       marginTop: 0,
+      paddingBottom:"3px",
     }),
   };
 
@@ -115,6 +117,7 @@ const DropdownSelect = () => {
     <Select
       options={options}
       styles={customStyles}
+      classNamePrefix="nav-main-custom-select"
       placeholder={
         <div className="nav-main-menu-placeholder">
           <FaRegUser className="nav-main-menu-icon-user" />
