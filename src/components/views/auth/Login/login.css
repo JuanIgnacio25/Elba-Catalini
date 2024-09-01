@@ -49,18 +49,7 @@
 .login-main-title{
   font-size:25px;
   font-weight:bold;
-  color:var(--soft-grey);
-}
-
-.login-main-error{
-  width:100%;
-  margin:5px 0px;
-  padding:3px;
-  color:var(--black);
-  font-size:15px;
-  font-weight:bold;
-  text-align:start;
-  background:rgba(215, 35, 35, 0.4);
+  color:var(--dark-grey);
 }
 
 
@@ -70,9 +59,9 @@
 }
 
 .login-main-data{
-  font-size:15px;
+  font-size:16px;
   font-weight:bold;
-  color:var(--soft-grey);
+  color:var(--dark-grey);
 }
 
 .login-main-data input{
@@ -81,6 +70,8 @@
   padding:3px;
   background:var(--light-grey);
   border-radius:3px;
+  font-size:14px;
+  font-weight: lighter;
   color:var(--dark-grey);
   border:1px solid var(--white);
   transition: border 0.2s ease-in-out;
@@ -123,7 +114,8 @@
   width:150px;
   height:40px;
   border-radius:15px;
-  background:var(--red);
+  background: rgb(62,54,54);
+  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
   font-weight:bold;
   color:var(--white);
 }
