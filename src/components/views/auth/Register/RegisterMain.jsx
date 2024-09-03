@@ -17,7 +17,7 @@ function RegisterMain() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState("ERROR PADRE");
 
   const handleSubmit = async (e) => {
     

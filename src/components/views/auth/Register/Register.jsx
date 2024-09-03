@@ -6,7 +6,7 @@ function Register() {
     <div className="register-container">
       <div className="register">
         <div className="register-side register-side-left"></div>
-         <RegisterMain/>
+        <RegisterMain/>
         <div className="register-side register-side-right"></div>
       </div>
     </div>
