@@ -49,7 +49,7 @@ export async function GET(request, { params }) {
   } catch (error) {
     console.log(error);
     return NextResponse.json(
-      { message: "El token no existe o a expirado" },
+      { message: "El link de verificacion no existe o a expirado" },
       { status: 400 }
     );
   }
