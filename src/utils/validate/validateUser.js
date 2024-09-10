@@ -55,7 +55,7 @@ const signupDtoSchema = Type.Object(
       errorMessage: {
         type: "El Numero de Celular debe ser un String",
         pattern: "El Numero de Celular solo debe contener números",
-        minLength: "El Numero de Celular debe tener mas de 8 caracteres",
+        minLength: "El numero de celular debe tener mas de 8 caracteres",
       },
     }),
     purchasingManagerName: Type.String({
@@ -119,14 +119,9 @@ export const isValidSignup = (data) => {
     }
     const valid = validateSignup(data);
     if (!valid) {
-      throw new Error(ajv.errorsText(validateSignup.errors));
-      /* const errors = validateSignup.errors.map((error) => ({
-        dataPath: error.dataPath,
-        message: error.message,
-      }
-    ));
-      console.log(errors);
-      throw errors; */
+      /* throw new Error(ajv.errorsText(validateSignup.errors)); */
+      const errors = validateSignup.errors.map((error) => error.message);
+      throw new Error(errors.join(", "));
     }
   } catch (error) {
     throw error;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter} from "next/navigation";
 import { useSession} from "next-auth/react";
+import axios from "axios";
 import Link from "next/link";
 
 function RegisterMain() {
@@ -10,21 +11,55 @@ function RegisterMain() {
   const router = useRouter();
 
   const [companyName, setCompranyName] = useState("");
-  const [purchasingManagerName, setPurchasingManagerName] = useState("");
   const [cuit , setCuit] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [purchasingManagerName, setPurchasingManagerName] = useState("");
   const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
+  const [carrier, setCarrier] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
-  const [error, setError] = useState("ERROR PADRE");
+  const [error, setError] = useState("");
+
+
+
+  const handleInputChange = (e, setState) => {
+    const inputValue = e.target.value;
+
+    if (/^\d*$/.test(inputValue)) {
+      setState(inputValue);
+    }
+  };
+
 
   const handleSubmit = async (e) => {
-    
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await axios.post("/api/auth/signup", {
+        companyName,
+        cuit,
+        phoneNumber,
+        purchasingManagerName,
+        location,
+        address,
+        carrier,
+        email,
+        password,
+        validatePassword
+      });
+      
+      router.refresh();
+      router.push("/auth/verifying-account");
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    }
   };
 
   return (
-    <div className="register-main-container">
+    <form onSubmit={handleSubmit} className="register-main-container">
       <h1 className="register-main-title">Registro de Empresa</h1>
       <div className="register-main-data-container">
         <div className="register-main-data">
@@ -39,6 +74,30 @@ function RegisterMain() {
           />
         </div>
         <div className="register-main-data">
+          <p>CUIT</p>
+          <input
+            type="text"
+            value={cuit}
+            placeholder="20431266629"
+            name="cuit"
+            autoComplete="cuit"
+            required={true}
+            onChange={(e) => handleInputChange(e,setCuit)}
+          />
+        </div>
+        <div className="register-main-data">
+          <p>Celular<span>{"(codigo de area + numero)"}</span></p>
+          <input
+            type="text"
+            placeholder="ej: 3471670274"
+            value={phoneNumber}
+            name="phone-number"
+            autoComplete="phone-number"
+            required={true}
+            onChange={(e) => handleInputChange(e,setPhoneNumber)}
+          />
+        </div>
+        <div className="register-main-data">
           <p>Nombre del encargado de Compras</p>
           <input
             type="text"
@@ -50,28 +109,6 @@ function RegisterMain() {
           />
         </div>
         <div className="register-main-data">
-          <p>CUIT</p>
-          <input
-            type="text"
-            placeholder="27-675854-6"
-            name="cuit"
-            autoComplete="cuit"
-            required={true}
-            onChange={(e) => setCuit(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Telefo/Celular de la empresa</p>
-          <input
-            type="text"
-            placeholder="3471 670274"
-            name="phone-number"
-            autoComplete="phone-number"
-            required={true}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
           <p>Localidad/Provincia</p>
           <input
             type="text"
@@ -80,6 +117,28 @@ function RegisterMain() {
             autoComplete="location"
             required={true}
             onChange={(e) => setLocation(e.target.value)}
+          />
+        </div>
+        <div className="register-main-data">
+          <p>Direccion de la Empresa</p>
+          <input
+            type="text"
+            placeholder="Arevalo 1440"
+            name="address"
+            autoComplete="address"
+            required={true}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+        <div className="register-main-data">
+          <p>Transporte</p>
+          <input
+            type="text"
+            placeholder="Transporte Miguel"
+            name="carrier"
+            autoComplete="carrier"
+            required={true}
+            onChange={(e) => setCarrier(e.target.value)}
           />
         </div>
         <div className="register-main-data">
@@ -97,7 +156,7 @@ function RegisterMain() {
           <p>Contraseña</p>
           <input
             type="password"
-            placeholder="*******"
+            placeholder="********"
             name="password"
             autoComplete="password"
             required={true}
@@ -108,7 +167,7 @@ function RegisterMain() {
           <p>Confirmar Contraseña</p>
           <input
             type="password"
-            placeholder="******"
+            placeholder="********"
             name="validate-password"
             autoComplete="validate-password"
             required={true}
@@ -117,8 +176,8 @@ function RegisterMain() {
         </div>
         {error && <div className="register-main-error">{error}</div>}
       </div>
-      <button className="register-main-button" onClick={handleSubmit}>Registrarse</button>
-    </div>
+      <button className="register-main-button">Registrarse</button>
+    </form>
   )
 }
 
