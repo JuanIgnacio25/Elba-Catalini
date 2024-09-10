@@ -1,4 +1,4 @@
-import VerifyAccount from "@/components/VerifyAccount/VerifyAccount";
+import VerifyAccount from "@/components/views/auth/VerifyAccount/VerifyAccount";
 
 function VerifyAccountPage() {
   return (

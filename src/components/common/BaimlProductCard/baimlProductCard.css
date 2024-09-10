@@ -1,0 +1,100 @@
+/* Baiml P Card */
+.baiml-p-card{
+  display:flex;
+  flex-flow:column wrap;
+  justify-content:space-around;
+  align-items: center;
+  width:100%;
+  height:380px;
+  background:var(--white);
+  border:1px solid var(--white);
+  border-radius:6px;
+  transition:box-shadow 0.2s ease-in-out;
+}
+
+.baiml-p-card:hover {
+  box-shadow: 0px 2px 7px 1px rgba(62,54,54,0.41);
+  -webkit-box-shadow: 0px 2px 7px 1px rgba(62,54,54,0.41);
+  -moz-box-shadow: 0px 2px 7px 1px rgba(62,54,54,0.41);
+}
+
+/* Baiml P Img */
+.baiml-p-card-img-container{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  height:45%;
+  padding:10px 5px;
+}
+
+.baiml-p-card-img-link{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  height:auto;
+}
+
+.baiml-p-card-img{
+  border:1px solid;
+  object-fit:cover;
+}
+
+/* Baiml P Info */
+.baiml-p-card-info{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  font-size:20px;
+  font-weight:bold;
+  gap:5px;
+}
+
+.baiml-p-card-info-link{
+  display:flex;
+  flex-flow:column wrap;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.baiml-p-card-info-unit {
+  background:var(--soft-grey);
+  border-radius:15px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* Baiml P Cart */
+.baiml-p-card-add{
+  display:flex;
+  flex-flow:column wrap;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+}
+
+.baiml-p-card-add-input{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:30%;
+  height:45px;
+  border-radius:15px;
+  background:var(--light-grey);
+  text-align:center;
+}
+
+.baiml-p-card-add-input:focus {
+  outline: 2px solid var(--red);
+}
+
+.baiml-p-card-add-button{
+  padding:8px;
+  font-size:13px;
+  font-weight:bold;
+  color:var(--white);
+  background:var(--red);
+  border-radius:10px;
+}

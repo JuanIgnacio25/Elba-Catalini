@@ -1,0 +1,67 @@
+/* Baiml Products */
+.baiml-p{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content:center;
+  align-items:center;
+  width: 100%;
+  height:auto;
+  margin: 55px 0px;
+}
+
+.baiml-p-standard-container{
+  width:80%;
+  padding:20px;
+}
+
+/* BaimlP Header */
+
+.baiml-p-header{
+  font-size:12px;
+  font-weight:bold;
+  color:var(--soft-grey);
+}
+
+/* BaimlP Titles */
+
+.baiml-p-titles{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.baiml-p-titles h3 {
+  color:var(--dark-grey);
+  font-size:1.2rem;
+  font-weight:bold;
+}
+
+.baiml-p-titles h1{
+  color:var(--black);
+  font-size:2rem;
+  font-weight:bold;
+}
+
+/* BaimlP Main Card Container*/
+
+.baiml-p-main-container{
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.baiml-p-main-cards-container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+}
+
+/* BaimlP Main Categories*/
+.baiml-p-main-categories-category-container{
+  display:flex;
+  flex-flow:row wrap;
+  justify-content:start;
+  align-items:center;
+  gap:5px;
+}

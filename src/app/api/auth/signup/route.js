@@ -16,20 +16,12 @@ export async function POST(request) {
   const {validatePassword, ...user} = fullUser;
 
   try {
-    if(user.password !== validatePassword) throw new Error("Las contraseñas no coinciden")
-    isValidSignup(user);
-  } catch (error) {
-    return NextResponse.json({message: error.message}, {status: 400});
-  }
-
-
-  try {
     await connectDB();
     const userFound = await userService.getUserByEmail(user.email);
 
     if (userFound) {
       return NextResponse.json(
-        { message: "El usuario ya existe" },
+        { message: "Ya existe una cuenta vinculada a este email" },
         { status: 409 }
       );
     }
@@ -38,9 +30,16 @@ export async function POST(request) {
 
     if(temporalUserFound) {
       return NextResponse.json(
-        {message: "El usuario ya existe, verifique su correo electronico"},
+        {message: "Ya se envio un codigo de verificacion a este email, si no lo encuentra revise la casilla de 'spam'"},
         {status: 409}
       )
+    }
+
+    try {
+      if(user.password !== validatePassword) throw new Error("Las contraseñas no coinciden")
+      isValidSignup(user);
+    } catch (error) {
+      return NextResponse.json({message: error.message}, {status: 400});
     }
 
     const verificationToken = generateVerificationToken(user.email);
@@ -51,7 +50,7 @@ export async function POST(request) {
     await sendVerificationMail(savedTemporalUser.email,savedTemporalUser.verificationToken);
 
     return NextResponse.json(
-      { email: savedTemporalUser.email, fullname: savedTemporalUser.fullname },
+      { savedTemporalUser },
       { status: 201 }
     );
   } catch (error) {

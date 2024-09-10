@@ -1,4 +1,4 @@
-import Orders from "@/components/Orders/Orders";
+import Orders from "@/components/views/Orders/Orders";
 
 function historyOrderPage() {
 

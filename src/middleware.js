@@ -36,7 +36,7 @@ export async function middleware(req) {
       return NextResponse.redirect(url);
     }
 
-    if (req.nextUrl.pathname.startsWith("/historyOrder")) {
+    if (req.nextUrl.pathname.startsWith("/orderHistory")) {
       url.pathname = "/auth/login";
       url.searchParams.set(
         "callbackUrl",
@@ -94,7 +94,7 @@ export const config = {
   matcher: [
     "/admin/:path*",
     "/cart/:path*",
-    "/historyOrder",
+    "/orderHistory",
     
     "/api/products",
     "/api/carts/:path*",

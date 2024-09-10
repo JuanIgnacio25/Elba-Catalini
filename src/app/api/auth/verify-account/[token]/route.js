@@ -25,7 +25,13 @@ export async function GET(request, { params }) {
     if(!temporalUserFound) throw new Error();
 
     const user = {
-      fullname: temporalUserFound.fullname,
+      companyName: temporalUserFound.companyName,
+      cuit: temporalUserFound.cuit,
+      phoneNumber: temporalUserFound.phoneNumber,
+      purchasingManagerName: temporalUserFound.purchasingManagerName,
+      location: temporalUserFound.location,
+      address: temporalUserFound.address,
+      carrier: temporalUserFound.carrier,
       password: temporalUserFound.password,
       email: temporalUserFound.email,
     };
@@ -39,8 +45,9 @@ export async function GET(request, { params }) {
       email
     );
 
-    return NextResponse.json({ fullname:savedUser.fullname,email:savedUser.email }, { status: 201 });
+    return NextResponse.json({ companyName:savedUser.companyName,email:savedUser.email }, { status: 201 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "El token no existe o a expirado" },
       { status: 400 }
