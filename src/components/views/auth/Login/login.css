@@ -95,7 +95,7 @@
   font-size:15px;
   font-weight:bold;
   text-align:start;
-  background:rgba(215, 35, 35, 0.4);
+  background:var(--light-red);
 }
 
 .login-main-forgotpassword{

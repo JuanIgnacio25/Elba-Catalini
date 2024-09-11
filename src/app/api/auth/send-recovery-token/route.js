@@ -25,7 +25,7 @@ export async function POST(request) {
 
     await userService.createRecoveryTokenAndSendEmail(user.email,user.userId);
     
-    return NextResponse.json(`Se envio un mail con un link de recuperacion de clave a ${email}`);
+    return NextResponse.json(user.email);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
