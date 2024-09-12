@@ -54,7 +54,7 @@
 
 .send-rt-main h3{
   color:var(--black);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -116,9 +116,13 @@
   color:var(--white);
 }
 
-@media (max-width: 1150px){
+@media (max-width: 1350px){
   .send-rt{
-    width:65%;
+    width:60%;
+  }
+
+  .send-rt-main h3{
+    font-size: 19px;
   }
 }
 
@@ -128,11 +132,11 @@
   }
 
   .send-rt{
-    width:70%;
+    width:74%;
   }
 
   .send-rt-main h3{
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .send-rt-main input{
@@ -177,7 +181,7 @@
   }
 
   .send-rt-main h3{
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .send-rt-main input{
@@ -218,7 +222,7 @@
   }
 
   .send-rt-main h3{
-    font-size: 11px;
+    font-size: 12px;
   }
 
 
