@@ -23,8 +23,7 @@
 .send-rt-side{
   width:8%;
   height:100%;
-  background: rgb(62,54,54);
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
 }
 .send-rt-side-left{
   border-radius:4px 0px 0px 4px;
@@ -109,8 +108,7 @@
   height:30px;
   padding:8px;
   border-radius:15px;
-  background: rgb(62,54,54);
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
   font-size: 14px;
   font-weight:bold;
   color:var(--white);

@@ -22,7 +22,7 @@
 
 .register-side{
   width:8%;
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
 }
 .register-side-left{
   border-radius:4px 0px 0px 4px;
@@ -99,7 +99,7 @@
   font-size:15px;
   font-weight:bold;
   text-align:start;
-  background:rgba(215, 35, 35, 0.4);
+  background:var(--light-red);
 }
 
 .register-main-button{
@@ -109,8 +109,7 @@
   width:150px;
   height:40px;
   border-radius:15px;
-  background: rgb(62,54,54);
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
   font-weight:bold;
   color:var(--white);
 }

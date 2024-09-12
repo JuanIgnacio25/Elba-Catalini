@@ -7,6 +7,7 @@
   --white:#ffffff;
   --red: #D72323;
   --light-red:rgba(215, 35, 35, 0.4);
+  --gradient-red:linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
   --light-green:rgba(40, 167, 69, 0.4);
   --dark-grey:#3E3636;
   --soft-grey: #cdc8c6;
