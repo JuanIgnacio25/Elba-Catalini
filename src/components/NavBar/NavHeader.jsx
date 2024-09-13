@@ -54,7 +54,7 @@ function NavHeader() {
         <p>Los mejores precios mayoristas del pais!</p>
       </div>
       <div className="nav-header-items-container">
-        <Link href="/">
+        <Link href="/location">
           <div className="nav-header-items">
             <MdPlace />
             <span>Local</span>
