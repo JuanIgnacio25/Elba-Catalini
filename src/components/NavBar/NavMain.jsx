@@ -47,7 +47,7 @@ function NavMain() {
       </ul>
       <ul className="nav-main-search-container">
         <li className="nav-main-search">
-          <input placeholder="¿Que estas buscando?" />
+          <input placeholder="¿Que estas buscando?" name="nav-main-search-input"/>
           <button>
             <IoSearchSharp className="nav-main-search-icon" />
           </button>

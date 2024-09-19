@@ -23,7 +23,6 @@
 .login-side{
   width:8%;
   height:100%;
-  background: rgb(62,54,54);
   background: var(--gradient-red);
 }
 .login-side-left{
@@ -181,9 +180,6 @@
 }
 
 @media (max-width: 540px){
-  .login-container{
-    height:40vh;
-  }
 
   .login{
     width:85%;
