@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import axios from "axios"
 
 import "./baimlProductCard.css"
@@ -8,9 +9,11 @@ import "./baimlProductCard.css"
 function ProductCard({ prod }) {
   const router = useRouter();
 
+  const [quantity , setQuantity] = useState("1");
+
   const handleAddToCart = async (id) => {
     try {
-      await axios.post(`/api/carts/products/${id}`, {});
+      await axios.post(`/api/carts/products/${id}`, {quantity});
       
     } catch (error) {
       if (error.request.status == 401) {
@@ -43,7 +46,7 @@ function ProductCard({ prod }) {
         </Link>
       </div>
       <div className="baiml-p-card-add">
-        <input className="baiml-p-card-add-input" type="number" min="1" placeholder="1"/>
+        <input className="baiml-p-card-add-input" name="baiml-product-quantity-input" type="number" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
         <button className="baiml-p-card-add-button" onClick={() => handleAddToCart(prod.productId)}>
           Añadir al carrito
         </button>
