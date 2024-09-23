@@ -28,10 +28,16 @@ const handler = NextAuth({
 
           return {
             email: userFound.email,
-            fullname: userFound.fullname,
-            id: userFound.userId,
+            cartId: userFound.cartId,
             rol: userFound.rol,
-            cartId: userFound.cartId
+            companyName: userFound.companyName,
+            cuit: userFound.cuit,
+            phoneNumber: userFound.phoneNumber,
+            purchasingManagerName: userFound.purchasingManagerName,
+            location: userFound.location,
+            address: userFound.address,
+            carrier: userFound.carrier,
+            id: userFound.userId,
           };
         } catch (error) {
           throw error;
