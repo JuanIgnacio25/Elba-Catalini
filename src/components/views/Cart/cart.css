@@ -1,0 +1,247 @@
+/* Cart */
+.cart-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin:120px 0px;
+}
+
+/* Cart Main */
+.cart-main{
+  display:flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.cart-main-title{
+  font-size: 25px;
+  font-weight:bold;
+  margin-bottom: 20px;
+}
+
+.cart-main-error-container{
+  display: flex;
+  width: 100%;
+}
+
+.cart-main-error{
+  width:100%;
+  padding:20px 15px;
+  margin: 10px 0px;
+  font-size: 18px;
+  background: var(--light-red);
+}
+
+/* Cart Empty */
+.cart-empty-container{
+  display: flex;
+  flex-flow:column wrap;
+  gap: 20px;
+  width: 80%;
+}
+
+.cart-empty-title{
+  padding:20px 15px;
+  font-size: 18px;
+  background: var(--light-red);
+}
+
+.cart-empty-button-container{
+  display: flex;
+  justify-content: end;
+  width:100%;
+}
+
+.cart-empty-button{
+  font-size:15px;
+  font-weight: bold;
+  color:var(--dark-grey);
+  padding: 10px 30px;
+  background: var(--soft-grey);
+  border-radius: 5px;
+}
+
+/* Cart Spinner*/
+.cart-spinner {
+  border: 6px solid rgba(62, 54, 54, 0.3);
+  border-top: 6px solid #3E3636;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/* Cart Cards */
+.cart-cards-container{
+  width: 100%;
+  border: 1px solid var(--soft-grey);
+}
+
+.cart-cards{
+  width: 100%;
+  table-layout: fixed;
+}
+
+.cart-cards thead th {
+  padding:10px;
+  text-align: center;
+} 
+
+.cart-cards tbody td {
+  text-align: center;
+}
+
+.cart-cards thead th {
+  background:var(--white); /* Color de fondo del encabezado */
+  font-weight: bold;
+}
+
+.cart-cards tbody td {
+  background: var(--white);
+}
+
+.cart-cards tbody td {
+  border-top: 1px solid #ddd; /* Añadir borde a las filas del cuerpo */
+}
+
+
+.cart-cards tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Cart Card */
+.cart-card{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.cart-card-img-td{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.cart-card-img-container{
+  display:flex;
+  justify-content:center;
+  width:40%;
+  padding:10px 5px;
+}
+
+.cart-card-img-link{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  height:auto;
+}
+
+.cart-card-img{
+  border:1px solid;
+  object-fit:cover;
+}
+
+.cart-card-product-info{
+  font-size: 17px;
+  font-weight: bold;
+  color: red;
+}
+
+.cart-card-quantity-container{
+  display:flex;
+  justify-content: center;
+}
+
+.cart-card-quantity-input{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:30%;
+  height:45px;
+  border-radius:15px;
+  background:var(--light-grey);
+  text-align:center;
+}
+
+.cart-card-delete-button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-card-delete-button{
+  font-size:20px;
+  color:var(--red);
+  cursor: pointer;
+}
+
+/* Cart Close Order */
+.cart-close-container{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+
+}
+
+.cart-close{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  border-radius: 0px 0px 10px 10px;
+  background: var(--red);
+}
+
+
+.cart-close-button{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:145px;
+  height:39px;
+  border-radius:14px;
+  border:1px solid var(--dark-grey);
+  background: var(--light-grey);
+  font-size: 14px;
+  font-weight:bold;
+  color:var(--dark-grey);
+}
+
+.cart-closed-order-container{
+  display: flex;
+  flex-flow:column wrap;
+  gap: 20px;
+  width: 80%;
+}
+
+.cart-closed-order-title{
+  padding:20px 15px;
+  font-size: 18px;
+  background: var(--light-green);
+}
+
+.cart-closed-order-button-container{
+  display: flex;
+  justify-content: end;
+  width:100%;
+}
+
+.cart-closed-order-button{
+  font-size:15px;
+  font-weight: bold;
+  color:var(--dark-grey);
+  padding: 10px 30px;
+  background: var(--soft-grey);
+  border-radius: 5px;
+}
