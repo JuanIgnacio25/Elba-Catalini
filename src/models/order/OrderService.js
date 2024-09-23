@@ -15,8 +15,8 @@ class OrderService {
 
       sendOrderEmail(user.email, products);
 
-      createAndSendExcelEmail(user.fullname, products);
-
+      createAndSendExcelEmail(user.companyName, products);
+      
       return createdOrder;
     } catch (error) {
       throw error;
