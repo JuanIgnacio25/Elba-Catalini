@@ -77,7 +77,7 @@ function CartCards() {
       <div className="cart-empty-container">
         <p className="cart-empty-title">El carrito está vacío</p>
         <Link href={"/products/baiml"} className="cart-empty-button-container">
-          <button className="cart-empty-button">Volver a Productos</button>
+          <button className="cart-empty-button">Volver a la Tienda</button>
         </Link>
       </div>
     );

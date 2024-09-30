@@ -56,7 +56,9 @@ const DropdownSelect = () => {
         router.push('/admin/dashboard');
         break;
       case 'signOut':
-        signOut();
+        signOut({
+          callbackUrl: '/',
+        });
         break;
       default:
         break;
