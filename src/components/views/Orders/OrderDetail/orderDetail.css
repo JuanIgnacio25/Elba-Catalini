@@ -1,0 +1,175 @@
+/* Order Detail Container*/
+
+.order-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 110px 0px;
+}
+
+/* Order Detail Spinner */
+.orders-spinner-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid var(--soft-grey);
+  background: var(--white);
+}
+
+.orders-spinner {
+  border: 6px solid rgba(62, 54, 54, 0.3);
+  border-top: 6px solid #3E3636;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Order Detail Error */
+.order-detail-error{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0px;
+  background: var(--light-red);
+  border-radius: 5px;
+  border: 1px solid var(--soft-grey);
+  font-size:1.1rem;
+  font-weight:500;
+}
+/* Order Detail */
+
+.order-detail {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 60%;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Order detail Return */
+.order-detail-return{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  padding:0px 10px;
+  font-size:25px;
+  color:var(--red);
+}
+/* Order detail header data */
+.order-detail-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 10px 0px;
+  background: var(--white);
+  border-radius: 5px;
+  border: 1px solid var(--soft-grey);
+}
+
+.order-detail-header-data-title {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.order-detail-header-data-span{
+  font-weight: bold;
+  color: var(--red);
+}
+
+/* Order detail header repeat order*/
+.order-detail-header-repeat-order-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 32px;
+  border-radius: 14px;
+  background: var(--red);
+  font-size: 15px;
+  color: var(--white);
+}
+/* Order detail products */
+
+.order-detail-products-container {
+  width: 100%;
+  padding: 5px 20px;
+  background: var(--white);
+  border: 1px solid var(--soft-grey);
+  border-radius: 5px;
+}
+
+.order-detail-products {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.order-detail-products-th {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 10px;
+  text-align: start;
+}
+
+.order-detail-quantity-th {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 10px;
+  text-align: center;
+}
+
+.order-detail-product-card-quantity-td{
+  color: var(--red);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.order-detail-products tbody td {
+  border-top: 1px solid var(--soft-grey);
+}
+
+/* Order detail Procuts Card */
+
+.order-detail-product-card-img-td {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.order-detail-product-card-img-container {
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  padding: 10px 5px;
+}
+
+.order-detail-product-card-img-link {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.order-detail-product-card-img {
+  border: 1px solid;
+  object-fit: cover;
+}
+
+.order-detail-product-card-product-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
