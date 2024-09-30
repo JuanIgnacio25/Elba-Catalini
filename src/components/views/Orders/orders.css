@@ -1,0 +1,149 @@
+/* Orders */
+.orders-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 120px 0px;
+}
+
+/* Orders Spinner */
+.orders-spinner-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-radius: 5px;
+  box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+  
+}
+
+.orders-spinner {
+  border: 6px solid rgba(62, 54, 54, 0.3);
+  border-top: 6px solid #3E3636;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Orders empty orders */
+
+.orders-empty-orders{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 80%;
+  gap:15px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.orders-empty-orders-title{
+  display:flex;
+  align-items: center;
+  width: 100%;
+  padding:15px;
+  background: var(--light-red);
+  border-radius: 5px;
+  font-size:1.1rem;
+  font-weight:500;
+}
+
+.orders-empty-button-container{
+  display: flex;
+  justify-content: end;
+  width:100%;
+}
+
+.orders-empty-button{
+  font-size:15px;
+  font-weight: bold;
+  color:var(--dark-grey);
+  padding: 10px 30px;
+  background: var(--soft-grey);
+  border-radius: 5px;
+}
+
+/* Orders Main */
+.orders-main {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 60%;
+  background: var(--white);
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--soft-grey);
+}
+
+.orders-main-title-container {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.orders-main-title {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  line-height: normal;
+  font-size: 20px;
+  gap: 3px;
+}
+
+.orders-main-title-icon {
+  color: var(--red);
+}
+
+/* Order Cards */
+.orders-cards-container {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 25px;
+}
+
+/* Order Card */
+.order-card {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 25px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+}
+
+.order-card-data {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.order-card-data-span {
+  font-weight: bold;
+  color: var(--red);
+}
+
+.order-card-buttons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: end;
+  gap: 10px;
+}
+
+.order-card-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 32px;
+  border-radius: 14px;
+  background: var(--red);
+  font-size: 15px;
+  color: var(--white);
+}
