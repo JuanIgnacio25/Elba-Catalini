@@ -1,6 +1,6 @@
 import OrderDao from "@/models/order/OrderDao";
 import createAndSendExcelEmail from "@/utils/mail/sendOfficeMail";
-import sendOrderEmail from "@/utils/mail/sendClientMail";
+import sendClientOrderEmail from "@/utils/mail/sendClientOrderMail";
 
 class OrderService {
   constructor() {
@@ -9,13 +9,14 @@ class OrderService {
 
   async closeOrder(products, user) {
     try {
+      
       const order = { userId: user.id, products };
 
       const createdOrder = await this.dao.createOrder(order);
+      
+      sendClientOrderEmail(user.email, products,createdOrder.orderId);
 
-      sendOrderEmail(user.email, products);
-
-      createAndSendExcelEmail(user.companyName, products);
+      await createAndSendExcelEmail(user, products , createdOrder);
       
       return createdOrder;
     } catch (error) {
