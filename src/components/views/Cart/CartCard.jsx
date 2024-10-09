@@ -16,7 +16,7 @@ function CartCard({ product, handleDelete, updateQuantity }) {
     <tr>
       <td className="cart-card-img-td">
         <div className="cart-card-img-container">
-          <Link href="/" className="cart-card-img-link">
+          <Link href={`/products/${product.productId}`} className="cart-card-img-link">
             <Image
               className="cart-card-img"
               src="/1010E.A.jpg"

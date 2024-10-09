@@ -6,7 +6,7 @@ import CartService from "@/models/cart/CartService";
 
 const cartService = new CartService();
 
-export async function GET(req) {
+export async function DELETE(req) {
   try {
     const token = await getToken({
       req,
@@ -19,8 +19,7 @@ export async function GET(req) {
 
     await connectDB();
 
-    const cart = await cartService.getCartById(token.user.cartId);
-    if (!cart) throw new Error("El carrito no existe");
+    const cart = await cartService.clearCart(token.user.cartId);
 
     return NextResponse.json({ cart }, { status: 200 });
   } catch (error) {

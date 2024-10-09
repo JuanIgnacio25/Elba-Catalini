@@ -6,12 +6,17 @@ import Link from "next/link";
 
 import CartCard from "@/components/views/Cart/CartCard";
 import CartCloseOrder from "@/components/views/Cart/CartCloseOrder";
+import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
 
 function CartCards() {
   const [cart, setCart] = useState(null);
   const [closedOrder, setClosedOrder] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const fetchCart = async () => {
     setLoading(true);
@@ -39,10 +44,20 @@ function CartCards() {
     }
   };
 
+  const handleCleanCart = async () => {
+    try {
+      setLoading(true);
+      await axios.delete("/api/carts/products");
+      fetchCart();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCloseOrder = async () => {
     try {
       setLoading(true);
-      await axios.post(`/api/orders/close-order`,{cartData:cart});
+      await axios.post(`/api/orders/close-order`, { cartData: cart });
       setClosedOrder(true);
       setLoading(false);
     } catch (error) {
@@ -122,7 +137,14 @@ function CartCards() {
               <th>Producto</th>
               <th>Unidad</th>
               <th>Cantidad</th>
-              <th></th>
+              <th>
+                <button
+                  className="card-cards-clean-cart-button"
+                  onClick={openModal}
+                >
+                  Vaciar carrito
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -138,6 +160,13 @@ function CartCards() {
         </table>
       </div>
       <CartCloseOrder handleCloseOrder={handleCloseOrder} />
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={handleCleanCart}
+      >
+        Esta seguro que desea eliminar todos los productos del carrito?
+      </ConfirmModal>
     </div>
   );
 }
