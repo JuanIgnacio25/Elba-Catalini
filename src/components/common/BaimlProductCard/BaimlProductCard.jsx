@@ -28,7 +28,7 @@ function ProductCard({ prod }) {
   return (
     <div className="baiml-p-card">
       <div className="baiml-p-card-img-container">
-        <Link href="/" className="baiml-p-card-img-link">
+        <Link href={`/products/${prod.productId}`} className="baiml-p-card-img-link">
           <Image
             className="baiml-p-card-img"
             src="/1010E.A.jpg"
@@ -40,7 +40,7 @@ function ProductCard({ prod }) {
         </Link>
       </div>
       <div className="baiml-p-card-info">
-        <Link href="/" className="baiml-p-card-info-link">
+        <Link href={`/products/${prod.productId}`} className="baiml-p-card-info-link">
           <p>{prod.name}</p>
           <p className="baiml-p-card-info-unit">Caja x {prod.unit}</p>
         </Link>
