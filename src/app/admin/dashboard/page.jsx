@@ -82,7 +82,7 @@ function DashboardPage() {
         </select>
         {category && <p>Opción seleccionada: {category}</p>}
 
-        <input
+        <textarea
           type="text"
           placeholder="Excelente prod"
           name="description"
