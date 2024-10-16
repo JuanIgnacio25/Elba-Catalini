@@ -30,6 +30,10 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, "La unidad es requerida"],
     },
+    images: {
+      type: [String],
+      required: true,
+    },
   },
   options
 );

@@ -7,13 +7,15 @@ import axios from "axios";
 function DashboardPage() {
   const options = ["Posicion trasero", "Plafonier", "Ilumina Patente"];
 
-  const [products , setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [unit, setUnit] = useState("");
   const [productSet, setProductSet] = useState();
+  const [images, setImages] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
   const router = useRouter();
 
@@ -28,20 +30,37 @@ function DashboardPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newProduct = {
-      name,
-      category,
-      description,
-      unit,
-      productSet: Number(productSet),
-    };
+    
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("unit", unit);
+    formData.append("productSet", productSet);
+
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
 
     try {
-      const res = await axios.post("/api/products", newProduct);
-      fetchProducts();
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
+      
+
+      const res = await axios.post("/api/products", formData);
+      console.log(res.data);
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error.response?.data || error.message);
     }
+  };
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
+
+    const newImageUrls = files.map(file => URL.createObjectURL(file));
+    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
 
   const handleDelete = async (id) => {
@@ -52,8 +71,7 @@ function DashboardPage() {
     } catch (error) {
       console.log(error);
     }
-    
-  }
+  };
 
   return (
     <div>
@@ -92,7 +110,7 @@ function DashboardPage() {
         />
 
         <input
-          type="text"
+          type="number"
           placeholder="12"
           name="unit"
           autoComplete="unit"
@@ -107,45 +125,98 @@ function DashboardPage() {
           required={true}
           onChange={(e) => setProductSet(e.target.value)}
         />
+
+        <input type="file" multiple onChange={handleImageChange} />
+
+  
+        <div>
+          {imageUrls.length > 0 && (
+            <ul>
+              {imageUrls.map((url, index) => (
+                <li key={index}>
+                  <img
+                    src={url}
+                    alt={`Uploaded image ${index + 1}`}
+                    width="200"
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <button className="bg-white">Add product</button>
       </form>
 
       <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Categoria</th>
-          <th>Descripcion</th>
-          <th>Unidad</th>
-          <th>Juegos</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((prod) => (
-          <tr key={prod.productId}>
-            <td>{prod.productId}</td>
-            <td>{prod.name}</td>
-            <td>{prod.category}</td>
-            <td>{prod.description}</td>
-            <td>{prod.unit}</td>
-            <td>{prod.productSet}</td>
-            <td ><button onClick={() => handleDelete(prod.productId)}>Eliminar</button></td>
-            <td><button onClick={() => router.push(`/admin/editProduct/${prod.productId}`)}>Editar</button></td>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <th>Unidad</th>
+            <th>Juegos</th>
+            <th>Imágenes</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    <div>
-      <button onClick={async() => {
-        try {
-          const res = await axios.post("/api/products",{name:"123",description:'hola',category:'vllc',unit:'12',productSet:2});
-          console.log(res);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      }}>Crear</button>
-    </div>
+        </thead>
+        <tbody>
+          {products.map((prod) => (
+            <tr key={prod.productId}>
+              <td>{prod.productId}</td>
+              <td>{prod.name}</td>
+              <td>{prod.category}</td>
+              <td>{prod.description}</td>
+              <td>{prod.unit}</td>
+              <td>{prod.productSet}</td>
+              <td>
+                {prod.images?.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`Imagen ${index}`}
+                    width={50}
+                  />
+                ))}
+              </td>
+              <td>
+                <button onClick={() => handleDelete(prod.productId)}>
+                  Eliminar
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() =>
+                    router.push(`/admin/editProduct/${prod.productId}`)
+                  }
+                >
+                  Editar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div>
+        <button
+          onClick={async () => {
+            try {
+              const res = await axios.post("/api/products", {
+                name: "123",
+                description: "hola",
+                category: "vllc",
+                unit: "12",
+                productSet: 2,
+              });
+              console.log(res);
+            } catch (error) {
+              console.log(error.response.data);
+            }
+          }}
+        >
+          Crear
+        </button>
+      </div>
     </div>
   );
 }

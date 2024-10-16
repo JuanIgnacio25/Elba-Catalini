@@ -26,7 +26,6 @@ class ProductService {
 
   async createProduct(product) {
     try {
-      isValidBaimlProduct(product);
       product.kind = "Baiml";
       const newProduct = await this.dao.createProduct(product);
       return newProduct;
