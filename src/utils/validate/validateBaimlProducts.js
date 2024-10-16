@@ -28,27 +28,27 @@ const baimlProductDtoSchema = Type.Object(
     }),
     unit: Type.String({
       errorMessage: {
-        type: "Unit debe ser String"
-      }
+        type: "Unit debe ser String",
+      },
     }),
     productSet: Type.Number({
       errorMessage: {
-        type: "ProductSet debe ser un Number"
-      }
-    })
+        type: "ProductSet debe ser un Number",
+      },
+    }),
   },
   {
     additionalProperties: false,
     errorMessage: {
-      additionalProperties: 'No debe tener propiedades adicionales',
+      additionalProperties: "No debe tener propiedades adicionales",
       required: {
         name: "Falta la propiedad: name",
         category: "Falta la propiedad: category",
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",
-        productSet: "Falta la propiedad: productSet"
-      }
-    }
+        productSet: "Falta la propiedad: productSet",
+      },
+    },
   }
 );
 
@@ -57,10 +57,10 @@ const validateBaimlProduct = ajv.compile(baimlProductDtoSchema);
 export const isValidBaimlProduct = (product) => {
   try {
     const isValid = validateBaimlProduct(product);
-    if(!isValid){
+    if (!isValid) {
       throw new Error(ajv.errorsText(validateBaimlProduct.errors));
     }
   } catch (error) {
     throw error;
   }
-}
+};
