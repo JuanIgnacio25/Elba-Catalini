@@ -40,10 +40,12 @@ function ProductDetailMain() {
 
   return (
     <div className="product-detail-container">
-      <ProductDetailHeader product={product}/>
-      <div className="product-detail">
-        <div className="product-detail-main">
+      <ProductDetailHeader product={product} />
+      <div className="product-detail-main-container">
+        <div className="product-detail-main-carousel-slider">
           <ProductDetailCarouselSlider product={product} />
+        </div>
+        <div className="product-detail-main-info-container">
           <ProductDetailInfo product={product} />
         </div>
       </div>

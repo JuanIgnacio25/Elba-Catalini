@@ -31,7 +31,7 @@ function ProductCard({ prod }) {
         <Link href={`/products/${prod.productId}`} className="baiml-p-card-img-link">
           <Image
             className="baiml-p-card-img"
-            src="/1010E.A.jpg"
+            src={prod.images[0]}
             alt="Logo-Product"
             width={485}
             height={485}
