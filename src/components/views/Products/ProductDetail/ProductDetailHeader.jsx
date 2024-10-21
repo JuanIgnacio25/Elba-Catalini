@@ -25,7 +25,7 @@ function ProductDetailHeader({product}) {
   return (
     <div className={`product-detail-header-container ${isScrolled ? "product-detail-header-container-scrolled" : ""}`}>
       <div className="product-detail-header">
-        {`Productos / Baiml / ${product.category} / ${product.name}`}
+        {`Productos / Baiml / ${product.category} / ${product.sku}`}
       </div>
     </div>
   );

@@ -16,6 +16,11 @@ const baimlProductDtoSchema = Type.Object(
         minLength: "Name debe tener más de un carácter",
       },
     }),
+    sku: Type.String({
+      errorMessage: {
+        type: "Sku debe ser un String",
+      },
+    }),
     category: Type.String({
       errorMessage: {
         type: "Category debe ser un String",
@@ -43,6 +48,7 @@ const baimlProductDtoSchema = Type.Object(
       additionalProperties: "No debe tener propiedades adicionales",
       required: {
         name: "Falta la propiedad: name",
+        sku:"Falta la propiedad sku",
         category: "Falta la propiedad: category",
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",

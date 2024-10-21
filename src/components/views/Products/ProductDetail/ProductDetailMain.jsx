@@ -23,7 +23,6 @@ function ProductDetailMain() {
     try {
       setLoading(true);
       const res = await axios.get(`/api/products/${id}`);
-      console.log(res);
       setProduct(res.data);
     } catch (error) {
       setError(error.response.data.message);

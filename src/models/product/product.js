@@ -17,6 +17,10 @@ const ProductSchema = new mongoose.Schema(
       minLength: [2, "El nombre debe tener almenos 2 caracteres"],
       maxLength: [50, "El nombre debe tener menos de 50 caracteres"],
     },
+    sku: {
+      type: String,
+      required: [true, "El sku es requerido"],
+    },
     category: {
       type: String,
       required: [true, "La categoria es requerido"],

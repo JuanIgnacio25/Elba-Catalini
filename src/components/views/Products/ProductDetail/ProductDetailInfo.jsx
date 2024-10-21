@@ -19,9 +19,8 @@ function ProductDetailInfo({ product }) {
 
   return (
     <div className="product-detail-main-info">
-      <h1 className="product-detail-main-info-name">
-        BAIML FARO {product.name}
-      </h1>
+      <h1 className="product-detail-main-info-name">{product.name}</h1>
+      <h3 className="product-detail-main-info-sku">SKU: {product.sku}</h3>
       <div className="product-detail-main-info-add">
         <input
           className="product-detail-main-info-add-input"
@@ -45,7 +44,6 @@ function ProductDetailInfo({ product }) {
       <div className="product-detail-main-info-description-text">
         {product.description}
       </div>
-      
     </div>
   );
 }

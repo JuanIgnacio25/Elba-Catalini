@@ -10,6 +10,7 @@ function DashboardPage() {
   const [products, setProducts] = useState([]);
 
   const [name, setName] = useState("");
+  const [sku, setSku] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [unit, setUnit] = useState("");
@@ -30,9 +31,10 @@ function DashboardPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("name", name);
+    formData.append("sku", sku);
     formData.append("category", category);
     formData.append("description", description);
     formData.append("unit", unit);
@@ -43,15 +45,20 @@ function DashboardPage() {
     });
 
     try {
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
-      
-
       const res = await axios.post("/api/products", formData);
-      console.log(res.data);
+
+      setName("");
+      setSku("");
+      setCategory("");
+      setDescription("");
+      setUnit("");
+      setProductSet("");
+      setImages([]);
+      setImageUrls([]);
     } catch (error) {
       console.error(error.response?.data || error.message);
+    } finally {
+      fetchProducts();
     }
   };
 
@@ -59,7 +66,7 @@ function DashboardPage() {
     const files = Array.from(e.target.files);
     setImages((prevImages) => [...prevImages, ...files]);
 
-    const newImageUrls = files.map(file => URL.createObjectURL(file));
+    const newImageUrls = files.map((file) => URL.createObjectURL(file));
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
 
@@ -81,9 +88,19 @@ function DashboardPage() {
           type="text"
           placeholder="1035a"
           name="name"
+          value={name}
           autoComplete="name"
           required={true}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="sku"
+          name="sku"
+          value={sku}
+          autoComplete="sku"
+          required={true}
+          onChange={(e) => setSku(e.target.value)}
         />
 
         <select
@@ -104,6 +121,7 @@ function DashboardPage() {
           type="text"
           placeholder="Excelente prod"
           name="description"
+          value={description}
           autoComplete="description"
           required={true}
           onChange={(e) => setDescription(e.target.value)}
@@ -113,6 +131,7 @@ function DashboardPage() {
           type="number"
           placeholder="12"
           name="unit"
+          value={unit}
           autoComplete="unit"
           required={true}
           onChange={(e) => setUnit(e.target.value)}
@@ -121,6 +140,7 @@ function DashboardPage() {
           type="number"
           placeholder="2"
           name="productSet"
+          value={productSet}
           autoComplete="set"
           required={true}
           onChange={(e) => setProductSet(e.target.value)}
@@ -128,7 +148,6 @@ function DashboardPage() {
 
         <input type="file" multiple onChange={handleImageChange} />
 
-  
         <div>
           {imageUrls.length > 0 && (
             <ul>
@@ -153,6 +172,7 @@ function DashboardPage() {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Sku</th>
             <th>Categoria</th>
             <th>Descripcion</th>
             <th>Unidad</th>
@@ -165,6 +185,7 @@ function DashboardPage() {
             <tr key={prod.productId}>
               <td>{prod.productId}</td>
               <td>{prod.name}</td>
+              <td>{prod.sku}</td>
               <td>{prod.category}</td>
               <td>{prod.description}</td>
               <td>{prod.unit}</td>

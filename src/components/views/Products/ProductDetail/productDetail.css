@@ -112,6 +112,12 @@
   font-weight: bold;
 }
 
+.product-detail-main-info-sku{
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .product-detail-main-info-add{
   display:flex;
   flex-flow:row wrap;
@@ -151,8 +157,7 @@
   display:flex;
   justify-content:center;
   align-items:center;
-  width: 80px;
-  padding: 5px 3px;
+  padding: 5px 10px;
   border-radius:15px;
   font-size:13px;
   font-weight: bold;
