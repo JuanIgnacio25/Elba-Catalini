@@ -1,7 +1,7 @@
 "use client"
 import { useState , useEffect} from "react";
 
-function ProductDetailHeader() {
+function ProductDetailHeader({product}) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function ProductDetailHeader() {
   return (
     <div className={`product-detail-header-container ${isScrolled ? "product-detail-header-container-scrolled" : ""}`}>
       <div className="product-detail-header">
-        {"Productos / Baiml / Posicion Electronicos / 1030EA"}
+        {`Productos / Baiml / ${product.category} / ${product.name}`}
       </div>
     </div>
   );
