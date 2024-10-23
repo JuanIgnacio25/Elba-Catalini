@@ -73,6 +73,16 @@
   border-radius: 5px;
 }
 
+/* Cart Cards Fallback */
+.cart-cards-fallback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding:30px 0px;
+  border-top: 1px solid var(--soft-grey);
+  background: var(--white);
+}
 /* Cart Cards */
 .cart-cards-container{
   width: 100%;

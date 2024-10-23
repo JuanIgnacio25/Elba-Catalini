@@ -85,7 +85,33 @@ function CartCards() {
   }, []);
 
   if (loading) {
-    return <FallbackSpinner/>;
+    return (
+      <div className="cart-main">
+        <div className="cart-main-title">
+          <h1>Detalles del Pedido</h1>
+        </div>
+        <div className="cart-cards-container">
+          <table className="cart-cards">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Producto</th>
+                <th>Unidad</th>
+                <th>Cantidad</th>
+                <th>
+                  <button className="card-cards-clean-cart-button">
+                    Vaciar carrito
+                  </button>
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <div className="cart-cards-fallback">
+            <FallbackSpinner />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (!cart || cart.products.length === 0) {
