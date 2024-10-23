@@ -39,6 +39,15 @@
   width: 100%;
   min-height: 50vh;
 }
+
+/* Product Detail Main Fallback*/
+.product-detail-main-fallback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+
 /* Product Detail Main */
 .product-detail-main-carousel-slider {
   display: flex;
@@ -142,8 +151,11 @@
   width:70px;
   height:45px;
   border-radius:15px;
-  background:var(--soft-grey);
   text-align:center;
+}
+
+.product-detail-main-info-add-input:focus{
+  outline: 2px solid var(--red);
 }
 
 .product-detail-main-info-add-button{
@@ -182,4 +194,3 @@
   font-size:18px;
   font-weight: 500;
 }
-

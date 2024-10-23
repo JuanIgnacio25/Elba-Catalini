@@ -218,26 +218,6 @@ function DashboardPage() {
           ))}
         </tbody>
       </table>
-      <div>
-        <button
-          onClick={async () => {
-            try {
-              const res = await axios.post("/api/products", {
-                name: "123",
-                description: "hola",
-                category: "vllc",
-                unit: "12",
-                productSet: 2,
-              });
-              console.log(res);
-            } catch (error) {
-              console.log(error.response.data);
-            }
-          }}
-        >
-          Crear
-        </button>
-      </div>
     </div>
   );
 }

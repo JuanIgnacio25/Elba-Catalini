@@ -20,7 +20,7 @@ function ProductDetailCarouselSlider({ product }) {
                 src={image}
                 alt={`${product.name} image`}
                 width={"70"}
-                height={"30"}
+                height={"70"}
                 className={`product-deatil-carousel-slider-side-bar-image ${
                   selectedImage === image ? "selected" : ""
                 }`}
