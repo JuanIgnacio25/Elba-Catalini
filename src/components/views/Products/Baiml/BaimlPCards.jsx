@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -7,7 +7,6 @@ import axios from "axios";
 import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard";
 
 function BaimlPCards() {
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,7 +33,11 @@ function BaimlPCards() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="baiml-p-main-cards-fallback">
+        <div className="baiml-p-main-cards-spinner"></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -43,13 +46,11 @@ function BaimlPCards() {
 
   return (
     <div className="baiml-p-main-cards-container">
-          {products.map((prod) => {
-            return(
-              <BaimlProductCard prod={prod} key={prod.productId}/>
-            )
-          })}
-        </div>
-  )
+      {products.map((prod) => {
+        return <BaimlProductCard prod={prod} key={prod.productId} />;
+      })}
+    </div>
+  );
 }
 
-export default BaimlPCards
+export default BaimlPCards;

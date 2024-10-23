@@ -1,86 +1,64 @@
+"use client";
 
-function BaimlPCategories() {
+import Link from "next/link";
+import { useState } from "react";
+
+import { RxRows } from "react-icons/rx";
+
+function CustomCheckbox({ label }) {
+  const [checked, setChecked] = useState(false);
+
+  const toggleCheckbox = () => {
+    setChecked(!checked);
+  };
+
   return (
-    <div className="baiml-p-main-categories">
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros de posición</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Posición electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros plafonier</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Giro delantero</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Plafonier electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros ilumina patente</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Ilumina patente electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros de stop/Antiniebla</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros traseros</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Traseros electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros flexibles electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Soportes</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Soportes electronicos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Faros de advertencia</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Reflectores</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Reflectores de alta potencia</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Lentes de repuestos</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Accesorios</p>
-          </div>
-          <div className="baiml-p-main-categories-category-container">
-            <input type="checkbox"/>
-            <p>Repuestos</p>
-          </div>
-    
-        </div>
-  )
+    <div className="baiml-p-main-categories-checkbox-container" onClick={toggleCheckbox}>
+      <div className={`baiml-p-main-categories-checkbox ${checked ? "checked" : ""}`}>
+        {checked && <span className="baiml-p-main-categories-checkmark">✓</span>}
+      </div>
+      <div className="baiml-p-main-categories-checkbox-label">
+        <p>{label}</p>
+      </div>
+    </div>
+  );
 }
 
-export default BaimlPCategories
+function BaimlPCategories() {
+  const categories = [
+    "Faros de posición",
+    "Posición electrónicos",
+    "Faros plafonier",
+    "Giro delantero",
+    "Plafonier electrónicos",
+    "Faros ilumina patente",
+    "Ilumina patente electrónicos",
+    "Faros de stop / Antiniebla",
+    "Faros traseros",
+    "Traseros electrónicos",
+    "Faros flexibles electrónicos",
+    "Soportes",
+    "Soportes electrónicos",
+    "Faros de advertencia",
+    "Reflectores",
+    "Reflectores de alta potencia",
+    "Lentes de repuestos",
+    "Accesorios",
+    "Repuestos",
+  ];
+
+  return (
+    <div className="baiml-p-main-categories">
+      <div className="baiml-p-main-categories-button-container">
+        <Link href={"/"}>
+          <button className="baiml-p-main-categories-button"> <RxRows/>Vista simplificada</button>
+        </Link>
+      </div>
+      {categories.map((category, index) => (
+        <CustomCheckbox key={index} label={category} />
+      ))}
+    </div>
+  );
+}
+
+export default BaimlPCategories;
