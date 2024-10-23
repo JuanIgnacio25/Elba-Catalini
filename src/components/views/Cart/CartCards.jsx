@@ -7,6 +7,7 @@ import Link from "next/link";
 import CartCard from "@/components/views/Cart/CartCard";
 import CartCloseOrder from "@/components/views/Cart/CartCloseOrder";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
+import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function CartCards() {
   const [cart, setCart] = useState(null);
@@ -84,7 +85,7 @@ function CartCards() {
   }, []);
 
   if (loading) {
-    return <div className="cart-spinner"></div>;
+    return <FallbackSpinner/>;
   }
 
   if (!cart || cart.products.length === 0) {

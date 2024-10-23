@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard";
+import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function BaimlPCards() {
   const [products, setProducts] = useState([]);
@@ -35,7 +36,7 @@ function BaimlPCards() {
   if (loading) {
     return (
       <div className="baiml-p-main-cards-fallback">
-        <div className="baiml-p-main-cards-spinner"></div>
+        <FallbackSpinner/>
       </div>
     );
   }

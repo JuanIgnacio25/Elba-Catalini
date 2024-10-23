@@ -10,6 +10,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 import OrderDetailProductCard from "@/components/views/Orders/OrderDetail/OrderDetailProductCard";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
+import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function OrderDetailCard() {
   const params = useParams();
@@ -82,7 +83,7 @@ function OrderDetailCard() {
             </Link>
           </div>
           <div className="orders-spinner-container">
-            <div className="orders-spinner"></div>
+            <FallbackSpinner/>
           </div>
         </div>
       </div>

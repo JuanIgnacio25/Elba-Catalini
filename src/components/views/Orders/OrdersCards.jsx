@@ -8,6 +8,7 @@ import { FaBagShopping } from "react-icons/fa6";
 
 import OrderCard from "@/components/views/Orders/OrderCard";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
+import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function OrdersCards() {
   const router = useRouter();
@@ -70,7 +71,7 @@ function OrdersCards() {
           </div>
         </div>
         <div className="orders-spinner-container">
-          <div className="orders-spinner"></div>
+          <FallbackSpinner/>
         </div>
       </div>
     );
