@@ -14,7 +14,7 @@ function DashboardPage() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [unit, setUnit] = useState("");
-  const [productSet, setProductSet] = useState();
+  const [productSet, setProductSet] = useState("");
   const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
