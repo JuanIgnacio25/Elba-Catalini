@@ -234,12 +234,21 @@
   color:var(--white);
 }
 
+.cart-closed-order-container-fallback{
+  display: flex;
+  flex-flow:column wrap;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  width: 80%;
+}
+
 .cart-closed-order-container{
   display: flex;
   flex-flow:column wrap;
   justify-content: center;
   align-items: center;
-  margin:100px 0px;
+  margin:120px 0px;
   width: 100%;
 }
 

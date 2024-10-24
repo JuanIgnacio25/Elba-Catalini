@@ -20,10 +20,14 @@ function CartCards() {
   const [closedOrder, setClosedOrder] = useState(false);
   const [loadingCloseOrder, setLoadingCloseOrder] = useState(false);
   const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClearTheCartModalOpen, setIsClearTheCartModalOpen] = useState(false);
+  const [isCloseCartModalOpen , setIsCloseCartModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openClearTheCartModal = () => setIsClearTheCartModalOpen(true);
+  const closeClearTheCartModal = () => setIsClearTheCartModalOpen(false);
+
+  const openCloseCartModal = () => setIsCloseCartModalOpen(true);
+  const closeCloseCartModal = () => setIsCloseCartModalOpen(false);
 
   const handleCloseOrder = async () => {
     try {
@@ -43,6 +47,26 @@ function CartCards() {
       router.push("/cart/closedOrder");
     }
   }, [closedOrder, router]);
+
+  if (closedOrder) {
+    return (
+      <div className="cart-closed-order-container-fallback">
+        <p className="cart-closed-order-title">
+          Su pedido ha sido recibido. Nuestro equipo de compras se pondrá en
+          contacto con usted para enviarle el presupuesto y coordinar el pago y
+          el transporte.
+        </p>
+        <Link
+          href={"/products/baiml"}
+          className="cart-closed-order-button-container"
+        >
+          <button className="cart-closed-order-button">
+            Volver a la Tienda
+          </button>
+        </Link>
+      </div>
+    );
+  }
 
   if (loadingCloseOrder)
     return (
@@ -135,7 +159,7 @@ function CartCards() {
               <th>
                 <button
                   className="card-cards-clean-cart-button"
-                  onClick={openModal}
+                  onClick={openClearTheCartModal}
                 >
                   Vaciar carrito
                 </button>
@@ -149,13 +173,22 @@ function CartCards() {
           </tbody>
         </table>
       </div>
-      <CartCloseOrder handleCloseOrder={handleCloseOrder} />
+      <CartCloseOrder handleCloseOrder={openCloseCartModal} />
+
       <ConfirmModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
+        isOpen={isCloseCartModalOpen}
+        onClose={closeCloseCartModal}
+        onConfirm={handleCloseOrder}
+      > 
+        ¿Esta seguro que desea cerrar el pedido?
+      </ConfirmModal>
+
+      <ConfirmModal
+        isOpen={isClearTheCartModalOpen}
+        onClose={closeClearTheCartModal}
         onConfirm={clearTheCart}
       >
-        Esta seguro que desea eliminar todos los productos del carrito?
+        ¿Esta seguro que desea eliminar todos los productos del carrito?
       </ConfirmModal>
     </div>
   );
