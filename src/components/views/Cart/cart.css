@@ -104,7 +104,7 @@
 }
 
 .cart-cards thead th {
-  background:var(--white); /* Color de fondo del encabezado */
+  background:var(--white);
   font-weight: bold;
 }
 
@@ -113,22 +113,24 @@
 }
 
 .cart-cards tbody td {
-  border-top: 1px solid #ddd; /* Añadir borde a las filas del cuerpo */
-}
-
-
-.cart-cards tbody tr:hover {
-  background-color: #f1f1f1;
+  border-top: 1px solid var(--soft-grey);
 }
 
 .card-cards-clean-cart-button{
   padding:5px;
   border:1px solid var(--red);
   border-radius:10px;
-  background: var(--light-grey);
+  background: var(--white);
   color:var(--red);
   font-size:13px;
   font-weight:500;
+  transition:background-color 0.2s , color 0.2s , border 0.2s ease-in-out;
+}
+
+.card-cards-clean-cart-button:hover{
+  background-color: var(--red);
+  color: var(--white);
+  border: 1px solid var(--dark-grey);
 }
 /* Cart Card */
 .cart-card{
