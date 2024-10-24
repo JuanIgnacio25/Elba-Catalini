@@ -19,7 +19,7 @@ function CartCard({ product, handleDelete, updateQuantity }) {
           <Link href={`/products/${product.productId}`} className="cart-card-img-link">
             <Image
               className="cart-card-img"
-              src="/1010E.A.jpg"
+              src={product.images[0]}
               alt="Logo-Product"
               width={485}
               height={485}

@@ -147,15 +147,14 @@ function CartCards() {
 
   return (
     <div className="cart-main">
-      <div className="cart-main-title">
-        <h1>Detalles del Pedido</h1>
-      </div>
       {error && (
         <div className="cart-main-error-container">
           <p className="cart-main-error">{error}</p>
         </div>
       )}
-
+      <div className="cart-main-title">
+        <h1>Detalles del Pedido</h1>
+      </div>
       <div className="cart-cards-container">
         <table className="cart-cards">
           <thead>

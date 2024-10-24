@@ -19,12 +19,12 @@
 .cart-main-title{
   display:flex;
   justify-content: center;
-  width:100%;
+  width:50%;
   padding: 10px 15px;
-  margin-bottom: 8px;
   background: var(--white);
   border:1px solid var(--soft-grey);
-  border-radius: 5px;
+  border-bottom:none;
+  border-radius: 5px 5px 0px 0px;
   font-size: 25px;
   font-weight:bold;
 }
@@ -211,8 +211,10 @@
   align-items: center;
   height: 100px;
   width: 300px;
-  border-radius: 0px 0px 10px 10px;
-  background: var(--soft-grey);
+  border-radius: 0px 0px 10px 10px; 
+  border: 1px solid var(--soft-grey);
+  border-top: none;
+  background: var(--white);
 }
 
 
