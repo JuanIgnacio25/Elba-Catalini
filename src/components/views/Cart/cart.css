@@ -237,8 +237,17 @@
 .cart-closed-order-container{
   display: flex;
   flex-flow:column wrap;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin:100px 0px;
+  width: 100%;
+}
+
+.cart-closed-order{
+  display:flex;
+  flex-flow:column wrap;
   width: 80%;
+  gap:20px;
 }
 
 .cart-closed-order-title{

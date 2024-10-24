@@ -1,9 +1,13 @@
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+
 import { TiDeleteOutline } from "react-icons/ti";
 
-function CartCard({ product, handleDelete, updateQuantity }) {
+function CartCard({ product }) {
+  const {deleteProductFromCart, updateQuantity} = useCart();
+
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleQuantityChange = (e) => {
@@ -50,7 +54,7 @@ function CartCard({ product, handleDelete, updateQuantity }) {
         <div className="cart-card-delete-button-container">
           <TiDeleteOutline
             className="cart-card-delete-button"
-            onClick={() => handleDelete(product.productId)}
+            onClick={() => deleteProductFromCart(product.productId)}
           />
         </div>
       </td>

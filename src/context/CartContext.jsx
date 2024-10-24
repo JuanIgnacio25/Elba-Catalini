@@ -46,6 +46,39 @@ export function CartProvider({ children }) {
     }
   };
 
+  const deleteProductFromCart = async (id) => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/carts/products/${id}`);
+      await fetchCart();
+    } catch (error) {
+      console.error("Error al eliminar el producto:", error);
+    }
+  };
+
+  const clearTheCart = async () => {
+    try {
+      setLoading(true);
+      await axios.delete("/api/carts/products");
+      await fetchCart();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateQuantity = async (productId, newQuantity) => {
+    try {
+      const updatedProducts = cart.products.map((product) =>
+        product.productId === productId
+          ? { ...product, quantity: newQuantity }
+          : product
+      );
+      setCart({ ...cart, products: updatedProducts });
+    } catch (error) {
+      console.error("Error al actualizar la cantidad del producto:", error);
+    }
+  };
+
   useEffect(() => {
     if (status !== "loading") {
       fetchCart();
@@ -59,6 +92,10 @@ export function CartProvider({ children }) {
         loading,
         isAuthenticated: status === "authenticated",
         addProductToCart,
+        deleteProductFromCart,
+        clearTheCart,
+        updateQuantity,
+        fetchCart
       }}
     >
       {children}
