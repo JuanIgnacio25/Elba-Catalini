@@ -1,20 +1,15 @@
 import { useState } from "react";
-import axios from "axios";
+import { useCart } from "@/context/CartContext";
 
 function ProductDetailInfo({ product }) {
+  const [loadingAddToCart, setLoadingAddToCart] = useState(false);
+  const { addProductToCart } = useCart();
   const [quantity, setQuantity] = useState("1");
 
   const handleAddToCart = async (id) => {
-    try {
-      await axios.post(`/api/carts/products/${id}`, { quantity });
-    } catch (error) {
-      if (error.request.status == 401) {
-        router.push(
-          `/auth/login/?error=para añadir productos al carrito, primero debes iniciar sesion`
-        );
-      }
-      console.log(error.response.data);
-    }
+    setLoadingAddToCart(true);
+    await addProductToCart(id, quantity);
+    setLoadingAddToCart(false);
   };
 
   return (
@@ -31,10 +26,15 @@ function ProductDetailInfo({ product }) {
           onChange={(e) => setQuantity(e.target.value)}
         />
         <button
-          className="product-detail-main-info-add-button"
+          className={`product-detail-main-info-add-button`}
           onClick={() => handleAddToCart(product.productId)}
+          disabled={loadingAddToCart}
         >
-          Añadir al carrito
+          {loadingAddToCart ? (
+            <span className="product-detail-main-info-add-button-spinner"></span>
+          ) : (
+            "Añadir al carrito"
+          )}
         </button>
       </div>
       <div className="product-detail-main-info-unit-container">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams} from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
@@ -12,7 +12,6 @@ import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner
 
 function ProductDetailMain() {
   const params = useParams();
-  const router = useRouter();
   const id = params.id;
 
   const [isModalOpen, setIsModalOpen] = useState(false);

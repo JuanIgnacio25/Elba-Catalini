@@ -159,12 +159,32 @@
 }
 
 .product-detail-main-info-add-button{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 26%;
   padding:8px;
   font-size:13px;
   font-weight:bold;
   color:var(--white);
   background:var(--red);
   border-radius:10px;
+}
+
+.product-detail-main-info-add-button-spinner{
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .product-detail-main-info-unit-container{
