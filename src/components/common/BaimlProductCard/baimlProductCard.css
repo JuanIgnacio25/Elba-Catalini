@@ -24,6 +24,7 @@
 
 .baiml-p-card.loading {
   position: relative;
+  z-index: 1;
 }
 
 .baiml-p-card-spinner-overlay {

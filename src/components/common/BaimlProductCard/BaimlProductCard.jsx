@@ -8,17 +8,17 @@ import "./baimlProductCard.css";
 function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleAddToCart = async (id) => {
-    setIsLoading(true);
+    setLoading(true);
     await addProductToCart(id, quantity);
-    setIsLoading(false);  
+    setLoading(false);  
   };
 
   return (
-    <div className={`baiml-p-card ${isLoading ? "loading" : ""}`}>
-      {isLoading && (
+    <div className={`baiml-p-card ${loading ? "loading" : ""}`}>
+      {loading && (
         <div className="baiml-p-card-spinner-overlay">
           <div className="baiml-p-card-spinner"></div>
         </div>
