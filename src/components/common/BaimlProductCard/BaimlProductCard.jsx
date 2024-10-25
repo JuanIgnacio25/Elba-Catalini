@@ -8,15 +8,26 @@ import "./baimlProductCard.css";
 function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = async (id) => {
-      await addProductToCart(id, quantity);
+    setIsLoading(true);
+    await addProductToCart(id, quantity);
+    setIsLoading(false);  
   };
 
   return (
-    <div className="baiml-p-card">
+    <div className={`baiml-p-card ${isLoading ? "loading" : ""}`}>
+      {isLoading && (
+        <div className="baiml-p-card-spinner-overlay">
+          <div className="baiml-p-card-spinner"></div>
+        </div>
+      )}
       <div className="baiml-p-card-img-container">
-        <Link href={`/products/${prod.productId}`} className="baiml-p-card-img-link">
+        <Link
+          href={`/products/${prod.productId}`}
+          className="baiml-p-card-img-link"
+        >
           <Image
             className="baiml-p-card-img"
             src={prod.images[0]}
@@ -28,7 +39,10 @@ function ProductCard({ prod }) {
         </Link>
       </div>
       <div className="baiml-p-card-info">
-        <Link href={`/products/${prod.productId}`} className="baiml-p-card-info-link">
+        <Link
+          href={`/products/${prod.productId}`}
+          className="baiml-p-card-info-link"
+        >
           <p>{prod.name}</p>
           <p className="baiml-p-card-info-unit">Caja x {prod.unit}</p>
         </Link>
@@ -42,7 +56,10 @@ function ProductCard({ prod }) {
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
         />
-        <button className="baiml-p-card-add-button" onClick={() => handleAddToCart(prod.productId)}>
+        <button
+          className="baiml-p-card-add-button"
+          onClick={() => handleAddToCart(prod.productId)}
+        >
           Añadir al carrito
         </button>
       </div>
