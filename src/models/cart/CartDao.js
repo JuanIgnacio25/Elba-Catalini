@@ -37,10 +37,23 @@ class CartDao {
     }
   }
 
-  async addProductsArrayToCart(cartId,products){
+  async changeProductQuantityFromCart(cartId, productId, quantity) {
+    try {
+      const addedProduct = this.collection.findOneAndUpdate(
+        { cartId: cartId, "products.productId": productId },
+        { $set: { "products.$.quantity": quantity } },
+        { new: true }
+      );
+      return addedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addProductsArrayToCart(cartId, products) {
     try {
       return Cart.updateOne(
-        { cartId:cartId },
+        { cartId: cartId },
         { $push: { products: { $each: products } } }
       );
     } catch (error) {

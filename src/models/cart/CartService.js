@@ -34,16 +34,19 @@ class CartService {
 
   async addProductToCart(cartId,prod){
     try {
-      const product = {...prod};
-      
+
       const cart = await this.getCartById(cartId);
       if(!cart) throw new Error("El carrito no existe");
 
       const existingProduct = this.getProductFromCartById(cart,prod.productId);
 
-      if(existingProduct.length !== 0) throw new Error("El producto ya esta en el carrito");
-
-      const addedProduct = await this.dao.addProductToCart(cartId,product);
+      if(existingProduct.length !== 0) {
+        
+        const newQuantity = Number(existingProduct[0].quantity) + Number(prod.quantity);
+        const updatedProduct = await this.dao.changeProductQuantityFromCart(cartId,prod.productId,newQuantity);
+        return updatedProduct;
+      }
+      const addedProduct = await this.dao.addProductToCart(cartId,prod);
       return addedProduct;
     } catch (error) {
       throw error;
