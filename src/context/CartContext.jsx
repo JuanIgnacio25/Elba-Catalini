@@ -34,10 +34,11 @@ export function CartProvider({ children }) {
   const addProductToCart = async (id, quantity) => {
     if (status === "authenticated") {
       try {
-        await axios.post(`/api/carts/products/${id}`, { quantity });
+        const res = await axios.post(`/api/carts/products/${id}`, { quantity });
         await fetchCart();
+        return res;
       } catch (error) {
-        throw new Error("La cantidad ingresada es incorrecta");
+        throw error;
       }
     } else {
       router.push(

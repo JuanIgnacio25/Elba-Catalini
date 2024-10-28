@@ -25,13 +25,13 @@ class CartDao {
 
   async addProductToCart(cartId, product) {
     try {
-      const addedProduct = this.collection.findOneAndUpdate(
+      const cartUpdated = this.collection.findOneAndUpdate(
         { cartId: cartId },
         { $push: { products: product } },
         { new: true, useFindAndModify: false }
       );
 
-      return addedProduct;
+      return cartUpdated;
     } catch (error) {
       throw error;
     }

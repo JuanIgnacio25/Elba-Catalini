@@ -43,11 +43,16 @@ class CartService {
       if(existingProduct.length !== 0) {
         
         const newQuantity = Number(existingProduct[0].quantity) + Number(prod.quantity);
-        const updatedProduct = await this.dao.changeProductQuantityFromCart(cartId,prod.productId,newQuantity);
-        return updatedProduct;
+        await this.dao.changeProductQuantityFromCart(cartId,prod.productId,newQuantity);
+
+        return {name:prod.name, quantity:prod.quantity};
       }
-      const addedProduct = await this.dao.addProductToCart(cartId,prod);
-      return addedProduct;
+
+      const updatedCart= await this.dao.addProductToCart(cartId,prod);
+      const {name , quantity} = updatedCart.products[updatedCart.products.length - 1];
+
+      return {name , quantity};
+
     } catch (error) {
       throw error;
     }

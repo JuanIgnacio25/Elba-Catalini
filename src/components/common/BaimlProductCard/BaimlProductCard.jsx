@@ -15,8 +15,9 @@ function ProductCard({ prod }) {
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
-      await addProductToCart(id, quantity);
-      setPopToast(prod.name);
+      const res = await addProductToCart(id, quantity);
+      const addedProduct = res.data;
+      setPopToast(addedProduct);
       setLoading(false);
       setTimeout(() => {
         setPopToast(false);
@@ -99,7 +100,7 @@ function ProductCard({ prod }) {
           }`}
         >
           <p>
-            {`${popToast} `}
+            {`${popToast.name} x${popToast.quantity} `}
             <span className="baiml-p-card-toast-span">
               se agrego al carrito.
             </span>
