@@ -22,15 +22,9 @@ const validateQuantity = (quantity) => {
 
     const quantityValue = typeof quantity === 'string' ? parseInt(quantity, 10) : quantity;
 
-    if (isNaN(quantityValue)) {
-      throw new Error("La cantidad deber ser mayor a 0");
-    }
-
     const isValid = validateQuantitySchema(quantityValue);
     if (!isValid) {
-      /* const errors = validateQuantitySchema.errors.map((error) => error.message);
-      throw new Error(errors.join(", ")); */
-      throw new Error("La cantidad debe ser mayor a 0")
+      return false;
     }
 
     return true;
