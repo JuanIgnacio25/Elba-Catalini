@@ -37,7 +37,7 @@ export function CartProvider({ children }) {
         await axios.post(`/api/carts/products/${id}`, { quantity });
         await fetchCart();
       } catch (error) {
-        console.error("Error al añadir el producto al carrito:", error.response?.data);
+        throw new Error("La cantidad ingresada es incorrecta");
       }
     } else {
       router.push(

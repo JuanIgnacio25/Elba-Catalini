@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
 import "./baimlProductCard.css";
@@ -9,12 +9,41 @@ function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
   const [loading, setLoading] = useState(false);
+  const [popToast, setPopToast] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(true);
 
   const handleAddToCart = async (id) => {
-    setLoading(true);
-    await addProductToCart(id, quantity);
-    setLoading(false);  
+    try {
+      setLoading(true);
+      await addProductToCart(id, quantity);
+      setPopToast(prod.name);
+      setLoading(false);
+      setTimeout(() => {
+        setPopToast(false);
+      }, 3000);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className={`baiml-p-card ${loading ? "loading" : ""}`}>
@@ -63,6 +92,20 @@ function ProductCard({ prod }) {
           Añadir al carrito
         </button>
       </div>
+      {popToast && (
+        <div
+          className={`baiml-p-card-toast ${
+            isScrolled ? "baiml-p-card-toast-scrolled" : ""
+          }`}
+        >
+          <p>
+            {`${popToast} `}
+            <span className="baiml-p-card-toast-span">
+              se agrego al carrito.
+            </span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 function NavDesktop() {
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -17,15 +17,15 @@ function NavDesktop() {
 
     handleScroll();
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <nav className={`nav-desktop ${isScrolled ? "nav-desktop-scrolled":""}`}>
+    <nav className={`nav-desktop ${isScrolled ? "nav-desktop-scrolled" : ""}`}>
       <ul className="nav-desktop-menu">
         <li>
           <Link href="/products/baiml">Productos Baiml</Link>
@@ -35,4 +35,4 @@ function NavDesktop() {
   );
 }
 
-export default NavDesktop
+export default NavDesktop;
