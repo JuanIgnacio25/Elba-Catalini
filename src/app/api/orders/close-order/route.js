@@ -31,7 +31,7 @@ export async function POST(req) {
 
     // Validar que cada producto en cartData tenga un quantity válido
     cartData.products.forEach(product => {
-      validateQuantity(product.quantity);
+      if(!validateQuantity(product.quantity)) throw new Error("La cantidad debe ser mayor a 0");
     });
 
     // Modificar sólo el quantity en memoria para los productos del carrito

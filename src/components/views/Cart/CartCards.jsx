@@ -37,8 +37,11 @@ function CartCards() {
       setClosedOrder(true);
       setLoadingCloseOrder(false);
     } catch (error) {
+      console.log(error.response.data.message);
       fetchCart();
+      closeCloseCartModal()
       setError(error.response.data.message);
+      setLoadingCloseOrder(false);
     }
   };
 
