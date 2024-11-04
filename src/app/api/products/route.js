@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/libs/mongodb";
 import ProductService from "@/models/product/ProductService";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
+import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
 import validateImage from "@/utils/validate/validateImage";
 import uploadImagesToCloudinary from "@/utils/cloudinaryUploader";
 
@@ -13,14 +14,20 @@ export async function POST(request) {
     const data = await request.formData();
 
     const images = data.getAll("images");
+    const kind = data.get("kind");
 
     const formFields = Object.fromEntries(
       [...data.entries()].filter(([key]) => key !== "images")
     );
 
-    formFields.productSet = Number(formFields.productSet);
-
-    isValidBaimlProduct(formFields);
+    if (kind === "Baiml") {
+      formFields.productSet = Number(formFields.productSet);
+      isValidBaimlProduct(formFields);
+    }else if(kind === "Store"){
+      isValidStoreProduct(formFields);
+    } else {
+      throw new Error("El tipo de producto no es valido");
+    }
 
     if (validateImage(images).length !== 0) {
       return NextResponse.json("No se subio imagen o exece los 3MB", {
