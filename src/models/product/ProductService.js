@@ -15,6 +15,15 @@ class ProductService {
     }
   }
 
+  async getProducts(filter = {}) {
+    try {
+      const products = await this.dao.getProducts(filter);
+      return products;
+    } catch (error) {
+      throw error
+    }
+  }
+
   async findProductById(id) {
     try {
       const product = await this.dao.findProductById(id);
@@ -26,7 +35,6 @@ class ProductService {
 
   async createProduct(product) {
     try {
-      product.kind = "Baiml";
       const newProduct = await this.dao.createProduct(product);
       return newProduct;
     } catch (error) {

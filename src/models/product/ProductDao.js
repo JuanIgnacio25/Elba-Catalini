@@ -1,23 +1,19 @@
-import { Product, Baiml } from "@/models/product/product";
+import { Product, Baiml , Store} from "@/models/product/product";
 
 class ProductDao {
   constructor() {
     this.collection = Product;
     this.discriminators = {
       Baiml,
+      Store
     };
   }
 
   async createProduct(product) {
     try {
       const { kind, ...productData } = product;
-
-      let createdProduct;
-      if (kind && this.discriminators[kind]) {
-        createdProduct = await this.discriminators[kind].create(productData);
-      } else {
-        createdProduct = await this.collection.create(productData);
-      }
+      
+      const createdProduct = await this.discriminators[kind].create(productData);
 
       return createdProduct;
     } catch (error) {
@@ -28,6 +24,15 @@ class ProductDao {
   async getAllProducts() {
     try {
       const products = await this.collection.find();
+      return products;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getProducts(filter) {
+    try {
+      const products = await this.collection.find({kind : filter});
       return products;
     } catch (error) {
       throw error;
