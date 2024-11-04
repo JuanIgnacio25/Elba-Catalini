@@ -1,31 +1,19 @@
+"use client"
+
+import { useProduct } from "@/context/ProductContext"
+
 import SimplifiedViewProductCard from "@/components/views/Products/Baiml/SimplifiedView/SimplifiedViewProductCard"
 
 function SimplifiedViewCards() {
-  const products = [
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-    "FARO BAIML 1010E.A",
-  ]
+
+  const {baimlProducts , loading } = useProduct();
+
+  if(loading) return <div>Loading...</div>
 
   return (
     <div className="simplified-view-cards-container">
-      {products.map((prod,index) => {
-        return <SimplifiedViewProductCard prod={prod} key={index}/>
+      {baimlProducts.map((prod) => {
+        return <SimplifiedViewProductCard prod={prod} key={prod.productId}/>
       })}
     </div>
   )
