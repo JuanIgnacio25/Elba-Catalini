@@ -54,6 +54,10 @@ function ProductDetailMain() {
       </div>
     );
 
+  if (error) {
+    return <div>{error}</div>
+  }
+
   return (
     <div className="product-detail-container">
       <ProductDetailHeader product={product} />

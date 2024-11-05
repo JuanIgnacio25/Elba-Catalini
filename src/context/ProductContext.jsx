@@ -8,6 +8,7 @@ export const useProduct = () => useContext(ProductContext);
 export function ProductProvider({ children }) {
 
   const [loading , setLoading] = useState(true);
+  const [error , setError] = useState(false);
   const [baimlProducts, setBaimlProducts] = useState([]);
   const [storeProducts, setStoreProducts] = useState([]);
 
@@ -26,7 +27,8 @@ export function ProductProvider({ children }) {
       setBaimlProducts(baimlRes.data.products);
       setStoreProducts(storeRes.data.products);
     } catch (error) {
-      throw error;
+      console.log(error);
+      setError("ocurrio un error");
     } finally {
       setLoading(false);
     }
@@ -37,7 +39,7 @@ export function ProductProvider({ children }) {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ baimlProducts, storeProducts , allProducts , loading }}>
+    <ProductContext.Provider value={{ baimlProducts, storeProducts , allProducts , loading , error}}>
       {children}
     </ProductContext.Provider>
   );

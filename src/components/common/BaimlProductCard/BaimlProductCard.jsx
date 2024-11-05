@@ -15,6 +15,7 @@ function ProductCard({ prod }) {
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
+      if((quantity) < 1 ) setQuantity(1);
       const res = await addProductToCart(id, quantity);
       const addedProduct = res.data;
       setPopToast(addedProduct);
