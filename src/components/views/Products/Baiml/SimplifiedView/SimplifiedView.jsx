@@ -1,12 +1,12 @@
 import './simplifiedView.css';
-import SimplifiedViewHeader from '@/components/views/Products/Baiml/SimplifiedView/SimplifiedViewHeader';
+import PathHeader from '@/components/common/PathHeader/PathHeader';
 import SimplifiedViewCategories from '@/components/views/Products/Baiml/SimplifiedView/SimplifiedViewCategories';
 import SimplifiedViewCards from '@/components/views/Products/Baiml/SimplifiedView/SimplifiedViewCards';
 
 function SimplifiedView() {
   return (
     <div className='simplified-view-container'>
-      <SimplifiedViewHeader/>
+      <PathHeader/>
       <div className='simplified-view'>
         <SimplifiedViewCategories/>
         <SimplifiedViewCards/>

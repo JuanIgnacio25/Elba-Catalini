@@ -49,6 +49,7 @@ function BaimlPCategories() {
 
   return (
     <div className="baiml-p-main-categories">
+      <h3 className="baiml-p-main-categories-title">Categorias</h3>
       <div className="baiml-p-main-categories-button-container">
         <Link href={"/products/baiml/simplifiedView"}>
           <button className="baiml-p-main-categories-button"> <RxRows/>Vista simplificada</button>
