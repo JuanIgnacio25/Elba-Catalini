@@ -28,7 +28,10 @@ function NavDesktop() {
     <nav className={`nav-desktop ${isScrolled ? "nav-desktop-scrolled" : ""}`}>
       <ul className="nav-desktop-menu">
         <li>
-          <Link href="/products/baiml">Productos Baiml</Link>
+          <Link href="/products/baiml">Linea Baiml</Link>
+        </li>
+        <li>
+          <Link href={"/products/store/iluminacion"}>Store</Link>
         </li>
       </ul>
     </nav>

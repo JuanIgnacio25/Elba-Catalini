@@ -306,6 +306,14 @@
   z-index:800;
 }
 
+.nav-desktop-menu{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+}
+
 .nav-desktop-scrolled {
   top: 11.5vh;
 }
