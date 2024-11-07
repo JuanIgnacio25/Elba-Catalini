@@ -33,20 +33,19 @@ function PathHeader() {
     <div className={`path-header-container ${isScrolled ? "scrolled" : ""}`}>
       <div className="path-header">
         {pathArray.map((namePath, index, arr) => {
+          if (namePath === "store") return null;
+          if(namePath == "") return <Link href={"/products/baiml"}>Productos /</Link>
+          console.log({name:namePath})
           return (
             <div key={index} className="path-header-url">
-              {namePath !== "store" && (
-                <>
-                  <Link href={`/${arr.slice(0, index + 1).join("/")}`}>
-                    {namePath == "products"
-                      ? "Productos"
-                      : namePath == "simplifiedView"
-                      ? "Vista Simplificada"
-                      : `${namePath[0].toUpperCase() + namePath.slice(1)}`}
-                  </Link>
-                  <div>/</div>
-                </>
-              )}
+              <Link href={`/${arr.slice(0, index + 1).join("/")}`}>
+                {namePath === "products"
+                  ? "Productos"
+                  : namePath === "simplifiedView"
+                  ? "Vista Simplificada"
+                  : `${namePath[0].toUpperCase() + namePath.slice(1)}`}
+              </Link>
+              <div>/</div>
             </div>
           );
         })}
