@@ -59,6 +59,9 @@ function DashboardPage() {
       formData.append("kind", kind);
     }
 
+    console.log({frontImages:images});
+    
+
     images.forEach((image) => {
       formData.append("images", image);
     });
