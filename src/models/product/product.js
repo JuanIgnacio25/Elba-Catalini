@@ -48,22 +48,21 @@ const Product =
   mongoose.models.Product || mongoose.model("Product", ProductSchema);
 
 const BaimlSchema = new mongoose.Schema({
-  subCategory: {
-    type: String,
-  },
-});
-
-const StoreSchema = new mongoose.Schema({
   productSet: {
     type: Number,
   },
 });
 
+const StoreSchema = new mongoose.Schema({
+  subCategory: {
+    type: String,
+  },
+});
 
 const Baiml =
   Product.discriminators?.Baiml || Product.discriminator("Baiml", BaimlSchema);
 
-const Store = 
-  Product.discriminators?.Store || Product.discriminator("Store", StoreSchema); 
+const Store =
+  Product.discriminators?.Store || Product.discriminator("Store", StoreSchema);
 
-export { Product, Baiml , Store };
+export { Product, Baiml, Store };

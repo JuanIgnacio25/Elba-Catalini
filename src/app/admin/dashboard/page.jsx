@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -12,13 +13,17 @@ function DashboardPage() {
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
   const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [kind, setKind] = useState("");
   const [unit, setUnit] = useState("");
   const [productSet, setProductSet] = useState("");
   const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
   const router = useRouter();
+
+  const imageInputRef = useRef(null);
 
   const fetchProducts = async () => {
     const res = await axios.get("/api/products");
@@ -33,12 +38,26 @@ function DashboardPage() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("sku", sku);
-    formData.append("category", category);
-    formData.append("description", description);
-    formData.append("unit", unit);
-    formData.append("productSet", productSet);
+
+    if (kind === "Baiml") {
+      formData.append("name", name);
+      formData.append("sku", sku);
+      formData.append("category", category);
+      formData.append("description", description);
+      formData.append("unit", unit);
+      formData.append("kind", kind);
+      formData.append("productSet", productSet);
+    }
+
+    if(kind === "Store") {
+      formData.append("name", name);
+      formData.append("sku", sku);
+      formData.append("category", category);
+      formData.append("subCategory", subCategory);
+      formData.append("description", description);
+      formData.append("unit", unit);
+      formData.append("kind", kind);
+    }
 
     images.forEach((image) => {
       formData.append("images", image);
@@ -46,15 +65,22 @@ function DashboardPage() {
 
     try {
       const res = await axios.post("/api/products", formData);
+      console.log(res);
 
       setName("");
       setSku("");
       setCategory("");
+      setSubCategory("");
       setDescription("");
       setUnit("");
+      setKind("");
       setProductSet("");
       setImages([]);
       setImageUrls([]);
+
+      if (imageInputRef.current) {
+        imageInputRef.current.value = null;
+      }
     } catch (error) {
       console.error(error.response?.data || error.message);
     } finally {
@@ -83,7 +109,12 @@ function DashboardPage() {
   return (
     <div>
       <form onSubmit={handleSubmit} className="text-black" id="login-form">
-        <h1>Add Product</h1>
+        <select id="kind-options" value={kind} onChange={(e) => setKind(e.target.value)}>
+          <option value="">Seleccione...</option>
+          <option value={"Baiml"}>Baiml</option>
+          <option value={"Store"}>Store</option>
+        </select>
+
         <input
           type="text"
           placeholder="1035a"
@@ -103,23 +134,9 @@ function DashboardPage() {
           onChange={(e) => setSku(e.target.value)}
         />
 
-        <select
-          id="options"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">Seleccione...</option>
-          {options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        {category && <p>Opción seleccionada: {category}</p>}
-
         <textarea
           type="text"
-          placeholder="Excelente prod"
+          placeholder="Description"
           name="description"
           value={description}
           autoComplete="description"
@@ -129,34 +146,81 @@ function DashboardPage() {
 
         <input
           type="number"
-          placeholder="12"
+          placeholder="unit"
           name="unit"
           value={unit}
           autoComplete="unit"
           required={true}
           onChange={(e) => setUnit(e.target.value)}
         />
-        <input
-          type="number"
-          placeholder="2"
-          name="productSet"
-          value={productSet}
-          autoComplete="set"
-          required={true}
-          onChange={(e) => setProductSet(e.target.value)}
-        />
+        {kind === "Baiml" && (
+          <>
+            <select
+              id="options"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Category</option>
+              {options.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            {category && <p>Opción seleccionada: {category}</p>}
 
-        <input type="file" multiple onChange={handleImageChange} />
+            <input
+              type="number"
+              placeholder="ProductSet"
+              name="productSet"
+              value={productSet}
+              autoComplete="set"
+              required={true}
+              onChange={(e) => setProductSet(e.target.value)}
+            />
+          </>
+        )}
+
+        {kind === "Store" && (
+          <>
+            <input
+              type="text"
+              placeholder="Category"
+              name="Category"
+              value={category}
+              autoComplete="category"
+              required={true}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+
+            <input
+              type="text"
+              placeholder="SubCategory"
+              name="SubCategory"
+              value={subCategory}
+              autoComplete="subCategory"
+              onChange={(e) => setSubCategory(e.target.value)}
+            />
+          </>
+        )}
+
+        <input
+          type="file"
+          multiple
+          onChange={handleImageChange}
+          ref={imageInputRef}
+        />
 
         <div>
           {imageUrls.length > 0 && (
             <ul>
               {imageUrls.map((url, index) => (
                 <li key={index}>
-                  <img
+                  <Image
                     src={url}
                     alt={`Uploaded image ${index + 1}`}
-                    width="200"
+                    width={200}
+                    height={200}
                   />
                 </li>
               ))}
@@ -174,9 +238,10 @@ function DashboardPage() {
             <th>Nombre</th>
             <th>Sku</th>
             <th>Categoria</th>
+            <th>SubCategoria</th>
             <th>Descripcion</th>
             <th>Unidad</th>
-            <th>Juegos</th>
+            <th>Juegos</th>      
             <th>Imágenes</th>
           </tr>
         </thead>
@@ -187,6 +252,7 @@ function DashboardPage() {
               <td>{prod.name}</td>
               <td>{prod.sku}</td>
               <td>{prod.category}</td>
+              <td>{prod.subCategory}</td>
               <td>{prod.description}</td>
               <td>{prod.unit}</td>
               <td>{prod.productSet}</td>

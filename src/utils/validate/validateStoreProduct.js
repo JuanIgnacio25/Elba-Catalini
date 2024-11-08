@@ -26,6 +26,11 @@ const storeProductDtoSchema = Type.Object(
         type: "Category debe ser un String",
       },
     }),
+    subCategory: Type.String({
+      errorMessage: {
+        type: "Category debe ser un String",
+      },
+    }),
     description: Type.String({
       errorMessage: {
         type: "Description debe ser un String",
@@ -50,6 +55,7 @@ const storeProductDtoSchema = Type.Object(
         name: "Falta la propiedad: name",
         sku:"Falta la propiedad sku",
         category: "Falta la propiedad: category",
+        subCategory:"Falta la propiedad: subCategory",
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",
         kind: "Falta la propiedad: kind"

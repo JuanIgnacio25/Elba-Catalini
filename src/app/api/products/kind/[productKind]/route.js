@@ -8,7 +8,7 @@ const productService = new ProductService();
 export async function GET(req, { params }) {
   try {
     const { productKind } = params;
-    console.log(productKind);
+    
     if (productKind !== "Baiml" && productKind !== "Store")
       throw new Error("El tipo de producto no existe");
 
