@@ -22,7 +22,7 @@
 
 .register-side{
   width:8%;
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
 }
 .register-side-left{
   border-radius:4px 0px 0px 4px;
@@ -99,7 +99,7 @@
   font-size:15px;
   font-weight:bold;
   text-align:start;
-  background:rgba(215, 35, 35, 0.4);
+  background:var(--light-red);
 }
 
 .register-main-button{
@@ -109,8 +109,106 @@
   width:150px;
   height:40px;
   border-radius:15px;
-  background: rgb(62,54,54);
-  background: linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  background: var(--gradient-red);
   font-weight:bold;
   color:var(--white);
+}
+
+@media (max-width: 1150px){
+  .register{
+    width:60%;
+  }
+}
+
+@media (max-width: 900px){
+  .register-container{
+    margin:50px 0px;
+  }
+
+  .register-main-container{
+    padding:15px 0px;
+    gap:25px;
+  }
+
+  .register-main-data-container{
+    width:80%;
+  }
+
+  .register-main-title{
+    font-size:20px;
+  }
+
+  .register-main-data{
+    font-size:13px;
+  }
+  
+  .register-main-data span{
+    font-size:11px;
+  }
+
+  .register-main-data input::placeholder{
+    font-size:12px;
+  }
+
+  .register-main-error{
+    width:100%;
+    margin:5px 0px;
+    padding:3px;
+    font-size:12px;
+  }
+  
+  .register-main-forgotpassword{
+    font-size:12px;
+  }
+
+  .register-main-button{
+    font-size:14px;
+    width:130px;
+    height:30px;
+  }
+}
+
+@media (max-width: 650px){
+  .register{
+    width:70%;
+  }
+
+  .register-main-title{
+    font-size:18px;
+  }
+
+  .register-main-data{
+    font-size:11px;
+  }
+  
+  .register-main-data span{
+    font-size:9px;
+  }
+
+  .register-main-data input::placeholder{
+    font-size:10px;
+  }
+
+  .register-main-error{
+    width:100%;
+    margin:5px 0px;
+    padding:3px;
+    font-size:10px;
+  }
+  
+  .register-main-forgotpassword{
+    font-size:10px;
+  }
+
+  .register-main-button{
+    font-size:12px;
+    width:110px;
+    height:25px;
+  }
+}
+
+@media (max-width: 470px){
+  .register{
+    width:80%;
+  }
 }

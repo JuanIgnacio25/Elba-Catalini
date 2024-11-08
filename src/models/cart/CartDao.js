@@ -25,22 +25,35 @@ class CartDao {
 
   async addProductToCart(cartId, product) {
     try {
-      const addedProduct = this.collection.findOneAndUpdate(
+      const cartUpdated = this.collection.findOneAndUpdate(
         { cartId: cartId },
         { $push: { products: product } },
         { new: true, useFindAndModify: false }
       );
 
+      return cartUpdated;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async changeProductQuantityFromCart(cartId, productId, quantity) {
+    try {
+      const addedProduct = this.collection.findOneAndUpdate(
+        { cartId: cartId, "products.productId": productId },
+        { $set: { "products.$.quantity": quantity } },
+        { new: true }
+      );
       return addedProduct;
     } catch (error) {
       throw error;
     }
   }
 
-  async addProductsArrayToCart(cartId,products){
+  async addProductsArrayToCart(cartId, products) {
     try {
       return Cart.updateOne(
-        { cartId:cartId },
+        { cartId: cartId },
         { $push: { products: { $each: products } } }
       );
     } catch (error) {

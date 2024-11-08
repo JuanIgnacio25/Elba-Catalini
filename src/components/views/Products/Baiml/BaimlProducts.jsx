@@ -1,13 +1,11 @@
 import "./baimlProducts.css"
-import BaimlPHeader from "@/components/views/Products/Baiml/BaimlPHeader"
-import BaimlPTitles from "@/components/views/Products/Baiml/BaimlPTitles"
+import PathHeader from "@/components/common/PathHeader/PathHeader";
 import BaimlPMain from "@/components/views/Products/Baiml/BaimlPMain"
 
 function BaimlProducts() {
   return (
     <div className="baiml-p">
-      <BaimlPHeader/>
-      <BaimlPTitles/>
+      <PathHeader/>
       <BaimlPMain/>
     </div>
   )

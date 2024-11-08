@@ -17,6 +17,10 @@ const ProductSchema = new mongoose.Schema(
       minLength: [2, "El nombre debe tener almenos 2 caracteres"],
       maxLength: [50, "El nombre debe tener menos de 50 caracteres"],
     },
+    sku: {
+      type: String,
+      required: [true, "El sku es requerido"],
+    },
     category: {
       type: String,
       required: [true, "La categoria es requerido"],
@@ -29,6 +33,10 @@ const ProductSchema = new mongoose.Schema(
     unit: {
       type: String,
       required: [true, "La unidad es requerida"],
+    },
+    images: {
+      type: [String],
+      required: true,
     },
   },
   options
@@ -45,7 +53,16 @@ const BaimlSchema = new mongoose.Schema({
   },
 });
 
+const StoreSchema = new mongoose.Schema({
+  subCategory: {
+    type: String,
+  },
+});
+
 const Baiml =
   Product.discriminators?.Baiml || Product.discriminator("Baiml", BaimlSchema);
 
-export { Product, Baiml };
+const Store =
+  Product.discriminators?.Store || Product.discriminator("Store", StoreSchema);
+
+export { Product, Baiml, Store };

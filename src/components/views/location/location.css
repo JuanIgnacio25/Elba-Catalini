@@ -1,0 +1,14 @@
+.location-container{
+  display:flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  margin:70px 0px;
+  gap:20px;
+}
+
+.location-container h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

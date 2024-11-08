@@ -36,6 +36,7 @@ function LoginMain() {
   }, [status, session, router, searchParams]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setError("");
 
     const nextAuthResponse = await signIn("credentials", {
@@ -50,7 +51,7 @@ function LoginMain() {
   return (
     <div className="login-main-container">
       <h1 className="login-main-title">Iniciar Sesion</h1>
-      <div className="login-main-data-container">
+      <form className="login-main-data-container" onSubmit={handleSubmit}>
         <div className="login-main-data">
           <p>Correo Electronico</p>
           <input
@@ -78,8 +79,11 @@ function LoginMain() {
           <Link href="/auth/password-recovery">¿Olvidaste la contraseña?</Link>
           <p></p>
         </div>
-      </div>
-      <button className="login-main-button" onClick={handleSubmit}>Iniciar Sesion</button>
+        <div className="login-main-button-container">
+          <button className="login-main-button">Iniciar Sesion</button>
+        </div>
+      </form>
+      
     </div>
   );
 }

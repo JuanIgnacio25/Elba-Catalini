@@ -119,7 +119,6 @@ export const isValidSignup = (data) => {
     }
     const valid = validateSignup(data);
     if (!valid) {
-      /* throw new Error(ajv.errorsText(validateSignup.errors)); */
       const errors = validateSignup.errors.map((error) => error.message);
       throw new Error(errors.join(", "));
     }

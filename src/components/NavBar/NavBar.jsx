@@ -5,7 +5,7 @@ import NavDesktop from "@/components/NavBar/NavDesktop"
 
 function NavBar() {
   return (
-    <div>
+    <div className="nav-bar-container">
       <NavHeader/>
       <NavMain />
       <NavDesktop/>

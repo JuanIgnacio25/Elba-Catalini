@@ -6,11 +6,12 @@ import ProductService from "@/models/product/ProductService";
 const productService = new ProductService();
 
 export async function GET(req, { params }) {
-  const { id } = params;
   try {
+    const { id } = params;
     await connectDB();
-    const findProductById = await productService.findProductById(Number(id));
-    return NextResponse.json(findProductById);
+    const product = await productService.findProductById(Number(id));
+    if(!product) throw new Error("El producto no existe");
+    return NextResponse.json(product);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }

@@ -3,10 +3,10 @@
 import {useState,useEffect} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { BsCart3 } from "react-icons/bs";
 import { IoSearchSharp } from "react-icons/io5";
 
 import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper";
+import NavCart from "@/components/NavBar/NavCart";
 
 function NavMain() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +47,7 @@ function NavMain() {
       </ul>
       <ul className="nav-main-search-container">
         <li className="nav-main-search">
-          <input placeholder="¿Que estas buscando?" />
+          <input placeholder="¿Que estas buscando?" name="nav-main-search-input"/>
           <button>
             <IoSearchSharp className="nav-main-search-icon" />
           </button>
@@ -55,9 +55,7 @@ function NavMain() {
       </ul>
       <ul className="nav-main-menu">
         <li className="nav-main-menu-cart-container">
-          <Link href="/cart">
-            <BsCart3 className="nav-main-menu-icon-cart" />
-          </Link>
+          <NavCart/>
         </li>
         <li >
           <DropdownSelectWrapper/>

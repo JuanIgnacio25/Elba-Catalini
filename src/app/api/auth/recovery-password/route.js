@@ -36,7 +36,7 @@ export async function POST(request) {
     return NextResponse.json(`Ya puedes iniciar sesion con tu nueva contraseña!`);
   } catch (error) {
     return NextResponse.json(
-      { message: "Token invalido o expirado" },
+      { message: "Link de recuperacion invalido o expirado" },
       { status: 409 }
     );
   }
