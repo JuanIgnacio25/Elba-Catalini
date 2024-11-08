@@ -34,7 +34,7 @@ function PathHeader() {
       <div className="path-header">
         {pathArray.map((namePath, index, arr) => {
           if (namePath === "store") return null;
-          if(namePath == "") return <Link href={"/products/baiml"}>Productos /</Link>
+          if(namePath == "") return <Link key={index} href={"/products/baiml"}>Productos /</Link>
           console.log({name:namePath})
           return (
             <div key={index} className="path-header-url">

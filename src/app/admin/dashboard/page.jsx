@@ -258,11 +258,12 @@ function DashboardPage() {
               <td>{prod.productSet}</td>
               <td>
                 {prod.images?.map((img, index) => (
-                  <img
+                  <Image
                     key={index}
                     src={img}
                     alt={`Imagen ${index}`}
                     width={50}
+                    height={50}
                   />
                 ))}
               </td>
