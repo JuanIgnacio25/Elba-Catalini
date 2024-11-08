@@ -10,8 +10,8 @@ export const validateImage = (images) => {
   }
 
   images.forEach((image) => {
-    if (!(image instanceof File)) {
-      errors.push(`${image.name} no es un archivo válido.`);
+    if (!image || typeof image.size !== 'number' || !image.name) {
+      errors.push("Archivo no válido.");
       return;
     }
 

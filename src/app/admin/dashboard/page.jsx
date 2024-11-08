@@ -79,11 +79,16 @@ function DashboardPage() {
       setKind("");
       setProductSet("");
       setImages([]);
+
+      const urlsToRevoke = [...imageUrls];
       setImageUrls([]);
 
       if (imageInputRef.current) {
         imageInputRef.current.value = null;
       }
+
+      urlsToRevoke.forEach((url) => URL.revokeObjectURL(url));
+
     } catch (error) {
       console.error(error.response?.data || error.message);
     } finally {
