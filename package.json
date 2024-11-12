@@ -18,6 +18,7 @@
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
     "exceljs": "^4.4.0",
+    "framer-motion": "^11.11.11",
     "googleapis": "^140.0.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.0",

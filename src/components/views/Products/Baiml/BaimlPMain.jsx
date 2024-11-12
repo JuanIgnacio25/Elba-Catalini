@@ -17,19 +17,22 @@ function BaimlPMain() {
   const { baimlProducts, loading, filterProducts } = useProduct();
 
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filterLoading, setFilterLoading] = useState(false);
   const categories = searchParams.get("categories");
   const selectedCategories = categories ? categories.split(",") : [];
 
   useEffect(() => {
+    setFilterLoading(true);
     const filtered =
       selectedCategories.length > 0
         ? filterProducts(selectedCategories)
         : baimlProducts;
-        
+
     if (JSON.stringify(filtered) !== JSON.stringify(filteredProducts)) {
       setFilteredProducts(filtered);
     }
-  }, [baimlProducts, selectedCategories, filteredProducts]);
+    setTimeout(() => setFilterLoading(false), 500);
+  }, [baimlProducts, selectedCategories]);
 
   const onCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)
@@ -47,7 +50,7 @@ function BaimlPMain() {
     router.push(newUrl);
   };
 
-  if (loading) return <BaimlPMainFallback/>;
+  if (loading) return <BaimlPMainFallback />;
 
   return (
     <div className="baiml-p-standard-container">
@@ -56,7 +59,7 @@ function BaimlPMain() {
           selectedCategories={selectedCategories}
           onCategoryChange={onCategoryChange}
         />
-        <BaimlPCards baimlProducts={filteredProducts} />
+        <BaimlPCards baimlProducts={filteredProducts} filterLoading={filterLoading} />
       </div>
     </div>
   );
