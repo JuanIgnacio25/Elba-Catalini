@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect , useMemo} from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import axios from "axios";
 
 const ProductContext = createContext();
@@ -6,18 +6,16 @@ const ProductContext = createContext();
 export const useProduct = () => useContext(ProductContext);
 
 export function ProductProvider({ children }) {
-
-  const [loading , setLoading] = useState(true);
-  const [error , setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [baimlProducts, setBaimlProducts] = useState([]);
   const [storeProducts, setStoreProducts] = useState([]);
-
 
   const allProducts = useMemo(() => [...baimlProducts, ...storeProducts], [baimlProducts, storeProducts]);
 
   const fetchAllProducts = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
 
       const [baimlRes, storeRes] = await Promise.all([
         axios.get("/api/products/kind/Baiml"),
@@ -32,14 +30,20 @@ export function ProductProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const filterProducts = (categories = []) => {
+    return categories.length > 0
+      ? baimlProducts.filter(product => categories.includes(product.category))
+      : baimlProducts;
+  };
 
   useEffect(() => {
     fetchAllProducts();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ baimlProducts, storeProducts , allProducts , loading , error}}>
+    <ProductContext.Provider value={{ baimlProducts, storeProducts, allProducts, loading, error, filterProducts }}>
       {children}
     </ProductContext.Provider>
   );

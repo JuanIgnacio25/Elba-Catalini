@@ -1,21 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 import { RxRows } from "react-icons/rx";
 
-function CustomCheckbox({ label }) {
-  const [checked, setChecked] = useState(false);
+function CustomCheckbox({ label , onCategoryChange , selectedCategories ,checked}) {
 
   const toggleCheckbox = () => {
-    setChecked(!checked);
+    onCategoryChange(label,selectedCategories);
   };
 
   return (
-    <div className="baiml-p-main-categories-checkbox-container" onClick={toggleCheckbox}>
-      <div className={`baiml-p-main-categories-checkbox ${checked ? "checked" : ""}`}>
-        {checked && <span className="baiml-p-main-categories-checkmark">✓</span>}
+    <div
+      className="baiml-p-main-categories-checkbox-container"
+      onClick={toggleCheckbox}
+    >
+      <div
+        className={`baiml-p-main-categories-checkbox ${
+          checked ? "checked" : ""
+        }`}
+      >
+        {checked && (
+          <span className="baiml-p-main-categories-checkmark">✓</span>
+        )}
       </div>
       <div className="baiml-p-main-categories-checkbox-label">
         <p>{label}</p>
@@ -24,7 +31,7 @@ function CustomCheckbox({ label }) {
   );
 }
 
-function BaimlPCategories() {
+function BaimlPCategories({ onCategoryChange, selectedCategories }) {
   const categories = [
     "Faros de posición",
     "Posición electrónicos",
@@ -52,11 +59,21 @@ function BaimlPCategories() {
       <h3 className="baiml-p-main-categories-title">Categorias</h3>
       <div className="baiml-p-main-categories-button-container">
         <Link href={"/products/baiml/simplifiedView"}>
-          <button className="baiml-p-main-categories-button"> <RxRows/>Vista simplificada</button>
+          <button className="baiml-p-main-categories-button">
+            {" "}
+            <RxRows />
+            Vista simplificada
+          </button>
         </Link>
       </div>
       {categories.map((category, index) => (
-        <CustomCheckbox key={index} label={category} />
+        <CustomCheckbox
+          key={index}
+          label={category}
+          selectedCategories={selectedCategories}
+          checked={selectedCategories.includes(category)}
+          onCategoryChange={onCategoryChange}
+        />
       ))}
     </div>
   );

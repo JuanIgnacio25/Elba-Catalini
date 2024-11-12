@@ -5,10 +5,9 @@ import { useProduct } from "@/context/ProductContext";
 import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
-function BaimlPCards() {
-  const { baimlProducts , loading , error} = useProduct();
+function BaimlPCards({baimlProducts /* , loading , error */}) {
 
-  if (loading) {
+  /* if (loading) {
     return (
       <div className="baiml-p-main-cards-fallback">
         <FallbackSpinner />
@@ -18,7 +17,7 @@ function BaimlPCards() {
 
   if (error) {
     return <div>{error}</div>;
-  }
+  } */
 
   return (
     <div className="baiml-p-main-cards-container">

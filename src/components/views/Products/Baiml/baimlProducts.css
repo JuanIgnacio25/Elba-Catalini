@@ -31,31 +31,6 @@
   gap: 5px;
 }
 
-/* BaimlP Titles */
-
-.baiml-p-titles {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: end;
-  margin-top: 20px;
-}
-
-.baiml-p-titles-categories {
-  width: 20%;
-  color: var(--dark-grey);
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.baiml-p-titles-products {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  color: var(--black);
-  font-size: 2.4rem;
-  font-weight: 600;
-}
-
 /* BaimlP Main Card Container*/
 
 .baiml-p-main-container {
@@ -82,7 +57,7 @@
 
 .baiml-p-main-categories-title {
   color: var(--dark-grey);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 20px;
 }

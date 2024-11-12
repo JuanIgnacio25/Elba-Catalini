@@ -12,9 +12,7 @@ const productService = new ProductService();
 export async function POST(request) {
   try {
     const data = await request.formData();
-    console.log(data);
     const images = data.getAll("images");
-    console.log({imagesFormData:images});
     const kind = data.get("kind");
 
     const formFields = Object.fromEntries(
