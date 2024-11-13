@@ -115,3 +115,11 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+
+.baiml-p-main-loading-more-spinner{
+  grid-column: span 3;
+  justify-self: center; 
+  align-self: center;
+  margin-top: 50px;
+}
