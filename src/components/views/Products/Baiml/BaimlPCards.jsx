@@ -11,8 +11,11 @@ function BaimlPCards({ baimlProducts, filterLoading }) {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [allLoaded, setAllLoaded] = useState(false); // Nuevo estado para saber si todos los productos fueron cargados
-  const ITEMS_PER_PAGE = 12;
+  const [allLoaded, setAllLoaded] = useState(false);
+  const ITEMS_PER_PAGE = 6;
+
+  // Resetear la animación al cambiar los productos
+  const [resetAnimationKey, setResetAnimationKey] = useState(0);
 
   useEffect(() => {
     if (baimlProducts.length > 0) {
@@ -20,11 +23,15 @@ function BaimlPCards({ baimlProducts, filterLoading }) {
       setVisibleProducts(initialProducts);
       setPage(1);
 
-      if(baimlProducts.length <= ITEMS_PER_PAGE){
-        setAllLoaded(true);
-      }else{
-        setAllLoaded(false);
+      // Verificamos si hay menos de 12 productos en total
+      if (baimlProducts.length <= ITEMS_PER_PAGE * 2) {
+        setAllLoaded(true); // Marcar como cargado si hay menos de 12 productos
+      } else {
+        setAllLoaded(false); // Si hay más de 12, no marcamos como cargado
       }
+
+      // Resetear la animación con un nuevo valor de clave
+      setResetAnimationKey((prevKey) => prevKey + 1);
     } else {
       setVisibleProducts([]);
       setAllLoaded(true); // Si no hay productos, marcamos que todo está cargado
@@ -34,9 +41,9 @@ function BaimlPCards({ baimlProducts, filterLoading }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
-      const bottomPosition = document.documentElement.offsetHeight - 300; // Detectar 300px antes del final
+      const bottomPosition = document.documentElement.offsetHeight - 200; // Detectar 200px antes del final
 
-      if (scrollPosition >= bottomPosition && !loadingMore && !allLoaded) { // Aseguramos que no esté todo cargado
+      if (scrollPosition >= bottomPosition && !loadingMore && !allLoaded) {
         setLoadingMore(true);
         setTimeout(() => {
           setLoadingMore(false);
@@ -80,7 +87,7 @@ function BaimlPCards({ baimlProducts, filterLoading }) {
     <div className="baiml-p-main-cards-container">
       {visibleProducts.map((prod, index) => (
         <AnimatedProductCard
-          key={prod.productId}
+          key={`${prod.productId}-${resetAnimationKey}`} // Forzar nuevo render con cambio en key
           prod={prod}
           delay={index * 0.1}
         />
