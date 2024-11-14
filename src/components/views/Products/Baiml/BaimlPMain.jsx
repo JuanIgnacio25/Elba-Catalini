@@ -17,13 +17,10 @@ function BaimlPMain() {
   const { baimlProducts, loading, filterProducts } = useProduct();
 
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [filterLoading, setFilterLoading] = useState(false);
   const categories = searchParams.get("categories");
   const selectedCategories = categories ? categories.split(",") : [];
 
   useEffect(() => {
-    setFilterLoading(true);
-
     const filtered =
       selectedCategories.length > 0
         ? filterProducts(selectedCategories)
@@ -32,8 +29,7 @@ function BaimlPMain() {
     if (JSON.stringify(filtered) !== JSON.stringify(filteredProducts)) {
       setFilteredProducts(filtered);
     }
-    
-    setFilterLoading(false);
+
     console.log({ productosFiltrados: filteredProducts });
   }, [baimlProducts, selectedCategories]);
 
@@ -62,10 +58,7 @@ function BaimlPMain() {
           selectedCategories={selectedCategories}
           onCategoryChange={onCategoryChange}
         />
-        <BaimlPCards
-          baimlProducts={filteredProducts}
-          filterLoading={filterLoading}
-        />
+        <BaimlPCards baimlProducts={filteredProducts} />
       </div>
     </div>
   );
