@@ -43,7 +43,7 @@ export function ProductProvider({ children }) {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ baimlProducts, storeProducts, allProducts, loading, error, filterProducts }}>
+    <ProductContext.Provider value={{ baimlProducts, storeProducts, allProducts, loading, error, filterProducts , fetchAllProducts}}>
       {children}
     </ProductContext.Provider>
   );
