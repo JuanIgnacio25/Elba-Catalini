@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useProduct } from "@/context/ProductContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
 function DashboardPage() {
-  const options = ["Posicion trasero", "Plafonier", "Ilumina Patente"];
 
-  const [products, setProducts] = useState([]);
+  const {allProducts, fetchAllProducts} = useProduct();
+
+  const options = ["Faros de posición", "Posición electrónicos", "Faros plafonier"];
 
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
@@ -24,15 +26,6 @@ function DashboardPage() {
   const router = useRouter();
 
   const imageInputRef = useRef(null);
-
-  const fetchProducts = async () => {
-    const res = await axios.get("/api/products");
-    setProducts(res.data.products);
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,7 +85,7 @@ function DashboardPage() {
     } catch (error) {
       console.error(error.response?.data || error.message);
     } finally {
-      fetchProducts();
+      fetchAllProducts();
     }
   };
 
@@ -108,7 +101,7 @@ function DashboardPage() {
     try {
       const res = await axios.delete(`/api/products/${id}`);
       console.log(res.data.message);
-      fetchProducts();
+      fetchAllProducts();
     } catch (error) {
       console.log(error);
     }
@@ -254,7 +247,7 @@ function DashboardPage() {
           </tr>
         </thead>
         <tbody>
-          {products.map((prod) => (
+          {allProducts.map((prod) => (
             <tr key={prod.productId}>
               <td>{prod.productId}</td>
               <td>{prod.name}</td>
