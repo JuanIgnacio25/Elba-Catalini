@@ -207,6 +207,14 @@
   }
 }
 
+.store-products-loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 200px;
+}
+
 .store-products-loading-more-spinner{
   grid-column: span 4;
   justify-self: center;

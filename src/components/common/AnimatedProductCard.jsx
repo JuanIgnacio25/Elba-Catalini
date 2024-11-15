@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 
-function AnimatedProductCard({ prod, delay , ProductCard}) {
+function AnimatedProductCard({ prod, delay, ProductCard }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -13,7 +13,7 @@ function AnimatedProductCard({ prod, delay , ProductCard}) {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: 0.5, delay: delay || 0.1 }}
     >
       <ProductCard prod={prod} />
     </motion.div>
