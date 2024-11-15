@@ -87,7 +87,7 @@
 }
 
 .product-deatil-carousel-slider-side-bar-image {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .product-deatil-carousel-slider-side-bar-image.selected {
@@ -104,9 +104,9 @@
 .product-deatil-carousel-slider-main-image {
   width: 100%;
   max-width: 400px;
-  height: auto;
-  object-fit: cover;
-  object-position: 50% 50%;
+  max-height: 400px;
+  object-fit: contain;
+  object-position: center;
 }
 /* Product Detail Main Info */
 .product-detail-main-info-container{

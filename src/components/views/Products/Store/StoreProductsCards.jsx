@@ -25,7 +25,6 @@ function StoreProductsCards({ storeProducts }) {
       } else {
         setAllLoaded(false);
       }
-
     } else {
       setVisibleProducts([]);
       setAllLoaded(true); // Si no hay productos, marcamos que todo está cargado
@@ -71,14 +70,21 @@ function StoreProductsCards({ storeProducts }) {
 
   return (
     <div className="store-products-cards">
-      {visibleProducts.map((prod, index) => (
-        <AnimatedProductCard
-          key={prod.productId}
-          prod={prod}
-          delay={index * 0.1}
-          ProductCard={StoreProductCard}
-        />
-      ))}
+      {visibleProducts.map((prod, index) => {
+        const isNewProduct = index >= (page - 1) * ITEMS_PER_PAGE;
+        const calculatedDelay = isNewProduct
+          ? (index % ITEMS_PER_PAGE) * 0.1
+          : 0;
+
+        return (
+          <AnimatedProductCard
+            key={prod.productId}
+            prod={prod}
+            delay={calculatedDelay}
+            ProductCard={StoreProductCard}
+          />
+        );
+      })}
 
       {!loadingMore && (
         <div className="store-products-loading-more-spinner"></div>

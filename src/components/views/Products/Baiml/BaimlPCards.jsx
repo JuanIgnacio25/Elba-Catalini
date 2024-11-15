@@ -77,14 +77,21 @@ function BaimlPCards({ baimlProducts }) {
 
   return (
     <div className="baiml-p-main-cards-container">
-      {visibleProducts.map((prod, index) => (
-        <AnimatedProductCard
-          key={`${prod.productId}-${resetAnimationKey}`} // Forzar nuevo render con cambio en key
-          prod={prod}
-          delay={index * 0.1}
-          ProductCard={BaimlProductCard}
-        />
-      ))}
+      {visibleProducts.map((prod, index) => {
+        const isNewProduct = index >= (page - 1) * ITEMS_PER_PAGE;
+        const calculatedDelay = isNewProduct
+          ? (index % ITEMS_PER_PAGE) * 0.1
+          : 0;
+
+        return (
+          <AnimatedProductCard
+            key={`${prod.productId}-${resetAnimationKey}`} // Forzar nuevo render con cambio en key
+            prod={prod}
+            delay={calculatedDelay}
+            ProductCard={BaimlProductCard}
+          />
+        );
+      })}
 
       {!loadingMore && (
         <div className="baiml-p-main-loading-more-spinner"></div>
