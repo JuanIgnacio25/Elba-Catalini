@@ -11,7 +11,10 @@ export function ProductProvider({ children }) {
   const [baimlProducts, setBaimlProducts] = useState([]);
   const [storeProducts, setStoreProducts] = useState([]);
 
-  const allProducts = useMemo(() => [...baimlProducts, ...storeProducts], [baimlProducts, storeProducts]);
+  const allProducts = useMemo(
+    () => [...baimlProducts, ...storeProducts],
+    [baimlProducts, storeProducts]
+  );
 
   const fetchAllProducts = async () => {
     try {
@@ -34,8 +37,18 @@ export function ProductProvider({ children }) {
 
   const filterProducts = (categories = []) => {
     return categories.length > 0
-      ? baimlProducts.filter(product => categories.includes(product.category))
+      ? baimlProducts.filter((product) => categories.includes(product.category))
       : baimlProducts;
+  };
+
+  const searchProducts = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+
+    return allProducts.filter(
+      (product) =>
+        product.name.toLowerCase().includes(lowerCaseQuery) ||
+        product.description.toLowerCase().includes(lowerCaseQuery)
+    );
   };
 
   useEffect(() => {
@@ -43,7 +56,18 @@ export function ProductProvider({ children }) {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ baimlProducts, storeProducts, allProducts, loading, error, filterProducts , fetchAllProducts}}>
+    <ProductContext.Provider
+      value={{
+        baimlProducts,
+        storeProducts,
+        allProducts,
+        loading,
+        error,
+        filterProducts,
+        fetchAllProducts,
+        searchProducts,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

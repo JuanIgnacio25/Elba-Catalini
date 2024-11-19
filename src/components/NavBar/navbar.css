@@ -92,11 +92,16 @@
 
 .nav-main-search {
   display: flex;
-  align-items: center;
   width: 100%;
 }
 
-.nav-main-search input {
+.nav-main-search-form{
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+
+.nav-main-search-form-input {
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -109,11 +114,11 @@
   transition: border 0.15s ease-in;
 }
 
-.nav-main-search input::placeholder {
-  color: #cdc8c6;
+.nav-main-search-form-input::placeholder {
+  color:var(--soft-grey);
 }
 
-.nav-main-search button {
+.nav-main-search-form-button {
   display: flex;
   justify-content: end;
   align-items: center;
