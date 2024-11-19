@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-function SimplifiedViewCategories() {
+function SimplifiedViewCategories({ handleCategoryChange }) {
   const categories = [
     "Todo",
     "Faros de posición",
@@ -36,7 +36,12 @@ function SimplifiedViewCategories() {
           className={`simplified-view-categories-category-button ${
             selected === category ? "selected" : ""
           }`}
-          onClick={() => setSelected(category)}
+          onClick={() => {
+            setSelected(category);
+            category === "Todo"
+              ? handleCategoryChange([])
+              : handleCategoryChange(category);
+          }}
         >
           {category}
         </button>
