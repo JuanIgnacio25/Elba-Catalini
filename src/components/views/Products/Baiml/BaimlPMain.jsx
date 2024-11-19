@@ -30,7 +30,6 @@ function BaimlPMain() {
       setFilteredProducts(filtered);
     }
 
-    console.log({ productosFiltrados: filteredProducts });
   }, [baimlProducts, selectedCategories]);
 
   const onCategoryChange = (category) => {

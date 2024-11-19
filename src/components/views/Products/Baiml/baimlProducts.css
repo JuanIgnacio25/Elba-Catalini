@@ -44,23 +44,30 @@
   margin-bottom: 20px;
 }
 
-.baiml-p-main-categories-button-container {
+.baiml-p-main-categories-simplified-view-button-container {
   display: flex;
   flex-flow: row wrap;
 }
 
-.baiml-p-main-categories-button {
+.baiml-p-main-categories-simplified-view-button {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   gap: 3px;
   padding: 5px;
-  background: var(--extra-light-grey);
+  background-color: var(--extra-light-grey);
   color: var(--red);
-  border: 1px solid red;
+  border: 1px solid var(--red);
   font-size: 15px;
   font-weight: bold;
+  transition: color 0.2s ease-in-out , background-color 0.2s ease-in-out , border 0.2s ease-in-out;
+}
+
+.baiml-p-main-categories-simplified-view-button:hover{
+  background-color: var(--red);
+  color: var(--extra-light-grey);
+  border: 1px solid var(--white);
 }
 
 .baiml-p-main-categories-checkbox-container {
