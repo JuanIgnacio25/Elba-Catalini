@@ -11,10 +11,10 @@ export function ProductProvider({ children }) {
   const [baimlProducts, setBaimlProducts] = useState([]);
   const [storeProducts, setStoreProducts] = useState([]);
 
-  const allProducts = useMemo(
-    () => [...baimlProducts, ...storeProducts],
-    [baimlProducts, storeProducts]
-  );
+  const allProducts = useMemo(() => {
+    if (!baimlProducts.length && !storeProducts.length) return [];
+    return [...baimlProducts, ...storeProducts];
+  }, [baimlProducts, storeProducts]);
 
   const fetchAllProducts = async () => {
     try {
