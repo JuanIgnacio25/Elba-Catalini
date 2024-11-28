@@ -5,6 +5,7 @@ class CartDao {
     this.collection = Cart;
   }
 
+  /* Crea un carrito vacio */
   async createCart() {
     try {
       const createdCart = await this.collection.create({});
@@ -14,6 +15,7 @@ class CartDao {
     }
   }
 
+  /* Obtiene un carrito por cartId */
   async getCartById(cartId) {
     try {
       const cart = await this.collection.findOne({ cartId });
@@ -23,6 +25,7 @@ class CartDao {
     }
   }
 
+  /* Busca el carrito por cartId y luego añade el producto que se le pasa */
   async addProductToCart(cartId, product) {
     try {
       const cartUpdated = this.collection.findOneAndUpdate(
@@ -36,6 +39,7 @@ class CartDao {
       throw error;
     }
   }
+
 
   async changeProductQuantityFromCart(cartId, productId, quantity) {
     try {
@@ -61,6 +65,7 @@ class CartDao {
     }
   }
 
+  /* Busca el carrito por cartId y elimina el producto por productId */
   async removeProductFromCart(cartId, productId) {
     try {
       const result = await this.collection.updateOne(
@@ -72,6 +77,7 @@ class CartDao {
     }
   }
 
+  /* Vacia el array de productos del carrito , lo setea a [] */
   async clearCart(id) {
     try {
       const clearedCart = await this.collection.findOneAndUpdate(
@@ -84,6 +90,21 @@ class CartDao {
       throw error;
     }
   }
+
+  /* Elimina un producto por productId de todos los carritos */
+  async removeProductFromAllCarts(productId) {
+    try {
+      const result = await this.collection.updateMany(
+        { "products.productId": productId },
+        { $pull: { products: { productId: productId } } }
+      );
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+ 
 }
 
 export default CartDao;

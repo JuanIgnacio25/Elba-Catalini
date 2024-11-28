@@ -86,6 +86,15 @@ class CartService {
       throw error;
     }
   }
+
+  async removeProductFromAllCarts(productId) {
+    try {
+      const clearedCart = await this.dao.removeProductFromAllCarts(Number(productId));
+      return clearedCart.modifiedCount;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default CartService;
