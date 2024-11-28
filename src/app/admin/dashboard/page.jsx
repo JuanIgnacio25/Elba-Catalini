@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useProduct } from "@/context/ProductContext";
+import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -9,6 +10,8 @@ import axios from "axios";
 function DashboardPage() {
 
   const {allProducts, fetchAllProducts} = useProduct();
+
+  const {fetchCart} = useCart();
 
   const options = ["Faros de posición", "Posición electrónicos", "Faros plafonier"];
 
@@ -101,6 +104,7 @@ function DashboardPage() {
     try {
       const res = await axios.delete(`/api/products/${id}`);
       console.log(res.data.message);
+      await fetchCart();
       fetchAllProducts();
     } catch (error) {
       console.log(error);

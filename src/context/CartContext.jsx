@@ -17,6 +17,7 @@ export function CartProvider({ children }) {
   const fetchCart = async () => {
     if (status === "authenticated") {
       try {
+        setLoading(true);
         const res = await axios.get("/api/carts");
         setCart(res.data.cart);
       } catch (error) {
