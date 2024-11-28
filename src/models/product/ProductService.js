@@ -27,8 +27,7 @@ class ProductService {
 
   async findProductById(productId) {
     try {
-      toNumericId(productId)
-      const product = await this.dao.findProductById(productId);
+      const product = await this.dao.findProductById(toNumericId(productId));
       return product;
     } catch (error) {
       throw error;
@@ -45,9 +44,8 @@ class ProductService {
   }
 
   async deleteProduct(productId) {
-    try {
-      toNumericId(productId)
-      const deleteProduct = await this.dao.deleteProduct(productId);
+    try {  
+      const deleteProduct = await this.dao.deleteProduct(toNumericId(productId));
       return deleteProduct;
     } catch (error) {
       throw error;

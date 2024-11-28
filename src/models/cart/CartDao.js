@@ -78,10 +78,10 @@ class CartDao {
   }
 
   /* Vacia el array de productos del carrito , lo setea a [] */
-  async clearCart(id) {
+  async clearCart(cartId) {
     try {
       const clearedCart = await this.collection.findOneAndUpdate(
-        { cartId: id },
+        { cartId: cartId },
         { $set: { products: [] } },
         { new: true }
       );

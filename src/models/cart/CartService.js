@@ -17,8 +17,7 @@ class CartService {
 
   async getCartById(cartId){
     try {
-      toNumericId(cartId)
-      const cart = await this.dao.getCartById(cartId);
+      const cart = await this.dao.getCartById(toNumericId(cartId));
       return cart;
     } catch (error) {
       throw error;
@@ -82,8 +81,7 @@ class CartService {
 
   async clearCart(cartId){
     try {
-      toNumericId(cartId)
-      const clearedCart = await this.dao.clearCart(cartId);
+      const clearedCart = await this.dao.clearCart(toNumericId(cartId));
       return clearedCart;
     } catch (error) {
       throw error;
@@ -92,8 +90,7 @@ class CartService {
 
   async removeProductFromAllCarts(productId) {
     try {
-      toNumericId(productId)
-      const clearedCart = await this.dao.removeProductFromAllCarts(productId);
+      const clearedCart = await this.dao.removeProductFromAllCarts(toNumericId(productId));
       return clearedCart.modifiedCount;
     } catch (error) {
       throw error;
