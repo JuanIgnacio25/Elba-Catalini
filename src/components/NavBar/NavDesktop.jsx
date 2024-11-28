@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+import Dropdown from "@/components/common/Dropdown/Dropdown";
+
 function NavDesktop() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -31,7 +33,13 @@ function NavDesktop() {
           <Link href="/products/baiml">Linea Baiml</Link>
         </li>
         <li>
-          <Link href={"/products/store/iluminacion"}>Store</Link>
+          <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
+        </li>
+        <li>
+          <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
+        </li>
+        <li>
+          <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
         </li>
       </ul>
     </nav>

@@ -51,6 +51,24 @@ export function ProductProvider({ children }) {
     );
   };
 
+  const filterStoreProductsByCategory = (category, subcategory) => {
+    
+    if (subcategory) {
+      return storeProducts.filter(
+        (product) =>{
+          return (product.category.toLowerCase() === category?.split("-").join(" ").toLowerCase() &&
+          product.subCategory.toLowerCase() === subcategory?.split("-").join(" ").toLowerCase())
+          }
+      );
+    }
+    if (category) {
+      return storeProducts.filter(
+        (product) => product.category.toLowerCase() === category?.toLowerCase()
+      );
+    }
+    return storeProducts;
+  };
+
   useEffect(() => {
     fetchAllProducts();
   }, []);
@@ -66,6 +84,7 @@ export function ProductProvider({ children }) {
         filterProducts,
         fetchAllProducts,
         searchProducts,
+        filterStoreProductsByCategory
       }}
     >
       {children}
