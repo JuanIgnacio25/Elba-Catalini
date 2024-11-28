@@ -48,8 +48,8 @@ export async function DELETE(req, { params }) {
   try {
     await connectDB();
 
-    const product = await productService.findProductById(id);
-    if(!product) throw new Error ("El producto no existe");
+    /* const product = await productService.findProductById(id);
+    if(!product) throw new Error ("El producto no existe"); */
 
     await cartService.removeProductFromCart(token.user.cartId , id);
 
