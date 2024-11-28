@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { MdPlace } from "react-icons/md";
 import { IoIosMail } from "react-icons/io";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa6";
@@ -51,22 +50,15 @@ function NavHeader() {
         </a>
       </div>
       <div className="nav-header-text-container">
-        <p>Los mejores precios mayoristas del pais!</p>
+        <p>Todos los precios sujetos a presupuesto.</p>
       </div>
       <div className="nav-header-items-container">
-        <Link href="/location">
-          <div className="nav-header-items">
-            <MdPlace />
-            <span>Local</span>
-          </div>
-        </Link>
-
-        <a href="mailto:nachocolli1@gmail.com">
+        <Link href="/contact">
           <div className="nav-header-items">
             <IoIosMail />
             <span>Contacto</span>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );
