@@ -2,8 +2,8 @@
 
 import "./contact.css";
 
-import { useState, useRef } from "react";
-import Image from "next/image";
+import { useState } from "react";
+/* import Image from "next/image"; */
 import axios from "axios";
 
 function Contact() {
@@ -12,7 +12,7 @@ function Contact() {
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [images, setImages] = useState([]);
+  /* const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
   const imageInputRef = useRef(null);
@@ -23,7 +23,7 @@ function Contact() {
 
     const newImageUrls = files.map((file) => URL.createObjectURL(file));
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
-  };
+  }; */
 
   const handleFormSubmit = async(e) => {
     e.preventDefault();
@@ -32,17 +32,15 @@ function Contact() {
 
     formData.append("fullName", fullName);
     formData.append("company", company);
-    formData.append("location", 25);
+    formData.append("location", location);
     formData.append("email", email);
     formData.append("message", message);
 
-    images.forEach((image) => {
+    /* images.forEach((image) => {
       formData.append("images", image);
-    });
+    }); */
 
     try {
-      console.log({ fullName, company, location, email, message });
-      console.log(images);
       const res = await axios.post("/api/contact", formData);
       console.log(res);
 
@@ -51,7 +49,7 @@ function Contact() {
       setLocation("")
       setEmail("")
       setMessage("")
-      setImages([]);
+     /*  setImages([]);
 
       const urlsToRevoke = [...imageUrls];
       setImageUrls([]);
@@ -60,7 +58,7 @@ function Contact() {
         imageInputRef.current.value = null;
       }
 
-      urlsToRevoke.forEach((url) => URL.revokeObjectURL(url));
+      urlsToRevoke.forEach((url) => URL.revokeObjectURL(url)); */
     } catch (error) {
       console.log(error);
     }
@@ -124,7 +122,7 @@ function Contact() {
                 required
               />
             </div>
-            <div className="contact-form-data">
+            {/* <div className="contact-form-data">
               <label
                 htmlFor="file-upload"
                 className="contact-form-data-custom-label"
@@ -158,7 +156,7 @@ function Contact() {
                   "Seleccione algun archivo si es necesario."
                 )}
               </div>
-            </div>
+            </div> */}
             <div className="contact-form-button-container">
               <button className="contact-form-button" type="submit">
                 Enviar
