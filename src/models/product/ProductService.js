@@ -1,5 +1,6 @@
 import ProductDao from "@/models/product/ProductDao";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
+import toNumericId from "@/utils/toNumericId";
 
 class ProductService {
   constructor() {
@@ -24,9 +25,10 @@ class ProductService {
     }
   }
 
-  async findProductById(id) {
+  async findProductById(productId) {
     try {
-      const product = await this.dao.findProductById(id);
+      toNumericId(productId)
+      const product = await this.dao.findProductById(productId);
       return product;
     } catch (error) {
       throw error;
@@ -42,9 +44,10 @@ class ProductService {
     }
   }
 
-  async deleteProduct(id) {
+  async deleteProduct(productId) {
     try {
-      const deleteProduct = await this.dao.deleteProduct(id);
+      toNumericId(productId)
+      const deleteProduct = await this.dao.deleteProduct(productId);
       return deleteProduct;
     } catch (error) {
       throw error;
