@@ -19,7 +19,7 @@
 .cart-main-title{
   display:flex;
   justify-content: center;
-  width:50%;
+  width:100%;
   padding: 10px 15px;
   background: var(--white);
   border:1px solid var(--soft-grey);
@@ -149,6 +149,7 @@
   display:flex;
   justify-content:center;
   width:40%;
+  height: 120px;
   padding:10px 5px;
 }
 
@@ -156,12 +157,11 @@
   display:flex;
   justify-content:center;
   width:100%;
-  height:auto;
 }
 
 .cart-card-img{
   border:1px solid;
-  object-fit:cover;
+  object-fit:contain;
 }
 
 .cart-card-product-info{

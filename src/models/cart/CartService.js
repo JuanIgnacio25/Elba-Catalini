@@ -61,7 +61,7 @@ class CartService {
 
   async addProductsArrayToCart(cartId,products){
     try {
-      const addedProducts = this.dao.addProductsArrayToCart(cartId,products);
+      const addedProducts = this.dao.addProductsArrayToCart(toNumericId(cartId),products);
       return addedProducts;
     } catch (error) {
       throw error;

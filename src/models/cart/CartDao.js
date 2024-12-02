@@ -40,7 +40,6 @@ class CartDao {
     }
   }
 
-
   async changeProductQuantityFromCart(cartId, productId, quantity) {
     try {
       const addedProduct = this.collection.findOneAndUpdate(
@@ -54,6 +53,7 @@ class CartDao {
     }
   }
 
+  /* Agrega un array de productos al carrito (lo uso cuando quiero repetir la orden y agregar todos los productos de una) */
   async addProductsArrayToCart(cartId, products) {
     try {
       return Cart.updateOne(
@@ -104,7 +104,6 @@ class CartDao {
       throw error;
     }
   }
- 
 }
 
 export default CartDao;
