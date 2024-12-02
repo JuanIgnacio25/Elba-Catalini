@@ -63,6 +63,17 @@ class ProductService {
       throw error;
     }
   }
+
+  async checkProductsExist (productIds) {
+    try {
+
+      const count = await this.dao.checkProductsExist(productIds);
+  
+      return count === productIds.length;
+    } catch (error) {
+      throw error;
+    }
+  };
 }
 
 export default ProductService;

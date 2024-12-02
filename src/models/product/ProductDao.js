@@ -1,19 +1,21 @@
-import { Product, Baiml , Store} from "@/models/product/product";
+import { Product, Baiml, Store } from "@/models/product/product";
 
 class ProductDao {
   constructor() {
     this.collection = Product;
     this.discriminators = {
       Baiml,
-      Store
+      Store,
     };
   }
 
   async createProduct(product) {
     try {
       const { kind, ...productData } = product;
-      
-      const createdProduct = await this.discriminators[kind].create(productData);
+
+      const createdProduct = await this.discriminators[kind].create(
+        productData
+      );
 
       return createdProduct;
     } catch (error) {
@@ -32,7 +34,7 @@ class ProductDao {
 
   async getProducts(filter) {
     try {
-      const products = await this.collection.find({kind : filter});
+      const products = await this.collection.find({ kind: filter });
       return products;
     } catch (error) {
       throw error;
@@ -63,9 +65,8 @@ class ProductDao {
   }
 
   async updateProduct(productToUpdate, productId) {
-
     const { kind, ...productData } = productToUpdate;
-    
+
     try {
       const updateProduct = await this.discriminators[kind].findOneAndUpdate(
         { productId },
@@ -76,6 +77,18 @@ class ProductDao {
         throw new Error("El producto no existe");
       }
       return updateProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async checkProductsExist(productIds) {
+    try {
+      const count = await this.collection.countDocuments({
+        productId: { $in: productIds },
+      });
+
+      return count;
     } catch (error) {
       throw error;
     }
