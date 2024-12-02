@@ -87,6 +87,20 @@
   color: var(--red);
 }
 
+/* Order Error */
+.orders-main-error-container{
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: var(--light-red);
+}
+
+.orders-main-error{
+  font-size:16px;
+  font-weight: 500;
+}
+
 /* Order Cards */
 .orders-cards-container {
   display: flex;
