@@ -56,13 +56,26 @@
 
 /* Botones del modal */
 .modal-button {
+  display: flex;
+  flex-flow: row wrap;
+  align-items:center;
+  justify-content: center;
+  gap: 5px;
   padding: 8px 18px;
-  background: var(--gradient-red);
-  color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
+}
+
+.modal-button-accept{
+  color:var(--white);
+  background: var(--green);
+}
+
+.modal-button-cancel{
+  color:var(--black);
+  background: var(--soft-grey);
 }
 
 .modal-button:hover{

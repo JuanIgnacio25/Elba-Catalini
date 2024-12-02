@@ -1,6 +1,7 @@
 import '@/components/common/ConfirmModal/confirmModal.css'
 
 import { IoCloseSharp } from "react-icons/io5";
+import { FaCheck } from "react-icons/fa6";
 
 const  ConfirmModal = ({ isOpen, onClose, onConfirm, children }) => {
 
@@ -16,8 +17,8 @@ const  ConfirmModal = ({ isOpen, onClose, onConfirm, children }) => {
           {children}
         </div>
         <div className="modal-footer">
-          <button className="modal-button" onClick={onConfirm}>Aceptar</button>
-          <button className="modal-button" onClick={onClose}>Cancelar</button>
+          <button className="modal-button modal-button-accept" onClick={onConfirm}>Aceptar <FaCheck/></button>
+          <button className="modal-button modal-button-cancel" onClick={onClose}>Cancelar <IoCloseSharp/></button>
         </div>
       </div>
     </div>
