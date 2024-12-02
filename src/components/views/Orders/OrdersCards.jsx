@@ -56,6 +56,7 @@ function OrdersCards() {
       setError(error.response.data.message);
     } finally {
       closeModal();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       setLoading(false)
     }
   };
