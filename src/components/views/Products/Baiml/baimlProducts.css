@@ -70,40 +70,6 @@
   border: 1px solid var(--white);
 }
 
-.baiml-p-main-categories-checkbox-container {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin: 10px 0;
-}
-
-.baiml-p-main-categories-checkbox {
-  width: 22px;
-  height: 22px;
-  border: 1px solid var(--light-grey);
-  background-color: var(--soft-grey);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  border-radius: 6px;
-}
-
-.baiml-p-main-categories-checkbox.checked {
-  border: 2px solid var(--red);
-}
-
-.baiml-p-main-categories-checkmark {
-  color: var(--black);
-  font-weight: bold;
-}
-
-.baiml-p-main-categories-checkbox-label {
-  width: 80%;
-  font-size: 14px;
-  font-weight: bold;
-}
-
 .baiml-p-main-loading-more-spinner {
   grid-column: span 4;
   justify-self: center;

@@ -43,11 +43,11 @@ function BaimlPMainFallback() {
           </div>
           {categories.map((category, index) => (
             <div
-              className="baiml-p-main-categories-checkbox-container"
+              className="filter-checkbox-container"
               key={index}
             >
-              <div className={`baiml-p-main-categories-checkbox`}></div>
-              <div className="baiml-p-main-categories-checkbox-label">
+              <div className={`filter-checkbox`}></div>
+              <div className="filter-checkbox-label">
                 <p>{category}</p>
               </div>
             </div>

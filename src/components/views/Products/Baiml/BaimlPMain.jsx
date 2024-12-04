@@ -44,7 +44,7 @@ function BaimlPMain() {
       newParams.delete("categories");
     }
 
-    const newUrl = `${pathName}?${newParams.toString()}`;
+    const newUrl = `${pathName}?${newParams.toString().replace(/%2C/g, ",")}`;
     router.push(newUrl);
   };
 

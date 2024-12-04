@@ -1,0 +1,33 @@
+.filter-checkbox-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.filter-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--light-grey);
+  background-color: var(--soft-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 6px;
+}
+
+.filter-checkbox.checked {
+  border: 2px solid var(--red);
+}
+
+.filter-checkbox-checkmark {
+  color: var(--black);
+  font-weight: bold;
+}
+
+.filter-checkbox-label {
+  width: 80%;
+  font-size: 14px;
+  font-weight: bold;
+}

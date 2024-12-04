@@ -4,32 +4,7 @@ import Link from "next/link";
 
 import { RxRows } from "react-icons/rx";
 
-function CustomCheckbox({ label , onCategoryChange , selectedCategories ,checked}) {
-
-  const toggleCheckbox = () => {
-    onCategoryChange(label,selectedCategories);
-  };
-
-  return (
-    <div
-      className="baiml-p-main-categories-checkbox-container"
-      onClick={toggleCheckbox}
-    >
-      <div
-        className={`baiml-p-main-categories-checkbox ${
-          checked ? "checked" : ""
-        }`}
-      >
-        {checked && (
-          <span className="baiml-p-main-categories-checkmark">✓</span>
-        )}
-      </div>
-      <div className="baiml-p-main-categories-checkbox-label">
-        <p>{label}</p>
-      </div>
-    </div>
-  );
-}
+import FilterCheckbox from "@/components/common/FilterCheckbox/FilterCheckbox";
 
 function BaimlPCategories({ onCategoryChange, selectedCategories }) {
   const categories = [
@@ -67,7 +42,7 @@ function BaimlPCategories({ onCategoryChange, selectedCategories }) {
         </Link>
       </div>
       {categories.map((category, index) => (
-        <CustomCheckbox
+        <FilterCheckbox
           key={index}
           label={category}
           selectedCategories={selectedCategories}
