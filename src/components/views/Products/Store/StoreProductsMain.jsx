@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useProduct } from "@/context/ProductContext";
 
-import StoreProductsCards from "./StoreProductsCards";
+import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 import { useEffect } from "react";
 
@@ -33,7 +33,7 @@ function StoreProductsMain() {
 
   return (
     <div className="store-products">
-      <StoreProductsCards storeProducts={filteredProducts} />
+      <ProductsCards products={filteredProducts} />
     </div>
   );
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import "@/components/common/ProductsCards/productsCards.css"
+
 import { useEffect, useState } from "react";
 
-import StoreProductCard from "@/components/views/Products/Store/StoreProductCard";
+import ProductCard from "@/components/common/ProductCard/ProductCard";
 import AnimatedProductCard from "@/components/common/AnimatedProductCard";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
@@ -66,7 +68,7 @@ function ProductsCards({ products }) {
   }, [products, visibleProducts, loadingMore, allLoaded]);
 
   return (
-    <div className="store-products-cards">
+    <div className="products-cards">
       {visibleProducts.map((prod, index) => {
         const isNewProduct = index >= (page - 1) * ITEMS_PER_PAGE;
         const calculatedDelay = isNewProduct
@@ -78,17 +80,17 @@ function ProductsCards({ products }) {
             key={prod.productId}
             prod={prod}
             delay={calculatedDelay}
-            ProductCard={StoreProductCard}
+            ProductCard={ProductCard}
           />
         );
       })}
 
       {!loadingMore && (
-        <div className="store-products-loading-more-spinner"></div>
+        <div className="products-loading-more-spinner"></div>
       )}
 
       {loadingMore && !allLoaded && (
-        <div className="store-products-loading-more-spinner">
+        <div className="products-loading-more-spinner">
           <FallbackSpinner />
         </div>
       )}

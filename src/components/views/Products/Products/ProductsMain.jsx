@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useProduct } from "@/context/ProductContext";
 
-import ProductsCards from "@/components/views/Products/Products/ProductsCards";
+import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function ProductsMain() {
@@ -18,13 +18,13 @@ function ProductsMain() {
 
   if (loading)
     return (
-      <div className="store-products-loading">
+      <div className="products-loading">
         <FallbackSpinner />
       </div>
     );
 
   return (
-    <div className="store-products">
+    <div className="products">
       {filteredProducts.length > 0 ? (
         <ProductsCards products={filteredProducts} />
       ) : (

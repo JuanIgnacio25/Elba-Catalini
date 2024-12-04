@@ -1,4 +1,4 @@
-import "@/components/views/Products/Store/storeProducts.css";
+import "@/components/views/Products/Products/products.css"
 
 import { Suspense } from "react";
 
@@ -8,11 +8,11 @@ import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner
 
 function Products() {
   return (
-    <div className="store-products-container">
+    <div className="products-container">
       <PathHeader />
       <Suspense
         fallback={
-          <div className="store-products-loading">
+          <div className="products-loading">
             <FallbackSpinner />
           </div>
         }

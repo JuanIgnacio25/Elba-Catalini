@@ -1,9 +1,11 @@
+import "@/components/common/ProductCard/productCard.css"
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
-function StoreProductCard({prod}) {
+function ProductCard({prod}) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
   const [loading, setLoading] = useState(false);
@@ -46,19 +48,19 @@ function StoreProductCard({prod}) {
   }, []);
 
   return (
-    <div className={`store-p-card ${loading ? "loading" : ""}`}>
+    <div className={`product-card ${loading ? "loading" : ""}`}>
       {loading && (
-        <div className="store-p-card-spinner-overlay">
-          <div className="store-p-card-spinner"></div>
+        <div className="product-card-spinner-overlay">
+          <div className="product-card-spinner"></div>
         </div>
       )}
-      <div className="store-p-card-img-container">
+      <div className="product-card-img-container">
         <Link
           href={`/products/${prod.productId}`}
-          className="store-p-card-img-link"
+          className="product-card-img-link"
         >
           <Image
-            className="store-p-card-img"
+            className="product-card-img"
             src={prod.images[0]}
             alt="Logo-Product"
             width={485}
@@ -67,26 +69,26 @@ function StoreProductCard({prod}) {
           />
         </Link>
       </div>
-      <div className="store-p-card-info">
+      <div className="product-card-info">
         <Link
           href={`/products/${prod.productId}`}
-          className="store-p-card-info-link"
+          className="product-card-info-link"
         >
           <p>{prod.name}</p>
-          <p className="store-p-card-info-unit">Cantidad x {prod.unit}</p>
+          <p className="product-card-info-unit">Cantidad x {prod.unit}</p>
         </Link>
       </div>
-      <div className="store-p-card-add">
+      <div className="product-card-add">
         <input
-          className="store-p-card-add-input"
-          name="baiml-product-quantity-input"
+          className="product-card-add-input"
+          name="product-quantity-input"
           type="number"
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
         />
         <button
-          className="store-p-card-add-button"
+          className="product-card-add-button"
           onClick={() => handleAddToCart(prod.productId)}
         >
           Añadir al carrito
@@ -94,13 +96,13 @@ function StoreProductCard({prod}) {
       </div>
       {popToast && (
         <div
-          className={`store-p-card-toast ${
-            isScrolled ? "store-p-card-toast-scrolled" : ""
+          className={`product-card-toast ${
+            isScrolled ? "product-card-toast-scrolled" : ""
           }`}
         >
           <p>
             {`${popToast.name} x${popToast.quantity} `}
-            <span className="store-p-card-toast-span">
+            <span className="product-card-toast-span">
               se agrego al carrito.
             </span>
           </p>
@@ -110,4 +112,4 @@ function StoreProductCard({prod}) {
   );
 }
 
-export default StoreProductCard
+export default ProductCard
