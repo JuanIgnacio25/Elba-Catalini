@@ -41,7 +41,7 @@ export function ProductProvider({ children }) {
     }
   };
 
-  const filterProducts = (categories = []) => {
+  const filterBaimlProducts = (categories = []) => {
     return categories.length > 0
       ? baimlProducts.filter((product) => categories.includes(product.category))
       : baimlProducts;
@@ -97,7 +97,7 @@ export function ProductProvider({ children }) {
         allProducts,
         loading,
         error,
-        filterProducts,
+        filterBaimlProducts,
         filterToxicShineProducts,
         fetchAllProducts,
         searchProducts,

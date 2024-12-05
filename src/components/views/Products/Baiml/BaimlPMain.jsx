@@ -17,7 +17,7 @@ function BaimlPMain() {
   const searchParams = useSearchParams();
   const pathName = usePathname();
 
-  const { baimlProducts, loading, filterProducts } = useProduct();
+  const { baimlProducts, loading, filterBaimlProducts } = useProduct();
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const categories = searchParams.get("categories");
@@ -26,7 +26,7 @@ function BaimlPMain() {
   useEffect(() => {
     const filtered =
       selectedCategories.length > 0
-        ? filterProducts(selectedCategories)
+        ? filterBaimlProducts(selectedCategories)
         : baimlProducts;
 
     if (JSON.stringify(filtered) !== JSON.stringify(filteredProducts)) {
