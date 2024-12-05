@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
+import { BAIML_CATEGORIES } from "@/constants/categories";
+
 import BaimlPCards from "@/components/views/Products/Baiml/BaimlPCards";
-import BaimlPCategories from "@/components/views/Products/Baiml/BaimlPCategories";
+import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
 import BaimlPMainFallback from "@/components/Fallbacks/BaimlPMainFallback";
 
 import { useProduct } from "@/context/ProductContext";
 
-function BaimlPMain() {
+function BaimlPMain() { 
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathName = usePathname();
@@ -53,9 +56,11 @@ function BaimlPMain() {
   return (
     <div className="baiml-p-standard-container">
       <div className="baiml-p-main-container">
-        <BaimlPCategories
+        <ProductsFilterCategories
+          categories={BAIML_CATEGORIES}
           selectedCategories={selectedCategories}
           onCategoryChange={onCategoryChange}
+          enabledButton={true}
         />
         <BaimlPCards baimlProducts={filteredProducts} />
       </div>

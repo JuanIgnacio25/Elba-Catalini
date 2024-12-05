@@ -35,41 +35,6 @@
   height: 50%;
 }
 
-/* BaimlP Main Categories*/
-
-.baiml-p-main-categories-title {
-  color: var(--dark-grey);
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.baiml-p-main-categories-simplified-view-button-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.baiml-p-main-categories-simplified-view-button {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  padding: 5px;
-  background-color: var(--extra-light-grey);
-  color: var(--red);
-  border: 1px solid var(--red);
-  font-size: 15px;
-  font-weight: bold;
-  transition: color 0.2s ease-in-out , background-color 0.2s ease-in-out , border 0.2s ease-in-out;
-}
-
-.baiml-p-main-categories-simplified-view-button:hover{
-  background-color: var(--red);
-  color: var(--extra-light-grey);
-  border: 1px solid var(--white);
-}
-
 .baiml-p-main-loading-more-spinner {
   grid-column: span 4;
   justify-self: center;

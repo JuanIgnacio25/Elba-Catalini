@@ -31,10 +31,10 @@ function BaimlPMainFallback() {
     <div className="baiml-p-standard-container">
       <div className="baiml-p-main-container">
         <div className="baiml-p-main-categories">
-          <h3 className="baiml-p-main-categories-title">Categorias</h3>
-          <div className="baiml-p-main-categories-simplified-view-button-container">
+          <h3 className="products-categories-title">Categorias</h3>
+          <div className="products-categories-simplified-view-button-container">
             <Link href={"/products/baiml/simplifiedView"}>
-              <button className="baiml-p-main-categories-simplified-view-button">
+              <button className="products-categories-simplified-view-button">
                 {" "}
                 <RxRows />
                 Vista simplificada
