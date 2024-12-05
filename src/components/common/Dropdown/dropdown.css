@@ -4,6 +4,10 @@
 }
 
 .dropdown-category {
+  display:flex;
+  flex-flow:row wrap;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: var(--white);
   cursor: pointer;
