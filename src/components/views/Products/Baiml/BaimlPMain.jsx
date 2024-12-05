@@ -7,7 +7,7 @@ import { BAIML_CATEGORIES } from "@/constants/categories";
 
 import BaimlPCards from "@/components/views/Products/Baiml/BaimlPCards";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
-import BaimlPMainFallback from "@/components/Fallbacks/BaimlPMainFallback";
+import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback";
 
 import { useProduct } from "@/context/ProductContext";
 
@@ -51,7 +51,7 @@ function BaimlPMain() {
     router.push(newUrl);
   };
 
-  if (loading) return <BaimlPMainFallback />;
+  if (loading) return <ProductsMainFallback categories={BAIML_CATEGORIES} enabled={true}/>;
 
   return (
     <div className="baiml-p-standard-container">

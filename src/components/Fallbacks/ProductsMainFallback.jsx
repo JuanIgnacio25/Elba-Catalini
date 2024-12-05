@@ -4,35 +4,14 @@ import { RxRows } from "react-icons/rx";
 
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
-function BaimlPMainFallback() {
-  const categories = [
-    "Faros de posición",
-    "Posición electrónicos",
-    "Faros plafonier",
-    "Giro delantero",
-    "Plafonier electrónicos",
-    "Faros ilumina patente",
-    "Ilumina patente electrónicos",
-    "Faros de stop / Antiniebla",
-    "Faros traseros",
-    "Traseros electrónicos",
-    "Faros flexibles electrónicos",
-    "Soportes",
-    "Soportes electrónicos",
-    "Faros de advertencia",
-    "Reflectores",
-    "Reflectores de alta potencia",
-    "Lentes de repuestos",
-    "Accesorios",
-    "Repuestos",
-  ];
+function ProductsMainFallback({categories,enabled}) {
 
   return (
     <div className="baiml-p-standard-container">
       <div className="baiml-p-main-container">
         <div className="baiml-p-main-categories">
           <h3 className="products-categories-title">Categorias</h3>
-          <div className="products-categories-simplified-view-button-container">
+          <div className={`${enabled ? "products-categories-simplified-view-button-container" : "product-categories-simplified-view-button-disabled"}`}>
             <Link href={"/products/baiml/simplifiedView"}>
               <button className="products-categories-simplified-view-button">
                 {" "}
@@ -61,4 +40,4 @@ function BaimlPMainFallback() {
   );
 }
 
-export default BaimlPMainFallback;
+export default ProductsMainFallback;
