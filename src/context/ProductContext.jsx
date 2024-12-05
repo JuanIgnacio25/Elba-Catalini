@@ -16,6 +16,12 @@ export function ProductProvider({ children }) {
     return [...baimlProducts, ...storeProducts];
   }, [baimlProducts, storeProducts]);
 
+  const toxicShineProducts = useMemo(() => {
+    return storeProducts.filter(
+      (product) => product.category?.toLowerCase() === "toxic shine"
+    );
+  }, [storeProducts]);
+
   const fetchAllProducts = async () => {
     try {
       setLoading(true);
@@ -40,6 +46,15 @@ export function ProductProvider({ children }) {
       ? baimlProducts.filter((product) => categories.includes(product.category))
       : baimlProducts;
   };
+
+  const filterToxicShineProducts = (categories = []) => {
+    console.log(categories);
+    console.log(toxicShineProducts);
+    
+    return categories.length > 0
+      ? toxicShineProducts.filter((product) => categories.includes(product.subCategory))
+      : toxicShineProducts;
+  }
 
   const searchProducts = (query) => {
     const lowerCaseQuery = query.toLowerCase();
@@ -78,10 +93,12 @@ export function ProductProvider({ children }) {
       value={{
         baimlProducts,
         storeProducts,
+        toxicShineProducts,
         allProducts,
         loading,
         error,
         filterProducts,
+        filterToxicShineProducts,
         fetchAllProducts,
         searchProducts,
         filterStoreProductsByCategory
