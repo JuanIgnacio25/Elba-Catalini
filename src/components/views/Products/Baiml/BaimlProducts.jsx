@@ -1,6 +1,6 @@
 import "./baimlProducts.css"
 import PathHeader from "@/components/common/PathHeader/PathHeader";
-import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback";
+import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback";
 import BaimlPMain from "@/components/views/Products/Baiml/BaimlPMain"
 
 import { BAIML_CATEGORIES } from "@/constants/categories";

@@ -7,7 +7,7 @@ import { BAIML_CATEGORIES } from "@/constants/categories";
 
 import BaimlPCards from "@/components/views/Products/Baiml/BaimlPCards";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
-import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback";
+import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback";
 
 import { useProduct } from "@/context/ProductContext";
 

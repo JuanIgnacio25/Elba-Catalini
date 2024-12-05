@@ -1,3 +1,5 @@
+import "@/components/Fallbacks/ProductsMainFallback/productsMainFallback.css"
+
 import Link from "next/link";
 
 import { RxRows } from "react-icons/rx";
@@ -7,8 +9,8 @@ import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner
 function ProductsMainFallback({categories,enabled}) {
 
   return (
-    <div className="baiml-p-standard-container">
-      <div className="baiml-p-main-container">
+    <div className="products-main-fallback-container">
+      <div className="products-main-fallback">
         <div className="baiml-p-main-categories">
           <h3 className="products-categories-title">Categorias</h3>
           <div className={`${enabled ? "products-categories-simplified-view-button-container" : "product-categories-simplified-view-button-disabled"}`}>
@@ -32,7 +34,7 @@ function ProductsMainFallback({categories,enabled}) {
             </div>
           ))}
         </div>
-        <div className="baiml-p-main-cards-fallback">
+        <div className="products-main-cards-fallback">
           <FallbackSpinner/>
         </div>
       </div>
