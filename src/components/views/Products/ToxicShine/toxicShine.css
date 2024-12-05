@@ -1,0 +1,28 @@
+.toxic-products-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 200px;
+}
+
+.toxic-products-main-container {
+  width: 80%;
+}
+
+/* BaimlP Main Card Container*/
+
+.toxic-products-main {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-top: 40px;
+}
+
+.baiml-p-main-cards-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
