@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-import BaimlPCards from "@/components/views/Products/Baiml/BaimlPCards";
+import ProductsCards from "@/components/common/ProductsCards/ProductsCards"
+import ProductCard from "@/components/common/ProductCard/ProductCard";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
 import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback"
 
@@ -62,7 +63,7 @@ function ToxicShineMain() {
           onCategoryChange={onCategoryChange}
           enabledButton={false}
         />
-        <BaimlPCards baimlProducts={filteredProducts} />
+        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={12} enabledResetAnimation={true}/>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useProduct } from "@/context/ProductContext";
 
 import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
+import ProductCard from "@/components/common/ProductCard/ProductCard"
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function ProductsMain() {
@@ -26,7 +27,7 @@ function ProductsMain() {
   return (
     <div className="products">
       {filteredProducts.length > 0 ? (
-        <ProductsCards products={filteredProducts} />
+        <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={15} ProductCard={ProductCard}/>
       ) : (
         <p>{`No se encontraron productos para "${searchQuery}".`}</p>
       )}

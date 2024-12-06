@@ -5,7 +5,8 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import { BAIML_CATEGORIES } from "@/constants/categories";
 
-import BaimlPCards from "@/components/views/Products/Baiml/BaimlPCards";
+import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
+import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard"
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
 import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback";
 
@@ -62,7 +63,7 @@ function BaimlPMain() {
           onCategoryChange={onCategoryChange}
           enabledButton={true}
         />
-        <BaimlPCards baimlProducts={filteredProducts} />
+        <ProductsCards products={filteredProducts} enabledResetAnimation={true} ITEMS_PER_PAGE={12} ProductCard={BaimlProductCard}/>
       </div>
     </div>
   );

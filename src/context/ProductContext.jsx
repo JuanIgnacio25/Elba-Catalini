@@ -48,9 +48,6 @@ export function ProductProvider({ children }) {
   };
 
   const filterToxicShineProducts = (categories = []) => {
-    console.log(categories);
-    console.log(toxicShineProducts);
-    
     return categories.length > 0
       ? toxicShineProducts.filter((product) => categories.includes(product.subCategory))
       : toxicShineProducts;

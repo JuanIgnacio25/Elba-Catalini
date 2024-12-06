@@ -1,19 +1,20 @@
 "use client";
 
-import "@/components/common/ProductsCards/productsCards.css"
+import "@/components/common/ProductsCards/productsCards.css";
 
 import { useEffect, useState } from "react";
 
-import ProductCard from "@/components/common/ProductCard/ProductCard";
 import AnimatedProductCard from "@/components/common/AnimatedProductCard";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
-function ProductsCards({ products }) {
+function ProductsCards({ products , enabledResetAnimation , ITEMS_PER_PAGE ,ProductCard}) {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
-  const ITEMS_PER_PAGE = 12;
+
+  // Resetear la animación al cambiar los productos
+  const [resetAnimationKey, setResetAnimationKey] = useState(0);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -21,15 +22,9 @@ function ProductsCards({ products }) {
       setVisibleProducts(initialProducts);
       setPage(1);
 
-      // Verificamos si hay menos de 12 productos en total
-      if (products.length <= ITEMS_PER_PAGE) {
-        setAllLoaded(true);
-      } else {
-        setAllLoaded(false);
-      }
-    } else {
-      setVisibleProducts([]);
-      setAllLoaded(true); // Si no hay productos, marcamos que todo está cargado
+      setAllLoaded(products.length <= ITEMS_PER_PAGE);
+
+      if(enabledResetAnimation) setResetAnimationKey((prevKey) => prevKey + 1);
     }
   }, [products]);
 
@@ -51,9 +46,9 @@ function ProductsCards({ products }) {
 
             if (newProducts.length >= products.length) {
               setAllLoaded(true);
-              return prevPage;
             }
-            setLoadingMore(false);
+
+            setLoadingMore(false); // Asegúrate de que esto siempre se ejecuta
             return nextPage;
           });
         }, 800);
@@ -74,21 +69,15 @@ function ProductsCards({ products }) {
         const calculatedDelay = isNewProduct
           ? (index % ITEMS_PER_PAGE) * 0.1
           : 0;
-
         return (
           <AnimatedProductCard
-            key={prod.productId}
+            key={`${enabledResetAnimation ? `${prod.productId}-${resetAnimationKey}` : prod.productId }`}
             prod={prod}
             delay={calculatedDelay}
             ProductCard={ProductCard}
           />
         );
       })}
-
-      {!loadingMore && (
-        <div className="products-loading-more-spinner"></div>
-      )}
-
       {loadingMore && !allLoaded && (
         <div className="products-loading-more-spinner">
           <FallbackSpinner />
