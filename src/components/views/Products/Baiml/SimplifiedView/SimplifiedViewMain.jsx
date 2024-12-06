@@ -8,12 +8,12 @@ import SimplifiedViewCategories from "@/components/views/Products/Baiml/Simplifi
 import SimplifiedViewMainFallback from "@/components/Fallbacks/SimplifiedViewMainFallback";
 
 function SimplifiedViewMain() {
-  const { baimlProducts, loading, filterProducts } = useProduct();
+  const { baimlProducts, loading, filterBaimlProducts } = useProduct();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category , setCategory] = useState([]);
 
   useEffect(() => {
-    setFilteredProducts(filterProducts(category));
+    setFilteredProducts(filterBaimlProducts(category));
   }, [baimlProducts , loading , category]);
 
   const handleCategoryChange = (category) => {
