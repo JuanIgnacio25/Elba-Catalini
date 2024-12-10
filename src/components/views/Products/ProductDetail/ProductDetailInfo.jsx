@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
+import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
+import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+
 function ProductDetailInfo({ product }) {
   const [loadingAddToCart, setLoadingAddToCart] = useState(false);
   const { addProductToCart } = useCart();
@@ -68,7 +71,10 @@ function ProductDetailInfo({ product }) {
         </button>
       </div>
       <div className="product-detail-main-info-unit-container">
-        <p className="product-detail-main-info-unit">Caja x {product.unit}</p>
+        <p className="product-detail-main-info-unit">
+          {formatBaimlProductQuantityLabel(product.category , product.sku , product.kind)} x {product.unit}{" "}
+          {formatBaimlProductSetLabel(product.productSet, product.unit)}{" "}
+        </p>
       </div>
       <h3 className="product-detail-main-info-description">Descripcion</h3>
       <div className="product-detail-main-info-description-text">
