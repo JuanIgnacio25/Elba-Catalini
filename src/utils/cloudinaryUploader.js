@@ -17,13 +17,14 @@ const uploadImagesToCloudinary = async (images) => {
               {
                 width: 485,
                 height: 485,
-                crop: "fit",  // Usar 'fit' para ajustar la imagen sin cortar partes
-                background: "white"  // Usar fondo blanco si el área no es suficiente para rellenar
+                crop: "pad",
+                aspect_ratio: "1:1",
+                background: "white",
               },
               {
-                quality: "auto",  // Optimiza la calidad según el dispositivo
-                fetch_format: "auto"  // Optimiza el formato de la imagen automáticamente
-              }
+                quality: "auto", // Optimiza la calidad según el dispositivo
+                fetch_format: "auto", // Optimiza el formato de la imagen automáticamente
+              },
             ],
           },
           (err, result) => {
@@ -44,6 +45,5 @@ const uploadImagesToCloudinary = async (images) => {
 
   return uploadResults;
 };
-
 
 export default uploadImagesToCloudinary;
