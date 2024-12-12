@@ -83,7 +83,12 @@ function LoginMain() {
           <button className="login-main-button">Iniciar Sesion</button>
         </div>
       </form>
-      
+      <div className="login-have-account">
+          <p>
+            No tenes una cuenta?{" "}
+            <Link href={"/auth/register"} className="login-have-account-redirect">Registrarse</Link>
+          </p>
+        </div>
     </div>
   );
 }

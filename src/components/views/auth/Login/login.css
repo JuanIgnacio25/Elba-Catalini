@@ -103,6 +103,11 @@
   font-size:15px;
   font-weight:bold;
   color:var(--red);
+  transition: color 0.2s ease-in-out;
+}
+
+.login-main-forgotpassword:hover{
+  color:var(--dark-red);
 }
 
 .login-main-button-container{
@@ -122,6 +127,44 @@
   background: var(--gradient-red);
   font-weight:bold;
   color:var(--white);
+  transition: filter 0.2s ease-in-out;
+}
+
+.login-main-button:hover{
+  filter: brightness(1.2);
+}
+
+.login-have-account{
+  color: var(--dark-grey);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.login-have-account-redirect{
+  position: relative;
+  color: var(--red);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.login-have-account-redirect:hover{
+  color: var(--dark-red);
+}
+
+.login-have-account-redirect::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--dark-red);
+  transition: width 0.2s ease-in-out;
+}
+
+.login-have-account-redirect:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 1150px){
