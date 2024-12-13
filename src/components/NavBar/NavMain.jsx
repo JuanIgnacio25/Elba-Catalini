@@ -1,11 +1,13 @@
 "use client"
 
-import {useState,useEffect} from "react";
+import {useState,useEffect , Suspense} from "react";
 
 import Link from "next/link";
 import Image from "next/image";
 
-import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper";
+import DropdownSelectFallback from "@/components/Fallbacks/DropdownSelectFallback";
+/* import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper"; */
+import DropdownSelect from "@/components/NavBar/DropdownSelect";
 import NavCart from "@/components/NavBar/NavCart";
 import NavSearch from "@/components/NavBar/NavSearch";
 
@@ -54,7 +56,11 @@ function NavMain() {
           <NavCart/>
         </li>
         <li >
-          <DropdownSelectWrapper/>
+          <Suspense fallback={DropdownSelectFallback}>
+            <DropdownSelect/>
+          </Suspense>
+          
+          {/* <DropdownSelectWrapper/> */}
         </li>
       </ul>
     </nav>

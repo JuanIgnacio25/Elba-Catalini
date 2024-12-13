@@ -232,12 +232,39 @@
 }
 
 /* NavMain Menu Fallback end */
+.nav-main-custom-select{
+  background: var(--red);
+}
+
+.nav-main-custom-select:hover{
+  background: var(--dark-red);
+}
+
+
+.nav-main-login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red);
+  color: var(--white);
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  gap: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-main-login-button:hover {
+  background-color: var(--dark-red);
+}
 
 .nav-main-menu-placeholder {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  gap: 3px;
+  gap: 5px;
 }
 
 .nav-main-menu-icon-user {
