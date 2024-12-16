@@ -8,6 +8,8 @@
 .contact{
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   width:60%;
   padding: 40px 0px;
   border-left: 5px solid var(--soft-grey);
@@ -96,4 +98,32 @@
   color:var(--white);
   font-size: 16px;
   font-weight: 600;
+}
+
+.contact-form-response{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 10px 15px;
+  background: var(--light-green);
+  font-size:15px;
+}
+
+.contact-form-error{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 10px 15px;
+  background: var(--light-red);
+  font-size:15px;
+}
+
+.contact-form-response-active{
+  display: flex;
+}
+
+.contact-form-error-active{
+  display: flex;
 }

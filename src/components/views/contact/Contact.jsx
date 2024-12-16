@@ -3,7 +3,6 @@
 import "./contact.css";
 
 import { useState } from "react";
-/* import Image from "next/image"; */
 import axios from "axios";
 
 function Contact() {
@@ -12,21 +11,15 @@ function Contact() {
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  /* const [images, setImages] = useState([]);
-  const [imageUrls, setImageUrls] = useState([]);
 
-  const imageInputRef = useRef(null);
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
-
-    const newImageUrls = files.map((file) => URL.createObjectURL(file));
-    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
-  }; */
-
-  const handleFormSubmit = async(e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    setResponse("");
+    setError("");
 
     const formData = new FormData();
 
@@ -36,133 +29,97 @@ function Contact() {
     formData.append("email", email);
     formData.append("message", message);
 
-    /* images.forEach((image) => {
-      formData.append("images", image);
-    }); */
-
     try {
       const res = await axios.post("/api/contact", formData);
-      console.log(res);
+
+      setResponse(res.data);
 
       setFullName("");
-      setCompany("")
-      setLocation("")
-      setEmail("")
-      setMessage("")
-     /*  setImages([]);
-
-      const urlsToRevoke = [...imageUrls];
-      setImageUrls([]);
-
-      if (imageInputRef.current) {
-        imageInputRef.current.value = null;
-      }
-
-      urlsToRevoke.forEach((url) => URL.revokeObjectURL(url)); */
+      setCompany("");
+      setLocation("");
+      setEmail("");
+      setMessage("");
     } catch (error) {
-      console.log(error);
+      setError(
+        "Ocurrio un error al mandar el formulario, intente completarlo de nuevo."
+      );
     }
   };
 
   return (
     <div className="contact-container">
       <div className="contact">
-        <div className="contact-form-container">
-          <h1 className="contact-form-title">Formulario de Contacto</h1>
-          <form className="contact-form" onSubmit={handleFormSubmit}>
-            <div className="contact-form-data">
-              <p className="contact-form-data-label">Nombre y apellido*</p>
-              <input
-                className="contact-form-data-input"
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="contact-form-data">
-              <p className="contact-form-data-label">Empresa*</p>
-              <input
-                className="contact-form-data-input"
-                type="text"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                required
-              />
-            </div>
-            <div className="contact-form-data">
-              <p className="contact-form-data-label">Localidad/Provincia*</p>
-              <input
-                className="contact-form-data-input"
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                required
-              />
-            </div>
-            <div className="contact-form-data">
-              <p className="contact-form-data-label">Correo Electronico*</p>
-              <input
-                className="contact-form-data-input"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="contact-form-data">
-              <p className="contact-form-data-label">
-                Detalles de tu consulta*
-              </p>
-              <textarea
-                className="contact-form-data-input"
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-              />
-            </div>
-            {/* <div className="contact-form-data">
-              <label
-                htmlFor="file-upload"
-                className="contact-form-data-custom-label"
-              >
-                Adjuntar archivos
-              </label>
-              <input
-                id="file-upload"
-                type="file"
-                multiple
-                className="contact-form-data-custom-input"
-                onChange={handleImageChange}
-                ref={imageInputRef}
-              />
-
-              <div className="file-names">
-                {imageUrls.length > 0 ? (
-                  <ul>
-                    {imageUrls.map((url, index) => (
-                      <li key={index} className="file-name">
-                        <Image
-                          src={url}
-                          alt={`Uploaded image ${index + 1}`}
-                          width={150}
-                          height={150}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  "Seleccione algun archivo si es necesario."
-                )}
-              </div>
-            </div> */}
-            <div className="contact-form-button-container">
-              <button className="contact-form-button" type="submit">
-                Enviar
-              </button>
-            </div>
-          </form>
+        <h1 className="contact-form-title">Formulario de Contacto</h1>
+        <form className="contact-form" onSubmit={handleFormSubmit}>
+          <div className="contact-form-data">
+            <p className="contact-form-data-label">Nombre y apellido*</p>
+            <input
+              className="contact-form-data-input"
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="contact-form-data">
+            <p className="contact-form-data-label">Empresa*</p>
+            <input
+              className="contact-form-data-input"
+              type="text"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              required
+            />
+          </div>
+          <div className="contact-form-data">
+            <p className="contact-form-data-label">Localidad/Provincia*</p>
+            <input
+              className="contact-form-data-input"
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
+          </div>
+          <div className="contact-form-data">
+            <p className="contact-form-data-label">Correo Electronico*</p>
+            <input
+              className="contact-form-data-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="contact-form-data">
+            <p className="contact-form-data-label">Detalles de tu consulta*</p>
+            <textarea
+              className="contact-form-data-input"
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+            />
+          </div>
+          <div className="contact-form-button-container">
+            <button className="contact-form-button" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+        <div
+          className={`contact-form-response ${
+            response ? "contact-form-response-active" : ""
+          }`}
+        >
+          <p>{response}</p>
+        </div>
+        <div
+          className={`contact-form-error ${
+            error ? "contact-form-error-active" : ""
+          }`}
+        >
+          <p>{error}</p>
         </div>
       </div>
     </div>
