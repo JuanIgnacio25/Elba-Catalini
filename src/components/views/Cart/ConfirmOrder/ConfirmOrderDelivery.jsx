@@ -9,26 +9,64 @@ function ConfirmOrderDelivery({
   authState,
   onDeliverySelection,
   error,
-  setError
+  setError,
 }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const toggleSelection = (option) => {
     setError(null);
     const isDeselecting = selectedOption === option;
-  
+
     setSelectedOption(isDeselecting ? null : option);
-  
+
     if (option === "address") {
       toggleSelectedCarrier(!isDeselecting);
     } else if (option === "store") {
       toggleSelectedCarrier(false);
     }
-  
+
     onDeliverySelection(isDeselecting ? null : option);
   };
 
-  if (authState.status !== "authenticated") return <div>Loading...</div>;
+  if (authState.status !== "authenticated") return (
+    <div className="confirm-order-delivery-container">
+      <h1 className="confirm-order-delivery-title">
+        Elegí la forma de entrega
+      </h1>
+      <div className="confirm-order-delivery-address">
+        <div
+          className="confirm-order-delivery-address-select"
+        >
+          <div
+            className={`confirm-order-delivery-address-select-checkbox`}
+          >
+          </div>
+          <p className="confirm-order-delivery-address-select-text">
+            Domicilio , Ciudad , Provincia
+          </p>
+        </div>
+        <div className="confirm-order-delivery-address-edit-container">
+          <div className="confirm-order-delivery-address-edit">
+            <p>Editar</p>
+            <MdEdit />
+          </div>
+        </div>
+      </div>
+      <div className="confirm-order-delivery-store">
+        <div
+          className="confirm-order-delivery-store-select"
+        >
+          <div
+            className={`confirm-order-delivery-store-select-checkbox`}
+          >
+          </div>
+          <p className="confirm-order-delivery-store-select-text">
+            Retiro personalmente por el local
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="confirm-order-delivery-container">
@@ -88,9 +126,7 @@ function ConfirmOrderDelivery({
       {error && (
         <div className="flex items-center space-x-1">
           <MdError className="text-red-600 h-5 w-5" />
-          <p className="text-red-600 text-sm font-semibold">
-            {error}
-          </p>
+          <p className="text-red-600 text-sm font-semibold">{error}</p>
         </div>
       )}
     </div>

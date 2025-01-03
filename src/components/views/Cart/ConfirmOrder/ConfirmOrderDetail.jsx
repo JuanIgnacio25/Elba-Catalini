@@ -1,6 +1,14 @@
-function ConfirmOrderDetail({ cart , loading}) {
-
-  if(loading) return <div>Loading...</div>
+function ConfirmOrderDetail({ cart, loading }) {
+  if (loading)
+    return (
+      <div className="confirm-order-detail-container">
+        <h1 className="confirm-order-detail-title">Resumen del pedido</h1>
+        <div className="confirm-order-detail-products-container">
+          <div className="confirm-order-detail-product">
+          </div>
+        </div>
+      </div>
+    );
 
   return (
     <div className="confirm-order-detail-container">
@@ -9,10 +17,10 @@ function ConfirmOrderDetail({ cart , loading}) {
         {cart.products.map((prod) => {
           return (
             <div className="confirm-order-detail-product" key={prod.productId}>
-              <p className="confirm-order-detail-product-name">
-                {prod.name}
+              <p className="confirm-order-detail-product-name">{prod.name}</p>
+              <p className="confirm-order-detail-product-quantity">
+                x{prod.quantity}
               </p>
-              <p className="confirm-order-detail-product-quantity">x{prod.quantity}</p>
             </div>
           );
         })}
