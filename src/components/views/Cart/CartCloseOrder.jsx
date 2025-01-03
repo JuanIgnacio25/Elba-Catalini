@@ -1,12 +1,15 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 
-function CartCloseOrder({handleCloseOrder}) {
+function CartCloseOrder() {
+
+  const router = useRouter();
 
   return (
     <div className="cart-close-container">
       <div className="cart-close">
-        <button className="cart-close-button" onClick={handleCloseOrder}>Cerrar pedido</button>
+        <button className="cart-close-button" onClick={() => router.push("/cart/confirmOrder")}>Continuar pedido</button>
       </div>
     </div>
   );

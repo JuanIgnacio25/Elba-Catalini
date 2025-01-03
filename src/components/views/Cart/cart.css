@@ -227,11 +227,15 @@
   width:145px;
   height:39px;
   border-radius:14px;
-
-  background: var(--gradient-red);
+  background: var(--red);
   font-size: 14px;
   font-weight:bold;
   color:var(--white);
+  transition: background 0.2s ease-in-out;
+}
+
+.cart-close-button:hover{
+  background: var(--dark-red);
 }
 
 .cart-closed-order-container-fallback{
