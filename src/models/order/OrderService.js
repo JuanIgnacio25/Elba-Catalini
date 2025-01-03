@@ -7,17 +7,23 @@ class OrderService {
     this.dao = new OrderDao();
   }
 
-  async closeOrder(products, user) {
+  async closeOrder(products, orderData,) {
     try {
-      
-      const order = { userId: user.id, products };
 
+      const order = {
+        userId: orderData.id,
+        products,
+        carrier: orderData.carrier,
+        address: orderData.address,
+        location: orderData.location,
+        comments: orderData.comments,
+      }
       const createdOrder = await this.dao.createOrder(order);
-      
-      sendClientOrderEmail(user.email, products,createdOrder.orderId);
 
-      await createAndSendExcelEmail(user, products , createdOrder);
-      
+      sendClientOrderEmail(orderData.email, products, createdOrder.orderId);
+
+      await createAndSendExcelEmail(orderData, products, createdOrder);
+
       return createdOrder;
     } catch (error) {
       throw error;
@@ -33,7 +39,7 @@ class OrderService {
     }
   }
 
-//busca las ordenes con el mismo userId y despues filtra por el orderId y devuelve esa orden
+  //busca las ordenes con el mismo userId y despues filtra por el orderId y devuelve esa orden
   async findOrdersByUserIdAndOrderId(userId, orderId) {
     try {
       const orders = await this.findOrdersByUserId(userId);

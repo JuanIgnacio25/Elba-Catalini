@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { useSession } from 'next-auth/react';
 
 const AuthContext = createContext();
@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       });
     }
   }, [session, status]);
+
   return (
     <AuthContext.Provider value={{ authState }}>
       {children}
