@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import DropdownSelectFallback from "@/components/Fallbacks/DropdownSelectFallback";
-/* import DropdownSelectWrapper from "@/components/NavBar/DropdownSelectWrapper"; */
 import DropdownSelect from "@/components/NavBar/DropdownSelect";
 import NavCart from "@/components/NavBar/NavCart";
 import NavSearch from "@/components/NavBar/NavSearch";
@@ -59,8 +58,6 @@ function NavMain() {
           <Suspense fallback={DropdownSelectFallback}>
             <DropdownSelect/>
           </Suspense>
-          
-          {/* <DropdownSelectWrapper/> */}
         </li>
       </ul>
     </nav>
