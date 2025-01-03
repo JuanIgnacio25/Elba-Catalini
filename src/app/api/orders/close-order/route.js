@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 import { connectDB } from "@/libs/mongodb";
 import CartService from "@/models/cart/CartService";
 import OrderService from "@/models/order/OrderService";
-import validateQuantity from "@/utils/validate/validateQuantity";
+import { isValidCommentsData } from "@/utils/validate/validateComments";
 
 const orderService = new OrderService();
 const cartService = new CartService();
@@ -30,11 +30,11 @@ export async function POST(req) {
     }
 
     // Validar que cada producto en cartData tenga un quantity válido
-    cartData.products.forEach(product => {
+    /* cartData.products.forEach(product => {
       if(!validateQuantity(product.quantity)) throw new Error("La cantidad debe ser mayor a 0");
-    });
+    }); */
 
-    // Modificar sólo el quantity en memoria para los productos del carrito
+    /* // Modificar sólo el quantity en memoria para los productos del carrito
     const updatedProducts = cart.products.map(cartProduct => {
       const cartDataProduct = cartData.products.find(p => p.productId === cartProduct.productId);
       
@@ -48,10 +48,28 @@ export async function POST(req) {
       }
 
       return cartProduct;
-    });
+    }); */
 
     // Crear y cerrar la orden con los productos actualizados
-    await orderService.closeOrder(updatedProducts, token.user);
+
+    if (cartData.deliveryOption == null) throw new Error("Debe seleccionar una opcion para completar el pedido.");
+    try {
+      isValidCommentsData(cartData.comments);
+    } catch (error) {
+      throw new error("Comentario no valido");
+    }
+      
+    const orderData = {
+      id: token.user.id,
+      companyName: token.user.companyName,
+      email: token.user.email,
+      carrier: cartData.deliveryOption === "address" ? token.user.carrier : "Retira Personalmente",
+      address: token.user.address,
+      location: token.user.location,
+      comments: cartData.comments || "",
+    };
+
+    await orderService.closeOrder(cart.products,orderData);
     
     await cartService.clearCart(token.user.cartId);
 

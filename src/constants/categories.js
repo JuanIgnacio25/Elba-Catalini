@@ -37,3 +37,9 @@ export const TOXIC_SHINE_CATEGORIES = [
   "Merchandising",
   "Toxic Gallon´s Company",
 ];
+
+
+export const STORE_CATEGORIES = [
+  "Toxic Shine",
+  "Iluminacion"
+]
