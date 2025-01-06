@@ -75,6 +75,14 @@ class UserService {
       throw error;
     }
   }
+
+  async changeCarrierById(userId, carrier) {
+    try {
+      await this.dao.changeCarrierById(userId, carrier);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default UserService;

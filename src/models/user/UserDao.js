@@ -110,6 +110,21 @@ class UserDao {
       throw error;
     }
   }
+
+  async changeCarrierById(userId, carrier) {  
+    try {
+      const result = await this.collection.updateOne(
+        { userId },
+        {
+          carrier,
+        }
+      );
+      if (result.modifiedCount < 1)
+        throw new Error("Hubo un error al cambiar el transporte");
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default UserDao;

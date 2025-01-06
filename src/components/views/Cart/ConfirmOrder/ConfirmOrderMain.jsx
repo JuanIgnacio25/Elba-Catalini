@@ -59,6 +59,7 @@ function ConfirmOrderMain() {
         <ConfirmOrderCarrier
           selectedCarrier={selectedCarrier}
           authState={authState}
+          refreshToken={refreshToken}
         />
         <ConfirmOrderComments
           handleCommentsChange={handleCommentsChange}
