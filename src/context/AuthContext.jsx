@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const { data: session, status } = useSession();
+  const { data: session, status , update} = useSession();
   const [authState, setAuthState] = useState({
     session: null,
     status: "loading"
@@ -19,8 +19,12 @@ export const AuthProvider = ({ children }) => {
     }
   }, [session, status]);
 
+  const refreshToken = () => {
+    update();
+  }
+
   return (
-    <AuthContext.Provider value={{ authState }}>
+    <AuthContext.Provider value={{ authState , refreshToken}}>
       {children}
     </AuthContext.Provider>
   );
