@@ -56,6 +56,7 @@ const handler = NextAuth({
 
           token.user.address = userFound.address;
           token.user.location = userFound.location;
+          token.user.carrier = userFound.carrier;
         } catch (error) {
           console.log(error);
         }
