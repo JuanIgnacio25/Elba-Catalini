@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import { MdEdit } from "react-icons/md";
 import { MdError } from "react-icons/md";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { IoIosCloseCircle } from "react-icons/io";
 
 function ConfirmOrderDelivery({
   toggleSelectedCarrier,
@@ -10,8 +14,22 @@ function ConfirmOrderDelivery({
   onDeliverySelection,
   error,
   setError,
+  refreshToken
 }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [userInfo, setUserInfo] = useState({ address: "", location: "" });
+  const [prevUserInfo, setPrevUserInfo] = useState(null);
+
+  useEffect(() => {
+    if (authState.status === "authenticated" && authState.session?.user) {
+      setUserInfo({
+        address: authState.session.user.address || "",
+        location: authState.session.user.location || "",
+      });
+    }
+  }, [authState]);
 
   const toggleSelection = (option) => {
     setError(null);
@@ -28,45 +46,61 @@ function ConfirmOrderDelivery({
     onDeliverySelection(isDeselecting ? null : option);
   };
 
-  if (authState.status !== "authenticated") return (
-    <div className="confirm-order-delivery-container">
-      <h1 className="confirm-order-delivery-title">
-        Elegí la forma de entrega
-      </h1>
-      <div className="confirm-order-delivery-address">
-        <div
-          className="confirm-order-delivery-address-select"
-        >
-          <div
-            className={`confirm-order-delivery-address-select-checkbox`}
-          >
+  const handleEdit = () => {
+    setPrevUserInfo(userInfo);
+    setIsEditing(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      await axios.post("/api/user/shippingInfo", userInfo);
+      setError(null);
+      await refreshToken();
+      setIsEditing(false);
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+      setUserInfo(prevUserInfo);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  if (authState.status !== "authenticated" || authState.status === "loading") {
+    return (
+      <div className="confirm-order-delivery-container">
+        <h1 className="confirm-order-delivery-title">
+          Elegí la forma de entrega
+        </h1>
+        <div className="confirm-order-delivery-address">
+          <div className="confirm-order-delivery-address-select">
+            <div className="confirm-order-delivery-address-select-checkbox"></div>
+            <p className="confirm-order-delivery-address-select-text"></p>
           </div>
-          <p className="confirm-order-delivery-address-select-text">
-            Domicilio , Ciudad , Provincia
-          </p>
+          <div className="confirm-order-delivery-address-edit-container">
+            <div className="confirm-order-delivery-address-edit">
+              <p>Editar</p>
+              <MdEdit />
+            </div>
+          </div>
         </div>
-        <div className="confirm-order-delivery-address-edit-container">
-          <div className="confirm-order-delivery-address-edit">
-            <p>Editar</p>
-            <MdEdit />
+        <div className="confirm-order-delivery-store">
+          <div className="confirm-order-delivery-store-select">
+            <div className="confirm-order-delivery-store-select-checkbox"></div>
+            <p className="confirm-order-delivery-store-select-text">
+              Retiro personalmente por el local
+            </p>
           </div>
         </div>
       </div>
-      <div className="confirm-order-delivery-store">
-        <div
-          className="confirm-order-delivery-store-select"
-        >
-          <div
-            className={`confirm-order-delivery-store-select-checkbox`}
-          >
-          </div>
-          <p className="confirm-order-delivery-store-select-text">
-            Retiro personalmente por el local
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <div className="confirm-order-delivery-container">
@@ -76,8 +110,10 @@ function ConfirmOrderDelivery({
 
       <div className="confirm-order-delivery-address">
         <div
-          className="confirm-order-delivery-address-select"
-          onClick={() => toggleSelection("address")}
+          className={`confirm-order-delivery-address-select ${
+            isEditing ? "disabled" : ""
+          }`}
+          onClick={!isEditing ? () => toggleSelection("address") : undefined}
         >
           <div
             className={`confirm-order-delivery-address-select-checkbox ${
@@ -90,22 +126,73 @@ function ConfirmOrderDelivery({
               </div>
             )}
           </div>
-          <p className="confirm-order-delivery-address-select-text">
-            {authState.session.user.address} , {authState.session.user.location}
-          </p>
+          {!isEditing ? (
+            <p className="confirm-order-delivery-address-select-text">
+              {userInfo.address}, {userInfo.location}
+            </p>
+          ) : (
+            <div className="flex gap-1">
+              <input
+                type="text"
+                name="address"
+                value={userInfo.address}
+                onChange={handleInputChange}
+                placeholder="Domicilio"
+                className="outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
+              />
+              <input
+                type="text"
+                name="location"
+                value={userInfo.location}
+                onChange={handleInputChange}
+                placeholder="Ciudad, Provincia"
+                className="outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
+              />
+            </div>
+          )}
         </div>
         <div className="confirm-order-delivery-address-edit-container">
-          <div className="confirm-order-delivery-address-edit">
-            <p>Editar</p>
-            <MdEdit />
-          </div>
+          {!isEditing ? (
+            <div
+              className="confirm-order-delivery-address-edit"
+              onClick={handleEdit}
+            >
+              <p>Editar</p>
+              <MdEdit />
+            </div>
+          ) : isSaving ? (
+            <div className="w-full flex justify-center items-center">
+              <div className="confirm-order-delivery-address-fallback-spinner"></div>
+            </div>
+          ) : (
+            <div className="flex gap-1">
+              <button
+                className="confirm-order-delivery-save-button text-2xl text-green-500"
+                onClick={handleSave}
+              >
+                <IoIosCheckmarkCircle />
+              </button>
+              <button
+                className="confirm-order-delivery-save-button text-2xl text-red-500"
+                onClick={() => {
+                  setUserInfo(prevUserInfo);
+                  setIsEditing(false);
+                  setError(null);
+                }}
+              >
+                <IoIosCloseCircle />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       <div className="confirm-order-delivery-store">
         <div
-          className="confirm-order-delivery-store-select"
-          onClick={() => toggleSelection("store")}
+          className={`confirm-order-delivery-store-select ${
+            isEditing ? "disabled" : ""
+          }`}
+          onClick={!isEditing ? () => toggleSelection("store") : undefined}
         >
           <div
             className={`confirm-order-delivery-store-select-checkbox ${

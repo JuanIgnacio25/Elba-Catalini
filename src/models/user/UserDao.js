@@ -25,7 +25,7 @@ class UserDao {
 
   async getUserById(id) {
     try {
-      const user = await this.collection.findOne({ userId:id });
+      const user = await this.collection.findOne({ userId: id });
       return user;
     } catch (error) {
       throw error;
@@ -58,30 +58,54 @@ class UserDao {
     }
   }
 
-  async changeUserPassword (userId,newPassword){
+  async changeUserPassword(userId, newPassword) {
     try {
       const result = await this.collection.updateOne(
-        {userId},
+        { userId },
         {
-          password:newPassword
+          password: newPassword,
         }
-      )
-      if(result.modifiedCount < 1) throw new Error("Hubo un error al cambiar de contraseña");
+      );
+      if (result.modifiedCount < 1)
+        throw new Error("Hubo un error al cambiar de contraseña");
     } catch (error) {
       throw error;
     }
   }
 
-  async cleanRecoveryToken(userId){
+  async cleanRecoveryToken(userId) {
     try {
       const result = await this.collection.updateOne(
-        {userId},
+        { userId },
         {
           recoveryToken: "",
-          recoveryTokenExpires: null
+          recoveryTokenExpires: null,
         }
-      )
-      if(result.modifiedCount < 1) throw new Error("Hubo un error al cambiar de contraseña");
+      );
+      if (result.modifiedCount < 1)
+        throw new Error("Hubo un error al cambiar de contraseña");
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async changeShippingInfoById(userId, shippingInfo) {
+    try {
+      const { address, location } = shippingInfo;
+  
+      const result = await this.collection.updateOne(
+        { userId },
+        {
+          $set: {
+            address,
+            location,
+          },
+        }
+      );
+      
+      if (result.modifiedCount < 1) {
+        throw new Error("Hubo un error al cambiar la información de envío");
+      }
     } catch (error) {
       throw error;
     }

@@ -64,6 +64,10 @@
   cursor: pointer;
 }
 
+.confirm-order-delivery-address-select.disabled {
+  cursor: not-allowed;
+}
+
 .confirm-order-delivery-address-select-checkbox {
   display: flex;
   justify-content: center;
@@ -107,6 +111,20 @@
   cursor: pointer;
 }
 
+.confirm-order-delivery-address-fallback-spinner{
+  border: 3px solid var(--soft-grey);
+  border-top: 3px solid var(--red);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .confirm-order-delivery-store {
   display: flex;
   flex-flow: row wrap;
@@ -135,6 +153,10 @@
   padding: 20px 10px;
   gap: 10px;
   cursor: pointer;
+}
+
+.confirm-order-delivery-store-select.disabled {
+  cursor: not-allowed;
 }
 
 .confirm-order-delivery-store-select-checkbox {

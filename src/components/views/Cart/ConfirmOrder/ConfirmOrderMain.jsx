@@ -14,7 +14,7 @@ import ConfirmOrderCloseOrder from "@/components/views/Cart/ConfirmOrder/Confirm
 function ConfirmOrderMain() {
   const router = useRouter();
   const { cart, loading, fetchCart } = useCart();
-  const { authState } = useAuth();
+  const { authState , refreshToken } = useAuth();
 
   const [selectedCarrier, setSelectedCarrier] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState(null);
@@ -54,6 +54,7 @@ function ConfirmOrderMain() {
           onDeliverySelection={handleDeliverySelection}
           error={error}
           setError={setError}
+          refreshToken={refreshToken}
         />
         <ConfirmOrderCarrier
           selectedCarrier={selectedCarrier}
