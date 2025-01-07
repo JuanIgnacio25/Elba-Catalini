@@ -23,7 +23,4 @@ body {
   flex-flow:column wrap;
   background: var(--extra-light-grey);
   margin-top:20vh;
-  word-wrap: break-word;
-  word-break: break-word;
-  overflow-wrap: break-word;
 }
