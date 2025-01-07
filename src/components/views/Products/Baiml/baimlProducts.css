@@ -21,3 +21,20 @@
   gap: 20px;
   margin-top: 40px;
 }
+
+@media screen and (max-width: 870px) {
+  .baiml-p-standard-container {
+    width: 90%;
+  }
+
+  .baiml-p-main-container {
+    grid-template-columns: 25% 75%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .baiml-p-main-container {
+    grid-template-columns: 40% 60%;
+    gap:0px;
+  }
+}

@@ -31,3 +31,27 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 1050px) {
+  .filter-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .filter-checkbox-label {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .filter-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+
+  .filter-checkbox-label {
+    font-size: 10px;
+  }
+}

@@ -26,3 +26,20 @@
   align-items: center;
   height: 50%;
 }
+
+@media screen and (max-width: 870px) {
+  .toxic-products-main-container {
+    width: 90%;
+  }
+
+  .toxic-products-main {
+    grid-template-columns: 25% 75%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .toxic-products-main {
+    grid-template-columns: 40% 60%;
+    gap:0px;
+  }
+}
