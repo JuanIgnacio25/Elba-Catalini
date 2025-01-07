@@ -26,3 +26,9 @@
   align-items: center;
   height: 50%;
 }
+
+@media screen and (max-width: 870px) {
+  .products-main-fallback {
+    width: 90%;
+  }
+}
