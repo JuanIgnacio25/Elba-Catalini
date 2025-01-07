@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import Dropdown from "@/components/common/Dropdown/Dropdown";
+import NavCart from "@/components/NavBar/NavCart";
 
 function NavDesktop() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,6 +46,9 @@ function NavDesktop() {
           <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
         </li>
       </ul>
+      <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
+        <NavCart/>
+      </div>
     </nav>
   );
 }

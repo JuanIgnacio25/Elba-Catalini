@@ -350,8 +350,12 @@
   top: 11.5vh;
 }
 
+.nav-desktop-cart{
+  display: none;
+}
+
 /* NavBar Media query */
-@media (max-width: 900px) {
+@media (max-width: 902px) {
   /* NavBar header */
   .nav-header-container {
     display: none;
@@ -384,10 +388,36 @@
     padding: 11px 10px;
   }
 
+  /*NavCart */
+
+  .nav-main-menu-cart-container {
+    display: none;
+  }
+  
+  .nav-main-menu-icon-cart {
+    font-size: 21px;
+    color:var(--white);
+  }
+  
+  .nav-main-menu-cart-counter {
+    top: -6.4px;
+    right: -14.5px;
+    background-color: var(--white);
+    color: var(--red);
+    padding: 0px 3px;
+    min-width: 18px;
+    font-size: 10px;
+    line-height: 17px;
+  }
+
   /* NavDesktop */
 
   .nav-desktop {
-    top: 11vh;
+    top: 11.5vh;
+  }
+
+  .nav-desktop-cart{
+    display: flex;
   }
 }
 
