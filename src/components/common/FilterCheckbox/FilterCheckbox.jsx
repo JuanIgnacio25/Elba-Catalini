@@ -1,4 +1,5 @@
 import "@/components/common/FilterCheckbox/filterCheckbox.css"
+import { FaCheck } from "react-icons/fa6";
 
 function FilterCheckbox({ label , onCategoryChange , selectedCategories ,checked}) {
 
@@ -17,7 +18,7 @@ function FilterCheckbox({ label , onCategoryChange , selectedCategories ,checked
         }`}
       >
         {checked && (
-          <span className="filter-checkbox-checkmark">✓</span>
+          <span className="filter-checkbox-checkmark"><FaCheck className="text-xs md:text-sm lg:text-base"/></span>
         )}
       </div>
       <div className="filter-checkbox-label">
