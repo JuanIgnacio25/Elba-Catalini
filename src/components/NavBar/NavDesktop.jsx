@@ -39,12 +39,6 @@ function NavDesktop() {
         <li>
           <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
         </li>
-        <li>
-          <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
-        </li>
-        <li>
-          <Dropdown category={{name:"Iluminacion",slug:"Iluminacion"}} options={[{slug:"cree-led",name:"Cree Led"} , {slug:"Lamparas-halogenas",name:"Lamparas Halogenas"}]} baseUrl={"/products/store"}/>
-        </li>
       </ul>
       <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
         <NavCart/>

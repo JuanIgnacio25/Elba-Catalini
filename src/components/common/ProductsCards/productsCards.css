@@ -51,12 +51,16 @@
 
 @media (max-width: 851px){
   .products-cards {
-    grid-auto-rows: 360px;
+    grid-auto-rows: 320px;
   }
 }
 
-@media (max-width: 630px){
+@media (max-width: 650px){
   .products-cards {
     width: 70%;
+  }
+
+  .products-cards {
+    grid-auto-rows: 280px;
   }
 }

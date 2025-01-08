@@ -207,7 +207,8 @@
 
 @media (max-width: 851px){
   .baiml-p-card {
-    height: 360px;
+    height: 320px;
+    gap:5px;
   }
 
   .baiml-p-card-img-container {
@@ -215,12 +216,46 @@
   }
 
   .baiml-p-card-info {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  .baiml-p-card-info-unit{
+    font-size:11px;
+  }
+
+  .baiml-p-card-add-input{
+    height: 35px;
+    border-radius: 12px;
+  }
+
+  .baiml-p-card-add-button{
+    padding:6px;
+    font-size: 11px;
   }
 }
 
-@media (max-width: 851px){
+@media (max-width: 650px){
+  .baiml-p-card {
+    height: 280px;
+    gap:3px;
+  }
+
+  .baiml-p-card-img-container {
+    max-width: 100px;
+  }
+
   .baiml-p-card-info {
-    font-size: 13px;
+    font-size: 11px;
+  }
+
+  .baiml-p-card-add-input{
+    height: 30px;
+    width:22%;
+    border-radius: 10px;
+  }
+
+  .baiml-p-card-add-button{
+    padding:5px;
+    font-size: 10px;
   }
 }
