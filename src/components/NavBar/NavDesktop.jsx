@@ -6,6 +6,8 @@ import Link from "next/link";
 import Dropdown from "@/components/common/Dropdown/Dropdown";
 import NavCart from "@/components/NavBar/NavCart";
 
+import { PiListBold } from "react-icons/pi";
+
 function NavDesktop() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -29,6 +31,7 @@ function NavDesktop() {
 
   return (
     <nav className={`nav-desktop ${isScrolled ? "nav-desktop-scrolled" : ""}`}>
+      <PiListBold className="nav-desktop-menu-icon  text-2xl" />
       <ul className="nav-desktop-menu">
         <li>
           <Link href="/products/baiml">Linea Baiml</Link>

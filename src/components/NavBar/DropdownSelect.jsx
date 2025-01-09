@@ -15,7 +15,7 @@ const DropdownSelect = () => {
   const router = useRouter();
   const { authState } = useAuth();
 
-  /* const [screenWidth, setScreenWidth] = useState(window.innerWidth); */
+  const [screenWidth, setScreenWidth] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,16 +27,18 @@ const DropdownSelect = () => {
     }
   }, [authState]);
 
-  /* useEffect(() => {
+  useEffect(() => {
+    setScreenWidth(window.innerWidth);
+  
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
-
+  
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); */
+  }, []);
 
   const handleUnauthenticatedClick = () => {
     router.push("/auth/login");
@@ -151,8 +153,7 @@ const DropdownSelect = () => {
           placeholder={
             <div className="nav-main-menu-placeholder">
               <FaCircleUser className="nav-main-menu-icon-user" />
-              <span>Cuenta</span>
-              {/* {screenWidth > 900 && <span>Cuenta</span>} */}
+              {screenWidth > 900 && <span>Cuenta</span>}
             </div>
           }
           onChange={handleChange}

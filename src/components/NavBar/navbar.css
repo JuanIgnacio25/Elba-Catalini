@@ -95,9 +95,10 @@
   width: 100%;
 }
 
-.nav-main-search-form{
+.nav-main-search-form {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   width: 100%;
 }
 
@@ -115,7 +116,7 @@
 }
 
 .nav-main-search-form-input::placeholder {
-  color:var(--soft-grey);
+  color: var(--soft-grey);
 }
 
 .nav-main-search-form-button {
@@ -232,14 +233,13 @@
 }
 
 /* NavMain Menu Fallback end */
-.nav-main-custom-select{
+.nav-main-custom-select {
   background: var(--red);
 }
 
-.nav-main-custom-select:hover{
+.nav-main-custom-select:hover {
   background: var(--dark-red);
 }
-
 
 .nav-main-login-button {
   display: flex;
@@ -335,22 +335,26 @@
   background: var(--red);
   color: var(--white);
   transition: top 0.3s ease-in-out;
-  z-index:800;
+  z-index: 800;
 }
 
-.nav-desktop-menu{
+.nav-desktop-menu-icon {
+  display: none;
+}
+
+.nav-desktop-menu {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap:20px;
+  gap: 20px;
 }
 
 .nav-desktop-scrolled {
   top: 11.5vh;
 }
 
-.nav-desktop-cart{
+.nav-desktop-cart {
   display: none;
 }
 
@@ -377,15 +381,40 @@
     height: 80%;
   }
 
+  .nav-main-menu {
+    justify-content: center;
+  }
+
   .nav-main-menu-cart-container {
     display: none;
   }
+
   /* NavMain Menu Fallback */
-  .nav-main-menu-select-fallback-placeholder span {
-    display: none;
+
+  .css-b62m3t-container {
+    width: 90px;
   }
-  .nav-main-menu-select-fallback {
-    padding: 11px 10px;
+
+  .css-13q8k2p-control {
+    min-height: 30px !important;
+    height: 30px !important;
+  }
+
+  .css-4x7dpg-control {
+    min-height: 30px !important;
+    height: 30px !important;
+  }
+  
+  .css-qr46ko * {
+    font-size: 11px !important;
+  }
+
+  .nav-main-login-button {
+    gap: 3px;
+    min-height: 30px;
+  }
+  .nav-main-menu-fallback-text {
+    font-size: 11px;
   }
 
   /*NavCart */
@@ -393,12 +422,12 @@
   .nav-main-menu-cart-container {
     display: none;
   }
-  
+
   .nav-main-menu-icon-cart {
     font-size: 21px;
-    color:var(--white);
+    color: var(--white);
   }
-  
+
   .nav-main-menu-cart-counter {
     top: -6.4px;
     right: -14.5px;
@@ -413,10 +442,21 @@
   /* NavDesktop */
 
   .nav-desktop {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 25px 0px 10px;
     top: 11.5vh;
   }
 
-  .nav-desktop-cart{
+  .nav-desktop-menu {
+    display: none;
+  }
+
+  .nav-desktop-menu-icon {
+    display: flex;
+  }
+
+  .nav-desktop-cart {
     display: flex;
   }
 }

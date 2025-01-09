@@ -55,7 +55,7 @@ function NavMain() {
           <NavCart/>
         </li>
         <li >
-          <Suspense fallback={DropdownSelectFallback}>
+          <Suspense fallback={<DropdownSelectFallback/>}>
             <DropdownSelect/>
           </Suspense>
         </li>
