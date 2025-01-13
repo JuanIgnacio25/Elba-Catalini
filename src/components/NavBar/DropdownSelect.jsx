@@ -152,7 +152,7 @@ const DropdownSelect = () => {
           classNamePrefix="nav-main-custom-select"
           placeholder={
             <div className="nav-main-menu-placeholder">
-              <FaCircleUser className="nav-main-menu-icon-user" />
+              <FaCircleUser className="nav-main-menu-icon-user sm:text-sm" />
               {screenWidth > 900 && <span>Cuenta</span>}
             </div>
           }

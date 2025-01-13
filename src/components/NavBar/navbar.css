@@ -90,6 +90,10 @@
   width: 35%;
 }
 
+.nav-main-search-responsive{
+  display: none;
+}
+
 .nav-main-search {
   display: flex;
   width: 100%;
@@ -369,16 +373,28 @@
     top: 0vh;
   }
 
-  .nav-main-responsive-image-container {
-    width: 162px;
+  .nav-main-responsive-image-container{
+    width: 150px;
   }
 
   .nav-main-search input {
-    height: 80%;
+    height: 70%;
   }
 
   .nav-main-search button {
-    height: 80%;
+    height: 70%;
+  }
+  
+  .nav-main-search-icon{
+    font-size: 22px;
+  }
+
+  .nav-main-search-form-input::placeholder{
+    font-size: 13px;
+  }
+
+  .nav-main-search-form-input{
+    font-size: 13px;
   }
 
   .nav-main-menu {
@@ -389,7 +405,7 @@
     display: none;
   }
 
-  /* NavMain Menu Fallback */
+  /* NavMain Menu */
 
   .css-b62m3t-container {
     width: 90px;
@@ -461,7 +477,78 @@
   }
 }
 
+@media (max-width: 620px) {
+
+  .nav-main-menu,
+  .nav-main-search-container {
+    flex: 1;
+  }
+
+  .nav-main-menu {
+    order: 1;
+    justify-content: start;
+    padding-left:20px !important;
+  }
+
+  .nav-main-responsive-image-container{
+    order: 2;
+  }
+
+  .nav-main-search-container {
+    order: 3;
+  }
+
+  .nav-main-search{
+    justify-content: end;
+    padding-right: 20px;
+  }
+
+  .nav-main-search-form{
+    display: none;
+  }
+
+  .nav-main-search:focus-within input {
+    border: none;
+  }
+
+  .nav-main-search-responsive{
+    display:flex;
+    font-size: 22px;
+  }
+}
+
 @media (max-width: 475px) {
+  .nav-main-menu-icon-user,
+  .nav-main-menu-select-arrow{
+    font-size: 14px;
+  }
+
+  .css-b62m3t-container {
+    width: 70px;
+  }
+
+  .css-13q8k2p-control {
+    min-height: 26px !important;
+    height: 26px !important;
+  }
+
+  .css-4x7dpg-control {
+    min-height: 26px !important;
+    height: 26px !important;
+  }
+  
+  .css-qr46ko * {
+    font-size: 10px !important;
+  }
+
+  .nav-main-login-button {
+    gap: 3px;
+    min-height: 26px;
+  }
+  .nav-main-menu-fallback-text {
+    font-size: 10px;
+  }
+
   .nav-main-responsive-image-container {
     width: 120px;
   }
