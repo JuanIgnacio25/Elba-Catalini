@@ -49,7 +49,7 @@ function NavSearch() {
           className={`nav-main-search-dropdown ${
             isSearchOpen ? "open" : ""
           } absolute top-0 left-0 w-full h-full bg-white border flex items-center p-2 z-50 
-          overflow-hidden ${isSearchOpen ? "max-h-20" : "max-h-0"}`}
+          overflow-hidden`}
         >
           <form onSubmit={handleSearch} className="flex items-center flex-grow">
             <input

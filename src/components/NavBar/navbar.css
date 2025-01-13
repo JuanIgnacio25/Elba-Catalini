@@ -363,7 +363,7 @@
 }
 
 /* NavBar Media query */
-@media (max-width: 902px) {
+@media (max-width: 903px) {
   /* NavBar header */
   .nav-header-container {
     display: none;
@@ -501,6 +501,14 @@
   .nav-main-search{
     justify-content: end;
     padding-right: 20px;
+  }
+
+  .nav-main-search-dropdown{
+    max-height: 0px;
+  }
+
+  .nav-main-search-dropdown.open{
+    max-height: 12vh;
   }
 
   .nav-main-search-form{
