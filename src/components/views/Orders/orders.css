@@ -15,7 +15,6 @@
   height: 80px;
   border-radius: 5px;
   box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
-  
 }
 
 
@@ -62,7 +61,7 @@
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  width: 60%;
+  width: 65%;
   background: var(--white);
   padding: 15px;
   border-radius: 5px;
@@ -147,4 +146,139 @@
   background: var(--red);
   font-size: 15px;
   color: var(--white);
+}
+
+@media (max-width: 903px) {
+
+  .orders-container{
+    margin: 80px 0px;
+  }
+
+  .orders-spinner-container{
+    height: 60px;
+  }
+
+  .orders-main {
+    width: 80%;
+    padding: 12px;
+  }
+
+  .orders-main-title-container{
+    margin-bottom: 12px;
+  }
+
+  .orders-main-title{
+    font-size: 18px;
+  }
+
+  .orders-cards-container {
+    gap: 20px;
+  }
+
+  .order-card{
+    gap: 18px;
+    padding: 10px;
+  }
+
+  .order-card-data{
+    font-size: 14px;
+  }
+
+  .order-card-buttons-container{
+    gap: 8px;
+  }
+
+  .order-card-button{
+    width: 100px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 620px) {
+
+  .orders-container{
+    margin: 50px 0px;
+  }
+
+  .orders-spinner-container{
+    height: 50px;
+  }
+
+  .orders-main {
+    width: 90%;
+  }
+
+  .orders-main-title{
+    font-size: 15px;
+  }
+
+  .orders-cards-container {
+    gap: 13px;
+  }
+
+  .order-card{
+    gap: 13px;
+    padding: 6px;
+  }
+
+  .order-card-data{
+    font-size: 11px;
+  }
+
+  .order-card-buttons-container{
+    gap: 5px;
+  }
+
+  .order-card-button{
+    width: 80px;
+    height: 23px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width:475px){
+
+  .orders-container{
+    margin: 30px 0px;
+  }
+
+  .orders-spinner-container{
+    height: 40px;
+  }
+
+  .orders-main {
+    padding: 9px;
+  }
+
+  .orders-main-title-container{
+    margin-bottom: 10px;
+  }
+
+  .orders-main-title{
+    font-size: 13px;
+  }
+
+  .orders-cards-container {
+    gap: 10px;
+  }
+
+  .order-card{
+    gap: 10px;
+    padding: 6px;
+  }
+
+  .order-card-data{
+    font-size: 9px;
+  }
+
+  .order-card-buttons-container{
+    gap: 3px;
+  }
+
+  .order-card-button{
+    width: 65px;
+    height: 20px;
+    font-size: 8px;
+  }
 }
