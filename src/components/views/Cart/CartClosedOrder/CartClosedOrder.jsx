@@ -8,7 +8,7 @@ function CartClosedOrder() {
   return (
     <div className="cart-closed-order-container">
       <div className="cart-closed-order">
-        <div className="flex flex-col bg-green-200 p-3 gap-2">
+        <div className="flex flex-col bg-green-200 p-1 md:p-2 lg:p-3 gap-1 lg:gap-2">
           <div className="flex flex-row justify-center items-center text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-green-900">
             <IoIosCheckmarkCircle />
             <h3> ¡Pedido recibido con éxito!</h3>

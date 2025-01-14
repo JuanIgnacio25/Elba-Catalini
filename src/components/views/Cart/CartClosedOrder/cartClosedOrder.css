@@ -23,26 +23,12 @@
   gap:20px;
 }
 
-.cart-closed-order-title{
-  padding:20px 15px;
-  font-size: 18px;
-  background: var(--light-green);
-}
-
 .cart-closed-order-button-container{
   display: flex;
   justify-content: end;
   width:100%;
 }
 
-.cart-closed-order-button{
-  font-size:15px;
-  font-weight: bold;
-  color:var(--dark-grey);
-  padding: 10px 30px;
-  background: var(--soft-grey);
-  border-radius: 5px;
-}
 
 @media (max-width:904px){
   .cart-closed-order-container{
@@ -54,13 +40,4 @@
     gap:10px;
   }
   
-  .cart-closed-order-title{
-    padding:15px 10px;
-    font-size: 15px;
-  }
-  
-  .cart-closed-order-button{
-    font-size:12px;
-    padding: 7px 20px;
-  }
 }
