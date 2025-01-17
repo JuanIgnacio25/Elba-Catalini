@@ -24,3 +24,9 @@ body {
   background: var(--extra-light-grey);
   margin-top:20vh;
 }
+
+@media (max-width:903px){
+  body{
+    margin-top:16vh;
+  }
+}
