@@ -18,6 +18,8 @@
 
 .cart-main-title{
   display:flex;
+  flex-flow:column wrap;
+  align-items: center;
   justify-content: center;
   width:100%;
   padding: 10px 0px;
