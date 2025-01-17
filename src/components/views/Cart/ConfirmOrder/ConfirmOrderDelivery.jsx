@@ -131,14 +131,14 @@ function ConfirmOrderDelivery({
               {userInfo.address}, {userInfo.location}
             </p>
           ) : (
-            <div className="flex gap-1">
+            <div className="flex gap-1 w-10/12 md:w-11/12 lg:w-9/12">
               <input
                 type="text"
                 name="address"
                 value={userInfo.address}
                 onChange={handleInputChange}
                 placeholder="Domicilio"
-                className="outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
+                className="w-1/2 outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
               />
               <input
                 type="text"
@@ -146,7 +146,7 @@ function ConfirmOrderDelivery({
                 value={userInfo.location}
                 onChange={handleInputChange}
                 placeholder="Ciudad, Provincia"
-                className="outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
+                className="w-1/2 outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
               />
             </div>
           )}
@@ -167,13 +167,13 @@ function ConfirmOrderDelivery({
           ) : (
             <div className="flex gap-1">
               <button
-                className="confirm-order-delivery-save-button text-2xl text-green-500"
+                className="text-lg md:text-xl lg:text-2xl text-green-500"
                 onClick={handleSave}
               >
                 <IoIosCheckmarkCircle />
               </button>
               <button
-                className="confirm-order-delivery-save-button text-2xl text-red-500"
+                className="text-lg md:text-xl lg:text-2xl text-red-500"
                 onClick={() => {
                   setUserInfo(prevUserInfo);
                   setIsEditing(false);
@@ -212,8 +212,8 @@ function ConfirmOrderDelivery({
       </div>
       {error && (
         <div className="flex items-center space-x-1">
-          <MdError className="text-red-600 h-5 w-5" />
-          <p className="text-red-600 text-sm font-semibold">{error}</p>
+          <MdError className="text-red-600 h-3 md:h-4 lg:h-5 w-3 md:w-4 lg:w-5 " />
+          <p className="text-red-600 text-xs md:text-sm lg:text-base font-semibold">{error}</p>
         </div>
       )}
     </div>

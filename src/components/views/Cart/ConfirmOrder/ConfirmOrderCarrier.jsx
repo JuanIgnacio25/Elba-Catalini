@@ -68,7 +68,7 @@ function ConfirmOrderCarrier({ selectedCarrier, authState , refreshToken}) {
               value={carrier}
               onChange={(e) => setCarrier(e.target.value)}
               placeholder="Transporte de Preferencia"
-              className="outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
+              className="w-10/12 md:w-11/12 lg:w-9/12 outline outline-1 outline-black focus:outline-2 focus:outline-red-500 focus:border-0 rounded px-1"
             />
           )}
         </div>
@@ -88,13 +88,13 @@ function ConfirmOrderCarrier({ selectedCarrier, authState , refreshToken}) {
           ) : (
             <div className="flex gap-1">
               <button
-                className="confirm-order-delivery-save-button text-2xl text-green-500"
+                className="text-lg md:text-xl lg:text-2xl text-green-500"
                 onClick={handleSave}
               >
                 <IoIosCheckmarkCircle />
               </button>
               <button
-                className="confirm-order-delivery-save-button text-2xl text-red-500"
+                className="text-lg md:text-xl lg:text-2xl text-red-500"
                 onClick={() => {
                   setCarrier(prevCarrier);
                   setIsEditing(false);

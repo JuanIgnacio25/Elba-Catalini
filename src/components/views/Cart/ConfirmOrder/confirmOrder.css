@@ -9,7 +9,8 @@
 .confirm-order {
   display: flex;
   flex-flow: row wrap;
-  width: 70%;
+  justify-content: center;
+  width: 80%;
   gap:20px;
 }
 
@@ -40,8 +41,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0px 10px;
-  gap: 10px;
+  padding: 0px 9px;
+  gap: 5px;
   background: var(--white);
   border-radius: 8px;
   font-size:15px;
@@ -58,7 +59,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  width: 85%;
+  width: 82%;
   padding:20px 0px;
   gap: 10px;
   cursor: pointer;
@@ -98,7 +99,7 @@
   flex-flow: row wrap;
   justify-content: end;
   align-items: center;
-  width: 10%;
+  width: 14%;
 }
 
 .confirm-order-delivery-address-edit{
@@ -131,8 +132,6 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  
-  gap: 10px;
   background: var(--white);
   border-radius: 8px;
   font-size:15px;
@@ -187,7 +186,6 @@
 /* Confirm Order Carrier */
 
 .confirm-order-carrier-container{
-  gap:10px;
   margin:10px 0px;
 }
 
@@ -202,7 +200,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0px 10px;
+  padding: 0px 9px;
   background: var(--white);
   border-radius: 8px;
   font-size:15px;
@@ -219,7 +217,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  width: 85%;
+  width: 82%;
   padding:20px 0px;
   gap: 10px;
   cursor: pointer;
@@ -251,7 +249,7 @@
   flex-flow: row wrap;
   justify-content: end;
   align-items: center;
-  width: 10%;
+  width: 14%;
 }
 
 .confirm-order-carrier-edit{
@@ -274,7 +272,7 @@
 
 .confirm-order-comments-text{
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   min-height: 130px;
   padding: 10px;
   border: 1px solid var(--soft-grey);
@@ -391,3 +389,347 @@
   width: 15%;
 }
 
+
+@media (max-width:903px){
+  .confirm-order {
+    width: 85%;
+    gap:15px;
+  }
+
+  .confirm-order-delivery-title {
+    font-size: 21px;
+  }
+
+  .confirm-order-delivery-container {
+    gap: 8px;
+    margin: 5vh 0px 12px 0px;
+  }
+  
+  .confirm-order-delivery-address {
+    padding: 0px 6px;
+    gap: 1px;
+    font-size:13px;
+  }
+
+  .confirm-order-delivery-address-select {
+    width: 81%;
+    padding: 15px 0px;
+  }
+
+  .confirm-order-delivery-address-select-checkbox {
+    width: 17px;
+    height: 17px;
+  }
+
+  .confirm-order-delivery-address-fallback-spinner{
+    border: 3px solid var(--soft-grey);
+    border-top: 3px solid var(--red);
+    width: 20px;
+    height: 20px;
+  }
+
+  .confirm-order-delivery-address-edit-container{
+    width: 16%;
+  }
+
+  .confirm-order-delivery-store {
+    border-radius: 8px;
+    font-size:13px;
+  }
+  
+  .confirm-order-delivery-store-select {
+    padding: 15px 6px;
+    gap: 8px;
+  }
+
+  .confirm-order-delivery-store-select-checkbox {
+    width: 17px;
+    height: 17px;
+  }
+
+  .confirm-order-carrier-title{
+    font-size: 17px;
+  }
+
+  .confirm-order-carrier {
+    padding: 0px 7px;
+    font-size:13px;
+  }
+  
+  .confirm-order-carrier-select {
+    width: 81%;
+    padding:15px 0px;
+    gap: 8px;
+  }
+  
+  .confirm-order-carrier-select-checkbox {
+    width: 17px;
+    height: 17px;
+  }
+
+  .confirm-order-carrier-edit-container{
+    width: 16%;
+  }
+
+  .confirm-order-comments{
+    gap:10px;
+  }
+  
+  .confirm-order-comments-text{
+    min-height: 100px;
+    padding: 7px;
+    font-size: 13px;
+  }
+
+  .confirm-order-close-order{
+    margin:10px 0px 40px 0px;
+  }
+  
+  .confirm-order-close-order-button{
+    width:120px;
+    height:32px;
+    border-radius:13px;
+    font-size: 12px;
+  }
+  
+  .confirm-order-close-order-loading-spinner {
+    width: 13px;
+    height: 13px;
+  }
+
+  .confirm-order-detail-container {
+    width: 32%;
+    padding:10vh 15px;
+  }
+  
+  .confirm-order-detail-title {
+    font-size: 15px;
+    margin-bottom:7px;
+  }
+  
+  
+  .confirm-order-detail-product{
+    padding: 3px 2px;
+    font-size:13px;
+  }
+  
+  .confirm-order-detail-product-name{
+    width: 90%;
+  }
+  
+  .confirm-order-detail-product-quantity{
+    width: 10%;
+  }
+}
+
+@media (max-width:620px){
+  .confirm-order {
+    width: 95%;
+    gap:10px;
+  }
+
+  .confirm-order-delivery-title {
+    font-size: 18px;
+  }
+  
+  .confirm-order-delivery-address {
+    font-size:11px;
+  }
+
+  .confirm-order-delivery-address-select {
+    padding: 10px 0px;
+    gap: 8px;
+  }
+
+  .confirm-order-delivery-address-select-checkbox {
+    width: 14px;
+    height: 14px;
+  }
+
+  .confirm-order-delivery-address-fallback-spinner{
+    border: 2px solid var(--soft-grey);
+    border-top: 2px solid var(--red);
+    width: 17px;
+    height: 17px;
+  }
+
+  .confirm-order-delivery-store {
+    font-size:11px;
+  }
+  
+  .confirm-order-delivery-store-select {
+    padding: 10px 6px;
+    gap: 8px;
+  }
+
+  .confirm-order-delivery-store-select-checkbox {
+    width: 14px;
+    height: 14px;
+  }
+
+  .confirm-order-carrier-title{
+    font-size: 15px;
+  }
+
+  .confirm-order-carrier {
+    padding: 0px 6px;
+    font-size:11px;
+  }
+  
+  .confirm-order-carrier-select {
+    width: 81%;
+    padding:8px 0px;
+  }
+  
+  .confirm-order-carrier-select-checkbox {
+    width: 14px;
+    height: 14px;
+  }
+
+  .confirm-order-comments{
+    gap:7px;
+  }
+  
+  .confirm-order-comments-text{
+    min-height: 80px;
+    padding: 5px;
+    font-size: 11px;
+  }
+
+  .confirm-order-close-order{
+    margin:7px 0px 40px 0px;
+  }
+  
+  .confirm-order-close-order-button{
+    width:100px;
+    height:28px;
+    border-radius:13px;
+    font-size: 11px;
+  }
+  
+  .confirm-order-close-order-loading-spinner {
+    width: 11px;
+    height: 11px;
+  }
+
+  .confirm-order-detail-container {
+    width: 32%;
+    padding:10vh 8px;
+  }
+  
+  .confirm-order-detail-title {
+    font-size: 13px;
+    margin-bottom:5px;
+  }
+  
+  
+  .confirm-order-detail-product{
+    padding: 3px 2px;
+    font-size:11px;
+  }
+  
+  .confirm-order-detail-product-name{
+    width: 90%;
+  }
+  
+  .confirm-order-detail-product-quantity{
+    width: 10%;
+  }
+}
+
+
+@media (max-width:475px){
+  .confirm-order {
+    width: 99%;
+    gap:5px;
+  }
+
+  .confirm-order-delivery-title {
+    font-size: 16px;
+  }
+
+  .confirm-order-delivery-address-select {
+    width: 78%;
+    padding: 7px 0px;
+    gap: 4px;
+  }
+
+  .confirm-order-delivery-address-select-checkbox {
+    width: 13px;
+    height: 13px;
+  }
+
+  .confirm-order-delivery-address-fallback-spinner{
+    border: 2px solid var(--soft-grey);
+    border-top: 2px solid var(--red);
+    width: 15px;
+    height: 15px;
+  }
+
+  .confirm-order-delivery-address-edit-container{
+    width: 21%;
+  }
+  
+  .confirm-order-delivery-store-select {
+    padding: 7px 6px;
+    gap: 4px;
+  }
+
+  .confirm-order-delivery-store-select-checkbox {
+    width: 13px;
+    height: 13px;
+  }
+
+  .confirm-order-carrier-title{
+    font-size: 13px;
+  }
+
+  .confirm-order-carrier {
+    padding: 0px 6px;
+  }
+  
+  .confirm-order-carrier-select {
+    width: 78%;
+    padding:7px 0px;
+    gap: 4px;
+  }
+  
+  .confirm-order-carrier-select-checkbox {
+    width: 13px;
+    height: 13px;
+  }
+
+  .confirm-order-carrier-edit-container{
+    width: 21%;
+  }
+
+  .confirm-order-carrier-edit{
+    padding: 7px 0px;
+  }
+
+  .confirm-order-comments{
+    gap:5px;
+  }
+  
+  .confirm-order-comments-text{
+    padding: 5px;
+  }
+  
+  .confirm-order-close-order-button{
+    width:95px;
+    height:25px;
+  }
+
+  .confirm-order-detail-container {
+    width: 32%;
+    padding:10vh 4px;
+  }
+  
+  .confirm-order-detail-product-name{
+    width: 90%;
+  }
+  
+  .confirm-order-detail-product-quantity{
+    width: 10%;
+  }
+}
