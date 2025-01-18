@@ -33,14 +33,14 @@ function NavMain() {
 
   return (
     <nav className={`nav-main ${isScrolled ? "nav-main-scrolled":""}`}>
-      <ul className="nav-main-responsive-image-container">
-        <li>
-          <Link href="/">
+      <ul className={`nav-main-responsive-image-container`}>
+        <li className={`nav-main-responsive-image ${isScrolled ? "nav-main-responsive-image-scrolled" : ""}`}>
+          <Link href="/" className="nav-main-responsive-image-link">
             <Image
-              src="/logo-main.png"
+              src="/logo-lca-ps.png"
               alt="Logo-Main"
-              width={800}
-              height={169} 
+              width={500}
+              height={500} 
               className="nav-main-responsive-image"
               priority 
             />

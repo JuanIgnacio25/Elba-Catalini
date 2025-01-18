@@ -22,7 +22,7 @@ body {
   display:flex;
   flex-flow:column wrap;
   background: var(--extra-light-grey);
-  margin-top:20vh;
+  margin-top:24vh;
 }
 
 @media (max-width:903px){

@@ -60,13 +60,14 @@
   left: 0;
   z-index: 999;
   width: 100%;
-  height: 12vh;
+  height: 16vh;
   background: var(--light-grey);
-  transition: top 0.3s ease-in-out;
+  transition: top 0.3s ease-in-out , height 0.3s ease-in-out;
 }
 
 .nav-main-scrolled {
   top: 0vh;
+  height: 12vh;
 }
 
 .nav-main ul {
@@ -77,12 +78,35 @@
 
 /*NavMain Image */
 .nav-main-responsive-image-container {
-  width: 18%;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  height: auto;
+  padding:0px !important;
+  overflow: hidden;
+}
+
+.nav-main-responsive-image{
+  width: 100%;
+  max-width: 15.9vh;
+  transition: max-width 0.3s ease-in-out;
+}
+
+.nav-main-responsive-image-scrolled{
+  max-width: 12vh;
+}
+
+.nav-main-responsive-image-link{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .nav-main-responsive-image {
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 /* NavMain Search */
@@ -155,6 +179,7 @@
 .nav-main-menu {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
   width: 20%;
   gap: 20px;
@@ -330,7 +355,7 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 16vh;
+  top: 20vh;
   left: 0;
   width: 100%;
   height: 40px;
@@ -371,10 +396,19 @@
   /* NavMain */
   .nav-main {
     top: 0vh;
+    height: 12vh;
   }
 
   .nav-main-responsive-image-container{
     width: 150px;
+  }
+
+  .nav-main-responsive-image{
+    max-width: 11.9vh;
+  }
+
+  .nav-main-responsive-image-scrolled{
+    max-width: 11.9vh;
   }
 
   .nav-main-search input {
@@ -461,7 +495,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 25px 0px 10px;
-    top: 11.5vh;
+    top: 12vh;
   }
 
   .nav-desktop-menu {
@@ -479,6 +513,10 @@
 
 @media (max-width: 620px) {
 
+  .nav-main {
+    height: 10vh;
+  }
+
   .nav-main-menu,
   .nav-main-search-container {
     flex: 1;
@@ -492,6 +530,14 @@
 
   .nav-main-responsive-image-container{
     order: 2;
+  }
+
+  .nav-main-responsive-image{
+    max-width: 10vh;
+  }
+
+  .nav-main-responsive-image-scrolled{
+    max-width: 10vh;
   }
 
   .nav-main-search-container {
@@ -522,6 +568,10 @@
   .nav-main-search-responsive{
     display:flex;
     font-size: 22px;
+  }
+
+  .nav-desktop{
+    top: 10vh;
   }
 }
 
