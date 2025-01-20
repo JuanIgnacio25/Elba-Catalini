@@ -33,7 +33,7 @@ function NavHeader() {
         isScrolled ? "nav-header-container-scrolled" : ""
       }`}
     >
-      <div className="nav-header-socialmedia">
+      <div className={`nav-header-socialmedia ${isScrolled ? "scrolled" : ""}`}>
         <a
           href="https://www.instagram.com/la_casa_del_acceso_/"
           target="_blank"
@@ -49,10 +49,10 @@ function NavHeader() {
           <FaFacebookF />
         </a>
       </div>
-      <div className="nav-header-text-container">
+      <div className={`nav-header-text-container ${isScrolled ? "scrolled" : ""}`}>
         <p>Todos los precios sujetos a presupuesto.</p>
       </div>
-      <div className="nav-header-items-container">
+      <div className={`nav-header-items-container ${isScrolled ? "scrolled" : ""}`}>
         <Link href="/contact">
           <div className="nav-header-items">
             <IoIosMail />
