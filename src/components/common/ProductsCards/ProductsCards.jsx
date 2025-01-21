@@ -7,11 +7,19 @@ import { useEffect, useState } from "react";
 import AnimatedProductCard from "@/components/common/AnimatedProductCard";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
-function ProductsCards({ products , enabledResetAnimation , ITEMS_PER_PAGE ,ProductCard}) {
+function ProductsCards({
+  products,
+  enabledResetAnimation,
+  ITEMS_PER_PAGE,
+  ProductCard,
+}) {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
+
+  // Estado para contar cargas automáticas
+  const [autoLoadCount, setAutoLoadCount] = useState(2);
 
   // Resetear la animación al cambiar los productos
   const [resetAnimationKey, setResetAnimationKey] = useState(0);
@@ -24,34 +32,23 @@ function ProductsCards({ products , enabledResetAnimation , ITEMS_PER_PAGE ,Prod
 
       setAllLoaded(products.length <= ITEMS_PER_PAGE);
 
-      if(enabledResetAnimation) setResetAnimationKey((prevKey) => prevKey + 1);
+      if (enabledResetAnimation) setResetAnimationKey((prevKey) => prevKey + 1);
     }
   }, [products]);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
-      const bottomPosition = document.documentElement.offsetHeight - 280; // Detectar 200px antes del final
+      const bottomPosition = document.documentElement.offsetHeight - 280; // Detectar 280px antes del final
 
-      if (scrollPosition >= bottomPosition && !loadingMore && !allLoaded) {
-        setLoadingMore(true);
-        setTimeout(() => {
-          setPage((prevPage) => {
-            const nextPage = prevPage + 1;
-            const newProducts = products.slice(0, nextPage * ITEMS_PER_PAGE);
-
-            if (newProducts.length > visibleProducts.length) {
-              setVisibleProducts(newProducts);
-            }
-
-            if (newProducts.length >= products.length) {
-              setAllLoaded(true);
-            }
-
-            setLoadingMore(false); // Asegúrate de que esto siempre se ejecuta
-            return nextPage;
-          });
-        }, 800);
+      // Solo cargar automáticamente si el contador es menor a 2
+      if (
+        scrollPosition >= bottomPosition &&
+        !loadingMore &&
+        !allLoaded &&
+        autoLoadCount < 2
+      ) {
+        loadMoreProducts(true);
       }
     };
 
@@ -60,7 +57,35 @@ function ProductsCards({ products , enabledResetAnimation , ITEMS_PER_PAGE ,Prod
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [products, visibleProducts, loadingMore, allLoaded]);
+  }, [products, visibleProducts, loadingMore, allLoaded, autoLoadCount]);
+
+  const loadMoreProducts = (isAutoLoad = false) => {
+    if (loadingMore || allLoaded) return;
+
+    setLoadingMore(true); // Activar spinner inmediatamente
+
+    setTimeout(() => {
+      setPage((prevPage) => {
+        const nextPage = prevPage + 1;
+        const newProducts = products.slice(0, nextPage * ITEMS_PER_PAGE);
+
+        if (newProducts.length > visibleProducts.length) {
+          setVisibleProducts(newProducts);
+        }
+
+        if (newProducts.length >= products.length) {
+          setAllLoaded(true);
+        }
+
+        if (isAutoLoad) {
+          setAutoLoadCount((prevCount) => prevCount + 1); // Incrementar contador si es carga automática
+        }
+
+        setLoadingMore(false); // Detener spinner después de cargar productos
+        return nextPage;
+      });
+    }, 800); // Simular retraso en la carga
+  };
 
   return (
     <div className="products-cards">
@@ -71,17 +96,31 @@ function ProductsCards({ products , enabledResetAnimation , ITEMS_PER_PAGE ,Prod
           : 0;
         return (
           <AnimatedProductCard
-            key={`${enabledResetAnimation ? `${prod.productId}-${resetAnimationKey}` : prod.productId }`}
+            key={`${
+              enabledResetAnimation
+                ? `${prod.productId}-${resetAnimationKey}`
+                : prod.productId
+            }`}
             prod={prod}
             delay={calculatedDelay}
             ProductCard={ProductCard}
           />
         );
       })}
-      {loadingMore && !allLoaded && (
+
+      {loadingMore && (
         <div className="products-loading-more-spinner">
           <FallbackSpinner />
         </div>
+      )}
+
+      {!loadingMore && autoLoadCount >= 2 && !allLoaded && (
+        <button
+          className="products-load-more-button"
+          onClick={() => loadMoreProducts(false)}
+        >
+          Cargar más
+        </button>
       )}
     </div>
   );
