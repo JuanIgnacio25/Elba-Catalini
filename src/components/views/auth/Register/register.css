@@ -170,7 +170,7 @@
 
 @media (max-width: 650px){
   .register{
-    width:70%;
+    width:85%;
   }
 
   .register-main-title{
@@ -209,6 +209,6 @@
 
 @media (max-width: 470px){
   .register{
-    width:80%;
+    width:95%;
   }
 }
