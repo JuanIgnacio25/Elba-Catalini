@@ -220,12 +220,20 @@
     width:130px;
     height:30px;
   }
+
+  .login-have-account{
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 540px){
 
   .login{
-    width:85%;
+    width:95%;
+  }
+
+  .login-container{
+    height:38vh;
   }
 
   .login-main-data-container{
@@ -259,5 +267,9 @@
     font-size:11px;
     width:110px;
     height:25px;
+  }
+
+  .login-have-account{
+    font-size: 12px;
   }
 }
