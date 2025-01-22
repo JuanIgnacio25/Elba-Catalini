@@ -58,7 +58,7 @@ function NavDesktop() {
         className="nav-desktop-menu-icon text-3xl cursor-pointer"
         onClick={toggleMenu}
       >
-        {isMobile && (menuOpen ? <IoMdClose /> : <PiListBold />)}
+        {menuOpen ? <IoMdClose /> : <PiListBold />}
       </div>
       <ul
         className={`${
@@ -66,10 +66,10 @@ function NavDesktop() {
         } ${isMobile && menuOpen ? "open" : ""}`}
       >
         <li>
-          <Link href="/products/baiml">Linea Baiml</Link>
+          <Link href="/products/baiml" onClick={toggleMenu}>Linea Baiml</Link>
         </li>
         <li>
-          <Link href={"/products/toxic-shine"}>Toxic Shine</Link>
+          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>Toxic Shine</Link>
         </li>
         <li>
           <Dropdown
@@ -79,6 +79,7 @@ function NavDesktop() {
               { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
             ]}
             baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
           />
         </li>
       </ul>

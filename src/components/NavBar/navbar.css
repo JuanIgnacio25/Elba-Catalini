@@ -411,7 +411,6 @@
   left: 0;
   width: 100%;
   max-height: 0;
-  overflow: hidden;
   transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
   background: var(--red);
   border-top: 1px solid var(--soft-grey);
@@ -548,6 +547,10 @@
     top: 11vh;
   }
 
+  .nav-desktop-menu li{
+    display: none;
+  }
+
   .nav-desktop-menu-icon {
     display: flex;
   }
@@ -621,7 +624,7 @@
   }
 
   .nav-desktop-menu-mobile{
-    top: calc(10vh + 41px);
+    top: calc(10vh + 40px);
     font-size: 17px;
   }
 }
