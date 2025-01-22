@@ -418,11 +418,13 @@
   gap:10px;
   font-size:19px;
   z-index: 20;
+  pointer-events: none;
 }
 
 .nav-desktop-menu-mobile.open {
   max-height: 30vh;
   padding: 20px 15px;
+  pointer-events: auto;
 }
 
 .nav-desktop-menu-mobile li {
