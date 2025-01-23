@@ -19,7 +19,7 @@ function ProductsCards({
   const [allLoaded, setAllLoaded] = useState(false);
 
   // Estado para contar cargas automáticas
-  const [autoLoadCount, setAutoLoadCount] = useState(2);
+  const [autoLoadCount, setAutoLoadCount] = useState(0);
 
   // Resetear la animación al cambiar los productos
   const [resetAnimationKey, setResetAnimationKey] = useState(0);
