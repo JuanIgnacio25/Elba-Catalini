@@ -1,5 +1,6 @@
 import ProductDao from "@/models/product/ProductDao";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
+import { isValidProductInfo } from "@/utils/validate/validateProductCategoryInfo";
 import toNumericId from "@/utils/toNumericId";
 
 class ProductService {
@@ -21,7 +22,7 @@ class ProductService {
       const products = await this.dao.getProducts(filter);
       return products;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -44,36 +45,47 @@ class ProductService {
   }
 
   async deleteProduct(productId) {
-    try {  
-      const deleteProduct = await this.dao.deleteProduct(toNumericId(productId));
+    try {
+      const deleteProduct = await this.dao.deleteProduct(
+        toNumericId(productId)
+      );
       return deleteProduct;
     } catch (error) {
       throw error;
     }
   }
 
-  async updateProduct(productToUpdate,id) {
+  async updateProduct(productToUpdate, id) {
     try {
       console.log(productToUpdate);
       isValidBaimlProduct(productToUpdate);
       productToUpdate.kind = "Baiml";
-      const updateProduct = await this.dao.updateProduct(productToUpdate,id);
+      const updateProduct = await this.dao.updateProduct(productToUpdate, id);
       return updateProduct;
     } catch (error) {
       throw error;
     }
   }
 
-  async checkProductsExist (productIds) {
+  async checkProductsExist(productIds) {
     try {
-
       const count = await this.dao.checkProductsExist(productIds);
-  
+
       return count === productIds.length;
     } catch (error) {
       throw error;
     }
-  };
+  }
+
+  async findProductsByCategory(kind, category) {
+    try {
+      isValidProductInfo({kind , category});
+      const filteredProducts = await this.dao.findProductByCategory(kind, category);
+      return filteredProducts;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default ProductService;

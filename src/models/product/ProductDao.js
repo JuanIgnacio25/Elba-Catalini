@@ -50,6 +50,22 @@ class ProductDao {
     }
   }
 
+  async findProductByCategory(kind,category) {
+    try {
+      let filteredProducts = [];
+
+      if(kind === "Store"){
+        filteredProducts = await this.collection.find({kind , subCategory:category});
+      } else if(kind === "Baiml") {
+        filteredProducts = await this.collection.find({kind , category});
+      }
+      
+      return filteredProducts;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async deleteProduct(productId) {
     try {
       const deleteProduct = await this.collection.findOneAndDelete({
