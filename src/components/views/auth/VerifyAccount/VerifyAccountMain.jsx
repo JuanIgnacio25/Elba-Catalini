@@ -46,7 +46,7 @@ function VerifyAccountMain() {
     <div className="verify-account-main-container">
       <h3>Email <span className="verify-account-main-span">{isVerify.email}</span> verificado correctamente</h3>
       <button className="verify-account-main-button">
-        <Link href="/auth/login">Iniciar Sesion</Link>
+        <Link href="/auth/login">Ingresá</Link>
       </button>
     </div>
   );

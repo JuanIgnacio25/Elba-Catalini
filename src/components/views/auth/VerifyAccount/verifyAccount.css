@@ -75,8 +75,8 @@
   display:flex;
   justify-content:center;
   align-items:center;
-  width:150px;
-  height:40px;
+  width:120px;
+  height:35px;
   border-radius:15px;
   background: var(--gradient-red);
   font-weight:bold;
@@ -112,7 +112,7 @@
 
   .verify-account-main-button{
     font-size:14px;
-    width:130px;
+    width:100px;
     height:30px;
   }
 }
@@ -164,7 +164,7 @@
 
   .verify-account-main-button{
     font-size:12px;
-    width:110px;
+    width:85px;
     height:25px;
   }
 }

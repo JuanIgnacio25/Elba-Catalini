@@ -49,10 +49,9 @@ function RegisterMain() {
         password,
         validatePassword
       });
-      console.log(res);
       
       router.refresh();
-      router.push(`/auth/verifying-account/${res.data.email}`);
+      router.push(`/auth/verifying-account/${res.data.savedTemporalUser.email}`);
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
