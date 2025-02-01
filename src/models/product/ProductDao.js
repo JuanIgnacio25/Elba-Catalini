@@ -84,15 +84,15 @@ class ProductDao {
     const { kind, ...productData } = productToUpdate;
 
     try {
-      const updateProduct = await this.discriminators[kind].findOneAndUpdate(
+      const updatedProduct = await this.discriminators[kind].findOneAndUpdate(
         { productId },
         productData,
         { new: true, runValidators: true }
       );
-      if (!updateProduct) {
+      if (!updatedProduct) {
         throw new Error("El producto no existe");
       }
-      return updateProduct;
+      return updatedProduct;
     } catch (error) {
       throw error;
     }

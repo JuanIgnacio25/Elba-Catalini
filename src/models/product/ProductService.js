@@ -1,5 +1,6 @@
 import ProductDao from "@/models/product/ProductDao";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
+import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
 import { isValidProductInfo } from "@/utils/validate/validateProductCategoryInfo";
 import toNumericId from "@/utils/toNumericId";
 
@@ -57,9 +58,13 @@ class ProductService {
 
   async updateProduct(productToUpdate, id) {
     try {
-      console.log(productToUpdate);
-      isValidBaimlProduct(productToUpdate);
-      productToUpdate.kind = "Baiml";
+      
+      if (productToUpdate.kind === "Store") {
+        isValidStoreProduct(productToUpdate);
+      } else if (productToUpdate.kind === "Baiml") {
+        isValidBaimlProduct(productToUpdate);
+      }else throw new Error("El tipo de producto no es valido");
+
       const updateProduct = await this.dao.updateProduct(productToUpdate, id);
       return updateProduct;
     } catch (error) {
@@ -79,8 +84,11 @@ class ProductService {
 
   async findProductsByCategory(kind, category) {
     try {
-      isValidProductInfo({kind , category});
-      const filteredProducts = await this.dao.findProductByCategory(kind, category);
+      isValidProductInfo({ kind, category });
+      const filteredProducts = await this.dao.findProductByCategory(
+        kind,
+        category
+      );
       return filteredProducts;
     } catch (error) {
       throw error;
