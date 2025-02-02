@@ -7,13 +7,20 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+import {
+  BAIML_CATEGORIES,
+  TOXIC_SHINE_CATEGORIES,
+  STORE_CATEGORIES,
+} from "@/constants/categories";
+
 function DashboardPage() {
+  const { allProducts, fetchAllProducts } = useProduct();
 
-  const {allProducts, fetchAllProducts} = useProduct();
+  const { fetchCart } = useCart();
 
-  const {fetchCart} = useCart();
-
-  const options = ["Faros de posición", "Posición electrónicos", "Faros plafonier"];
+  const baimlOptions = [...BAIML_CATEGORIES];
+  const toxicShineOptions = [...TOXIC_SHINE_CATEGORIES];
+  const storeOptions = [...STORE_CATEGORIES];
 
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
@@ -45,7 +52,7 @@ function DashboardPage() {
       formData.append("productSet", productSet);
     }
 
-    if(kind === "Store") {
+    if (kind === "Store") {
       formData.append("name", name);
       formData.append("sku", sku);
       formData.append("category", category);
@@ -54,9 +61,6 @@ function DashboardPage() {
       formData.append("unit", unit);
       formData.append("kind", kind);
     }
-
-    console.log({frontImages:images});
-    
 
     images.forEach((image) => {
       formData.append("images", image);
@@ -84,7 +88,6 @@ function DashboardPage() {
       }
 
       urlsToRevoke.forEach((url) => URL.revokeObjectURL(url));
-
     } catch (error) {
       console.error(error.response?.data || error.message);
     } finally {
@@ -114,8 +117,12 @@ function DashboardPage() {
   return (
     <div>
       <form onSubmit={handleSubmit} className="text-black" id="login-form">
-        <select id="kind-options" value={kind} onChange={(e) => setKind(e.target.value)}>
-          <option value="">Seleccione...</option>
+        <select
+          id="kind-options"
+          value={kind}
+          onChange={(e) => setKind(e.target.value)}
+        >
+          <option value="" disabled hidden>Tipo</option>
           <option value={"Baiml"}>Baiml</option>
           <option value={"Store"}>Store</option>
         </select>
@@ -161,18 +168,19 @@ function DashboardPage() {
         {kind === "Baiml" && (
           <>
             <select
-              id="options"
+              id="baiml-options"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="">Category</option>
-              {options.map((option, index) => (
+              <option value="" disabled hidden>
+                Category
+              </option>
+              {baimlOptions.map((option, index) => (
                 <option key={index} value={option}>
                   {option}
                 </option>
               ))}
             </select>
-            {category && <p>Opción seleccionada: {category}</p>}
 
             <input
               type="number"
@@ -188,24 +196,48 @@ function DashboardPage() {
 
         {kind === "Store" && (
           <>
-            <input
-              type="text"
-              placeholder="Category"
-              name="Category"
+            <select
+              id="store-options"
               value={category}
-              autoComplete="category"
-              required={true}
               onChange={(e) => setCategory(e.target.value)}
-            />
+            >
+              <option value="" disabled hidden>
+                Category
+              </option>
+              {storeOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
 
-            <input
-              type="text"
-              placeholder="SubCategory"
-              name="SubCategory"
-              value={subCategory}
-              autoComplete="subCategory"
-              onChange={(e) => setSubCategory(e.target.value)}
-            />
+            {category === "Toxic Shine" && (
+              <select
+                id="toxic-options"
+                value={subCategory}
+                onChange={(e) => setSubCategory(e.target.value)}
+              >
+                <option value="" disabled hidden>
+                  Category
+                </option>
+                {toxicShineOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            )}
+
+            {category !== "Toxic Shine" && (
+              <input
+                type="text"
+                placeholder="SubCategory"
+                name="SubCategory"
+                value={subCategory}
+                autoComplete="subCategory"
+                onChange={(e) => setSubCategory(e.target.value)}
+              />
+            )}
           </>
         )}
 
@@ -244,9 +276,9 @@ function DashboardPage() {
             <th>Sku</th>
             <th>Categoria</th>
             <th>SubCategoria</th>
-            <th>Descripcion</th>
+            
             <th>Unidad</th>
-            <th>Juegos</th>      
+            <th>Juegos</th>
             <th>Imágenes</th>
           </tr>
         </thead>
@@ -258,7 +290,7 @@ function DashboardPage() {
               <td>{prod.sku}</td>
               <td>{prod.category}</td>
               <td>{prod.subCategory}</td>
-              <td>{prod.description}</td>
+              
               <td>{prod.unit}</td>
               <td>{prod.productSet}</td>
               <td>
