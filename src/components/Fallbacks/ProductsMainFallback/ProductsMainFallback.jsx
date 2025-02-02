@@ -11,8 +11,11 @@ function ProductsMainFallback({categories,enabled}) {
   return (
     <div className="products-main-fallback-container">
       <div className="products-main-fallback">
-        <div className="baiml-p-main-categories">
-          <h3 className="products-categories-title">Categorias</h3>
+        <div>
+          <div className="flex flex-col  items-start mb-2 ">
+            <h3 className="flex items-center text-gray-800 text-base sm:text-xl lg:text-2xl font-bold">Categorias</h3>
+          </div>
+          
           <div className={`${enabled ? "products-categories-simplified-view-button-container" : "product-categories-simplified-view-button-disabled"}`}>
             <Link href={"/products/baiml/simplifiedView"}>
               <button className="products-categories-simplified-view-button">

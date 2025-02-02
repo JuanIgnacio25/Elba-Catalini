@@ -6,16 +6,31 @@ import Link from "next/link";
 
 import FilterCheckbox from "@/components/common/FilterCheckbox/FilterCheckbox";
 import { RxRows } from "react-icons/rx";
+import { RiCloseFill } from "react-icons/ri";
 
 function ProductsFilterCategories({
   categories,
   onCategoryChange,
   selectedCategories,
   enabledButton,
+  deleteFilters,
 }) {
   return (
     <div className="products-categories">
-      <h3 className="products-categories-title">Categorias</h3>
+      <div className="flex flex-col  items-start mb-2 ">
+        <h3 className="flex items-center text-gray-800 text-base sm:text-xl lg:text-2xl font-bold">
+          Categorias
+        </h3>
+        {selectedCategories.length > 0 && (
+          <button
+            className="flex items-center text-xs sm:text-sm text-red-500 font-semibold hover:text-red-700"
+            onClick={deleteFilters}
+          >
+            <RiCloseFill className="text-sm sm:text-base lg:text-lg" />
+            Borrar filtros
+          </button>
+        )}
+      </div>
       <div
         className={`${
           enabledButton
