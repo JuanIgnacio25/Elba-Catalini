@@ -74,10 +74,7 @@ function ProductDetailHeader({ product }) {
               <div>/</div>
             </div>
           </>
-        )}
-        <div className="flex align-center gap-1">
-          <div>{product.name}</div>
-        </div>
+        )}        
       </div>
     </div>
   );
