@@ -52,6 +52,11 @@ function ToxicShineMain() {
     router.push(newUrl);
   };
 
+  const deleteFilters = () => {
+    const newUrl = pathName;
+    router.push(newUrl);
+  }
+
   if (loading) return <ProductsMainFallback categories={TOXIC_SHINE_CATEGORIES} enabled={false}/>;
 
   return (
@@ -62,6 +67,7 @@ function ToxicShineMain() {
           selectedCategories={selectedCategories}
           onCategoryChange={onCategoryChange}
           enabledButton={false}
+          deleteFilters={deleteFilters}
         />
         <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={12} enabledResetAnimation={true}/>
       </div>

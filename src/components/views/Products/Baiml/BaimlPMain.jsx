@@ -52,6 +52,11 @@ function BaimlPMain() {
     router.push(newUrl);
   };
 
+  const deleteFilters = () => {
+    const newUrl = pathName;
+    router.push(newUrl);
+  }
+
   if (loading) return <ProductsMainFallback categories={BAIML_CATEGORIES} enabled={true}/>;
 
   return (
@@ -62,6 +67,7 @@ function BaimlPMain() {
           selectedCategories={selectedCategories}
           onCategoryChange={onCategoryChange}
           enabledButton={true}
+          deleteFilters={deleteFilters}
         />
         <ProductsCards products={filteredProducts} enabledResetAnimation={true} ITEMS_PER_PAGE={12} ProductCard={BaimlProductCard}/>
       </div>
