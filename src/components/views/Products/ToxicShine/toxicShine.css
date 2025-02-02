@@ -17,7 +17,7 @@
 .toxic-products-main {
   display: grid;
   grid-template-columns: 20% 80%;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .baiml-p-main-cards-fallback {
