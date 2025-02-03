@@ -22,7 +22,7 @@ function ToxicShineMain() {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const categories = searchParams.get("categories");
-  const selectedCategories = categories ? categories.split(",") : [];
+  const selectedCategories = useMemo(() => categories ? categories.split(",") : [], [categories]);
 
   useEffect(() => {
     const filtered =
