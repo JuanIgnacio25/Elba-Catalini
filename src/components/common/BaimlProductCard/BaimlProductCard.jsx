@@ -68,7 +68,7 @@ function ProductCard({ prod }) {
             alt="Logo-Product"
             width={485}
             height={485}
-            priority
+            loading="lazy"
           />
         </Link>
       </div>
