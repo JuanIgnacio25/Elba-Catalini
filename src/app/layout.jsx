@@ -5,7 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import FixedActions from "@/components/FixedActions/FixedActions";
 import Providers from "./Providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   title: "La Casa del Accesorio",
@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
         <Providers>
           <NavBar />
           {children}
-          <FixedActions/>
-          <Footer/>
+          <FixedActions />
+          <Footer />
         </Providers>
       </body>
     </html>
