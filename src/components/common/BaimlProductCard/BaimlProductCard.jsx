@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
+import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
+import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+
 import "./baimlProductCard.css";
 
 function ProductCard({ prod }) {
@@ -15,7 +18,7 @@ function ProductCard({ prod }) {
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
-      if((quantity) < 1 ) setQuantity(1);
+      if (quantity < 1) setQuantity(1);
       const res = await addProductToCart(id, quantity);
       const addedProduct = res.data;
       setPopToast(addedProduct);
@@ -75,7 +78,10 @@ function ProductCard({ prod }) {
           className="baiml-p-card-info-link"
         >
           <p>{prod.name}</p>
-          <p className="baiml-p-card-info-unit">Caja x {prod.unit}</p>
+          <p className="baiml-p-card-info-unit">
+            {formatBaimlProductQuantityLabel(prod.category , prod.sku , prod.kind)} x {prod.unit}{" "}
+            {formatBaimlProductSetLabel(prod.productSet, prod.unit)}{" "}
+          </p>
         </Link>
       </div>
       <div className="baiml-p-card-add">

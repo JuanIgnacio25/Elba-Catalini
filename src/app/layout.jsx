@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar/NavBar";
-import Footer from "@/components/Footer/Footer"
+import Footer from "@/components/Footer/Footer";
+import FixedActions from "@/components/FixedActions/FixedActions";
 import Providers from "./Providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,7 +13,7 @@ export const metadata = {
   author: "Juan Ignacio Colli",
   keywords: "nextjs, react, web application",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/fav-icon.ico",
   },
   /* charset: "UTF-8",
   ogTitle: "Tu Aplicación Next.js",
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <NavBar />
           {children}
+          <FixedActions/>
           <Footer/>
         </Providers>
       </body>

@@ -1,0 +1,16 @@
+.products-by-category-header {
+  width: 80%;
+}
+
+.products-by-category-products-cards {
+  width: 80%;
+}
+
+@media (max-width: 870px) {
+  .products-by-category-header {
+    width: 90%;
+  }
+  .products-by-category-products-cards {
+    width: 90%;
+  }
+}

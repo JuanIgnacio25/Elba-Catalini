@@ -67,6 +67,22 @@ class UserService {
       throw error;
     }
   }
+
+  async changeShippingInfoById(userId, shippingInfo) {
+    try {
+      await this.dao.changeShippingInfoById(userId, shippingInfo);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async changeCarrierById(userId, carrier) {
+    try {
+      await this.dao.changeCarrierById(userId, carrier);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default UserService;

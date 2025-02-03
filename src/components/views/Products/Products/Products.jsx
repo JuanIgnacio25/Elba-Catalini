@@ -1,15 +1,24 @@
-import "@/components/views/Products/Store/storeProducts.css";
+import "@/components/views/Products/Products/products.css"
+
+import { Suspense } from "react";
 
 import PathHeader from "@/components/common/PathHeader/PathHeader";
-import ProductsCards from "@/components/views/Products/Products/ProductsCards";
+import ProductsMain from "@/components/views/Products/Products/ProductsMain";
+import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function Products() {
   return (
-    <div className="store-products-container">
+    <div className="products-container">
       <PathHeader />
-      <div className="store-products">
-        <ProductsCards />
-      </div>
+      <Suspense
+        fallback={
+          <div className="products-loading">
+            <FallbackSpinner />
+          </div>
+        }
+      >
+        <ProductsMain />
+      </Suspense>
     </div>
   );
 }

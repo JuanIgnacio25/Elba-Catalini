@@ -11,3 +11,24 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+@media (max-width: 904px) {
+  .fallback-spinner {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 620px) {
+  .fallback-spinner {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 475px) {
+  .fallback-spinner {
+    width: 25px;
+    height: 25px;
+  }
+}

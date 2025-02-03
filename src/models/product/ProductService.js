@@ -1,5 +1,8 @@
 import ProductDao from "@/models/product/ProductDao";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
+import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
+import { isValidProductInfo } from "@/utils/validate/validateProductCategoryInfo";
+import toNumericId from "@/utils/toNumericId";
 
 class ProductService {
   constructor() {
@@ -20,13 +23,13 @@ class ProductService {
       const products = await this.dao.getProducts(filter);
       return products;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
-  async findProductById(id) {
+  async findProductById(productId) {
     try {
-      const product = await this.dao.findProductById(id);
+      const product = await this.dao.findProductById(toNumericId(productId));
       return product;
     } catch (error) {
       throw error;
@@ -42,22 +45,51 @@ class ProductService {
     }
   }
 
-  async deleteProduct(id) {
+  async deleteProduct(productId) {
     try {
-      const deleteProduct = await this.dao.deleteProduct(id);
+      const deleteProduct = await this.dao.deleteProduct(
+        toNumericId(productId)
+      );
       return deleteProduct;
     } catch (error) {
       throw error;
     }
   }
 
-  async updateProduct(productToUpdate,id) {
+  async updateProduct(productToUpdate, id) {
     try {
-      console.log(productToUpdate);
-      isValidBaimlProduct(productToUpdate);
-      productToUpdate.kind = "Baiml";
-      const updateProduct = await this.dao.updateProduct(productToUpdate,id);
+      
+      if (productToUpdate.kind === "Store") {
+        isValidStoreProduct(productToUpdate);
+      } else if (productToUpdate.kind === "Baiml") {
+        isValidBaimlProduct(productToUpdate);
+      }else throw new Error("El tipo de producto no es valido");
+
+      const updateProduct = await this.dao.updateProduct(productToUpdate, id);
       return updateProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async checkProductsExist(productIds) {
+    try {
+      const count = await this.dao.checkProductsExist(productIds);
+
+      return count === productIds.length;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findProductsByCategory(kind, category) {
+    try {
+      isValidProductInfo({ kind, category });
+      const filteredProducts = await this.dao.findProductByCategory(
+        kind,
+        category
+      );
+      return filteredProducts;
     } catch (error) {
       throw error;
     }

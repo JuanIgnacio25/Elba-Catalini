@@ -8,12 +8,15 @@ import Link from "next/link";
 import axios from "axios";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
+import { useCart } from "@/context/CartContext";
+
 import OrderDetailProductCard from "@/components/views/Orders/OrderDetail/OrderDetailProductCard";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
 
 function OrderDetailCard() {
   const params = useParams();
+  const {fetchCart} = useCart();
   const router = useRouter();
   const id = params.id;
 
@@ -31,11 +34,9 @@ function OrderDetailCard() {
     try {
       setLoading(true);
       const res = await axios.get(`/api/orders/${id}`);
-      console.log(res);
       setOrder(res.data);
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -44,11 +45,13 @@ function OrderDetailCard() {
   const handleRepeatOrder = async () => {
     try {
       await axios.post(`/api/orders/repeat-order/${order.orderId}`);
+      await fetchCart();
       router.refresh()
       router.push("/cart");
       closeModal();
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.message)
+      closeModal();
     }
   };
 

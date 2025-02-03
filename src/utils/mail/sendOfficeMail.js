@@ -104,9 +104,9 @@ const generateExcelBuffer = async (clientData, products, order) => {
     worksheet.spliceRows(rowAfterProducts, 1); // Mueve la fila existente hacia abajo en lugar de crear una nueva
 
     // Definir el ancho de las columnas
-    worksheet.getColumn(1).width = 17;  // Ancho para columna A
-    worksheet.getColumn(2).width = 55;  // Ancho para columna B
-    worksheet.getColumn(3).width = 27;  // Ancho para columna C
+    worksheet.getColumn(1).width = 15;  // Ancho para columna A
+    worksheet.getColumn(2).width = 52;  // Ancho para columna B
+    worksheet.getColumn(3).width = 20;  // Ancho para columna C
 
     // Escribir el buffer
     const buffer = await workbook.xlsx.writeBuffer();
@@ -116,15 +116,14 @@ const generateExcelBuffer = async (clientData, products, order) => {
   }
 };
 
-// Resto del código permanece igual...
-const sendEmailWithAttachment = async (clientName, attachmentBuffer) => {
+const sendEmailWithAttachment = async (clientName, attachmentBuffer , comments) => {
   const transporter = createTransporter();
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
     subject: `Pedido de presupuesto de ${clientName}`,
-    text: `Excel del pedido adjuntado`,
+    text: `Excel del pedido adjuntado , ${comments !== "" ? `Comentarios: ${comments}` : ""}`,
     attachments: [
       {
         filename: `${clientName}.xlsx`,
@@ -147,7 +146,7 @@ const sendEmailWithAttachment = async (clientName, attachmentBuffer) => {
 const createAndSendExcelEmail = async (clientData, products, order) => {
   try {
     const attachmentBuffer = await generateExcelBuffer(clientData, products, order);
-    await sendEmailWithAttachment(clientData.companyName, attachmentBuffer);
+    await sendEmailWithAttachment(clientData.companyName, attachmentBuffer , clientData.comments);
   } catch (error) {
     console.log(error); 
     throw error;

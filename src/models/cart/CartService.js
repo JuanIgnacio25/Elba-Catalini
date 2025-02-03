@@ -1,4 +1,5 @@
 import CartDao from "./CartDao";
+import toNumericId from "@/utils/toNumericId";
 
 class CartService {
   constructor() {
@@ -14,9 +15,9 @@ class CartService {
     }
   }
 
-  async getCartById(id){
+  async getCartById(cartId){
     try {
-      const cart = await this.dao.getCartById(Number(id));
+      const cart = await this.dao.getCartById(toNumericId(cartId));
       return cart;
     } catch (error) {
       throw error;
@@ -60,7 +61,7 @@ class CartService {
 
   async addProductsArrayToCart(cartId,products){
     try {
-      const addedProducts = this.dao.addProductsArrayToCart(cartId,products);
+      const addedProducts = this.dao.addProductsArrayToCart(toNumericId(cartId),products);
       return addedProducts;
     } catch (error) {
       throw error;
@@ -78,10 +79,19 @@ class CartService {
     }
   }
 
-  async clearCart(id){
+  async clearCart(cartId){
     try {
-      const clearedCart = await this.dao.clearCart(id);
+      const clearedCart = await this.dao.clearCart(toNumericId(cartId));
       return clearedCart;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeProductFromAllCarts(productId) {
+    try {
+      const clearedCart = await this.dao.removeProductFromAllCarts(toNumericId(productId));
+      return clearedCart.modifiedCount;
     } catch (error) {
       throw error;
     }

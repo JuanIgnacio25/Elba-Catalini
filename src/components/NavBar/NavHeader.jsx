@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { MdPlace } from "react-icons/md";
 import { IoIosMail } from "react-icons/io";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa6";
@@ -34,7 +33,7 @@ function NavHeader() {
         isScrolled ? "nav-header-container-scrolled" : ""
       }`}
     >
-      <div className="nav-header-socialmedia">
+      <div className={`nav-header-socialmedia ${isScrolled ? "scrolled" : ""}`}>
         <a
           href="https://www.instagram.com/la_casa_del_acceso_/"
           target="_blank"
@@ -50,23 +49,16 @@ function NavHeader() {
           <FaFacebookF />
         </a>
       </div>
-      <div className="nav-header-text-container">
-        <p>Los mejores precios mayoristas del pais!</p>
+      <div className={`nav-header-text-container ${isScrolled ? "scrolled" : ""}`}>
+        <p>Todos los precios sujetos a presupuesto.</p>
       </div>
-      <div className="nav-header-items-container">
-        <Link href="/location">
-          <div className="nav-header-items">
-            <MdPlace />
-            <span>Local</span>
-          </div>
-        </Link>
-
-        <a href="mailto:nachocolli1@gmail.com">
+      <div className={`nav-header-items-container ${isScrolled ? "scrolled" : ""}`}>
+        <Link href="/contact">
           <div className="nav-header-items">
             <IoIosMail />
             <span>Contacto</span>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );

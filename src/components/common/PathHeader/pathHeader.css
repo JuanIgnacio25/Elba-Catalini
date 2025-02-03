@@ -26,3 +26,9 @@
   flex-flow: row wrap;
   gap:5px;
 }
+
+@media screen and (max-width: 870px) {
+  .path-header{
+    width: 90%;
+  }
+}

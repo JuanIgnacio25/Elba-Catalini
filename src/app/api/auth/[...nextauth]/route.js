@@ -15,7 +15,7 @@ const handler = NextAuth({
       async authorize(credentials, request) {
         try {
           await connectDB();
-          
+
           const userFound = await userService.getUserByEmail(credentials.email);
 
           if (!userFound) throw new Error("Email o contraseña inválidos");
@@ -46,8 +46,21 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ account, token, profile, user, session }) {
+    async jwt({ token, trigger, user }) {
       if (user) token.user = user;
+      if (trigger === "update") {
+        try {
+          await connectDB();
+
+          const userFound = await userService.getUserByEmail(token.email);
+
+          token.user.address = userFound.address;
+          token.user.location = userFound.location;
+          token.user.carrier = userFound.carrier;
+        } catch (error) {
+          console.log(error);
+        }
+      }
       return token;
     },
     session({ session, token }) {

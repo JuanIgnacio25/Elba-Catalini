@@ -5,6 +5,7 @@ class CartDao {
     this.collection = Cart;
   }
 
+  /* Crea un carrito vacio */
   async createCart() {
     try {
       const createdCart = await this.collection.create({});
@@ -14,6 +15,7 @@ class CartDao {
     }
   }
 
+  /* Obtiene un carrito por cartId */
   async getCartById(cartId) {
     try {
       const cart = await this.collection.findOne({ cartId });
@@ -23,6 +25,7 @@ class CartDao {
     }
   }
 
+  /* Busca el carrito por cartId y luego añade el producto que se le pasa */
   async addProductToCart(cartId, product) {
     try {
       const cartUpdated = this.collection.findOneAndUpdate(
@@ -50,6 +53,7 @@ class CartDao {
     }
   }
 
+  /* Agrega un array de productos al carrito (lo uso cuando quiero repetir la orden y agregar todos los productos de una) */
   async addProductsArrayToCart(cartId, products) {
     try {
       return Cart.updateOne(
@@ -61,6 +65,7 @@ class CartDao {
     }
   }
 
+  /* Busca el carrito por cartId y elimina el producto por productId */
   async removeProductFromCart(cartId, productId) {
     try {
       const result = await this.collection.updateOne(
@@ -72,14 +77,29 @@ class CartDao {
     }
   }
 
-  async clearCart(id) {
+  /* Vacia el array de productos del carrito , lo setea a [] */
+  async clearCart(cartId) {
     try {
       const clearedCart = await this.collection.findOneAndUpdate(
-        { cartId: id },
+        { cartId: cartId },
         { $set: { products: [] } },
         { new: true }
       );
       return clearedCart;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /* Elimina un producto por productId de todos los carritos */
+  async removeProductFromAllCarts(productId) {
+    try {
+      const result = await this.collection.updateMany(
+        { "products.productId": productId },
+        { $pull: { products: { productId: productId } } }
+      );
+
+      return result;
     } catch (error) {
       throw error;
     }

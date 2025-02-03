@@ -1,0 +1,43 @@
+.cart-closed-order-container-fallback{
+  display: flex;
+  flex-flow:column wrap;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  width: 80%;
+}
+
+.cart-closed-order-container{
+  display: flex;
+  flex-flow:column wrap;
+  justify-content: center;
+  align-items: center;
+  margin:120px 0px;
+  width: 100%;
+}
+
+.cart-closed-order{
+  display:flex;
+  flex-flow:column wrap;
+  width: 70%;
+  gap:20px;
+}
+
+.cart-closed-order-button-container{
+  display: flex;
+  justify-content: end;
+  width:100%;
+}
+
+
+@media (max-width:904px){
+  .cart-closed-order-container{
+    margin:80px 0px;
+  }
+  
+  .cart-closed-order{
+    width: 90%;
+    gap:10px;
+  }
+  
+}

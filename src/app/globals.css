@@ -6,9 +6,12 @@
   --black:#000000;
   --white:#ffffff;
   --red: #D72323;
+  --dark-red: #A51C1C;
   --light-red:rgba(215, 35, 35, 0.4);
   --gradient-red:linear-gradient(0deg, rgba(62,54,54,1) 0%, rgba(215,35,35,1) 89%);
+  --gradient-dark-red: linear-gradient(0deg, rgba(50,45,45,1) 0%, rgba(165,28,28,1) 89%);
   --light-green:rgba(40, 167, 69, 0.4);
+  --green:#008000;
   --dark-grey:#3E3636;
   --soft-grey: #cdc8c6;
   --light-grey:#F5EDED;
@@ -19,5 +22,11 @@ body {
   display:flex;
   flex-flow:column wrap;
   background: var(--extra-light-grey);
-  margin-top:20vh;
+  margin-top:25vh;
+}
+
+@media (max-width:903px){
+  body{
+    margin-top:16vh;
+  }
 }

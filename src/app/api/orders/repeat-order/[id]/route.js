@@ -4,9 +4,11 @@ import { getToken } from "next-auth/jwt";
 import { connectDB } from "@/libs/mongodb";
 import CartService from "@/models/cart/CartService";
 import OrderService from "@/models/order/OrderService";
+import ProductService from "@/models/product/ProductService";
 
 const orderService = new OrderService();
 const cartService = new CartService();
+const productService = new ProductService();
 
 export async function POST(req, { params }) {
 
@@ -26,6 +28,12 @@ export async function POST(req, { params }) {
 
     const order = await orderService.findOrdersByUserIdAndOrderId(token.user.id,orderId);
     if(!order) throw new Error('No se encontro la orden');
+
+    const productIds = order.products.map(product => product.productId);
+    
+    const allExists = await productService.checkProductsExist(productIds);
+
+    if(!allExists) throw new Error("No se puede repetir el pedido , porque alguno de los productos no esta mas en nuestro catalogo")
 
     await cartService.clearCart(token.user.cartId);
 

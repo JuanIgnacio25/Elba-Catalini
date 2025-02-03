@@ -49,7 +49,7 @@ function SimplifiedViewProductCard({ prod }) {
     <div className="simplified-view-product-card">
       <div className="simplified-view-product-card-image-container">
         <Link
-          href={"/products/baiml/simplifiedView"}
+          href={`/products/${prod.productId}`}
           className="simplified-view-product-card-image-link"
         >
           <Image

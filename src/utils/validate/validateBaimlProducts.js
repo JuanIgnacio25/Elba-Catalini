@@ -41,6 +41,11 @@ const baimlProductDtoSchema = Type.Object(
         type: "ProductSet debe ser un Number",
       },
     }),
+    kind: Type.String({
+      errorMessage: {
+        type: "Kind debe ser String",
+      },
+    }),
   },
   {
     additionalProperties: false,
@@ -53,6 +58,7 @@ const baimlProductDtoSchema = Type.Object(
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",
         productSet: "Falta la propiedad: productSet",
+        kind: "Falta la propiedad: kind"
       },
     },
   }

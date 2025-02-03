@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams} from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 
@@ -12,9 +12,9 @@ import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner
 
 function ProductDetailMain() {
   const params = useParams();
+  const router = useRouter();
   const id = params.id;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,11 +26,16 @@ function ProductDetailMain() {
       setProduct(res.data);
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error.response.data.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      router.push("/not-found");
+    }
+  }, [error]);
 
   useEffect(() => {
     fetchProduct();
@@ -41,21 +46,21 @@ function ProductDetailMain() {
       <div className="product-detail-container">
         <div className={`product-detail-header-container`}>
           <div className="product-detail-header">
-            <Link href={`/products/baiml`}>
+            <Link href={`/products`}>
               <p>{`Productos / `}</p>
             </Link>
           </div>
         </div>
         <div className="product-detail-main-container">
           <div className="product-detail-main-fallback">
-            <FallbackSpinner/>
+            <FallbackSpinner />
           </div>
         </div>
       </div>
     );
 
   if (error) {
-    return <div>{error}</div>
+    return null;
   }
 
   return (

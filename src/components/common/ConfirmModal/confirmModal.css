@@ -43,7 +43,7 @@
 .modal-body {
   margin: 20px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 18px;
 }
 
 /* Pie del modal */
@@ -56,59 +56,98 @@
 
 /* Botones del modal */
 .modal-button {
-  padding: 8px 18px;
-  background: var(--gradient-red);
-  color: var(--white);
+  display: flex;
+  flex-flow: row wrap;
+  align-items:center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 12px;
+  font-size:14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
 }
 
+.modal-button-accept{
+  color:var(--white);
+  background: var(--green);
+}
+
+.modal-button-cancel{
+  color:var(--black);
+  background: var(--soft-grey);
+}
+
 .modal-button:hover{
   box-shadow: 5px 10px 15px -3px rgba(0,0,0,0.3);
 }
 
-/* Media queries para pantallas pequeñas */
-@media (max-width: 768px) {
-  .modal-container {
-    width: 90%; /* Ocupa casi todo el ancho en pantallas pequeñas */
-  }
-
-  .modal-body {
-    font-size: 0.9rem; /* Reduce el tamaño del texto en pantallas más pequeñas */
-  }
-
-  .modal-footer {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Apila los botones verticalmente en pantallas pequeñas */
-  }
-
-  .modal-button {
-    width: 50%; /* Los botones ocupan el ancho completo */
-  }
-}
-
-/* Media queries para pantallas aún más pequeñas */
-@media (max-width: 480px) {
-  .modal-container {
-    width: 95%; /* El modal es un poco más amplio en pantallas muy pequeñas */
-    padding: 15px; /* Menos padding en pantallas pequeñas */
-  }
-
-  .modal-body {
-    font-size: 0.85rem; /* Texto aún más pequeño en pantallas muy pequeñas */
-  }
-}
-
-/* Animación de aparición */
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width:903px){
+  .modal-container{
+    width: 65%;
+  }
+
+  .modal-button {
+    gap: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    font-size:14px;
+  }
+}
+
+@media (max-width: 620px) {
+  .modal-container{
+    width: 71%;
+    padding: 10px;
+  }
+
+  .modal-body {
+    margin: 14px 0;
+    font-size: 16px;
+  }
+
+  .modal-footer{
+    gap: 10px;
+    padding: 0px 10px;
+  }
+
+  .modal-button {
+    gap: 3px;
+    padding: 6px;
+    border-radius: 5px;
+    font-size:12px;
+  }
+}
+
+@media (max-width: 476px) {
+  .modal-container{
+    width:80%;
+  }
+
+  .modal-body {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  .modal-footer{
+    gap: 5px;
+    padding: 0px 5px;
+  }
+
+  .modal-button {
+    gap: 3px;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-size:12px;
   }
 }

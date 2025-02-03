@@ -1,15 +1,13 @@
 import "./storeProducts.css";
 
 import PathHeader from "@/components/common/PathHeader/PathHeader";
-import StoreProductsCards from "@/components/views/Products/Store/StoreProductsCards";
+import StoreProductsMain from "./StoreProductsMain";
 
 function StoreProducts() {
   return (
     <div className="store-products-container">
       <PathHeader />
-      <div className="store-products">
-        <StoreProductsCards />
-      </div>
+      <StoreProductsMain/>
     </div>
   );
 }
