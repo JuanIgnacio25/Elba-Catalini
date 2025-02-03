@@ -2,7 +2,7 @@
 
 import "@/components/views/Orders/OrderDetail/orderDetail.css";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState , useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
@@ -30,7 +30,7 @@ function OrderDetailCard() {
   };
   const closeModal = () => setIsModalOpen(false);
 
-  const fetchOrder = async () => {
+  const fetchOrder = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`/api/orders/${id}`);
@@ -40,7 +40,7 @@ function OrderDetailCard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);  // Adding id as a dependency to fetch the correct order.
 
   const handleRepeatOrder = async () => {
     try {
@@ -57,7 +57,7 @@ function OrderDetailCard() {
 
   useEffect(() => {
     fetchOrder();
-  }, []);
+  }, [fetchOrder]);
 
   if (error) {
     return(

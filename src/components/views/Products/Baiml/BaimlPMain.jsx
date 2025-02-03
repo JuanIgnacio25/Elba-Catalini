@@ -34,7 +34,7 @@ function BaimlPMain() {
       setFilteredProducts(filtered);
     }
 
-  }, [baimlProducts, selectedCategories]);
+  }, [baimlProducts, selectedCategories,filterBaimlProducts, filteredProducts]);
 
   const onCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)

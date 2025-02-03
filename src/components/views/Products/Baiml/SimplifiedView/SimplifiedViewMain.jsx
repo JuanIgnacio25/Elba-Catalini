@@ -14,7 +14,7 @@ function SimplifiedViewMain() {
 
   useEffect(() => {
     setFilteredProducts(filterBaimlProducts(category));
-  }, [baimlProducts , loading , category]);
+  }, [baimlProducts , loading , category, filterBaimlProducts]);
 
   const handleCategoryChange = (category) => {
     setCategory(category);

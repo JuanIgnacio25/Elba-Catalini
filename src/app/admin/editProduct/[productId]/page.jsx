@@ -13,7 +13,7 @@ function UpdateProductPage() {
   const params = useParams();
   const router = useRouter();
 
-  const {fetchAllProducts} = useProduct();
+  const { fetchAllProducts } = useProduct();
 
   const { productId } = params;
 
@@ -21,13 +21,10 @@ function UpdateProductPage() {
   const [product, setProduct] = useState("");
   const [error, setError] = useState(null);
 
-  
-
-  const fetchProductById = async () => {
+  const fetchProductById = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`/api/products/${productId}`);
-      
       setProduct(res.data);
       setLoading(false);
     } catch (error) {
@@ -35,11 +32,11 @@ function UpdateProductPage() {
       setError(error);
       setLoading(false);
     }
-  };
+  }, [productId]);
 
   useEffect(() => {
     fetchProductById();
-  }, []);
+  }, [fetchProductById]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -71,10 +68,7 @@ function UpdateProductPage() {
     }
 
     try {
-      const res = await axios.patch(
-        `/api/products/${productId}`,
-        productToUpdate
-      );
+      await axios.patch(`/api/products/${productId}`, productToUpdate);
       await fetchAllProducts();
       router.push("/admin/dashboard");
     } catch (error) {
