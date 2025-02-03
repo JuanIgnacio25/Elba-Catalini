@@ -1,3 +1,5 @@
+"use server"
+
 import mongoose  from "mongoose";
 
 let connection = null;
@@ -15,5 +17,3 @@ export const connectDB = async () => {
     throw err;
   }
 };
-
-export default mongoose;
