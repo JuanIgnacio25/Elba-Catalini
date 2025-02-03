@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, } from "react";
+import { useState, useEffect, useMemo} from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import ProductsCards from "@/components/common/ProductsCards/ProductsCards"
