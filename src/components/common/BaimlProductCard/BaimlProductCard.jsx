@@ -92,6 +92,7 @@ function ProductCard({ prod }) {
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          aria-label="Baiml Product Quantity Input"
         />
         <button
           className="baiml-p-card-add-button"

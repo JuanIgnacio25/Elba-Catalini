@@ -41,7 +41,7 @@
 
 .footer-main-info{
   flex-flow:column wrap;
-  color:var(--white);
+  color:var(--dark-grey);
   font-size:18px;
 }
 

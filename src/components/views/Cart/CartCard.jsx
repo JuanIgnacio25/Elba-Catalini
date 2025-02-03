@@ -47,6 +47,7 @@ function CartCard({ product }) {
             name="cart-product-quantity"
             value={quantity}
             onChange={handleQuantityChange}
+            aria-label="Cart Product Quantity Input"
           />
         </div>
       </td>

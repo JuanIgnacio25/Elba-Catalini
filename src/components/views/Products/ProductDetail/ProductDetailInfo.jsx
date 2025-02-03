@@ -77,6 +77,7 @@ function ProductDetailInfo({ product }) {
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          aria-label="Product Detail Quantity Input"
         />
         <button
           className={`product-detail-main-info-add-button`}

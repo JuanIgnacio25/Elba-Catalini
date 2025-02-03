@@ -26,8 +26,8 @@ function NavCart() {
   }
 
   return (
-    <Link href="/cart" className="nav-main-menu-cart-link">
-      <BsCart3 className="nav-main-menu-icon-cart" />
+    <Link href="/cart" className="nav-main-menu-cart-link" aria-label="Go to the Cart">
+      <BsCart3 className="nav-main-menu-icon-cart" alt="" aria-hidden="true"/>
       {cart.products.length > 0 && (
         <span className="nav-main-menu-cart-counter">
           {cart.products.length}

@@ -38,15 +38,17 @@ function NavHeader() {
           href="https://www.instagram.com/la_casa_del_acceso_/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Go to Instagram"
         >
-          <RiInstagramFill />
+          <RiInstagramFill alt="" aria-hidden="true"/>
         </a>
         <a
           href="https://www.facebook.com/ElbaCatalini"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Go to Facebook"
         >
-          <FaFacebookF />
+          <FaFacebookF alt="" aria-hidden="true"/>
         </a>
       </div>
       <div className={`nav-header-text-container ${isScrolled ? "scrolled" : ""}`}>
