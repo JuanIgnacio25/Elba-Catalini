@@ -11,9 +11,9 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
+  /* experimental: {
     optimizeCss: true,
-  },
+  }, */
 };
 
 export default nextConfig;
