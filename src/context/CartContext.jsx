@@ -29,7 +29,7 @@ export function CartProvider({ children }) {
       setLoading(false);
       setCart({ products: [] });
     }
-  }, [status]); // ✅ useCallback mantiene estable la función
+  }, [status]);
 
   const addProductToCart = async (id, quantity) => {
     if (status === "authenticated") {
@@ -84,7 +84,7 @@ export function CartProvider({ children }) {
     if (status !== "loading") {
       fetchCart();
     }
-  }, [fetchCart]); // ✅ Ya no causa el warning
+  }, [fetchCart,status]);
 
   return (
     <CartContext.Provider

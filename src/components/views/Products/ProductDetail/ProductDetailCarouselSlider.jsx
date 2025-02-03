@@ -21,6 +21,7 @@ function ProductDetailCarouselSlider({ product }) {
                 alt={`${product.name} image`}
                 width={"70"}
                 height={"70"}
+                priority
                 className={`product-deatil-carousel-slider-side-bar-image ${
                   selectedImage === image ? "selected" : ""
                 }`}

@@ -34,7 +34,7 @@ function ToxicShineMain() {
       setFilteredProducts(filtered);
     }
 
-  }, [toxicShineProducts, selectedCategories, filterToxicShineProducts]);
+  }, [toxicShineProducts, selectedCategories, filterToxicShineProducts, filteredProducts]);
 
   const onCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)

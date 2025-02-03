@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import { BAIML_CATEGORIES } from "@/constants/categories";
@@ -21,8 +21,11 @@ function BaimlPMain() {
   const { baimlProducts, loading, filterBaimlProducts } = useProduct();
 
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const categories = searchParams.get("categories");
-  const selectedCategories = categories ? categories.split(",") : [];
+  
+  const selectedCategories = useMemo(() => {
+    const categories = searchParams.get("categories");
+    return categories ? categories.split(",") : [];
+  }, [searchParams]);
 
   useEffect(() => {
     const filtered =
