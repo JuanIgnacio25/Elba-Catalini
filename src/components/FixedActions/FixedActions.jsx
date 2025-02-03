@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+
 import { IoMdArrowUp } from "react-icons/io";
 
 export default function FixedActions() {
@@ -43,7 +45,12 @@ export default function FixedActions() {
         className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         aria-label="WhatsApp"
       >
-        <img src="/whatsapp-logo.png" alt="WhatsApp" className="w-11 h-11" />
+        <Image
+          src="/whatsapp-logo.png"
+          alt="WhatsApp"
+          width={44}
+          height={44}
+        />
       </a>
     </div>
   );
