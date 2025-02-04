@@ -405,7 +405,7 @@ function DashboardPage() {
                       <button
                         type="button"
                         onClick={() => handleRemoveImage(index)}
-                        className="absolute top-1 right-6 text-red-500 text-lg"
+                        className="absolute top-1 right-1 text-red-500 text-lg"
                       >
                         <IoMdCloseCircle />
                       </button>

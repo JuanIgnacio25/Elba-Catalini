@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
-import { useRouter} from "next/navigation";
-import { useSession} from "next-auth/react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
-import Link from "next/link";
+
+import { Tooltip } from "react-tooltip";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 
 function RegisterMain() {
-
   const router = useRouter();
 
   const [companyName, setCompranyName] = useState("");
-  const [cuit , setCuit] = useState("");
+  const [cuit, setCuit] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [purchasingManagerName, setPurchasingManagerName] = useState("");
   const [location, setLocation] = useState("");
@@ -22,7 +22,7 @@ function RegisterMain() {
   const [validatePassword, setValidatePassword] = useState("");
   const [error, setError] = useState("");
 
-
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const handleInputChange = (e, setState) => {
     const inputValue = e.target.value;
@@ -31,7 +31,6 @@ function RegisterMain() {
       setState(inputValue);
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,16 +46,27 @@ function RegisterMain() {
         carrier,
         email,
         password,
-        validatePassword
+        validatePassword,
       });
-      
+
       router.refresh();
-      router.push(`/auth/verifying-account/${res.data.savedTemporalUser.email}`);
+      router.push(
+        `/auth/verifying-account/${res.data.savedTemporalUser.email}`
+      );
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    let timeout;
+
+    if (tooltipVisible) {
+      timeout = setTimeout(() => setTooltipVisible(false), 5000);
+    }
+    return () => clearTimeout(timeout);
+  }, [tooltipVisible]);
 
   return (
     <form onSubmit={handleSubmit} className="register-main-container">
@@ -82,11 +92,13 @@ function RegisterMain() {
             name="cuit"
             autoComplete="cuit"
             required={true}
-            onChange={(e) => handleInputChange(e,setCuit)}
+            onChange={(e) => handleInputChange(e, setCuit)}
           />
         </div>
         <div className="register-main-data">
-          <p>Celular<span>{"(codigo de area + numero)"}</span></p>
+          <p>
+            Celular<span>{"(codigo de area + numero)"}</span>
+          </p>
           <input
             type="text"
             placeholder="ej: 3471670274"
@@ -94,7 +106,7 @@ function RegisterMain() {
             name="phone-number"
             autoComplete="phone-number"
             required={true}
-            onChange={(e) => handleInputChange(e,setPhoneNumber)}
+            onChange={(e) => handleInputChange(e, setPhoneNumber)}
           />
         </div>
         <div className="register-main-data">
@@ -154,14 +166,41 @@ function RegisterMain() {
         </div>
         <div className="register-main-data">
           <p>Contraseña</p>
-          <input
-            type="password"
-            placeholder="********"
-            name="password"
-            autoComplete="password"
-            required={true}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="relative">
+            <input
+              type="password"
+              placeholder="********"
+              name="password"
+              autoComplete="password"
+              required={true}
+              onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setTooltipVisible(true)}
+              onBlur={() => setTooltipVisible(false)}
+              data-tooltip-id="password-tooltip"
+            />
+            <div
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+              data-tooltip-id="password-tooltip"
+              onMouseEnter={() => setTooltipVisible(true)}
+              onMouseLeave={() => setTooltipVisible(false)}
+            >
+              <IoIosInformationCircleOutline size={18} />
+            </div>
+            <Tooltip
+              id="password-tooltip"
+              isOpen={tooltipVisible}
+              place="top"
+              className="!bg-gray-800 !text-white !rounded-md !p-3 !text-xs !md:text-sm !shadow-lg !w-44 text-center"
+            >
+              <p>Debe tener al menos:</p>
+              <ul className="list-disc list-inside text-start text-xs mt-1">
+                <li>8 caracteres</li>
+                <li>1 mayúscula</li>
+                <li>1 número</li>
+                <li>1 símbolo</li>
+              </ul>
+            </Tooltip>
+          </div>
         </div>
         <div className="register-main-data">
           <p>Confirmar Contraseña</p>
@@ -178,7 +217,7 @@ function RegisterMain() {
       </div>
       <button className="register-main-button">Registrarse</button>
     </form>
-  )
+  );
 }
 
-export default RegisterMain
+export default RegisterMain;
