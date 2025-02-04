@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useProduct } from "@/context/ProductContext";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+
+import { IoMdCloseCircle } from "react-icons/io";
 
 import {
   BAIML_CATEGORIES,
@@ -32,6 +34,9 @@ function DashboardPage() {
   const [productSet, setProductSet] = useState("");
   const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
+
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const router = useRouter();
 
@@ -67,8 +72,11 @@ function DashboardPage() {
     });
 
     try {
+      setError(false);
+      setSuccess(false);
       const res = await axios.post("/api/products", formData);
       console.log(res);
+      setSuccess(true);
 
       setName("");
       setSku("");
@@ -89,7 +97,8 @@ function DashboardPage() {
 
       urlsToRevoke.forEach((url) => URL.revokeObjectURL(url));
     } catch (error) {
-      console.error(error.response?.data || error.message);
+      console.error(error);
+      setError(error.response.data.message);
     } finally {
       fetchAllProducts();
     }
@@ -97,10 +106,19 @@ function DashboardPage() {
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
     setImages((prevImages) => [...prevImages, ...files]);
 
     const newImageUrls = files.map((file) => URL.createObjectURL(file));
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
+
+    e.target.value = "";
+  };
+
+  const handleRemoveImage = (index) => {
+    setImageUrls((prev) => prev.filter((_, i) => i !== index));
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   const handleDelete = async (id) => {
@@ -114,159 +132,319 @@ function DashboardPage() {
     }
   };
 
+  const handleFormFocus = (e) => {
+    if (
+      e.target.tagName === "INPUT" ||
+      e.target.tagName === "TEXTAREA" ||
+      e.target.tagName === "SELECT"
+    ) {
+      setError(false);
+      setSuccess(false);
+    }
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit} className="text-black" id="login-form">
-        <select
-          id="kind-options"
-          value={kind}
-          onChange={(e) => setKind(e.target.value)}
-        >
-          <option value="" disabled hidden>Tipo</option>
-          <option value={"Baiml"}>Baiml</option>
-          <option value={"Store"}>Store</option>
-        </select>
-
-        <input
-          type="text"
-          placeholder="1035a"
-          name="name"
-          value={name}
-          autoComplete="name"
-          required={true}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="sku"
-          name="sku"
-          value={sku}
-          autoComplete="sku"
-          required={true}
-          onChange={(e) => setSku(e.target.value)}
-        />
-
-        <textarea
-          type="text"
-          placeholder="Description"
-          name="description"
-          value={description}
-          autoComplete="description"
-          required={true}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="unit"
-          name="unit"
-          value={unit}
-          autoComplete="unit"
-          required={true}
-          onChange={(e) => setUnit(e.target.value)}
-        />
-        {kind === "Baiml" && (
-          <>
-            <select
-              id="baiml-options"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="" disabled hidden>
-                Category
-              </option>
-              {baimlOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-
-            <input
-              type="number"
-              placeholder="ProductSet"
-              name="productSet"
-              value={productSet}
-              autoComplete="set"
-              required={true}
-              onChange={(e) => setProductSet(e.target.value)}
-            />
-          </>
-        )}
-
-        {kind === "Store" && (
-          <>
-            <select
-              id="store-options"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="" disabled hidden>
-                Category
-              </option>
-              {storeOptions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-
-            {category === "Toxic Shine" && (
-              <select
-                id="toxic-options"
-                value={subCategory}
-                onChange={(e) => setSubCategory(e.target.value)}
+      <div className="pb-8 px-4 mx-auto mb-7 max-w-full lg:pb-16">
+        <div className="flex justify-center w-full">
+          <h2 className="mb-4 text-xl font-bold text-gray-900">
+            Agregar un Producto Nuevo
+          </h2>
+        </div>
+        <form onSubmit={handleSubmit} onFocus={handleFormFocus}>
+          <div className="grid gap-4 sm:grid-cols-6 sm:gap-3">
+            <div className="w-full">
+              <label
+                htmlFor="name"
+                className="block mb-2 text-sm font-medium text-gray-900"
               >
-                <option value="" disabled hidden>
-                  Category
-                </option>
-                {toxicShineOptions.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            )}
-
-            {category !== "Toxic Shine" && (
+                Nombre
+              </label>
               <input
                 type="text"
-                placeholder="SubCategory"
-                name="SubCategory"
-                value={subCategory}
-                autoComplete="subCategory"
-                onChange={(e) => setSubCategory(e.target.value)}
+                placeholder="1035a"
+                name="name"
+                value={name}
+                autoComplete="name"
+                required={true}
+                onChange={(e) => setName(e.target.value)}
+                id="name"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-600 block w-full p-2.5 "
               />
-            )}
-          </>
-        )}
+            </div>
 
-        <input
-          type="file"
-          multiple
-          onChange={handleImageChange}
-          ref={imageInputRef}
-        />
+            <div className="w-full">
+              <label
+                htmlFor="price"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Unidad
+              </label>
+              <input
+                type="number"
+                placeholder="12"
+                name="unit"
+                value={unit}
+                autoComplete="unit"
+                required={true}
+                onChange={(e) => setUnit(e.target.value)}
+                id="unit"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="sku"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Sku
+              </label>
+              <input
+                type="text"
+                placeholder="sku"
+                name="sku"
+                value={sku}
+                autoComplete="sku"
+                required={true}
+                onChange={(e) => setSku(e.target.value)}
+                id="sku"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="kind-options"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Tipo de Producto
+              </label>
+              <select
+                id="kind-options"
+                value={kind}
+                onChange={(e) => setKind(e.target.value)}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="" disabled hidden>
+                  Tipo
+                </option>
+                <option value={"Baiml"}>Baiml</option>
+                <option value={"Store"}>Producto de la Tienda</option>
+              </select>
+            </div>
 
-        <div>
-          {imageUrls.length > 0 && (
-            <ul>
-              {imageUrls.map((url, index) => (
-                <li key={index}>
-                  <Image
-                    src={url}
-                    alt={`Uploaded image ${index + 1}`}
-                    width={200}
-                    height={200}
+            {kind === "Baiml" && (
+              <>
+                <div>
+                  <label
+                    htmlFor="baiml-options"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Categoria
+                  </label>
+                  <select
+                    id="baiml-options"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option value="" disabled hidden>
+                      Categoria
+                    </option>
+                    {baimlOptions.map((option, index) => (
+                      <option key={index} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-full">
+                  <label
+                    htmlFor="ProductSet"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Juegos
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    name="productSet"
+                    value={productSet}
+                    autoComplete="set"
+                    required={true}
+                    onChange={(e) => setProductSet(e.target.value)}
+                    id="ProductSet"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+                </div>
+              </>
+            )}
 
-        <button className="bg-white">Add product</button>
-      </form>
+            {kind === "Store" && (
+              <>
+                <div>
+                  <label
+                    htmlFor="baiml-options"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Categoria
+                  </label>
+                  <select
+                    id="store-options"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option value="" disabled hidden>
+                      Categoria
+                    </option>
+                    {storeOptions.map((option, index) => (
+                      <option key={index} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {category === "Toxic Shine" && (
+                  <div>
+                    <label
+                      htmlFor="baiml-options"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Sub Categoria
+                    </label>
+                    <select
+                      id="toxic-options"
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                      <option value="" disabled hidden>
+                        Sub Categoria
+                      </option>
+                      {toxicShineOptions.map((option, index) => (
+                        <option key={index} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {category !== "Toxic Shine" && (
+                  <div className="w-full">
+                    <label
+                      htmlFor="SubCategory"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Sub Categoria
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Iluminacion"
+                      name="SubCategory"
+                      value={subCategory}
+                      autoComplete="subCategory"
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      id="SubCategory"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                  </div>
+                )}
+              </>
+            )}
+            <div className="sm:col-span-3">
+              <label
+                htmlFor="description"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Descripcion del Producto
+              </label>
+              <textarea
+                type="text"
+                placeholder="Unipolar Peso aprox.: Unidad: 90 g Caja x 12: 1230 g"
+                name="description"
+                value={description}
+                autoComplete="description"
+                required={true}
+                onChange={(e) => setDescription(e.target.value)}
+                id="description"
+                rows="11"
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              ></textarea>
+            </div>
+
+            <div className="sm:col-span-3">
+              <label
+                htmlFor="images"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Imágenes del Producto
+              </label>
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageChange}
+                ref={imageInputRef}
+                className="hidden"
+                id="file-upload"
+              />
+
+              {/* Botón Estilizado */}
+              <label
+                htmlFor="file-upload"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg cursor-pointer hover:bg-red-800"
+              >
+                Seleccionar imágenes
+              </label>
+              {imageUrls.length > 0 && (
+                <div className="mt-4 grid grid-cols-4 gap-2">
+                  {imageUrls.map((url, index) => (
+                    <div key={index} className="relative flex justify-center">
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(index)}
+                        className="absolute top-1 right-6 text-red-500 text-lg"
+                      >
+                        <IoMdCloseCircle />
+                      </button>
+
+                      <Image
+                        src={url}
+                        alt={`Uploaded image ${index + 1}`}
+                        width={210}
+                        height={210}
+                        className="rounded-lg border border-gray-300 dark:border-gray-600"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-center w-full">
+            <button
+              type="submit"
+              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-600 hover:bg-red-800 rounded-lg "
+            >
+              Añadir Producto
+            </button>
+          </div>
+          {success && (
+            <div className="flex justify-center w-full">
+              <p className="text-lg text-green-600 font-semibold">
+                Producto agregado correctamente!
+              </p>
+            </div>
+          )}
+          {error && (
+            <div className="flex justify-center w-full">
+              <p className="text-lg text-red-600 font-semibold">{error}</p>
+            </div>
+          )}
+        </form>
+      </div>
 
       <table>
         <thead>
@@ -276,7 +454,7 @@ function DashboardPage() {
             <th>Sku</th>
             <th>Categoria</th>
             <th>SubCategoria</th>
-            
+
             <th>Unidad</th>
             <th>Juegos</th>
             <th>Imágenes</th>
@@ -290,7 +468,7 @@ function DashboardPage() {
               <td>{prod.sku}</td>
               <td>{prod.category}</td>
               <td>{prod.subCategory}</td>
-              
+
               <td>{prod.unit}</td>
               <td>{prod.productSet}</td>
               <td>

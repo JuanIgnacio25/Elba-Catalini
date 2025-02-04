@@ -29,7 +29,7 @@ export async function POST(request) {
     }
 
     if (validateImage(images).length !== 0) {
-      return NextResponse.json("No se subio imagen o exece los 3MB", {
+      return NextResponse.json({message:"No se subio imagen o exece los 3MB"}, {
         status: 400,
       });
     }
