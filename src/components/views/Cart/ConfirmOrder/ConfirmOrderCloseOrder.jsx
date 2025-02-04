@@ -18,7 +18,9 @@ function ConfirmOrderCloseOrder({ fetchCart , deliveryOption , handleError , com
 
   useEffect(() => {
     if (closedOrder) {
-      router.push("/cart/closedOrder");
+      setTimeout(() => {
+        router.replace("/cart/closedOrder");
+      }, 100);
     }
   }, [closedOrder, router]);
 
@@ -26,8 +28,8 @@ function ConfirmOrderCloseOrder({ fetchCart , deliveryOption , handleError , com
     try {
       setLoadingCloseOrder(true);
       await axios.post(`/api/orders/close-order`, { cartData: {deliveryOption: deliveryOption , comments : comments} });
-      fetchCart();
       setClosedOrder(true);
+      fetchCart();
       closeCloseCartModal()
       setLoadingCloseOrder(false);
     } catch (error) {
