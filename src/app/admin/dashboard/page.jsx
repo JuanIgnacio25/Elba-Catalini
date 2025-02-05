@@ -25,6 +25,7 @@ function DashboardPage() {
   const storeOptions = [...STORE_CATEGORIES];
 
   const [name, setName] = useState("");
+  const [nameForOrders, setNameForOrders] = useState("");
   const [sku, setSku] = useState("");
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
@@ -49,6 +50,7 @@ function DashboardPage() {
 
     if (kind === "Baiml") {
       formData.append("name", name);
+      formData.append("nameForOrders", nameForOrders);
       formData.append("sku", sku);
       formData.append("category", category);
       formData.append("description", description);
@@ -59,6 +61,7 @@ function DashboardPage() {
 
     if (kind === "Store") {
       formData.append("name", name);
+      formData.append("nameForOrders", nameForOrders);
       formData.append("sku", sku);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
@@ -79,6 +82,7 @@ function DashboardPage() {
       setSuccess(true);
 
       setName("");
+      setNameForOrders("");
       setSku("");
       setCategory("");
       setSubCategory("");
@@ -162,7 +166,7 @@ function DashboardPage() {
               </label>
               <input
                 type="text"
-                placeholder="1035a"
+                placeholder="Faro Baiml 1035.A"
                 name="name"
                 value={name}
                 autoComplete="name"
@@ -171,6 +175,67 @@ function DashboardPage() {
                 id="name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-600 block w-full p-2.5 "
               />
+            </div>
+
+            <div className="w-full">
+              <label
+                htmlFor="nameForOrders"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Nombre Para Pedidos
+              </label>
+              <input
+                type="text"
+                placeholder="FARO 1035.A"
+                name="nameForOrders"
+                value={nameForOrders}
+                autoComplete="nameForOrders"
+                required={true}
+                onChange={(e) => setNameForOrders(e.target.value)}
+                id="nameForOrders"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-600 block w-full p-2.5 "
+              />
+            </div>
+
+            <div className="w-full">
+              <label
+                htmlFor="sku"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Sku
+              </label>
+              <input
+                type="text"
+                placeholder="sku"
+                name="sku"
+                value={sku}
+                autoComplete="sku"
+                required={true}
+                onChange={(e) => setSku(e.target.value)}
+                id="sku"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="kind-options"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Tipo de Producto
+              </label>
+              <select
+                id="kind-options"
+                value={kind}
+                onChange={(e) => setKind(e.target.value)}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="" disabled hidden>
+                  Tipo
+                </option>
+                <option value={"Baiml"}>Baiml</option>
+                <option value={"Store"}>Producto de la Tienda</option>
+              </select>
             </div>
 
             <div className="w-full">
@@ -191,45 +256,6 @@ function DashboardPage() {
                 id="unit"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
-            </div>
-            <div className="w-full">
-              <label
-                htmlFor="sku"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Sku
-              </label>
-              <input
-                type="text"
-                placeholder="sku"
-                name="sku"
-                value={sku}
-                autoComplete="sku"
-                required={true}
-                onChange={(e) => setSku(e.target.value)}
-                id="sku"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="kind-options"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Tipo de Producto
-              </label>
-              <select
-                id="kind-options"
-                value={kind}
-                onChange={(e) => setKind(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option value="" disabled hidden>
-                  Tipo
-                </option>
-                <option value={"Baiml"}>Baiml</option>
-                <option value={"Store"}>Producto de la Tienda</option>
-              </select>
             </div>
 
             {kind === "Baiml" && (
@@ -353,7 +379,7 @@ function DashboardPage() {
                 )}
               </>
             )}
-            <div className="sm:col-span-3">
+            <div className="sm:col-span-2">
               <label
                 htmlFor="description"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -451,10 +477,10 @@ function DashboardPage() {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Nombre Para Pedidos</th>
             <th>Sku</th>
             <th>Categoria</th>
             <th>SubCategoria</th>
-
             <th>Unidad</th>
             <th>Juegos</th>
             <th>Imágenes</th>
@@ -465,10 +491,10 @@ function DashboardPage() {
             <tr key={prod.productId}>
               <td>{prod.productId}</td>
               <td>{prod.name}</td>
+              <td>{prod.nameForOrders}</td>
               <td>{prod.sku}</td>
               <td>{prod.category}</td>
               <td>{prod.subCategory}</td>
-
               <td>{prod.unit}</td>
               <td>{prod.productSet}</td>
               <td>

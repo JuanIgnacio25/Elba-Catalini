@@ -17,6 +17,12 @@ const ProductSchema = new mongoose.Schema(
       minLength: [2, "El nombre debe tener almenos 2 caracteres"],
       maxLength: [80, "El nombre debe tener menos de 80 caracteres"],
     },
+    nameForOrders: {
+      type: String,
+      required: [true, "El nombre para pedidos es requerido"],
+      minLength: [2, "El nombre para pedidos debe tener almenos 2 caracteres"],
+      maxLength: [80, "El nombre para pedidos debe tener menos de 80 caracteres"],
+    },
     sku: {
       type: String,
       required: [true, "El sku es requerido"],
