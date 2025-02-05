@@ -197,7 +197,7 @@ function RegisterMain() {
                 <li>8 caracteres</li>
                 <li>1 mayúscula</li>
                 <li>1 número</li>
-                <li>1 símbolo</li>
+                <li>Sin espacios</li>
               </ul>
             </Tooltip>
           </div>

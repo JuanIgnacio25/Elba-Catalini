@@ -16,9 +16,7 @@ validatePassword
   .has()
   .lowercase()
   .has()
-  .digits(2)
-  .has()
-  .symbols()
+  .digits(1)
   .has()
   .not()
   .spaces();
