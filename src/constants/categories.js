@@ -9,6 +9,7 @@ export const BAIML_CATEGORIES = [
   "Faros de stop / Antiniebla",
   "Faros traseros",
   "Traseros electrónicos",
+  "Faros flexibles",
   "Faros flexibles electrónicos",
   "Soportes",
   "Soportes electrónicos",
