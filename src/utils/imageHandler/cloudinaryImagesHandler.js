@@ -1,7 +1,7 @@
 import cloudinary from "@/libs/cloudinary";
 
 // Subir a Cloudinary las imágenes 1 por 1 y luego devolver un objeto con las respuestas de cada imagen
-const uploadImagesToCloudinary = async (images) => {
+export const uploadImagesToCloudinary = async (images) => {
   const uploadPromises = images.map(async (image) => {
     // Convertir el archivo a un buffer
     const bytes = await image.arrayBuffer();
@@ -46,4 +46,20 @@ const uploadImagesToCloudinary = async (images) => {
   return uploadResults;
 };
 
-export default uploadImagesToCloudinary;
+export const deleteImagesFromCloudinary = async (imageIds) => {
+  if (!imageIds || imageIds.length === 0) {
+    return { message: "No images to delete." };
+  }
+
+  try {
+    const deletePromises = imageIds.map((image) =>
+      cloudinary.uploader.destroy(image.public_id)
+    );
+
+    const results = await Promise.all(deletePromises);
+    return results;
+  } catch (error) {
+    console.error("Error deleting images from Cloudinary:", error);
+    throw new Error("Failed to delete images.");
+  }
+};

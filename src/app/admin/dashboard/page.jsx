@@ -501,7 +501,7 @@ function DashboardPage() {
                 {prod.images?.map((img, index) => (
                   <Image
                     key={index}
-                    src={img}
+                    src={img.url}
                     alt={`Imagen ${index}`}
                     width={50}
                     height={50}

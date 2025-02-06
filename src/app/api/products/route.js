@@ -5,7 +5,7 @@ import ProductService from "@/models/product/ProductService";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
 import validateImage from "@/utils/validate/validateImage";
-import uploadImagesToCloudinary from "@/utils/cloudinaryUploader";
+import { uploadImagesToCloudinary } from "@/utils/imageHandler/cloudinaryImagesHandler";
 
 const productService = new ProductService();
 
@@ -22,20 +22,26 @@ export async function POST(request) {
     if (kind === "Baiml") {
       formFields.productSet = Number(formFields.productSet);
       isValidBaimlProduct(formFields);
-    }else if(kind === "Store"){
+    } else if (kind === "Store") {
       isValidStoreProduct(formFields);
     } else {
       throw new Error("El tipo de producto no es valido");
     }
 
     if (validateImage(images).length !== 0) {
-      return NextResponse.json({message:"No se subio imagen o exece los 3MB"}, {
-        status: 400,
-      });
+      return NextResponse.json(
+        { message: "No se subio imagen o exece los 3MB" },
+        {
+          status: 400,
+        }
+      );
     }
 
     const uploadResults = await uploadImagesToCloudinary(images);
-    const uploadedImagesUrls = uploadResults.map((e) => e.secure_url);
+    const uploadedImagesUrls = uploadResults.map((e) => ({
+      url: e.secure_url,
+      public_id: e.public_id,
+    }));
 
     await connectDB();
 

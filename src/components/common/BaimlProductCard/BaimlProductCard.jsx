@@ -64,7 +64,7 @@ function ProductCard({ prod }) {
         >
           <Image
             className="baiml-p-card-img"
-            src={prod.images[0]}
+            src={prod.images[0].url}
             alt="Logo-Product"
             width={485}
             height={485}

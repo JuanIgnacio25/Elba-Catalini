@@ -41,7 +41,7 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "La unidad es requerida"],
     },
     images: {
-      type: [String],
+      type: [Object],
       required: true,
     },
   },
