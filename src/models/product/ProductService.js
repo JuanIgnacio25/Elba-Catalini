@@ -3,7 +3,10 @@ import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
 import { isValidProductInfo } from "@/utils/validate/validateProductCategoryInfo";
 import toNumericId from "@/utils/toNumericId";
-import { deleteImageFromCloudinary } from "@/utils/imageHandler/cloudinaryImagesHandler";
+import {
+  deleteImageFromCloudinary,
+  uploadImagesToCloudinary,
+} from "@/utils/imageHandler/cloudinaryImagesHandler";
 
 class ProductService {
   constructor() {
@@ -84,8 +87,25 @@ class ProductService {
       }
 
       if (updateProduct) {
-        return await this.dao.updateProductImage(productId, public_id);
+        return await this.dao.deleteProductImage(productId, public_id);
       }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateProductImage(productId, newImage) {
+    try {
+      const uploadResults = await uploadImagesToCloudinary([newImage]);
+      const uploadedImagesUrls = uploadResults.map((e) => ({
+        url: e.secure_url,
+        public_id: e.public_id,
+      }));
+
+      await this.dao.updateProductImage(
+        toNumericId(productId),
+        uploadedImagesUrls[0]
+      );
     } catch (error) {
       throw error;
     }

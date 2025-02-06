@@ -2,9 +2,8 @@ import cloudinary from "@/libs/cloudinary";
 
 export const uploadImagesToCloudinary = async (images) => {
   const uploadPromises = images.map(async (image) => {
-
     const fileName = image.name.split(".").slice(0, -1).join(".");
-    
+
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -50,11 +49,8 @@ export const uploadImagesToCloudinary = async (images) => {
 };
 
 export const deleteImageFromCloudinary = async (public_id) => {
- 
   try {
-    await cloudinary.uploader.destroy(public_id)
-    
-    return result;
+    await cloudinary.uploader.destroy(public_id);
   } catch (error) {
     console.error("Error deleting images from Cloudinary:", error);
     throw new Error("Failed to delete images.");

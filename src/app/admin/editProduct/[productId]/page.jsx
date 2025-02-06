@@ -24,7 +24,6 @@ function UpdateProductPage() {
   const [product, setProduct] = useState("");
   const [error, setError] = useState(null);
   const [warningMessage, setWarningMessage] = useState(null);
-
   const [deletingImage, setDeletingImage] = useState(false);
 
   const fetchProductById = useCallback(async () => {
@@ -53,6 +52,7 @@ function UpdateProductPage() {
       productToUpdate = {
         kind: product.kind,
         name: product.name,
+        nameForOrders: product.nameForOrders,
         sku: product.sku,
         description: product.description,
         unit: product.unit,
@@ -65,6 +65,7 @@ function UpdateProductPage() {
       productToUpdate = {
         kind: product.kind,
         name: product.name,
+        nameForOrders: product.nameForOrders,
         sku: product.sku,
         description: product.description,
         unit: product.unit,
@@ -82,18 +83,37 @@ function UpdateProductPage() {
     }
   };
 
+  const handleAddImage = async (e) => {
+    const formData = new FormData();
+    const files = e.target.files;
+
+    formData.append("image", files[0]);
+
+    try {
+      const res = await axios.patch(
+        `/api/products/${productId}/images`,
+        formData
+      );
+      console.log(res);
+      await fetchProductById();
+      await fetchAllProducts();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDeleteImage = async (public_id) => {
     try {
-      if(product.images.length === 1){
-        setWarningMessage("No puedes eliminar la única imagen del producto , agrega una imagen antes de eliminarla");
+      if (product.images.length === 1) {
+        setWarningMessage(
+          "No puedes eliminar la única imagen del producto , agrega una imagen antes de eliminarla"
+        );
         return;
       }
       setDeletingImage(public_id);
-      const res = await axios.delete(
-        `/api/products/${productId}/images/${public_id}`
-      );
+      await axios.delete(`/api/products/${productId}/images/${public_id}`);
       await fetchProductById();
-      console.log(res);
+      await fetchAllProducts();
       setDeletingImage(false);
     } catch (error) {
       console.log(error);
@@ -120,6 +140,21 @@ function UpdateProductPage() {
             setProduct((prevProduct) => ({
               ...prevProduct,
               name: e.target.value,
+            }));
+          }}
+        />
+
+        <input
+          type="text"
+          placeholder="FARO 1035.A"
+          name="nameForOrders"
+          autoComplete="nameForOrders"
+          required={true}
+          value={product.nameForOrders}
+          onChange={(e) => {
+            setProduct((prevProduct) => ({
+              ...prevProduct,
+              nameForOrders: e.target.value,
             }));
           }}
         />
@@ -280,8 +315,8 @@ function UpdateProductPage() {
             type="file"
             multiple
             accept="image/*"
-            /* onChange={handleImageChange}
-            ref={imageInputRef} */
+            onChange={handleAddImage}
+            /* ref={imageInputRef} */
             onClick={() => setWarningMessage(null)}
             className="hidden"
             id="file-upload"

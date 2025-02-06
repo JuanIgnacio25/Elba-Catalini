@@ -124,11 +124,27 @@ class ProductDao {
     }
   }
 
-  async updateProductImage(productId, public_id) {
+  async deleteProductImage(productId, public_id) {
     try {
       const updatedProduct = await this.collection.findOneAndUpdate(
         { productId },
         { $pull: { images: { public_id } } },
+        { new: true }
+      );
+      if (!updatedProduct) {
+        throw new Error("El producto no existe");
+      }
+      return updatedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateProductImage(productId, newImage) {
+    try {
+      const updatedProduct = await this.collection.findOneAndUpdate(
+        { productId },
+        { $push: { images: newImage } },
         { new: true }
       );
       if (!updatedProduct) {
