@@ -44,7 +44,7 @@ function ConfirmOrderMain() {
     } else if (!loading && cart && cart.products.length === 0) {
       router.push("/cart");
     }
-  }, [cart, loading, router, closedOrder]);
+  }, [cart, loading, router, closedOrder , fetchCart]);
 
   return (
     <div className="confirm-order">

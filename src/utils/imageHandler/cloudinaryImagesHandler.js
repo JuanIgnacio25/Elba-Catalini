@@ -52,9 +52,7 @@ export const uploadImagesToCloudinary = async (images) => {
 export const deleteImageFromCloudinary = async (public_id) => {
  
   try {
-    const result = await cloudinary.uploader.destroy(public_id)
-
-    console.log(result);
+    await cloudinary.uploader.destroy(public_id)
     
     return result;
   } catch (error) {

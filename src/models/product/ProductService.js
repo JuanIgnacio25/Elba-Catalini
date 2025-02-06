@@ -84,7 +84,7 @@ class ProductService {
       }
 
       if (updateProduct) {
-        await this.dao.updateProductImage(productId, public_id);
+        return await this.dao.updateProductImage(productId, public_id);
       }
     } catch (error) {
       throw error;
