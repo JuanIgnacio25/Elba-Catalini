@@ -3,7 +3,7 @@ import Ajv from "ajv";
 import addErrors from "ajv-errors";
 import addFormats from "ajv-formats";
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv()
   .addKeyword("kind")
   .addKeyword("modifier");
 addFormats(ajv, ["email"]);

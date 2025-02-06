@@ -21,7 +21,7 @@ validatePasswordRules
   .not()
   .spaces();
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv()
   .addKeyword("kind")
   .addKeyword("modifier");
 addFormats(ajv, ["password"]);

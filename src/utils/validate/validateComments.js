@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv()
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
