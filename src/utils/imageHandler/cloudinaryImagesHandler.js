@@ -49,18 +49,14 @@ export const uploadImagesToCloudinary = async (images) => {
   return uploadResults;
 };
 
-export const deleteImagesFromCloudinary = async (images) => {
-  if (!images || images.length === 0) {
-    return { message: "El producto no tiene imagenes." };
-  }
-
+export const deleteImageFromCloudinary = async (public_id) => {
+ 
   try {
-    const deletePromises = images.map((image) =>
-      cloudinary.uploader.destroy(image.public_id)
-    );
+    const result = await cloudinary.uploader.destroy(public_id)
 
-    const results = await Promise.all(deletePromises);
-    return results;
+    console.log(result);
+    
+    return result;
   } catch (error) {
     console.error("Error deleting images from Cloudinary:", error);
     throw new Error("Failed to delete images.");

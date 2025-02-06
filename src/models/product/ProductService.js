@@ -3,6 +3,7 @@ import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
 import { isValidProductInfo } from "@/utils/validate/validateProductCategoryInfo";
 import toNumericId from "@/utils/toNumericId";
+import { deleteImageFromCloudinary } from "@/utils/imageHandler/cloudinaryImagesHandler";
 
 class ProductService {
   constructor() {
@@ -47,10 +48,44 @@ class ProductService {
 
   async deleteProduct(productId) {
     try {
-      const deleteProduct = await this.dao.deleteProduct(
+      const product = await this.dao.findProductById(toNumericId(productId));
+      if (!product) throw new Error("El producto no existe");
+
+      //elimina todas las imagenes del producto de cloudinary solo cuando otro producto no este usando la misma imagen
+      //El false al final es para que no actualice la propiedad images del producto con la imagen eliminada , porque se eliminara el producto completo luego
+      for (const image of product.images) {
+        await this.deleteProductImage(productId, image.public_id, false);
+      }
+
+      const deletedProduct = await this.dao.deleteProduct(
         toNumericId(productId)
       );
-      return deleteProduct;
+
+      return deletedProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async checkIfProductImageIsShared(public_id) {
+    // Contar cuántos productos aún usan esta imagen
+    const count = await this.dao.countImages(public_id);
+    console.log("count", count);
+
+    return count;
+  }
+
+  async deleteProductImage(productId, public_id, updateProduct) {
+    try {
+      const count = await this.checkIfProductImageIsShared(public_id);
+
+      if (count === 1) {
+        await deleteImageFromCloudinary(public_id);
+      }
+
+      if (updateProduct) {
+        await this.dao.updateProductImage(productId, public_id);
+      }
     } catch (error) {
       throw error;
     }
@@ -58,12 +93,11 @@ class ProductService {
 
   async updateProduct(productToUpdate, id) {
     try {
-      
       if (productToUpdate.kind === "Store") {
         isValidStoreProduct(productToUpdate);
       } else if (productToUpdate.kind === "Baiml") {
         isValidBaimlProduct(productToUpdate);
-      }else throw new Error("El tipo de producto no es valido");
+      } else throw new Error("El tipo de producto no es valido");
 
       const updateProduct = await this.dao.updateProduct(productToUpdate, id);
       return updateProduct;
