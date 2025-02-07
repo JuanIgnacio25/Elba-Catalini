@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv()
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
@@ -78,7 +78,7 @@ export const isValidBaimlProduct = (product) => {
   try {
     const isValid = validateBaimlProduct(product);
     if (!isValid) {
-      throw new Error(ajv.errorsText(validateBaimlProduct.errors));
+      throw new Error(validateBaimlProduct.errors[0]?.message || "Error de validación");
     }
   } catch (error) {
     throw error;

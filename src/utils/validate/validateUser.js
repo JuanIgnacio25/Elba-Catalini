@@ -21,7 +21,7 @@ validatePassword
   .not()
   .spaces();
 
-const ajv = new Ajv()
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addFormats(ajv, ["email", "password"]);
@@ -117,8 +117,7 @@ export const isValidSignup = (data) => {
     }
     const valid = validateSignup(data);
     if (!valid) {
-      const errors = validateSignup.errors.map((error) => error.message);
-      throw new Error(errors.join(", "));
+      throw new Error(validateSignup.errors[0]?.message || "Error de validación");
     }
   } catch (error) {
     throw error;

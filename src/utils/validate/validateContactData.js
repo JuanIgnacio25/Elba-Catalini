@@ -3,7 +3,7 @@ import Ajv from "ajv";
 import addErrors from "ajv-errors";
 import addFormats from "ajv-formats";
 
-const ajv = new Ajv()
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addFormats(ajv, ["email"]);
@@ -65,7 +65,7 @@ export const isValidContactData = (data) => {
   try {
     const isValid = validateContactData(data);
     if (!isValid) {
-      throw new Error(ajv.errorsText(validateContactData.errors))
+      throw new Error(validateContactData.errors[0]?.message || "Error de validación");
     }
   } catch (error) {
     throw error;

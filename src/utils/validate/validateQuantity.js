@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv();
+const ajv = new Ajv({allErrors:true, errorsLimit: 5});
 addErrors(ajv);
 
 const quantitySchema = Type.Number({
