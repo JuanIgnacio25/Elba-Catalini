@@ -111,7 +111,6 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
       html: emailHtml,
     });
   } catch (error) {
-    console.error("Error al enviar el correo:", error);
     throw error;
   }
 }

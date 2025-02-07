@@ -73,7 +73,6 @@ class ProductService {
   async checkIfProductImageIsShared(public_id) {
     // Contar cuántos productos aún usan esta imagen
     const count = await this.dao.countImages(public_id);
-    console.log("count", count);
 
     return count;
   }

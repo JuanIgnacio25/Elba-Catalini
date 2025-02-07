@@ -20,7 +20,6 @@ export function CartProvider({ children }) {
         const res = await axios.get("/api/carts");
         setCart(res.data.cart);
       } catch (error) {
-        console.error("Error al obtener el carrito:", error);
         setCart(null);
       } finally {
         setLoading(false);

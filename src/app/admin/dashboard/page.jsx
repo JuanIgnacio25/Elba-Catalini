@@ -77,8 +77,7 @@ function DashboardPage() {
     try {
       setError(false);
       setSuccess(false);
-      const res = await axios.post("/api/products", formData);
-      console.log(res);
+      await axios.post("/api/products", formData);
       setSuccess(true);
 
       setName("");
@@ -101,7 +100,6 @@ function DashboardPage() {
 
       urlsToRevoke.forEach((url) => URL.revokeObjectURL(url));
     } catch (error) {
-      console.error(error);
       setError(error.response.data.message);
     } finally {
       fetchAllProducts();
@@ -127,8 +125,7 @@ function DashboardPage() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`/api/products/${id}`);
-      console.log(res.data.message);
+      await axios.delete(`/api/products/${id}`);
       await fetchCart();
       fetchAllProducts();
     } catch (error) {

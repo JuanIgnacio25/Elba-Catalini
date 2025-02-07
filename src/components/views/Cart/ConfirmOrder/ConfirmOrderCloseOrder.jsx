@@ -21,7 +21,6 @@ function ConfirmOrderCloseOrder({ fetchCart, deliveryOption, handleError, commen
       router.replace("/cart/closedOrder");
   
     } catch (error) {
-      console.log(error);
       closeCloseCartModal();
       handleError(error.response?.data?.message || "Error al cerrar el pedido");
     } finally {

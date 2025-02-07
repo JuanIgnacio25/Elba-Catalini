@@ -54,7 +54,6 @@ function RegisterMain() {
         `/auth/verifying-account/${res.data.savedTemporalUser.email}`
       );
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
     }
   };

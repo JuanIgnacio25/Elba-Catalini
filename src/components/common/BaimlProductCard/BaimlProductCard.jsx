@@ -28,7 +28,6 @@ function ProductCard({ prod }) {
       }, 3000);
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -79,7 +78,12 @@ function ProductCard({ prod }) {
         >
           <p>{prod.name}</p>
           <p className="baiml-p-card-info-unit">
-            {formatBaimlProductQuantityLabel(prod.category , prod.sku , prod.kind)} x {prod.unit}{" "}
+            {formatBaimlProductQuantityLabel(
+              prod.category,
+              prod.sku,
+              prod.kind
+            )}{" "}
+            x {prod.unit}{" "}
             {formatBaimlProductSetLabel(prod.productSet, prod.unit)}{" "}
           </p>
         </Link>

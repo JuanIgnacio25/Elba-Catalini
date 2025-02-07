@@ -20,7 +20,6 @@ function ProductsByCategoryMain() {
         const res = await axios.get(`/api/products/kind/${kind}/${category}`);
         setFilteredProducts(res.data.filteredProducts);
       } catch (error) {
-        console.error(error);
         router.push("/404");
       }
     };

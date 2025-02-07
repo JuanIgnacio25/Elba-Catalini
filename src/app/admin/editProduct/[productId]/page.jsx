@@ -33,7 +33,6 @@ function UpdateProductPage() {
       setProduct(res.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setError(error);
       setLoading(false);
     }

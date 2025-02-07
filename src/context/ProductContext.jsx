@@ -34,7 +34,6 @@ export function ProductProvider({ children }) {
       setBaimlProducts(baimlRes.data.products);
       setStoreProducts(storeRes.data.products);
     } catch (error) {
-      console.log(error);
       setError("ocurrio un error");
     } finally {
       setLoading(false);

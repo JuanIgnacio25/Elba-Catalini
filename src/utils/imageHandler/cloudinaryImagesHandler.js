@@ -52,7 +52,6 @@ export const deleteImageFromCloudinary = async (public_id) => {
   try {
     await cloudinary.uploader.destroy(public_id);
   } catch (error) {
-    console.error("Error deleting images from Cloudinary:", error);
     throw new Error("Failed to delete images.");
   }
 };

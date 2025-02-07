@@ -36,7 +36,6 @@ function ConfirmOrderCarrier({ selectedCarrier, authState , refreshToken}) {
       await refreshToken();
       setIsEditing(false);
     } catch (error) {
-      console.log(error);
       setError("El nombre del transporte es requerido");
       setCarrier(prevCarrier);
     } finally {
