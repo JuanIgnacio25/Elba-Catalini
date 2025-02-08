@@ -173,7 +173,7 @@ function UpdateProductPage() {
           }
         />
 
-        <input
+        <textarea
           type="text"
           placeholder="Excelente prod"
           name="description"
