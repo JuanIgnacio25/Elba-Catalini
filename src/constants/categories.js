@@ -14,7 +14,7 @@ export const BAIML_CATEGORIES = [
   "Soportes",
   "Soportes electrónicos",
   "Faros de advertencia",
-  "Reflectores",
+  "Reflectivos",
   "Reflectores de alta potencia",
   "Lentes de repuestos",
   "Accesorios",
