@@ -32,7 +32,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  width: 170px;
+  width: 270px;
   height: 100%;
   transition: background-image 0.3s ease-in-out, width 0.3s ease-in-out;
 }
@@ -147,7 +147,7 @@
   }
   /* Footer Logo */
   .footer-main-logo-container{
-    width:145px;
+    width:220px;
   }
   /*  Footer info */
   .footer-main-info{
@@ -162,7 +162,7 @@
   }
 
   .footer-main-logo-container{
-    width:130px;
+    width:170px;
   }
 
   /* Footer Info */
@@ -187,7 +187,7 @@
 
   /* Footer Logo */
   .footer-main-logo-container{
-    width:100px;
+    width:130px;
   }
   /* Footer info */
   .footer-main-info{
@@ -221,7 +221,7 @@
 
 @media (max-width:430px){
   .footer-main-logo-container{
-    width:80px;
+    width:90px;
   }
 
   .footer-main-info{

@@ -13,7 +13,7 @@ export const metadata = {
   author: "Juan Ignacio Colli",
   keywords: "nextjs, react, web application",
   icons: {
-    icon: "/fav-icon.ico",
+    icon: "/favicon.ico",
   },
   /* charset: "UTF-8",
   ogTitle: "Tu Aplicación Next.js",

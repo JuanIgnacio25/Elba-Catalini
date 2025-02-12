@@ -37,7 +37,7 @@ function NavMain() {
         <li className={`nav-main-responsive-image ${isScrolled ? "nav-main-responsive-image-scrolled" : ""}`}>
           <Link href="/" className="nav-main-responsive-image-link">
             <Image
-              src="/logo-lca-ps.png"
+              src="/elba-catalini-logo.png"
               alt="Logo-Main"
               width={500}
               height={500} 

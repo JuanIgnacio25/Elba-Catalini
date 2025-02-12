@@ -104,12 +104,12 @@
 
 .nav-main-responsive-image{
   width: 100%;
-  max-width: 15.9vh;
+  max-width: 27vh;
   transition: max-width 0.3s ease-in-out;
 }
 
 .nav-main-responsive-image-scrolled{
-  max-width: 12vh;
+  max-width: 20vh;
 }
 
 .nav-main-responsive-image-link{
@@ -455,11 +455,11 @@
   }
 
   .nav-main-responsive-image{
-    max-width: 10.9vh;
+    max-width: 17vh;
   }
 
   .nav-main-responsive-image-scrolled{
-    max-width: 10.9vh;
+    max-width: 17vh;
   }
 
   .nav-main-search input {
@@ -584,11 +584,11 @@
   }
 
   .nav-main-responsive-image{
-    max-width: 10vh;
+    max-width: 15vh;
   }
 
   .nav-main-responsive-image-scrolled{
-    max-width: 10vh;
+    max-width: 15vh;
   }
 
   .nav-main-search-container {
