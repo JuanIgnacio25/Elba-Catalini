@@ -1,82 +1,16 @@
-/* NavHeader */
-
-.nav-header-container {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  max-height: 4vh;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  font-size: 14px;
-  color: var(--black);
-  background: var(--soft-grey);
-  opacity: 1;
-  transition: max-height 0.2s ease-in-out;
-}
-
-.nav-header-container-scrolled {
-  max-height: 0px;
-}
-
-.nav-header-socialmedia {
-  display: flex;
-  flex-flow: row wrap;
-  width: 30%;
-  gap: 3px;
-  padding: 0px 10px;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.nav-header-socialmedia.scrolled {
-  opacity: 0;
-}
-
-.nav-header-text-container {
-  width: 30%;
-  text-align: center;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.nav-header-text-container.scrolled {
-  opacity: 0;
-}
-
-.nav-header-items-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: end;
-  width: 30%;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.nav-header-items-container.scrolled {
-  opacity: 0;
-}
-
-.nav-header-items {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  padding: 0px 10px;
-  gap: 3px;
-}
 
 /* NavMain */
 .nav-main {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 4vh;
+  top: 0;
   left: 0;
   z-index: 999;
   width: 100%;
-  height: 16vh;
+  height: 20vh;
   background: var(--light-grey);
   transition: top 0.3s ease-in-out , height 0.3s ease-in-out;
 }
@@ -89,14 +23,29 @@
 .nav-main ul {
   display: flex;
   flex-flow: row wrap;
-  padding: 15px 0px;
+}
+
+/* NavMain Bottom Bar */
+.nav-main-search-bottom-bar{
+  position:absolute;
+  width: calc(100% - 48vh);
+  bottom: 0;
+  right:0;
+  height:12px;
+  background: #808080;
+  transition: width 0.3s ease-in-out , height 0.3s ease-in-out;
+}
+
+.nav-main-search-bottom-bar.scrolled{
+  width: calc(100% - 29vh);
+  height:7px;
 }
 
 /*NavMain Image */
 .nav-main-responsive-image-container {
   display: flex;
-  justify-content: center;
-  width: 20%;
+  justify-content: start;
+  min-width: 30%;
   height: auto;
   padding:0px !important;
   overflow: hidden;
@@ -104,12 +53,12 @@
 
 .nav-main-responsive-image{
   width: 100%;
-  max-width: 27vh;
+  max-width: calc(48vh + 2px);
   transition: max-width 0.3s ease-in-out;
 }
 
 .nav-main-responsive-image-scrolled{
-  max-width: 20vh;
+  max-width: 29vh;
 }
 
 .nav-main-responsive-image-link{

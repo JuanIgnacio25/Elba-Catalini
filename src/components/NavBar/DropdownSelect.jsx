@@ -51,6 +51,9 @@ const DropdownSelect = () => {
       case "orders":
         router.push("/orderHistory");
         break;
+      case "contact":
+        router.push("/contact"); 
+        break; 
       case "dashboard":
         router.push("/admin/dashboard");
         break;
@@ -67,6 +70,7 @@ const DropdownSelect = () => {
   const options = [];
   if (authState.status === "authenticated") {
     options.push({ value: "orders", label: "Pedidos" });
+    options.push({ value: "contact", label: "Contacto" });
     if (authState.session?.user?.rol === "admin") {
       options.push({ value: "dashboard", label: "Dashboard" });
     }
