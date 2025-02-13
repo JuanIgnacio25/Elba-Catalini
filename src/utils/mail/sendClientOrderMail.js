@@ -70,12 +70,12 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     <body>
       <div class="email-container">
         <div class="header-logo">
-          <img src="https://la-casa-del-accesorio-production.up.railway.app/logo-main.png" alt="Logo de la empresa" />
+          <img src="https://la-casa-del-accesorio-production.up.railway.app/elba-catalini-logo.png" alt="Logo de la empresa" />
         </div>
         <div class="header">
           <h2>Gracias por elegirnos!</h2>
           <p>Tu pedido ha sido recibido y está siendo procesado.</p>
-          <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto y coordinar el pago y el transporte.</p>
+          <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto , y luego coordinar el pago.</p>
         </div>
         <div class="order-details">
           <h3>Detalles del Pedido</h3>
