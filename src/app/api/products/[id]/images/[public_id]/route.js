@@ -10,6 +10,14 @@ export async function DELETE(req, { params }) {
     const { id, public_id } = params;
     await connectDB();
 
+    const product = await productService.findProductById(id);
+    
+    const sameImages = product.images.filter((image) => image.public_id === public_id);
+    console.log(sameImages.length);
+    console.log(product.images.length);
+    
+    if(sameImages.length === product.images.length) throw new Error("Si borra la imagen el producto quedara sin imagenes, agrege una nueva imagen antes de borrar");
+
     const result = await productService.deleteProductImage(id, public_id, true);
 
     if (!result) throw new Error("No se encontro la imagen");

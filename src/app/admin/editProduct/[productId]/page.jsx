@@ -116,6 +116,7 @@ function UpdateProductPage() {
       setDeletingImage(false);
     } catch (error) {
       console.log(error);
+      setWarningMessage(error.response.data.message);
       setDeletingImage(false);
     }
   };
