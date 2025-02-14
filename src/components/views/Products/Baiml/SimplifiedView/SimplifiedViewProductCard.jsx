@@ -54,7 +54,7 @@ function SimplifiedViewProductCard({ prod }) {
         >
           <Image
             className="simplified-view-product-card-image"
-            src={prod.images[0]}
+            src={prod.images[0].url}
             alt="Product Image"
             width={485}
             height={485}
