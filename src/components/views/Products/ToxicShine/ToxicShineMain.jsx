@@ -69,7 +69,7 @@ function ToxicShineMain() {
           enabledButton={false}
           deleteFilters={deleteFilters}
         />
-        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={12} enabledResetAnimation={true}/>
+        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={24} enabledResetAnimation={true}/>
       </div>
     </div>
   );

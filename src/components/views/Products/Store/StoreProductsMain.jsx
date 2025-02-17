@@ -34,7 +34,7 @@ function StoreProductsMain() {
 
   return (
     <div className="store-products">
-      <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={15} ProductCard={ProductCard}/>
+      <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={30} ProductCard={ProductCard}/>
     </div>
   );
 }

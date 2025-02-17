@@ -72,7 +72,7 @@ function BaimlPMain() {
           enabledButton={true}
           deleteFilters={deleteFilters}
         />
-        <ProductsCards products={filteredProducts} enabledResetAnimation={true} ITEMS_PER_PAGE={12} ProductCard={BaimlProductCard}/>
+        <ProductsCards products={filteredProducts} enabledResetAnimation={true} ITEMS_PER_PAGE={24} ProductCard={BaimlProductCard}/>
       </div>
     </div>
   );

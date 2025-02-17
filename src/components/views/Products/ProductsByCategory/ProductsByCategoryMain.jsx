@@ -31,7 +31,7 @@ function ProductsByCategoryMain() {
     <div className="products-by-category-products-cards">
       <ProductsCards
         products={filteredProducts}
-        ITEMS_PER_PAGE={15}
+        ITEMS_PER_PAGE={30}
         ProductCard={kind === "Baiml" ? BaimlProductCard : ProductCard}
       />
     </div>
