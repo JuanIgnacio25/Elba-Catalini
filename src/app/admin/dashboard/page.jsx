@@ -186,7 +186,7 @@ function DashboardPage() {
                 placeholder="FARO 1035.A"
                 name="nameForOrders"
                 value={nameForOrders}
-                autoComplete="nameForOrders"
+                autoComplete="off"
                 required={true}
                 onChange={(e) => setNameForOrders(e.target.value)}
                 id="nameForOrders"
@@ -237,7 +237,7 @@ function DashboardPage() {
 
             <div className="w-full">
               <label
-                htmlFor="price"
+                htmlFor="unit"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Unidad
@@ -399,7 +399,7 @@ function DashboardPage() {
 
             <div className="sm:col-span-3">
               <label
-                htmlFor="images"
+                htmlFor="file-upload"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Imágenes del Producto
