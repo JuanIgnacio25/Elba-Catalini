@@ -42,5 +42,20 @@ export const TOXIC_SHINE_CATEGORIES = [
 
 export const STORE_CATEGORIES = [
   "Toxic Shine",
+  "Electricidad",
   "Iluminacion"
+]
+
+export const STORE_SUBCATEGORIES = [
+  "Cables TPR",
+  "Caño Corrugado Abierto",
+  "Tubo Termocontraible",
+  "Spagetti PVC",
+  "Enchufes",
+  "Grampas",
+  "Precintos",
+  "Interruptores",
+  "Terminales Pala",
+  "Fichas Plasticas",
+  "Cinta Aisladora"
 ]

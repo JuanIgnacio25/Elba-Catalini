@@ -13,6 +13,7 @@ import {
   BAIML_CATEGORIES,
   TOXIC_SHINE_CATEGORIES,
   STORE_CATEGORIES,
+  STORE_SUBCATEGORIES,
 } from "@/constants/categories";
 
 function DashboardPage() {
@@ -23,6 +24,7 @@ function DashboardPage() {
   const baimlOptions = [...BAIML_CATEGORIES];
   const toxicShineOptions = [...TOXIC_SHINE_CATEGORIES];
   const storeOptions = [...STORE_CATEGORIES];
+  const storeSubcategorieOptions = [...STORE_SUBCATEGORIES];
 
   const [name, setName] = useState("");
   const [nameForOrders, setNameForOrders] = useState("");
@@ -33,6 +35,7 @@ function DashboardPage() {
   const [kind, setKind] = useState("");
   const [unit, setUnit] = useState("");
   const [productSet, setProductSet] = useState("");
+  const [variantSubCategory, setVariantSubCategory] = useState("");
   const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -68,6 +71,9 @@ function DashboardPage() {
       formData.append("description", description);
       formData.append("unit", unit);
       formData.append("kind", kind);
+      if(subCategory === "Cables TPR" || subCategory === "Enchufes"){
+        formData.append("variantSubCategory", variantSubCategory);
+      }
     }
 
     images.forEach((image) => {
@@ -331,7 +337,7 @@ function DashboardPage() {
                 {category === "Toxic Shine" && (
                   <div>
                     <label
-                      htmlFor="baiml-options"
+                      htmlFor="toxic-options"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Sub Categoria
@@ -355,24 +361,82 @@ function DashboardPage() {
                 )}
 
                 {category !== "Toxic Shine" && (
-                  <div className="w-full">
-                    <label
-                      htmlFor="SubCategory"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Sub Categoria
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Iluminacion"
-                      name="SubCategory"
-                      value={subCategory}
-                      autoComplete="subCategory"
-                      onChange={(e) => setSubCategory(e.target.value)}
-                      id="SubCategory"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
+                  <>
+                    <div>
+                      <label
+                        htmlFor="store-subcategory-options"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Sub Categoria
+                      </label>
+                      <select
+                        id="store-subcategory-options"
+                        value={subCategory}
+                        onChange={(e) => setSubCategory(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="" disabled hidden>
+                          Sub Categoria
+                        </option>
+                        {storeSubcategorieOptions.map((option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    {subCategory === "Cables TPR" && (
+                      <div>
+                      <label
+                        htmlFor="store-variantsubcategory-options"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Variante de Sub Categoria
+                      </label>
+                      <select
+                        id="store-subcategory-options"
+                        value={variantSubCategory}
+                        onChange={(e) => setVariantSubCategory(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="" disabled hidden>
+                          Varianta de Sub Categoria
+                        </option>
+                        {["Coelpla","Milenio"].map((option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    )}
+
+                    {subCategory === "Enchufes" && (
+                      <div>
+                      <label
+                        htmlFor="store-variantsubcategory-options"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Variante de Sub Categoria
+                      </label>
+                      <select
+                        id="store-subcategory-options"
+                        value={variantSubCategory}
+                        onChange={(e) => setVariantSubCategory(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      >
+                        <option value="" disabled hidden>
+                          Varianta de Sub Categoria
+                        </option>
+                        {["Enchufe de Plastico","Enchufe de Aluminio","Enchufe Vulcanizado"].map((option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    )}
+                  </>
                 )}
               </>
             )}
