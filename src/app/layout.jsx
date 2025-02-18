@@ -21,7 +21,7 @@ export const metadata = {
   openGraph: {
     title: "Elba Catalini - Tienda Online",
     description: "Compra productos Baiml y mucho mas al mejor precio!.",
-    url: "https://tudominio.com",
+    url: "https://elbacatalini.com",
     siteName: "Elba Catalini",
     images: [
       {

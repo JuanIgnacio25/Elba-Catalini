@@ -11,6 +11,12 @@ export async function middleware(req) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
+  const blockedPaths = ["/wordpress", "/wp-admin", "/wp-login.php"];
+
+  if (blockedPaths.some((path) => req.nextUrl.pathname.includes(path))) {
+    return NextResponse.json({ message: "Access denied" }, { status: 403 });
+  }
+
   const url = req.nextUrl.clone();
   if (!token) {
     if (req.nextUrl.pathname.startsWith("/admin")) {
@@ -99,5 +105,9 @@ export const config = {
     "/api/products",
     "/api/carts/:path*",
     "/api/orders/:path*",
+
+    "/wordpress",
+    "/wp-admin",
+    "/wp-login.php",
   ],
 };
