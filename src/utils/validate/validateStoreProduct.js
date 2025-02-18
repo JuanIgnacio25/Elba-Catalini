@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv({allErrors:true, errorsLimit: 5})
+const ajv = new Ajv({ allErrors: true, errorsLimit: 5 })
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
@@ -53,6 +53,11 @@ const storeProductDtoSchema = Type.Object(
         type: "Kind debe ser String",
       },
     }),
+    variantSubCategory: Type.Optional(
+      Type.String({
+        errorMessage: { type: "variantCategory debe ser un String" },
+      })
+    ),
   },
   {
     additionalProperties: false,
@@ -61,24 +66,37 @@ const storeProductDtoSchema = Type.Object(
       required: {
         name: "Falta la propiedad: name",
         nameForOrders: "Falta la propiedad: nameForOrders",
-        sku:"Falta la propiedad sku",
+        sku: "Falta la propiedad sku",
         category: "Falta la propiedad: category",
-        subCategory:"Falta la propiedad: subCategory",
+        subCategory: "Falta la propiedad: subCategory",
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",
-        kind: "Falta la propiedad: kind"
+        kind: "Falta la propiedad: kind",
       },
     },
   }
 );
 
-const validateStoreProduct = ajv.compile(storeProductDtoSchema);
+const storeProductValidationWithConditions = {
+  ...storeProductDtoSchema,
+  if: {
+    properties: { subCategory: { enum: ["Cables TPR", "Enchufes"] } },
+  },
+  then: {
+    required: ["variantSubCategory"],
+    errorMessage: { required: { variantSubCategory: "Falta la propiedad: variantSubCategory para esta subCategory" } }
+  },
+};
+
+const validateStoreProduct = ajv.compile(storeProductValidationWithConditions);
 
 export const isValidStoreProduct = (product) => {
   try {
     const isValid = validateStoreProduct(product);
     if (!isValid) {
-      throw new Error(validateStoreProduct.errors[0]?.message || "Error de validación");
+      throw new Error(
+        validateStoreProduct.errors[0]?.message || "Error de validación"
+      );
     }
   } catch (error) {
     throw error;
