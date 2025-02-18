@@ -10,10 +10,10 @@ import { useEffect } from "react";
 
 function StoreProductsMain() {
   const { filterStoreProductsByCategory, loading } = useProduct();
-  const { category, subcategory } = useParams();
+  const { category, subcategory , variantSubCategory} = useParams();
   const router = useRouter();
 
-  const filteredProducts = filterStoreProductsByCategory(category, subcategory);
+  const filteredProducts = filterStoreProductsByCategory(category, subcategory , variantSubCategory);
 
   // Manejo de redirección en caso de que no haya productos
   useEffect(() => {
