@@ -15,6 +15,9 @@ export async function POST(request) {
     const images = data.getAll("images");
     const kind = data.get("kind");
 
+    console.log(data);
+    
+
     const formFields = Object.fromEntries(
       [...data.entries()].filter(([key]) => key !== "images")
     );

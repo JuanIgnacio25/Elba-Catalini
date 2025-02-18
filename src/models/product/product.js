@@ -63,6 +63,12 @@ const StoreSchema = new mongoose.Schema({
   subCategory: {
     type: String,
   },
+  variantSubCategory: {
+    type: String,
+    required: function () {
+      return ["Cables TPR", "Enchufes"].includes(this.subCategory);
+    },
+  },
 });
 
 const Baiml =
