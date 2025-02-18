@@ -48,9 +48,11 @@ export function ProductProvider({ children }) {
 
   const filterToxicShineProducts = (categories = []) => {
     return categories.length > 0
-      ? toxicShineProducts.filter((product) => categories.includes(product.subCategory))
+      ? toxicShineProducts.filter((product) =>
+          categories.includes(product.subCategory)
+        )
       : toxicShineProducts;
-  }
+  };
 
   const searchProducts = (query) => {
     const lowerCaseQuery = query.toLowerCase();
@@ -62,15 +64,35 @@ export function ProductProvider({ children }) {
     );
   };
 
-  const filterStoreProductsByCategory = (category, subcategory) => {
-    
+  const filterStoreProductsByCategory = (
+    category,
+    subcategory,
+    variantSubCategory
+  ) => {
+    console.log(category, subcategory, variantSubCategory);
+
+    if (variantSubCategory) {
+      return storeProducts.filter((product) => {
+        return (
+          product.category.toLowerCase() ===
+            category?.split("-").join(" ").toLowerCase() &&
+          product.subCategory.toLowerCase() ===
+            subcategory?.split("-").join(" ").toLowerCase() &&
+          product.variantSubCategory.toLowerCase() ===
+            variantSubCategory?.split("-").join(" ").toLowerCase()
+        );
+      });
+    }
+
     if (subcategory) {
-      return storeProducts.filter(
-        (product) =>{
-          return (product.category.toLowerCase() === category?.split("-").join(" ").toLowerCase() &&
-          product.subCategory.toLowerCase() === subcategory?.split("-").join(" ").toLowerCase())
-          }
-      );
+      return storeProducts.filter((product) => {
+        return (
+          product.category.toLowerCase() ===
+            category?.split("-").join(" ").toLowerCase() &&
+          product.subCategory.toLowerCase() ===
+            subcategory?.split("-").join(" ").toLowerCase()
+        );
+      });
     }
     if (category) {
       return storeProducts.filter(
@@ -97,7 +119,7 @@ export function ProductProvider({ children }) {
         filterToxicShineProducts,
         fetchAllProducts,
         searchProducts,
-        filterStoreProductsByCategory
+        filterStoreProductsByCategory,
       }}
     >
       {children}
