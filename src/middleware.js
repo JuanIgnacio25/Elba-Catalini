@@ -106,8 +106,8 @@ export const config = {
     "/api/carts/:path*",
     "/api/orders/:path*",
 
-    "/wordpress",
-    "/wp-admin",
+    "/wordpress/:path*",
+    "/wp-admin/:path*",
     "/wp-login.php",
   ],
 };
