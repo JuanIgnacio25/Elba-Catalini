@@ -71,7 +71,7 @@ function DashboardPage() {
       formData.append("description", description);
       formData.append("unit", unit);
       formData.append("kind", kind);
-      if(subCategory === "Cables TPR" || subCategory === "Enchufes"){
+      if(subCategory === "Cable TPR" || subCategory === "Enchufes"){
         formData.append("variantSubCategory", variantSubCategory);
       }
     }
@@ -385,7 +385,7 @@ function DashboardPage() {
                         ))}
                       </select>
                     </div>
-                    {subCategory === "Cables TPR" && (
+                    {subCategory === "Cable TPR" && (
                       <div>
                       <label
                         htmlFor="store-variantsubcategory-options"

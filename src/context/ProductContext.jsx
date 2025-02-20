@@ -69,7 +69,6 @@ export function ProductProvider({ children }) {
     subcategory,
     variantSubCategory
   ) => {
-    console.log(category, subcategory, variantSubCategory);
 
     if (variantSubCategory) {
       return storeProducts.filter((product) => {

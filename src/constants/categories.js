@@ -47,15 +47,15 @@ export const STORE_CATEGORIES = [
 ]
 
 export const STORE_SUBCATEGORIES = [
-  "Cables TPR",
   "Caño Corrugado Abierto",
   "Tubo Termocontraible",
   "Spagetti PVC",
-  "Enchufes",
   "Grampas",
   "Precintos",
   "Interruptores",
   "Terminales Pala",
   "Fichas Plasticas",
-  "Cinta Aisladora"
+  "Cinta Aisladora",
+  "Cable TPR",
+  "Enchufes",
 ]

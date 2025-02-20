@@ -66,10 +66,14 @@ function NavDesktop() {
         } ${isMobile && menuOpen ? "open" : ""}`}
       >
         <li>
-          <Link href="/products/baiml" onClick={toggleMenu}>Linea Baiml</Link>
+          <Link href="/products/baiml" onClick={toggleMenu}>
+            Linea Baiml
+          </Link>
         </li>
         <li>
-          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>Toxic Shine</Link>
+          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>
+            Toxic Shine
+          </Link>
         </li>
         <li>
           <Dropdown
@@ -77,6 +81,50 @@ function NavDesktop() {
             options={[
               { slug: "cree-led", name: "Cree Led" },
               { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "Electricidad", slug: "Electricidad" }}
+            options={[
+              {
+                slug: "cable-tpr",
+                name: "Cable TPR",
+                variantSubCategory: [
+                  { name: "Coelpla", slug: "coelpla" },
+                  { name: "Milenio", slug: "milenio" },
+                ],
+              },
+              {
+                slug: "enchufes",
+                name: "Enchufes",
+                variantSubCategory: [
+                  {
+                    name: "Enchufes de Aluminio",
+                    slug: "enchufes-de-aluminio",
+                  },
+                  {
+                    name: "Enchufes de Plastico",
+                    slug: "enchufes-de-plastico",
+                  },
+                  {
+                    name: "Enchufes  Vulcanizados",
+                    slug: "enchufes-vulcanizados",
+                  },
+                ],
+              },
+              { slug: "caño-corrugado-abierto", name: "Caño Corrugado Abierto" },
+              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
+              { slug: "Spagetti-pvc", name: "Spagetti PVC" },
+              { slug: "precintos", name: "Precintos" },
+              { slug: "interruptores", name: "Interruptores" },
+              { slug: "terminales-pala", name: "Terminales Pala" },
+              { slug: "fichas-plasticas", name: "Fichas Plasticas" },
+              { slug: "cinta-aisladora", name: "Cinta Aisladora" },
+              { slug: "grampas", name: "Grampas" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
