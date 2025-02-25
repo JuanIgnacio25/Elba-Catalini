@@ -22,11 +22,11 @@ body {
   display:flex;
   flex-flow:column wrap;
   background: var(--extra-light-grey);
-  margin-top:25vh;
+  margin-top:26vh;
 }
 
 @media (max-width:903px){
   body{
-    margin-top:16vh;
+    margin-top: calc(11vh + 40px);
   }
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import Dropdown from "@/components/common/Dropdown/Dropdown";
+import NavSearch from "@/components/NavBar/NavSearch";
 import NavCart from "@/components/NavBar/NavCart";
 
 import { PiListBold } from "react-icons/pi";
@@ -131,6 +132,9 @@ function NavDesktop() {
           />
         </li>
       </ul>
+      <div className="w-2/6">
+        <NavSearch/>
+      </div>
       <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
         <NavCart />
       </div>

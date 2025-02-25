@@ -84,7 +84,7 @@ const DropdownSelect = () => {
       backgroundColor: "var(--red)",
       color: "var(--light-grey)",
       borderRadius: "10px",
-      fontSize: "16px",
+      fontSize: "14px",
       padding: "0px 5px",
       height: "35px",
       boxShadow: "none",

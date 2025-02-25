@@ -41,7 +41,7 @@ function NavMain() {
         >
           <Link href="/" className="nav-main-responsive-image-link">
             <Image
-              src="/logo-elba.jpg"
+              src="/elbacatalini-logo.png"
               alt="Logo-Main"
               width={500}
               height={500}
@@ -50,9 +50,6 @@ function NavMain() {
             />
           </Link>
         </li>
-      </ul>
-      <ul className="nav-main-search-container">
-        <NavSearch />
       </ul>
       <ul className="nav-main-menu">
         <li className="nav-main-menu-cart-container">
@@ -63,14 +60,7 @@ function NavMain() {
             <DropdownSelect />
           </Suspense>
         </li>
-        <li>
-          <Link href="/contact">
-            <div className="nav-header-items">
-            </div>
-          </Link>
-        </li>
       </ul>
-      <div className={`nav-main-search-bottom-bar ${isScrolled ? "scrolled" : ""}`}></div>
     </nav>
   );
 }
