@@ -17,7 +17,7 @@ function SimplifiedViewMain() {
   }, [baimlProducts , loading , category, filterBaimlProducts]);
 
   const handleCategoryChange = (category) => {
-    setCategory(category);
+    setCategory([category]);
   }
 
   if (loading) {
