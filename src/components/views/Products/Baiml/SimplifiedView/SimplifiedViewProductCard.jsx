@@ -70,6 +70,7 @@ function SimplifiedViewProductCard({ prod }) {
           <input
             className="simplified-view-product-card-info-add-input"
             type="number"
+            name="quantity-input"
             min="1"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}

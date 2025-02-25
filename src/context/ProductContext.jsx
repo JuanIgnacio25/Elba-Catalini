@@ -42,7 +42,7 @@ export function ProductProvider({ children }) {
 
   const filterBaimlProducts = (categories = []) => {
     return categories.length > 0
-      ? baimlProducts.filter((product) => categories.includes(product.category))
+      ? baimlProducts.filter((product) => product.category === categories)
       : baimlProducts;
   };
 
