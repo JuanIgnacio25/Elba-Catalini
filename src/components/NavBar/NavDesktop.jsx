@@ -132,7 +132,7 @@ function NavDesktop() {
           />
         </li>
       </ul>
-      <div className="w-2/6">
+      <div className="nav-desktop-search-container">
         <NavSearch/>
       </div>
       <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
