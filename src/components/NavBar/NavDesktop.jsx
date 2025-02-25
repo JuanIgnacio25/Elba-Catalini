@@ -117,7 +117,10 @@ function NavDesktop() {
                   },
                 ],
               },
-              { slug: "caño-corrugado-abierto", name: "Caño Corrugado Abierto" },
+              {
+                slug: "caño-corrugado-abierto",
+                name: "Caño Corrugado Abierto",
+              },
               { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
               { slug: "Spagetti-pvc", name: "Spagetti PVC" },
               { slug: "precintos", name: "Precintos" },
@@ -131,9 +134,20 @@ function NavDesktop() {
             toggleMenu={toggleMenu}
           />
         </li>
+        <li>
+          <Dropdown
+            category={{ name: "3M", slug: "3M" }}
+            options={[
+              { slug: "bandas-reflectivas", name: "Bandas Reflectivas" },
+              { slug: "cera-liquida", name: "Cera Liquida" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
       </ul>
       <div className="nav-desktop-search-container">
-        <NavSearch/>
+        <NavSearch />
       </div>
       <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
         <NavCart />
