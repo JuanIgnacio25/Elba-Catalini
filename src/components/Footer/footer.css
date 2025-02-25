@@ -4,7 +4,7 @@
   flex-flow:column nowrap;
   justify-content:center;
   width:100%;
-  height:50vh;
+  height:35vh;
 }
 
 /* Footer main */
@@ -13,7 +13,7 @@
   flex-flow:row wrap;
   justify-content:center;
   width:100%;
-  height:45vh;
+  height:100%;
   padding: 80px;
   background:var(--soft-grey);
 }
@@ -185,6 +185,10 @@
 
 @media(max-width: 653px) {
 
+  .footer-container{
+    height: 30vh;
+  }
+
   /* Footer Logo */
   .footer-main-logo-container{
     width:130px;
@@ -220,6 +224,10 @@
 }
 
 @media (max-width:430px){
+  .footer-container{
+    height: 25vh;
+  }
+
   .footer-main-logo-container{
     width:90px;
   }
