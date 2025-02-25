@@ -473,6 +473,11 @@
     line-height: 17px;
   }
 
+  .nav-main-login-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
   /* NavDesktop */
 
   .nav-desktop {
@@ -507,6 +512,12 @@
     max-height: 7vh;
   }
 
+  .nav-main-login-button {
+    padding: 2px 13px;
+    font-size: 14px;
+    min-height: 28px;
+  }
+
   .nav-desktop {
     top: 10vh;
   }
@@ -524,7 +535,7 @@
 
   .nav-main-menu-icon-user,
   .nav-main-menu-select-arrow {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .nav-main-responsive-image {
@@ -553,10 +564,14 @@
     font-size: 10px !important;
   }
 
+
   .nav-main-login-button {
+    padding: 0px 8px;
     gap: 3px;
-    min-height: 26px;
+    font-size: 11px;
+    min-height: 25px;
   }
+
   .nav-main-menu-fallback-text {
     font-size: 10px;
   }
