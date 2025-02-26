@@ -9,7 +9,7 @@ function OrderDetailProductCard({ product }) {
           <Link href="/" className="order-detail-product-card-img-link">
             <Image
               className="order-detail-product-card-img"
-              src={product.images[0]}
+              src={product.images[0].url}
               alt="Logo-Product"
               width={485}
               height={485}

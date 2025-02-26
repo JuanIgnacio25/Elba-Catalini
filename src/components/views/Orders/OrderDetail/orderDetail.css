@@ -217,6 +217,7 @@
 @media (max-width: 620px) {
   .order-detail-container{
     margin: 40px 0px;
+    min-height: 45vh;
   }
 
   .order-detail {
@@ -256,6 +257,7 @@
 @media (max-width: 475px) {
   .order-detail-container{
     margin: 20px 0px;
+    min-height: 49vh;
   }
 
   .order-detail {
@@ -303,5 +305,11 @@
   .order-detail-product-card-img-container{
     width: 40%;
     padding: 5px;
+  }
+}
+
+@media (max-width: 475px) {
+  .order-detail-container{
+    min-height: 54vh;
   }
 }
