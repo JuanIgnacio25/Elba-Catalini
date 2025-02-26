@@ -425,6 +425,10 @@
 }
 
 @media (max-width: 475px) {
+  .product-detail-main-container{
+    min-height: 53vh;
+  }
+
   .product-detail-main-carousel-slider {
     width: 42%;
   }
@@ -507,5 +511,11 @@
     min-width: 55vw;
     padding: 8px 12px;
     font-size: 11px;
+  }
+}
+
+@media (max-width: 430px) {
+  .product-detail-main-container{
+    min-height: 58vh;
   }
 }
