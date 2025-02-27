@@ -122,7 +122,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
       // Insertar una nueva fila para cada producto
       worksheet.insertRow(currentRow);
 
-      worksheet.getRow(currentRow).height = 40;
+      worksheet.getRow(currentRow).height = 35;
 
       // Asignar valores a las celdas, aplicar bordes y ajustar estilo (centrado y tamaño de fuente)
       worksheet.getCell(`A${currentRow}`).value =
@@ -141,7 +141,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
       worksheet.getCell(`B${currentRow}`).font = { size: 19 };
       worksheet.getCell(`B${currentRow}`).alignment = {
         vertical: "middle",
-        horizontal: "center",
+        horizontal: "left",
       };
 
       worksheet.getCell(`C${currentRow}`).value = `(${item.quantity}${
@@ -156,7 +156,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
     });
 
     // Rellenar con filas vacías si hay menos de 10 productos
-    const totalRows = 10;
+    const totalRows = 15;
     let filledRows = products.length;
 
     if (filledRows < totalRows) {
@@ -201,7 +201,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
     // Definir el ancho de las columnas
     worksheet.getColumn(1).width = 15; // Ancho para columna A
-    worksheet.getColumn(2).width = 65; // Ancho para columna B
+    worksheet.getColumn(2).width = 75; // Ancho para columna B
     worksheet.getColumn(3).width = 20; // Ancho para columna C
 
     // Establecer altura para todas las filas
