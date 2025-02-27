@@ -61,6 +61,9 @@ function NavMain() {
           </Suspense>
         </li>
       </ul>
+      <div className="nav-main-search-responsive-container">
+          <NavSearch />
+      </div>
     </nav>
   );
 }
