@@ -70,7 +70,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     <body>
       <div class="email-container">
         <div class="header-logo">
-          <img src="https://la-casa-del-accesorio-production.up.railway.app/elba-catalini-logo.png" alt="Logo de la empresa" />
+          <img src="https://la-casa-del-accesorio-production.up.railway.app/elbacatalini-logo-o.png" alt="Logo de la empresa" />
         </div>
         <div class="header">
           <h2>Gracias por elegirnos!</h2>
@@ -93,7 +93,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
         </div>
         <div class="footer">
           <p>Si tienes alguna pregunta, responde a este correo o contacta con nuestro servicio de atención al cliente.</p>
-          <p>&copy; ${new Date().getFullYear()} La Casa del Accesorio. Todos los derechos reservados.</p>
+          <p>&copy; ${new Date().getFullYear()} Elba Catalini. Todos los derechos reservados.</p>
         </div>
       </div>
     </body>
@@ -105,7 +105,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
   try {
     // Enviar el correo
     await transporter.sendMail({
-      from: `LaCasaDelAccesorio <${process.env.EMAIL_USER}>`,
+      from: `Elba Susana Catalini <${process.env.EMAIL_USER}>`,
       to: customerEmail,
       subject: `Confirmación de tu pedido, orden n°: ${orderId}`,
       html: emailHtml,
