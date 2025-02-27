@@ -20,7 +20,7 @@
   background: var(--light-grey);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  z-index: 30;
+  z-index: 9999 !important;
   padding: 10px 0;
   min-width: 200px;
   transform: translateY(-10px);
@@ -90,5 +90,3 @@
 .dropdown-submenu .dropdown-item:hover {
   background: var(--soft-grey);
 }
-
-

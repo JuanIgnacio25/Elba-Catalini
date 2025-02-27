@@ -318,6 +318,7 @@
   background: var(--red);
   color: var(--white);
   transition: top 0.3s ease-in-out;
+  overflow: visible !important;
   z-index: 800;
 }
 
@@ -502,6 +503,17 @@
   .nav-desktop-cart {
     display: flex;
   }
+
+  .nav-desktop-menu-mobile.open li{
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-desktop-menu-mobile.open li:hover{
+    z-index: 10;
+  }
+
+
 }
 
 @media (max-width: 620px) {
