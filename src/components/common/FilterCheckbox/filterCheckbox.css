@@ -30,6 +30,10 @@
   width: 80%;
   font-size: 14px;
   font-weight: bold;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 @media screen and (max-width: 1050px) {

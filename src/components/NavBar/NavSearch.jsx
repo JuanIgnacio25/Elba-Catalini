@@ -56,7 +56,7 @@ function NavSearch() {
         >
           <form onSubmit={handleSearch} className="flex items-center flex-grow">
             <input
-              ref={inputRef} // Asignar la referencia al input
+              ref={inputRef}
               placeholder="Buscar..."
               className="flex-grow px-4 py-2 outline-none"
               name="nav-main-search-dropdown-input"
