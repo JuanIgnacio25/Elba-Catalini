@@ -49,7 +49,7 @@ export const STORE_CATEGORIES = [
 export const STORE_SUBCATEGORIES = [
   "Caño Corrugado Abierto",
   "Tubo Termocontraible",
-  "Spagetti PVC",
+  "Spaghetti PVC",
   "Grampas",
   "Precintos",
   "Interruptores",

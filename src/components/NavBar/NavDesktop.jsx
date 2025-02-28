@@ -122,7 +122,7 @@ function NavDesktop() {
                 name: "Caño Corrugado Abierto",
               },
               { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
-              { slug: "Spagetti-pvc", name: "Spagetti PVC" },
+              { slug: "spaghetti-pvc", name: "Spaghetti PVC" },
               { slug: "precintos", name: "Precintos" },
               { slug: "interruptores", name: "Interruptores" },
               { slug: "terminales-pala", name: "Terminales Pala" },
