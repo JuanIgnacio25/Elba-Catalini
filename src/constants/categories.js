@@ -50,6 +50,7 @@ export const STORE_SUBCATEGORIES = [
   "Caño Corrugado Abierto",
   "Tubo Termocontraible",
   "Spaghetti PVC",
+  "Cinta Helicoidal",
   "Grampas",
   "Precintos",
   "Interruptores",
