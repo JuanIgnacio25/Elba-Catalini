@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation"; // Importa useRouter
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 
 import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
