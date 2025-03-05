@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function PathHeader() {
   const path = usePathname();
-  const pathArray = path.split("/").slice(1);
+  const pathArray = path.split("/").slice(1).map(decodeURIComponent);
 
   const [isScrolled, setIsScrolled] = useState(false);
 
