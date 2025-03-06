@@ -68,7 +68,7 @@ function NavDesktop() {
       >
         <li>
           <Link href="/products/baiml" onClick={toggleMenu}>
-            Linea Baiml
+            BAIML
           </Link>
         </li>
         <li>
