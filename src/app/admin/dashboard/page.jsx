@@ -426,9 +426,9 @@ function DashboardPage() {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                       >
                         <option value="" disabled hidden>
-                          Varianta de Sub Categoria
+                          Variante de Sub Categoria
                         </option>
-                        {["Enchufe de Plastico","Enchufe de Aluminio","Enchufe Vulcanizado"].map((option, index) => (
+                        {["Enchufes de Plastico","Enchufes de Aluminio","Enchufes Vulcanizado"].map((option, index) => (
                           <option key={index} value={option}>
                             {option}
                           </option>
