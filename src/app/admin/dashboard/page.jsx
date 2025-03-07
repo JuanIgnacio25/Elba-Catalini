@@ -71,7 +71,7 @@ function DashboardPage() {
       formData.append("description", description);
       formData.append("unit", unit);
       formData.append("kind", kind);
-      if(subCategory === "Cable TPR" || subCategory === "Enchufes"){
+      if (subCategory === "Cable TPR" || subCategory === "Enchufes") {
         formData.append("variantSubCategory", variantSubCategory);
       }
     }
@@ -360,7 +360,7 @@ function DashboardPage() {
                   </div>
                 )}
 
-                {category !== "Toxic Shine" && (
+                {category === "Electricidad" && (
                   <>
                     <div>
                       <label
@@ -387,56 +387,90 @@ function DashboardPage() {
                     </div>
                     {subCategory === "Cable TPR" && (
                       <div>
-                      <label
-                        htmlFor="store-variantsubcategory-options"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Variante de Sub Categoria
-                      </label>
-                      <select
-                        id="store-subcategory-options"
-                        value={variantSubCategory}
-                        onChange={(e) => setVariantSubCategory(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                      >
-                        <option value="" disabled hidden>
-                          Varianta de Sub Categoria
-                        </option>
-                        {["Coelpla","Milenio"].map((option, index) => (
-                          <option key={index} value={option}>
-                            {option}
+                        <label
+                          htmlFor="store-variantsubcategory-options"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Variante de Sub Categoria
+                        </label>
+                        <select
+                          id="store-subcategory-options"
+                          value={variantSubCategory}
+                          onChange={(e) =>
+                            setVariantSubCategory(e.target.value)
+                          }
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        >
+                          <option value="" disabled hidden>
+                            Varianta de Sub Categoria
                           </option>
-                        ))}
-                      </select>
-                    </div>
+                          {["Coelpla", "Milenio"].map((option, index) => (
+                            <option key={index} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     )}
 
                     {subCategory === "Enchufes" && (
                       <div>
-                      <label
-                        htmlFor="store-variantsubcategory-options"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Variante de Sub Categoria
-                      </label>
-                      <select
-                        id="store-subcategory-options"
-                        value={variantSubCategory}
-                        onChange={(e) => setVariantSubCategory(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                      >
-                        <option value="" disabled hidden>
+                        <label
+                          htmlFor="store-variantsubcategory-options"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
                           Variante de Sub Categoria
-                        </option>
-                        {["Enchufes de PVC","Enchufes de Aluminio","Enchufes Vulcanizados"].map((option, index) => (
-                          <option key={index} value={option}>
-                            {option}
+                        </label>
+                        <select
+                          id="store-subcategory-options"
+                          value={variantSubCategory}
+                          onChange={(e) =>
+                            setVariantSubCategory(e.target.value)
+                          }
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        >
+                          <option value="" disabled hidden>
+                            Variante de Sub Categoria
                           </option>
-                        ))}
-                      </select>
-                    </div>
+                          {[
+                            "Enchufes de PVC",
+                            "Enchufes de Aluminio",
+                            "Enchufes Vulcanizados",
+                          ].map((option, index) => (
+                            <option key={index} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     )}
                   </>
+                )}
+
+                {category === "Iluminacion" && (
+                  <div>
+                    <label
+                      htmlFor="store-subcategory-options"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Sub Categoria
+                    </label>
+                    <select
+                      id="store-subcategory-options"
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                      <option value="" disabled hidden>
+                        Sub Categoria
+                      </option>
+                      {["Cree Led","Lamparas Halogenas"].map((option, index) => (
+                        <option key={index} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 )}
               </>
             )}
