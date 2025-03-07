@@ -428,7 +428,7 @@ function DashboardPage() {
                         <option value="" disabled hidden>
                           Variante de Sub Categoria
                         </option>
-                        {["Enchufes de Plastico","Enchufes de Aluminio","Enchufes Vulcanizado"].map((option, index) => (
+                        {["Enchufes de Plastico","Enchufes de Aluminio","Enchufes Vulcanizados"].map((option, index) => (
                           <option key={index} value={option}>
                             {option}
                           </option>
