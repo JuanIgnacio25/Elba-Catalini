@@ -108,8 +108,8 @@ function NavDesktop() {
                     slug: "enchufes-de-aluminio",
                   },
                   {
-                    name: "Enchufes de Plastico",
-                    slug: "enchufes-de-plastico",
+                    name: "Enchufes de PVC",
+                    slug: "enchufes-de-pvc",
                   },
                   {
                     name: "Enchufes  Vulcanizados",
