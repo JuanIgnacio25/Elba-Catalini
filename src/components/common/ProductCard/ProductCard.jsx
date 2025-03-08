@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
+import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
+
 function ProductCard({prod}) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
@@ -75,7 +77,7 @@ function ProductCard({prod}) {
           className="product-card-info-link"
         >
           <p>{prod.name}</p>
-          <p className="product-card-info-unit">Cantidad x {prod.unit}</p>
+          <p className="product-card-info-unit">Cantidad x {formatStoreProductUnit(prod.subCategory,prod.unit)}</p>
         </Link>
       </div>
       <div className="product-card-add">

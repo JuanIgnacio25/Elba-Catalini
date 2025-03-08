@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
 import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
 
 import { BiCategory } from "react-icons/bi";
 
@@ -57,7 +58,9 @@ function ProductDetailInfo({ product }) {
         <Link
           href={
             product.kind === "Store" && product.category !== "Toxic Shine"
-              ? `/products/store/${product.category}/${product.subCategory.split(" ").join("-")}`
+              ? `/products/store/${product.category}/${product.subCategory
+                  .split(" ")
+                  .join("-")}`
               : `/products/category/${
                   product.kind === "Baiml"
                     ? `Baiml/${product.category}`
@@ -98,8 +101,14 @@ function ProductDetailInfo({ product }) {
             product.sku,
             product.kind
           )}{" "}
-          x {product.unit}{" "}
-          {formatBaimlProductSetLabel(product.productSet, product.unit)}{" "}
+          {product.kind === "Baiml" ? (
+            `x ${product.unit} ${formatBaimlProductSetLabel(
+              product.productSet,
+              product.unit
+            )} `
+          ) : (
+            `x ${formatStoreProductUnit(product.subCategory, product.unit)}`
+          )}
         </p>
       </div>
       <h3 className="product-detail-main-info-description">Descripcion</h3>
