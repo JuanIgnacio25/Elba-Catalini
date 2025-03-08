@@ -5,7 +5,7 @@ function FooterLogo() {
     <div className="footer-main-logo">
       <div className="footer-main-logo-container">
         <Image
-          src="/elbacatalini-logo.png"
+          src="/elbacatalini-logo-ovalado.png"
           alt="Logo-Main"
           width={500}
           height={500}
