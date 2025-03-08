@@ -70,7 +70,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     <body>
       <div class="email-container">
         <div class="header-logo">
-          <img src="https://la-casa-del-accesorio-production.up.railway.app/elbacatalini-logo-o.png" alt="Logo de la empresa" />
+          <img src="https://elbacatalini.com/elbacatalini-logo-ovalado.png" alt="Logo de la empresa" />
         </div>
         <div class="header">
           <h2>Gracias por elegirnos!</h2>
