@@ -96,7 +96,6 @@ function NavDesktop() {
                 name: "Cable TPR",
                 variantSubCategory: [
                   { name: "Coelpla", slug: "coelpla" },
-                  { name: "Milenio", slug: "milenio" },
                 ],
               },
               {
