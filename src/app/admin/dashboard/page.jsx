@@ -404,7 +404,7 @@ function DashboardPage() {
                           <option value="" disabled hidden>
                             Varianta de Sub Categoria
                           </option>
-                          {["Coelpla", "Milenio"].map((option, index) => (
+                          {["Coelpla"].map((option, index) => (
                             <option key={index} value={option}>
                               {option}
                             </option>
