@@ -73,7 +73,7 @@ function ProductsCards({
         scrollPosition >= bottomPosition &&
         !loadingMore &&
         !allLoaded &&
-        autoLoadCount < 2
+        autoLoadCount < 1
       ) {
         loadMoreProducts(true); // Call the memoized function
       }
@@ -114,7 +114,7 @@ function ProductsCards({
         </div>
       )}
 
-      {!loadingMore && autoLoadCount >= 2 && !allLoaded && (
+      {!loadingMore && autoLoadCount >= 1 && !allLoaded && (
         <button
           className="products-load-more-button"
           onClick={() => loadMoreProducts(false)}
