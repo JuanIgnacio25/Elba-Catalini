@@ -1,6 +1,6 @@
 const formatStoreProductUnit = (subCategory, unit) => {
 
-  const categories = ["Cable TPR","Caño Corrugado Abierto","Tubo Termocontraible","Cinta Helicoidal","Spaghetti PVC"];
+  const categories = ["Cable TPR","Caño Corrugado Abierto","Tubo Termocontraible","Cinta Helicoidal","Spaghetti PVC","Bandas Reflectivas"];
 
   if(categories.includes(subCategory)){
     return `${unit} mts`;
