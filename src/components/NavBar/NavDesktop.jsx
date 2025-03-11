@@ -139,7 +139,7 @@ function NavDesktop() {
             category={{ name: "3M", slug: "3M" }}
             options={[
               { slug: "bandas-reflectivas", name: "Bandas Reflectivas" },
-              { slug: "cera-liquida", name: "Cera Liquida" },
+              { slug: "circulos-de-velocidad", name: "Circulos de Velocidad" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}

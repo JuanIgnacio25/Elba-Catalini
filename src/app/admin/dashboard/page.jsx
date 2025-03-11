@@ -490,7 +490,7 @@ function DashboardPage() {
                       <option value="" disabled hidden>
                         Sub Categoria
                       </option>
-                      {["Bandas Reflectivas","Cera Liquida"].map((option, index) => (
+                      {["Bandas Reflectivas","Circulos de Velocidad"].map((option, index) => (
                         <option key={index} value={option}>
                           {option}
                         </option>
