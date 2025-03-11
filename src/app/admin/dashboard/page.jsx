@@ -472,6 +472,32 @@ function DashboardPage() {
                     </select>
                   </div>
                 )}
+
+                {category === "3M" && (
+                  <div>
+                    <label
+                      htmlFor="store-subcategory-options"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Sub Categoria
+                    </label>
+                    <select
+                      id="store-subcategory-options"
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                      <option value="" disabled hidden>
+                        Sub Categoria
+                      </option>
+                      {["Bandas Reflectivas","Cera Liquida"].map((option, index) => (
+                        <option key={index} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </>
             )}
             <div className="sm:col-span-2">

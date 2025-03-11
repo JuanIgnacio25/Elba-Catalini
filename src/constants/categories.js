@@ -43,7 +43,8 @@ export const TOXIC_SHINE_CATEGORIES = [
 export const STORE_CATEGORIES = [
   "Toxic Shine",
   "Electricidad",
-  "Iluminacion"
+  "Iluminacion",
+  "3M"
 ]
 
 export const STORE_SUBCATEGORIES = [
