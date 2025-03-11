@@ -58,6 +58,7 @@ export const STORE_SUBCATEGORIES = [
   "Terminales Pala",
   "Fichas Plasticas",
   "Cinta Aisladora",
+  "Fusibles",
   "Cable TPR",
   "Enchufes",
 ]

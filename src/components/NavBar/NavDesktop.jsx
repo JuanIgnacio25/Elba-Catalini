@@ -125,6 +125,7 @@ function NavDesktop() {
               { slug: "spaghetti-pvc", name: "Spaghetti PVC" },
               { slug: "precintos", name: "Precintos" },
               { slug: "interruptores", name: "Interruptores" },
+              { slug: "fusibles", name: "Fusibles" },
               { slug: "terminales-pala", name: "Terminales Pala" },
               { slug: "fichas-plasticas", name: "Fichas Plasticas" },
               { slug: "cinta-aisladora", name: "Cinta Aisladora" },
