@@ -37,7 +37,7 @@
 .nav-main-responsive-image {
   width: auto;
   height: 100%;
-  max-height: 17.5vh;
+  max-height: 15vh;
   transition: max-height 0.3s ease-in-out;
 }
 
