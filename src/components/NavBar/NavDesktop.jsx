@@ -78,17 +78,6 @@ function NavDesktop() {
         </li>
         <li>
           <Dropdown
-            category={{ name: "Iluminacion", slug: "Iluminacion" }}
-            options={[
-              { slug: "cree-led", name: "Cree Led" },
-              { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
-            ]}
-            baseUrl={"/products/store"}
-            toggleMenu={toggleMenu}
-          />
-        </li>
-        <li>
-          <Dropdown
             category={{ name: "Electricidad", slug: "Electricidad" }}
             options={[
               {
@@ -130,6 +119,17 @@ function NavDesktop() {
               { slug: "fichas-plasticas", name: "Fichas Plasticas" },
               { slug: "cinta-aisladora", name: "Cinta Aisladora" },
               { slug: "grampas", name: "Grampas" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "Iluminacion", slug: "Iluminacion" }}
+            options={[
+              { slug: "cree-led", name: "Cree Led" },
+              { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}

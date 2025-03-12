@@ -41,7 +41,7 @@ function NavMain() {
         >
           <Link href="/" className="nav-main-responsive-image-link">
             <Image
-              src="/elbacatalini-logo-trans-rojo.png"
+              src="/elbacatalini-main-logo.png"
               alt="Logo-Main"
               width={500}
               height={500}
