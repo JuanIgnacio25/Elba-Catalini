@@ -31,7 +31,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
         .header-logo {
           display: flex;
           align-items: center;
-          background-color: #D72323;
+          background-color: #cdc8c6;
           padding: 10px;
           color: white;
         }

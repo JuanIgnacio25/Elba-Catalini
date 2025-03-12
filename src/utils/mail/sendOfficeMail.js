@@ -232,9 +232,15 @@ const sendEmailWithAttachment = async (
     from: process.env.EMAIL_USER,
     to: process.env.RECIEVER_EMAIL_USER,
     subject: `Pedido de presupuesto de ${clientName}`,
-    text: `Excel del pedido adjuntado , ${
-      comments !== "" ? `Comentarios: ${comments}` : ""
-    }`,
+    html: `
+      ${
+        comments !== ""
+          ? `<p style="font-size: 16px; font-weight: bold; color: #ff0000; background-color: #cdc8c6; padding: 8px; display: inline-block;">
+                <span style="color: #000;">Comentarios:</span> ${comments}
+             </p>`
+          : `<p style="font-size: 16px; font-weight: bold; color: #000; background-color: #cdc8c6; padding: 8px; display: inline-block;">Sin Comentarios</p>`
+      }
+    `,
     attachments: [
       {
         filename: `${clientName}.xlsx`,
