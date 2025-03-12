@@ -230,7 +230,7 @@ const sendEmailWithAttachment = async (
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+    to: process.env.RECIEVER_EMAIL_USER,
     subject: `Pedido de presupuesto de ${clientName}`,
     text: `Excel del pedido adjuntado , ${
       comments !== "" ? `Comentarios: ${comments}` : ""
