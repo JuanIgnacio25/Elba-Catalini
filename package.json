@@ -25,6 +25,7 @@
     "mongoose-sequence": "^6.0.1",
     "next": "^14.2.16",
     "next-auth": "^4.24.7",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.14",
     "password-validator": "^5.3.0",
     "react": "^18",
