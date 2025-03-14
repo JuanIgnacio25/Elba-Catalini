@@ -7,7 +7,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
       (item) => `
         <tr>
           <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.name}</td>
-          <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.quantity}</td>
+          <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.quantity} x (${item.unit})</td>
         </tr>
     `
     )

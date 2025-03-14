@@ -83,6 +83,15 @@ const generateExcelBuffer = async (clientData, products, order) => {
       throw new Error("La hoja 'hoja0' no existe en el archivo de plantilla.");
     }
 
+    worksheet.pageSetup.margins = {
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      header: 0,
+      footer: 0,
+    };
+
     // Estilos de borde
     const borderStyle = {
       right: { style: "thin", color: { argb: "FF000000" } },
@@ -104,7 +113,10 @@ const generateExcelBuffer = async (clientData, products, order) => {
     worksheet.getCell("B3").font = { size: 16 };
 
     worksheet.getCell("C2").alignment = { vertical: "top", horizontal: "left" };
+    worksheet.getCell("C2").font = { size: 12 };
+
     worksheet.getCell("C3").alignment = { vertical: "top", horizontal: "left" };
+    worksheet.getCell("C3").font = { size: 12 };
 
     worksheet.getCell("C4").value = `Fecha: ${new Date(
       order.createdAt
@@ -122,7 +134,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
       // Insertar una nueva fila para cada producto
       worksheet.insertRow(currentRow);
 
-      worksheet.getRow(currentRow).height = 35;
+      worksheet.getRow(currentRow).height = 23;
 
       // Asignar valores a las celdas, aplicar bordes y ajustar estilo (centrado y tamaño de fuente)
       worksheet.getCell(`A${currentRow}`).value =
@@ -130,7 +142,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
           ? item.productSet
           : item.unit * item.quantity;
       worksheet.getCell(`A${currentRow}`).border = { ...borderStyle };
-      worksheet.getCell(`A${currentRow}`).font = { size: 18 };
+      worksheet.getCell(`A${currentRow}`).font = { size: 16 };
       worksheet.getCell(`A${currentRow}`).alignment = {
         vertical: "middle",
         horizontal: "center",
@@ -138,7 +150,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
       worksheet.getCell(`B${currentRow}`).value = item.nameForOrders;
       worksheet.getCell(`B${currentRow}`).border = { ...borderStyle };
-      worksheet.getCell(`B${currentRow}`).font = { size: 19 };
+      worksheet.getCell(`B${currentRow}`).font = { size: 16 };
       worksheet.getCell(`B${currentRow}`).alignment = {
         vertical: "middle",
         horizontal: "left",
@@ -148,7 +160,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
         item.kind == "Baiml" ? evaluateBracketsInProduct(item.sku) : ""
       })`;
       worksheet.getCell(`C${currentRow}`).border = { ...borderStyle };
-      worksheet.getCell(`C${currentRow}`).font = { size: 18 };
+      worksheet.getCell(`C${currentRow}`).font = { size: 16 };
       worksheet.getCell(`C${currentRow}`).alignment = {
         vertical: "middle",
         horizontal: "center",
@@ -156,7 +168,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
     });
 
     // Rellenar con filas vacías si hay menos de 10 productos
-    const totalRows = 15;
+    const totalRows = 10;
     let filledRows = products.length;
 
     if (filledRows < totalRows) {
@@ -166,12 +178,12 @@ const generateExcelBuffer = async (clientData, products, order) => {
         // Insertar una fila vacía
         worksheet.insertRow(currentRow);
 
-        worksheet.getRow(currentRow).height = 40;
+        worksheet.getRow(currentRow).height = 20;
 
         // Aplicar bordes y estilo a las celdas vacías
         worksheet.getCell(`A${currentRow}`).value = null;
         worksheet.getCell(`A${currentRow}`).border = { ...borderStyle };
-        worksheet.getCell(`A${currentRow}`).font = { size: 20 };
+        worksheet.getCell(`A${currentRow}`).font = { size: 16 };
         worksheet.getCell(`A${currentRow}`).alignment = {
           vertical: "middle",
           horizontal: "center",
@@ -179,7 +191,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
         worksheet.getCell(`B${currentRow}`).value = null;
         worksheet.getCell(`B${currentRow}`).border = { ...borderStyle };
-        worksheet.getCell(`B${currentRow}`).font = { size: 20 };
+        worksheet.getCell(`B${currentRow}`).font = { size: 16 };
         worksheet.getCell(`B${currentRow}`).alignment = {
           vertical: "middle",
           horizontal: "center",
@@ -187,7 +199,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
         worksheet.getCell(`C${currentRow}`).value = null;
         worksheet.getCell(`C${currentRow}`).border = { ...borderStyle };
-        worksheet.getCell(`C${currentRow}`).font = { size: 20 };
+        worksheet.getCell(`C${currentRow}`).font = { size: 16 };
         worksheet.getCell(`C${currentRow}`).alignment = {
           vertical: "middle",
           horizontal: "center",
@@ -205,13 +217,13 @@ const generateExcelBuffer = async (clientData, products, order) => {
     worksheet.getColumn(3).width = 20; // Ancho para columna C
 
     // Establecer altura para todas las filas
-    worksheet.getRow(1).height = 32;
-    worksheet.getRow(2).height = 32;
-    worksheet.getRow(3).height = 32;
-    worksheet.getRow(4).height = 32;
-    worksheet.getRow(5).height = 32;
+    worksheet.getRow(1).height = 25;
+    worksheet.getRow(2).height = 25;
+    worksheet.getRow(3).height = 25;
+    worksheet.getRow(4).height = 25;
+    worksheet.getRow(5).height = 25;
 
-    worksheet.getRow(5).font = { size: 18 };
+    worksheet.getRow(5).font = { size: 16 };
 
     // Escribir el buffer
     const buffer = await workbook.xlsx.writeBuffer();
