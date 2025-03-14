@@ -93,6 +93,15 @@ export async function middleware(req) {
     }
   }
 
+  if (req.nextUrl.pathname === "/api/users") {
+    if (!token || token.user.rol !== "admin") {
+      return NextResponse.json(
+        { message: "No tiene permiso para hacer esta petición" },
+        { status: 401 }
+      );
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -105,6 +114,7 @@ export const config = {
     "/api/products",
     "/api/carts/:path*",
     "/api/orders/:path*",
+    "/api/users/:path*",
 
     "/wordpress/:path*",
     "/wp-admin/:path*",

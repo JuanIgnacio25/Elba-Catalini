@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Link from "next/link";
 import { useProduct } from "@/context/ProductContext";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
@@ -152,6 +153,16 @@ function DashboardPage() {
 
   return (
     <div>
+      <div className="flex justify-center w-full px-1 my-4">
+        <Link href="/admin/users">
+          <button
+            type="submit"
+            className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-600 hover:bg-green-800 rounded-lg "
+          >
+            Ver Usuarios
+          </button>
+        </Link>
+      </div>
       <div className="pb-8 px-4 mx-auto mb-7 max-w-full lg:pb-16">
         <div className="flex justify-center w-full">
           <h2 className="mb-4 text-xl font-bold text-gray-900">
@@ -464,11 +475,13 @@ function DashboardPage() {
                       <option value="" disabled hidden>
                         Sub Categoria
                       </option>
-                      {["Cree Led","Lamparas Halogenas"].map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
-                        </option>
-                      ))}
+                      {["Cree Led", "Lamparas Halogenas"].map(
+                        (option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        )
+                      )}
                     </select>
                   </div>
                 )}
@@ -490,11 +503,13 @@ function DashboardPage() {
                       <option value="" disabled hidden>
                         Sub Categoria
                       </option>
-                      {["Bandas Reflectivas","Circulos de Velocidad"].map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
-                        </option>
-                      ))}
+                      {["Bandas Reflectivas", "Circulos de Velocidad"].map(
+                        (option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        )
+                      )}
                     </select>
                   </div>
                 )}
