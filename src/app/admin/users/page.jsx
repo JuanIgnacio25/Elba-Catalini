@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function usersPage() {
+function UsersPage() {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
 
@@ -51,4 +51,4 @@ function usersPage() {
   );
 }
 
-export default usersPage;
+export default UsersPage;
