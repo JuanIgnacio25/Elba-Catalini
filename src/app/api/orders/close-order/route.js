@@ -66,6 +66,9 @@ export async function POST(req) {
       carrier: cartData.deliveryOption === "address" ? token.user.carrier : "Retira Personalmente",
       address: token.user.address,
       location: token.user.location,
+      cuit: token.user.cuit,
+      purchasingManagerName: token.user.purchasingManagerName,
+      phoneNumber: token.user.phoneNumber,
       comments: cartData.comments || "",
     };
 

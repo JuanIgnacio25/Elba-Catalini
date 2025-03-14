@@ -221,29 +221,143 @@ const generateExcelBuffer = async (clientData, products, order) => {
   }
 };
 
-const sendEmailWithAttachment = async (
-  clientName,
-  attachmentBuffer,
-  comments
-) => {
+const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
   const transporter = createTransporter();
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.RECIEVER_EMAIL_USER,
-    subject: `Pedido de presupuesto de ${clientName}`,
+    subject: `Pedido de Cotización de ${clientData.companyName}`,
     html: `
-      ${
-        comments !== ""
-          ? `<p style="font-size: 16px; font-weight: bold; color: #ff0000; background-color: #cdc8c6; padding: 8px; display: inline-block;">
-                <span style="color: #000;">Comentarios:</span> ${comments}
-             </p>`
-          : `<p style="font-size: 16px; font-weight: bold; color: #000; background-color: #cdc8c6; padding: 8px; display: inline-block;">Sin Comentarios</p>`
-      }
+         <html>
+            <head>
+              <style>
+                body {
+                  font-family: Arial, sans-serif;
+                  padding: 20px;
+                  margin: 0;
+                }
+
+                .email-container {
+                  background-color: #f9f9f9;
+                  border-radius: 8px;
+                  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                  max-width: 900px;
+                  width: 100%;
+                  padding: 20px;
+                  margin: 0 auto;
+                }
+
+                .email-container h1 {
+                  font-size: 22px;
+                  color: #333;
+                  border-bottom: 2px solid #d43f3a;
+                  padding-bottom: 8px;
+                  margin-bottom: 15px;
+                  text-align: center;
+                }
+
+                .email-container p {
+                  font-size: 16px;
+                  color: #333;
+                  margin: 5px 0;
+                }
+
+                .comments {
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #d9534f;
+                  background-color: #f2dede;
+                  padding: 12px;
+                  border-radius: 8px;
+                  display: block;
+                  border-left: 6px solid #d43f3a;
+                  margin-top: 10px;
+                }
+
+                .no-comments {
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #555;
+                  background-color: #e7e7e7;
+                  padding: 12px;
+                  border-radius: 8px;
+                  display: block;
+                  border-left: 6px solid #999;
+                  margin-top: 10px;
+                }
+
+                /* Media Queries for Responsiveness */
+                @media (max-width: 768px) {
+                  .email-container {
+                    padding: 15px;
+                  }
+
+                  .email-container h1 {
+                    font-size: 20px;
+                  }
+
+                  .email-container p {
+                    font-size: 14px;
+                  }
+
+                  .comments,
+                  .no-comments {
+                    font-size: 14px;
+                    padding: 10px;
+                  }
+                }
+
+                @media (max-width: 480px) {
+                  .email-container {
+                    padding: 10px;
+                  }
+
+                  .email-container h1 {
+                    font-size: 18px;
+                  }
+
+                  .email-container p {
+                    font-size: 13px;
+                  }
+
+                  .comments,
+                  .no-comments {
+                    font-size: 13px;
+                    padding: 8px;
+                  }
+                }
+              </style>
+            </head>
+            <body>
+              <table class="email-container" cellspacing="0" cellpadding="10" align="center">
+                <tr>
+                  <td>
+                    <h1>Información del Usuario</h1>
+                    <p><strong>Email:</strong> ${clientData.email}</p>
+                    <p><strong>Número de Contacto:</strong> ${
+                      clientData.phoneNumber
+                    }</p>
+                    <p><strong>Dirección:</strong> ${clientData.address}</p>
+                    <p><strong>CUIT:</strong> ${clientData.cuit}</p>
+                    <p><strong>Nombre del Encargado de Compra:</strong> ${
+                      clientData.purchasingManagerName
+                    }</p>
+
+                    ${
+                      clientData.comments !== ""
+                        ? `<p class="comments"><span>Comentarios:</span> ${clientData.comments}</p>`
+                        : `<p class="no-comments">Sin Comentarios</p>`
+                    }
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
     `,
     attachments: [
       {
-        filename: `${clientName}.xlsx`,
+        filename: `${clientData.companyName}.xlsx`,
         content: attachmentBuffer,
         contentType:
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -265,11 +379,7 @@ const createAndSendExcelEmail = async (clientData, products, order) => {
       products,
       order
     );
-    await sendEmailWithAttachment(
-      clientData.companyName,
-      attachmentBuffer,
-      clientData.comments
-    );
+    await sendEmailWithAttachment(clientData, attachmentBuffer);
   } catch (error) {
     throw error;
   }
