@@ -92,7 +92,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
           </table>
         </div>
         <div class="footer">
-          <p>Si tienes alguna pregunta, responde a este correo o contacta con nuestro servicio de atención al cliente.</p>
+          <p>Si tenes alguna pregunta, contacta con nuestro servicio de atención al cliente.</p>
           <p>&copy; ${new Date().getFullYear()} Elba Catalini. Todos los derechos reservados.</p>
         </div>
       </div>

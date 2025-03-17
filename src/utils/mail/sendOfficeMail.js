@@ -139,7 +139,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
       // Asignar valores a las celdas, aplicar bordes y ajustar estilo (centrado y tamaño de fuente)
       worksheet.getCell(`A${currentRow}`).value =
         item.productSet !== 0 && item.kind == "Baiml"
-          ? item.productSet
+          ? item.productSet * item.quantity
           : item.unit * item.quantity;
       worksheet.getCell(`A${currentRow}`).border = { ...borderStyle };
       worksheet.getCell(`A${currentRow}`).font = { size: 16 };
