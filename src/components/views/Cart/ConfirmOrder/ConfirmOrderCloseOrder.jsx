@@ -1,10 +1,15 @@
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+
+import { useCart } from "@/context/CartContext";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
 
-function ConfirmOrderCloseOrder({ fetchCart, deliveryOption, handleError, comments, setClosedOrder }) {
+function ConfirmOrderCloseOrder({ deliveryOption, handleError, comments, setClosedOrder }) {
   const router = useRouter();
+  
+  const {cart} = useCart();
+
   const [loadingCloseOrder, setLoadingCloseOrder] = useState(false);
   const [isCloseCartModalOpen, setIsCloseCartModalOpen] = useState(false);
 
@@ -14,7 +19,7 @@ function ConfirmOrderCloseOrder({ fetchCart, deliveryOption, handleError, commen
   const handleCloseOrder = async () => {
     try {
       setLoadingCloseOrder(true);
-      await axios.post(`/api/orders/close-order`, { cartData: { deliveryOption, comments } });
+      await axios.post(`/api/orders/close-order`, { cartData: { deliveryOption, comments , productsCartInContext:cart.products} });
   
       setClosedOrder(true);
       closeCloseCartModal();

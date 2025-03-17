@@ -5,6 +5,7 @@ import { connectDB } from "@/libs/mongodb";
 import CartService from "@/models/cart/CartService";
 import OrderService from "@/models/order/OrderService";
 import { isValidCommentsData } from "@/utils/validate/validateComments";
+import validateQuantity from "@/utils/validate/validateQuantity";
 
 const orderService = new OrderService();
 const cartService = new CartService();
@@ -29,14 +30,17 @@ export async function POST(req) {
       throw new Error("No se puede completar la compra de un carrito vacío");
     }
 
-    // Validar que cada producto en cartData tenga un quantity válido
-    /* cartData.products.forEach(product => {
-      if(!validateQuantity(product.quantity)) throw new Error("La cantidad debe ser mayor a 0");
-    }); */
+    console.log(cartData.productsCartInContext);
+    
 
-    /* // Modificar sólo el quantity en memoria para los productos del carrito
+    // Validar que cada producto en cartData tenga un quantity válido
+    cartData.productsCartInContext.forEach(product => {
+      if(!validateQuantity(product.quantity)) throw new Error("La cantidad debe ser mayor a 0");
+    });
+
+    // Modificar sólo el quantity en memoria para los productos del carrito
     const updatedProducts = cart.products.map(cartProduct => {
-      const cartDataProduct = cartData.products.find(p => p.productId === cartProduct.productId);
+      const cartDataProduct = cartData.productsCartInContext.find(p => p.productId === cartProduct.productId);
       
       if (!cartDataProduct) {
         throw new Error(`Producto con ID ${cartProduct.productId} no encontrado en los datos enviados.`);
@@ -48,7 +52,7 @@ export async function POST(req) {
       }
 
       return cartProduct;
-    }); */
+    });
 
     // Crear y cerrar la orden con los productos actualizados
 
@@ -72,7 +76,7 @@ export async function POST(req) {
       comments: cartData.comments || "",
     };
 
-    await orderService.closeOrder(cart.products,orderData);
+    await orderService.closeOrder(updatedProducts,orderData);
     
     await cartService.clearCart(token.user.cartId);
 
