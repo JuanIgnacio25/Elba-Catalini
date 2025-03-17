@@ -64,7 +64,7 @@
 
 @media (max-width: 1140px) {
   .products-cards {
-    grid-auto-rows: 400px;
+    grid-auto-rows: 50vh;
   }
 }
 
