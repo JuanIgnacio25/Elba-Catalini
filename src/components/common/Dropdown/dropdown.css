@@ -9,6 +9,10 @@
   color: var(--white);
   cursor: pointer;
   padding: 0px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .dropdown-menu {
