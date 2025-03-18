@@ -30,9 +30,6 @@ export async function POST(req) {
       throw new Error("No se puede completar la compra de un carrito vacío");
     }
 
-    console.log(cartData.productsCartInContext);
-    
-
     // Validar que cada producto en cartData tenga un quantity válido
     cartData.productsCartInContext.forEach(product => {
       if(!validateQuantity(product.quantity)) throw new Error("La cantidad debe ser mayor a 0");

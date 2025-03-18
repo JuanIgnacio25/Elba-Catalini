@@ -84,9 +84,9 @@ const generateExcelBuffer = async (clientData, products, order) => {
     }
 
     worksheet.pageSetup.margins = {
-      left: 0,
+      left: 0.079,
       right: 0,
-      top: 0,
+      top: 0.079,
       bottom: 0,
       header: 0,
       footer: 0,
@@ -213,7 +213,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
     // Definir el ancho de las columnas
     worksheet.getColumn(1).width = 15; // Ancho para columna A
-    worksheet.getColumn(2).width = 75; // Ancho para columna B
+    worksheet.getColumn(2).width = 60; // Ancho para columna B
     worksheet.getColumn(3).width = 20; // Ancho para columna C
 
     // Establecer altura para todas las filas
