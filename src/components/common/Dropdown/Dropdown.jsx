@@ -21,6 +21,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
 
   const toggleDropdown = () => {
     if (isMobile) {
+      e.preventDefault();
       setIsOpen((prev) => !prev);
     }
   };
@@ -60,19 +61,13 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
       ) : (
         <div
           className="dropdown-category"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleDropdown();
-          }}
+          onClick={(e) => toggleDropdown(e)}
         >
           {category.name}
           <IoMdArrowDropdown />
         </div>
       )}
 
-      {isMobile && isOpen && <div className="dropdown-blocker" onClick={handleClose}></div>}
-      
       {isOpen && (
         <div className="dropdown-menu">
           {options.map((option) => (

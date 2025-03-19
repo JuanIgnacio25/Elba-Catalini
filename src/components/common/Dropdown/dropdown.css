@@ -1,5 +1,8 @@
-.dropdown, .dropdown * {
-  user-select: none;
+.dropdown-category, .dropdown-item {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 .dropdown {
@@ -61,16 +64,6 @@
 
 .dropdown-icon {
   font-size: 16px;
-}
-
-.dropdown-blocker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 1;
 }
 
 .dropdown-submenu {
