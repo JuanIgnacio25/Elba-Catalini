@@ -16,7 +16,7 @@ class OrderDao {
 
   async findOrdersByUserId(id){
     try {
-      const orders = await this.collection.find({userId:id});
+      const orders = await this.collection.find({userId:id}).sort({createdAt:-1});
       return orders;
     } catch (error) {
       throw error;
