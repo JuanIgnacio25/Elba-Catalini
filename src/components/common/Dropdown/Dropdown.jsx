@@ -20,8 +20,6 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
   };
 
   const toggleDropdown = () => {
-    e.preventDefault();
-    e.stopPropagation();
     if (isMobile) {
       setIsOpen((prev) => !prev);
     }
@@ -43,7 +41,6 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
 
   return (
     <div
@@ -64,7 +61,9 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
         <div
           className="dropdown-category"
           onClick={(e) => {
-            toggleDropdown(e);
+            e.preventDefault();
+            e.stopPropagation();
+            toggleDropdown();
           }}
         >
           {category.name}
@@ -72,6 +71,8 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
         </div>
       )}
 
+      {isMobile && isOpen && <div className="dropdown-blocker" onClick={handleClose}></div>}
+      
       {isOpen && (
         <div className="dropdown-menu">
           {options.map((option) => (
