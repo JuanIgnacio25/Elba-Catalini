@@ -197,7 +197,7 @@
 
 @media (max-width: 1140px){
   .baiml-p-card {
-    height: 400px;
+    height: 50vh;
   }
 
   .baiml-p-card-img-container {
