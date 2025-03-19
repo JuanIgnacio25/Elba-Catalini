@@ -427,11 +427,6 @@
   .nav-main-menu {
     justify-content: center;
   }
-
-  .nav-main-menu-cart-container {
-    display: none;
-  }
-
   /* NavMain Menu */
 
   .css-b62m3t-container {
@@ -464,6 +459,14 @@
 
   .nav-main-menu-cart-container {
     display: none;
+  }
+
+  .nav-desktop-cart {
+    display: flex;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
   .nav-main-menu-icon-cart {
@@ -501,10 +504,6 @@
   }
 
   .nav-desktop-menu-icon {
-    display: flex;
-  }
-
-  .nav-desktop-cart {
     display: flex;
   }
 
