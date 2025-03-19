@@ -1,9 +1,9 @@
+.dropdown, .dropdown * {
+  user-select: none;
+}
+
 .dropdown {
   position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .dropdown-category {
@@ -13,10 +13,6 @@
   color: var(--white);
   cursor: pointer;
   padding: 0px;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .dropdown-menu {
@@ -34,10 +30,6 @@
   transform: translateY(-10px);
   pointer-events: none;
   opacity: 0;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 

@@ -20,6 +20,8 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
   };
 
   const toggleDropdown = () => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isMobile) {
       setIsOpen((prev) => !prev);
     }
@@ -42,6 +44,12 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.activeElement?.blur();
+    }
+  }, [isOpen, isMobile]);
+
   return (
     <div
       className="dropdown"
@@ -61,8 +69,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
         <div
           className="dropdown-category"
           onClick={(e) => {
-            e.stopPropagation();
-            toggleDropdown();
+            toggleDropdown(e);
           }}
         >
           {category.name}
