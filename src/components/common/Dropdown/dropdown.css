@@ -1,8 +1,10 @@
-.dropdown-category, .dropdown-item {
-  user-select: text;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
+.dropdown-category, 
+.dropdown-item {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: manipulation;
 }
 
 .dropdown {
@@ -31,7 +33,7 @@
   padding: 5px 0;
   min-width: 200px;
   transform: translateY(-10px);
-  pointer-events: none;
+  pointer-events: auto;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }

@@ -60,8 +60,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
       ) : (
         <div
           className="dropdown-category"
-          onClick={(e) => {
-            
+          onPointerDown={(e) => {
             e.stopPropagation();
             toggleDropdown();
           }}
