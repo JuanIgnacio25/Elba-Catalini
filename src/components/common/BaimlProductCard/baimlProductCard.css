@@ -145,7 +145,7 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: calc(18vh + 40px);
+  top: calc(var(--nav-main-height) + 40px);
   right: 5vw;
   max-width: 25vw;
   min-width: 25vw;
@@ -161,7 +161,7 @@
 }
 
 .baiml-p-card-toast-scrolled {
-  top: calc(12vh + 40px);
+  top: calc(var(--nav-main-height-scrolled) + 40px);
 }
 
 .baiml-p-card-toast-span {
