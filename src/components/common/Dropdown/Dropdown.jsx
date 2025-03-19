@@ -43,12 +43,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    if (isMobile && isOpen) {
-      document.activeElement?.blur();
-    }
-  }, [isOpen, isMobile]);
+  
 
   return (
     <div
