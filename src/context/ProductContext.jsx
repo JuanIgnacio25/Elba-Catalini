@@ -58,12 +58,40 @@ export function ProductProvider({ children }) {
 
   const searchProducts = (query) => {
     const lowerCaseQuery = query.toLowerCase();
-
-    return allProducts.filter(
-      (product) =>
-        product.name.toLowerCase().includes(lowerCaseQuery) ||
-        product.description.toLowerCase().includes(lowerCaseQuery)
-    );
+    const wordsInQuery = lowerCaseQuery.split(/\s+/); // Divide la búsqueda en palabras
+  
+    const filteredProducts = allProducts
+      .map((product) => {
+        const name = product.name.toLowerCase();
+        const description = product.description.toLowerCase();
+  
+        let nameScore = 0;
+        let descScore = 0;
+  
+        wordsInQuery.forEach((word) => {
+          if (name.includes(word)) {
+            if (name.startsWith(word)) {
+              nameScore += 300; // Coincidencia al inicio del nombre (máxima prioridad)
+            } else {
+              nameScore += 200; // Coincidencia en cualquier parte del nombre
+            }
+          }
+  
+          if (description.includes(word)) {
+            if (description.startsWith(word)) {
+              descScore += 100; // Coincidencia al inicio de la descripción
+            } else {
+              descScore += 50; // Coincidencia en cualquier parte de la descripción
+            }
+          }
+        });
+  
+        return { ...product, score: nameScore + descScore };
+      })
+      .filter((product) => product.score > 0)
+      .sort((a, b) => b.score - a.score); // Ordenar por puntuación
+  
+    return filteredProducts;
   };
 
   const filterStoreProductsByCategory = (
