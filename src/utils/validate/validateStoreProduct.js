@@ -24,23 +24,31 @@ const storeProductDtoSchema = Type.Object(
       },
     }),
     sku: Type.String({
+      minLength: 2,
       errorMessage: {
+        minLength: "Sku debe tener más de un carácter",
         type: "Sku debe ser un String",
       },
     }),
     category: Type.String({
+      minLength: 2,
       errorMessage: {
         type: "Category debe ser un String",
+        minLength: "La Categoria debe tener un valor asignado"
       },
     }),
     subCategory: Type.String({
+      minLength: 2,
       errorMessage: {
-        type: "Category debe ser un String",
+        type: "Sub Category debe ser un String",
+        minLength: "La Sub Categoria debe tener un valor asignado"
       },
     }),
     description: Type.String({
+      minLength: 2,
       errorMessage: {
         type: "Description debe ser un String",
+        minLength: "Description debe tener un valor asignado",
       },
     }),
     unit: Type.String({
@@ -49,13 +57,16 @@ const storeProductDtoSchema = Type.Object(
       },
     }),
     kind: Type.String({
+      minLength: 2,
       errorMessage: {
+        minLength: "Kind debe tener un valor asignado",
         type: "Kind debe ser String",
       },
     }),
     variantSubCategory: Type.Optional(
       Type.String({
-        errorMessage: { type: "variantCategory debe ser un String" },
+        minLength:2,
+        errorMessage: { type: "variantCategory debe ser un String" , minLength: "La Variante de Sub Categoria debe tener un valor asignado"},
       })
     ),
   },
