@@ -463,10 +463,6 @@
 
   .nav-desktop-cart {
     display: flex;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
   }
 
   .nav-main-menu-icon-cart {

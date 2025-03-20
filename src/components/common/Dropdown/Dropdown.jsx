@@ -60,8 +60,13 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
       ) : (
         <div
           className="dropdown-category"
+          role="button"
+          tabIndex="0"
           onPointerDown={(e) => {
             e.stopPropagation();
+            if (!isOpen) {
+              e.preventDefault();
+            }
             toggleDropdown();
           }}
         >
