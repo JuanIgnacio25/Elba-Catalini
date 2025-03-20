@@ -14,7 +14,9 @@ import {
   BAIML_CATEGORIES,
   TOXIC_SHINE_CATEGORIES,
   STORE_CATEGORIES,
-  STORE_SUBCATEGORIES,
+  STORE_ELECTRICIDAD_SUBCATEGORIES,
+  STORE_ILUMINACION_SUBCATEGORIES,
+  STORE_ACCESORIOS_SUBCATEGORIES
 } from "@/constants/categories";
 
 function DashboardPage() {
@@ -25,7 +27,9 @@ function DashboardPage() {
   const baimlOptions = [...BAIML_CATEGORIES];
   const toxicShineOptions = [...TOXIC_SHINE_CATEGORIES];
   const storeOptions = [...STORE_CATEGORIES];
-  const storeSubcategorieOptions = [...STORE_SUBCATEGORIES];
+  const storeElectricidadSubcategoriesOptions = [...STORE_ELECTRICIDAD_SUBCATEGORIES];
+  const storeIluminacionSubcategoriesOptions = [...STORE_ILUMINACION_SUBCATEGORIES]
+  const storeAccesoriosSubcategoriesOptions = [...STORE_ACCESORIOS_SUBCATEGORIES]
 
   const [name, setName] = useState("");
   const [nameForOrders, setNameForOrders] = useState("");
@@ -153,16 +157,6 @@ function DashboardPage() {
 
   return (
     <div>
-      <div className="flex justify-center w-full px-1 my-4">
-        <Link href="/admin/users">
-          <button
-            type="submit"
-            className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-600 hover:bg-green-800 rounded-lg "
-          >
-            Ver Usuarios
-          </button>
-        </Link>
-      </div>
       <div className="pb-8 px-4 mx-auto mb-7 max-w-full lg:pb-16">
         <div className="flex justify-center w-full">
           <h2 className="mb-4 text-xl font-bold text-gray-900">
@@ -389,7 +383,7 @@ function DashboardPage() {
                         <option value="" disabled hidden>
                           Sub Categoria
                         </option>
-                        {storeSubcategorieOptions.map((option, index) => (
+                        {storeElectricidadSubcategoriesOptions.map((option, index) => (
                           <option key={index} value={option}>
                             {option}
                           </option>
@@ -475,7 +469,35 @@ function DashboardPage() {
                       <option value="" disabled hidden>
                         Sub Categoria
                       </option>
-                      {["Cree Led", "Lamparas Halogenas"].map(
+                      {storeIluminacionSubcategoriesOptions.map(
+                        (option, index) => (
+                          <option key={index} value={option}>
+                            {option}
+                          </option>
+                        )
+                      )}
+                    </select>
+                  </div>
+                )}
+
+                {category === "Accesorios" && (
+                  <div>
+                    <label
+                      htmlFor="store-subcategory-options"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Sub Categoria
+                    </label>
+                    <select
+                      id="store-subcategory-options"
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                      <option value="" disabled hidden>
+                        Sub Categoria
+                      </option>
+                      {storeAccesoriosSubcategoriesOptions.map(
                         (option, index) => (
                           <option key={index} value={option}>
                             {option}
@@ -606,6 +628,17 @@ function DashboardPage() {
             </div>
           )}
         </form>
+      </div>
+
+      <div className="flex justify-start w-full px-1 my-2">
+        <Link href="/admin/users">
+          <button
+            type="submit"
+            className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-600 hover:bg-green-800 rounded-lg "
+          >
+            Ver Usuarios
+          </button>
+        </Link>
       </div>
 
       <table>

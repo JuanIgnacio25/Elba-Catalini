@@ -39,15 +39,15 @@ export const TOXIC_SHINE_CATEGORIES = [
   "Toxic Gallon´s Company",
 ];
 
-
 export const STORE_CATEGORIES = [
   "Toxic Shine",
   "Electricidad",
+  "Accesorios",
   "Iluminacion",
-  "3M"
-]
+  "3M",
+];
 
-export const STORE_SUBCATEGORIES = [
+export const STORE_ELECTRICIDAD_SUBCATEGORIES = [
   "Caño Corrugado Abierto",
   "Tubo Termocontraible",
   "Spaghetti PVC",
@@ -61,4 +61,25 @@ export const STORE_SUBCATEGORIES = [
   "Fusibles",
   "Cable TPR",
   "Enchufes",
+];
+
+export const STORE_ACCESORIOS_SUBCATEGORIES = [
+  "Accesorios para Niños",
+  "Accesorios para Motos",
+  "Cubre Alfombras",
+  "Cubre Volantes",
+  "Cubre Asientos",
+  "Antenas",
+  "Anti Robo",
+  "Asientos y Respaldos",
+  "Escobillas",
+  "Compresores",
+  "Seguridad",
+  "Detailing"
 ]
+
+export const STORE_ILUMINACION_SUBCATEGORIES = [
+  "Cree Led",
+  "Lamparas Halogenas",
+  "Reflectores y Barras",
+];
