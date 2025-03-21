@@ -23,7 +23,7 @@
 body {
   display:flex;
   flex-flow:column wrap;
-  background: var(--extra-light-grey);
+  background: var(--light-grey);
   margin-top:20vh;
 }
 

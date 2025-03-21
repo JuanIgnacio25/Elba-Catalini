@@ -111,7 +111,6 @@ function NavDesktop() {
               },
               { slug: "cinta-aisladora", name: "Cinta Aisladora" },
               { slug: "cinta-helicoidal", name: "Cinta Helicoidal" },
-              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
               { slug: "fichas-plasticas", name: "Fichas Plasticas" },
               { slug: "fusibles", name: "Fusibles" },
               { slug: "grampas", name: "Grampas" },
@@ -119,6 +118,7 @@ function NavDesktop() {
               { slug: "precintos", name: "Precintos" },
               { slug: "spaghetti-pvc", name: "Spaghetti PVC" },           
               { slug: "terminales-pala", name: "Terminales Pala" },
+              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
