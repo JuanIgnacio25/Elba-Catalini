@@ -64,18 +64,18 @@ export const STORE_ELECTRICIDAD_SUBCATEGORIES = [
 ];
 
 export const STORE_ACCESORIOS_SUBCATEGORIES = [
-  "Accesorios para Niños",
   "Accesorios para Motos",
-  "Cubre Alfombras",
-  "Cubre Volantes",
-  "Cubre Asientos",
+  "Accesorios para Niños",
   "Antenas",
   "Anti Robo",
   "Asientos y Respaldos",
-  "Escobillas",
   "Compresores",
-  "Seguridad",
-  "Detailing"
+  "Cubre Alfombras",
+  "Cubre Asientos",
+  "Cubre Volantes",
+  "Detailing",
+  "Escobillas",
+  "Seguridad"
 ]
 
 export const STORE_ILUMINACION_SUBCATEGORIES = [

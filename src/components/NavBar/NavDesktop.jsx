@@ -109,16 +109,37 @@ function NavDesktop() {
                 slug: "caño-corrugado-abierto",
                 name: "Caño Corrugado Abierto",
               },
-              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
-              { slug: "cinta-helicoidal", name: "Cinta Helicoidal" },
-              { slug: "spaghetti-pvc", name: "Spaghetti PVC" },
-              { slug: "precintos", name: "Precintos" },
-              { slug: "interruptores", name: "Interruptores" },
-              { slug: "fusibles", name: "Fusibles" },
-              { slug: "terminales-pala", name: "Terminales Pala" },
-              { slug: "fichas-plasticas", name: "Fichas Plasticas" },
               { slug: "cinta-aisladora", name: "Cinta Aisladora" },
+              { slug: "cinta-helicoidal", name: "Cinta Helicoidal" },
+              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
+              { slug: "fichas-plasticas", name: "Fichas Plasticas" },
+              { slug: "fusibles", name: "Fusibles" },
               { slug: "grampas", name: "Grampas" },
+              { slug: "interruptores", name: "Interruptores" },
+              { slug: "precintos", name: "Precintos" },
+              { slug: "spaghetti-pvc", name: "Spaghetti PVC" },           
+              { slug: "terminales-pala", name: "Terminales Pala" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "Accesorios", slug: "Accesorios" }}
+            options={[
+              { slug: "accesorios-para-motos", name: "Accesorios para Motos" },
+              { slug: "accesorios-para-niños", name: "Accesorios para Niños" },
+              { slug: "antenas", name: "Antenas" },
+              { slug: "anti-robo", name: "Anti Robo" },
+              { slug: "asientos-y-respaldos", name: "Asientos y Respaldos" },
+              { slug: "compresores", name: "Compresores" },
+              { slug: "cubre-alfombras", name: "Cubre Alfombras" },
+              { slug: "cubre-asientos", name: "Cubre Asientos" },
+              { slug: "cubre-volantes", name: "Cubre Volantes" },
+              { slug: "detailing", name: "Detailing" },
+              { slug: "escobillas", name: "Escobillas" },
+              { slug: "seguridad", name: "Seguridad" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
@@ -130,6 +151,7 @@ function NavDesktop() {
             options={[
               { slug: "cree-led", name: "Cree Led" },
               { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
+              { slug: "reflectores y barras", name: "Reflectores y Barras" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
