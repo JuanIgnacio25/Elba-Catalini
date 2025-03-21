@@ -353,14 +353,15 @@
   display: flex;
   flex-flow: column wrap;
   width: 32%;
-  padding:10vh 20px;
-  background: var(--light-grey);
+  padding:7vh 20px;
+  background: #E1D8D4;
 }
 
 .confirm-order-detail-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom:10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark-grey); 
+  margin-bottom:15px;
 }
 
 .confirm-order-detail-products-container{
@@ -374,19 +375,26 @@
   justify-content: space-between;
   align-items: center;
   width:100%;
-  padding: 5px 2px;
-  border-top:1px solid var(--dark-grey);
+  padding: 6px 2px;
+  border-top: 1px solid var(--extra-light-grey);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size:15px;
+  color: var(--black);
+  
 }
 
 .confirm-order-detail-product-name{
   width: 85%;
+  font-weight: 500;
+  color: var(--dark-grey);
+  text-overflow: ellipsis;
 }
 
 .confirm-order-detail-product-quantity{
   display:flex;
   justify-content:end;
   width: 15%;
+  font-weight: 600;
 }
 
 
@@ -500,7 +508,7 @@
 
   .confirm-order-detail-container {
     width: 32%;
-    padding:10vh 15px;
+    padding:5vh 15px;
   }
   
   .confirm-order-detail-title {
@@ -615,7 +623,7 @@
 
   .confirm-order-detail-container {
     width: 32%;
-    padding:10vh 8px;
+    padding:5vh 8px;
   }
   
   .confirm-order-detail-title {
@@ -722,8 +730,8 @@
   }
 
   .confirm-order-detail-container {
-    width: 32%;
-    padding:10vh 4px;
+    width: 33%;
+    padding:5vh 4px;
   }
   
   .confirm-order-detail-product-name{
