@@ -50,9 +50,11 @@ function DashboardProductForm() {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -113,6 +115,7 @@ function DashboardProductForm() {
     } catch (error) {
       setError(error.response.data.message);
     } finally {
+      setLoading(false);
       fetchAllProducts();
     }
   };
@@ -149,7 +152,7 @@ function DashboardProductForm() {
     <div className="pb-4 mx-2 mb-8 max-w-full lg:pb-6 border-2 border-solid border-gray-500 rounded-md bg-gray-100">
       <div className="flex w-full">
         <h2 className="p-4 text-2xl  font-bold text-gray-800 underline">
-          Agregar un Producto
+          Formulario de Productos
         </h2>
       </div>
       <form onSubmit={handleSubmit} onFocus={handleFormFocus} className="px-4">
@@ -613,7 +616,13 @@ function DashboardProductForm() {
             type="submit"
             className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-600 hover:bg-red-800 rounded-lg "
           >
-            Añadir Producto
+            {loading == false ? (
+              "Añadir Producto"
+            ) : (
+              <div className="flex justify-center items-center w-28 h-4">
+                <div className="border-2 border-t-2 border-t-gray-500 border-white border-solid w-6 h-6 rounded-full animate-spin"></div>
+              </div>
+            )}
           </button>
         </div>
         {success && (
