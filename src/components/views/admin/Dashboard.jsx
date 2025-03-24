@@ -4,9 +4,9 @@ import DashboardUsersTable from "@/components/views/admin/DashboardUsersTable";
 
 function Dashboard() {
   return (
-    <div className="w-full h-screen flex flex-col items-center my-8">
-      <DashboardProductForm/>
+    <div className="w-full min-h-screen flex flex-col items-center my-8">
       <DashboardProductsTable/>
+      <DashboardProductForm/>
       <DashboardUsersTable/>
     </div>
   )
