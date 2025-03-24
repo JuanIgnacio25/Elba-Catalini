@@ -1,17 +1,17 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, /* useSearchParams */ } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import DashboardProductsTableSearch from "./DashboardProductsTableSearch";
+/* import DashboardProductsTableSearch from "./DashboardProductsTableSearch"; */
 import AdminProductTableFallback from "@/components/Fallbacks/AdminProductTableFallback";
 
 function DashboardUsersTable() {
   const router = useRouter();
 
-  const searchParams = useSearchParams();
-  const searchQuery = searchParams.get("search") || "";
+  /* const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || ""; */
 
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
@@ -47,7 +47,7 @@ function DashboardUsersTable() {
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
-          <DashboardProductsTableSearch />
+          {/* <DashboardProductsTableSearch /> */}
         </div>
         <table className="w-full max-w-[99vw] lg:max-w-[90vw] min-w-[99vw] lg:min-w-[90vw] table-fixed text-sm text-left rtl:text-right text-gray-500">
           <thead className="sticky top-[46px] z-10 text-xs text-gray-700 uppercase bg-gray-200">
@@ -88,7 +88,7 @@ function DashboardUsersTable() {
                   colSpan={10}
                   className="px-6 py-4 text-center text-gray-500"
                 >
-                  {`No se encuentran productos para "${searchQuery}".`}
+                  {`No se encuentran productos para "${a/* ${searchQuery} */}".`}
                 </td>
               </tr>
             ) : (
