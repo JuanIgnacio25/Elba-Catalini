@@ -54,7 +54,7 @@ const DropdownSelect = () => {
       case "contact":
         router.push("/contact"); 
         break; 
-      case "dashboard":
+      case "Panel Admin":
         router.push("/admin/dashboard");
         break;
       case "signOut":
@@ -72,7 +72,7 @@ const DropdownSelect = () => {
     options.push({ value: "orders", label: "Pedidos" });
     options.push({ value: "contact", label: "Contacto" });
     if (authState.session?.user?.rol === "admin") {
-      options.push({ value: "dashboard", label: "Dashboard" });
+      options.push({ value: "dashboard", label: "Panel Admin" });
     }
     options.push({ value: "signOut", label: "Cerrar Sesión" });
   }

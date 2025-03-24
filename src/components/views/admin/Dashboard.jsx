@@ -4,7 +4,6 @@ import AdminProductTableFallback from "@/components/Fallbacks/AdminProductTableF
 
 import DashboardProductForm from "@/components/views/admin/DashboardProductForm";
 import DashboardProductsTable from "@/components/views/admin/DashboardProductsTable";
-import DashboardUsersTable from "@/components/views/admin/DashboardUsersTable";
 
 function Dashboard() {
   return (
@@ -13,7 +12,6 @@ function Dashboard() {
         <DashboardProductsTable />
       </Suspense>
       <DashboardProductForm />
-      <DashboardUsersTable />
     </div>
   );
 }
