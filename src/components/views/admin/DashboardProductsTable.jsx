@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
@@ -55,11 +56,14 @@ function DashboardProductsTable() {
 
   return (
     <div className="overflow-x-auto max-h-[60vh] mb-8 shadow-md sm:rounded-lg">
-      <div className="sticky top-0 z-20 py-2 px-2 bg-white">
+      <div className="flex justify-between sticky top-0 z-20 py-2 px-2 bg-white">
         <label htmlFor="table-search" className="sr-only">
           Search
         </label>
         <DashboardProductsTableSearch />
+        <button className="px-2 py-1 bg-green-600 hover:bg-green-800 text-white font-bold rounded-md transition-colors">
+          <Link href="/admin/users">Ver Usuarios</Link>
+        </button>
       </div>
       <table className="w-full max-w-[99vw] lg:max-w-[90vw] min-w-[99vw] lg:min-w-[90vw] table-fixed text-sm text-left rtl:text-right text-gray-500">
         <thead className="sticky top-[46px] z-10 text-xs text-gray-700 uppercase bg-gray-200">
@@ -70,28 +74,49 @@ function DashboardProductsTable() {
             <th scope="col" className="px-6 py-3 w-[8vw] lg:w-[8vw]">
               Imagen
             </th>
-            <th scope="col" className="px-6 py-3 w-[25vw] sm:w-[19vw] lg:w-[13vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 w-[25vw] sm:w-[19vw] lg:w-[13vw]"
+            >
               Nombre Producto
             </th>
-            <th scope="col" className="px-6 py-3 hidden sm:table-cell sm:w-[19vw] lg:w-[12vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 hidden sm:table-cell sm:w-[19vw] lg:w-[12vw]"
+            >
               Nombre Pedidos
             </th>
-            <th scope="col" className="px-6 py-3 hidden md:table-cell md:w-[10vw] lg:w-[10vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 hidden md:table-cell md:w-[10vw] lg:w-[10vw]"
+            >
               Sku
             </th>
-            <th scope="col" className="px-6 py-3 w-[20vw] sm:w-[18vw] lg:w-[11vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 w-[20vw] sm:w-[18vw] lg:w-[11vw]"
+            >
               Categoria
             </th>
-            <th scope="col" className="px-6 py-3 hidden md:table-cell md:w-[13vw] lg:w-[11vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 hidden md:table-cell md:w-[13vw] lg:w-[11vw]"
+            >
               Sub Categoria
             </th>
             <th scope="col" className="px-6 py-3 w-[8vw] md:w-[5vw] lg:w-[5vw]">
               Unidad
             </th>
-            <th scope="col" className="px-6 py-3 hidden sm:table-cell sm:w-[8vw] md:w-[5vw] lg:w-[5vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 hidden sm:table-cell sm:w-[8vw] md:w-[5vw] lg:w-[5vw]"
+            >
               Juegos
             </th>
-            <th scope="col" className="px-6 py-3 w-[12vw] md:w-[9vw] lg:w-[9vw]">
+            <th
+              scope="col"
+              className="px-6 py-3 w-[12vw] md:w-[9vw] lg:w-[9vw]"
+            >
               Acciones
             </th>
           </tr>
@@ -120,12 +145,20 @@ function DashboardProductsTable() {
                   />
                 </td>
                 <td className="px-6 py-4 break-words">{prod.name}</td>
-                <td className="px-6 py-4 hidden sm:table-cell break-words">{prod.nameForOrders}</td>
-                <td className="px-6 py-4 hidden md:table-cell break-words">{prod.sku}</td>
+                <td className="px-6 py-4 hidden sm:table-cell break-words">
+                  {prod.nameForOrders}
+                </td>
+                <td className="px-6 py-4 hidden md:table-cell break-words">
+                  {prod.sku}
+                </td>
                 <td className="px-6 py-4 break-words">{prod.category}</td>
-                <td className="px-6 py-4 hidden md:table-cell break-words">{prod.subCategory}</td>
+                <td className="px-6 py-4 hidden md:table-cell break-words">
+                  {prod.subCategory}
+                </td>
                 <td className="px-6 py-4">{prod.unit}</td>
-                <td className="px-6 py-4 hidden sm:table-cell">{prod.productSet}</td>
+                <td className="px-6 py-4 hidden sm:table-cell">
+                  {prod.productSet}
+                </td>
                 <td className="pl-6 lg:px-8 py-2 gap-2">
                   <button
                     onClick={() => {
