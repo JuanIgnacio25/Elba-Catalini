@@ -54,7 +54,7 @@ const DropdownSelect = () => {
       case "contact":
         router.push("/contact"); 
         break; 
-      case "Panel Admin":
+      case "dashboard":
         router.push("/admin/dashboard");
         break;
       case "signOut":
