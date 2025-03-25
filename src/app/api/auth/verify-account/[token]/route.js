@@ -47,7 +47,6 @@ export async function GET(request, { params }) {
 
     return NextResponse.json({ companyName:savedUser.companyName,email:savedUser.email }, { status: 201 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: "El link de verificacion no existe o a expirado" },
       { status: 400 }

@@ -1,4 +1,4 @@
-import mongoose from "@/libs/mongodb";
+import mongoose from "mongoose";
 import { Schema } from "mongoose";
 import AutoIncrementFactory from "mongoose-sequence";
 

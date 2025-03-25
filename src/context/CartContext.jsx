@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -9,19 +9,17 @@ export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
   const router = useRouter();
-
   const { data: session, status } = useSession();
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     if (status === "authenticated") {
       try {
         setLoading(true);
         const res = await axios.get("/api/carts");
         setCart(res.data.cart);
       } catch (error) {
-        console.error("Error al obtener el carrito:", error);
         setCart(null);
       } finally {
         setLoading(false);
@@ -30,7 +28,7 @@ export function CartProvider({ children }) {
       setLoading(false);
       setCart({ products: [] });
     }
-  };
+  }, [status]);
 
   const addProductToCart = async (id, quantity) => {
     if (status === "authenticated") {
@@ -85,7 +83,7 @@ export function CartProvider({ children }) {
     if (status !== "loading") {
       fetchCart();
     }
-  }, [status]);
+  }, [fetchCart,status]);
 
   return (
     <CartContext.Provider
@@ -97,7 +95,7 @@ export function CartProvider({ children }) {
         deleteProductFromCart,
         clearTheCart,
         updateQuantity,
-        fetchCart
+        fetchCart,
       }}
     >
       {children}

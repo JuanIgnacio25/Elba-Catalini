@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin:120px 0px;
+  margin:80px 0px;
 }
 
 /* Cart Main */
@@ -229,7 +229,7 @@
 
 @media (max-width:904px){
   .cart-container{
-    margin:80px 0px;
+    min-height: 35vh;
   }
 
   .cart-main{
@@ -315,6 +315,7 @@
 @media (max-width:620px){
   .cart-container{
     margin:40px 0px;
+    min-height: 45vh;
   }
 
   .cart-main{
@@ -400,6 +401,7 @@
 @media (max-width:475px){
   .cart-container{
     margin:20px 0px;
+    min-height: 50vh;
   }
 
   .cart-card-img-container{

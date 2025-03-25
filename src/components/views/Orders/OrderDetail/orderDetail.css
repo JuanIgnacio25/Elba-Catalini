@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 110px 0px;
+  margin: 60px 0px;
 }
 
 /* Order Detail Spinner */
@@ -162,10 +162,6 @@
 }
 
 @media (max-width: 903px) {
-  .order-detail-container{
-    margin: 60px 0px;
-  }
-
   .order-detail {
     width: 80%;
     padding:10px;
@@ -217,6 +213,7 @@
 @media (max-width: 620px) {
   .order-detail-container{
     margin: 40px 0px;
+    min-height: 45vh;
   }
 
   .order-detail {
@@ -256,6 +253,7 @@
 @media (max-width: 475px) {
   .order-detail-container{
     margin: 20px 0px;
+    min-height: 49vh;
   }
 
   .order-detail {
@@ -303,5 +301,11 @@
   .order-detail-product-card-img-container{
     width: 40%;
     padding: 5px;
+  }
+}
+
+@media (max-width: 475px) {
+  .order-detail-container{
+    min-height: 54vh;
   }
 }

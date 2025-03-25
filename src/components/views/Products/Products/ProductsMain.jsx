@@ -27,7 +27,7 @@ function ProductsMain() {
   return (
     <div className="products">
       {filteredProducts.length > 0 ? (
-        <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={15} ProductCard={ProductCard}/>
+        <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={30} ProductCard={ProductCard}/>
       ) : (
         <p>{`No se encontraron productos para "${searchQuery}".`}</p>
       )}

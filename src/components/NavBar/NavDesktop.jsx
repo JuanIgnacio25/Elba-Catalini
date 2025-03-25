@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import Dropdown from "@/components/common/Dropdown/Dropdown";
+import NavSearch from "@/components/NavBar/NavSearch";
 import NavCart from "@/components/NavBar/NavCart";
 
 import { PiListBold } from "react-icons/pi";
@@ -66,10 +67,83 @@ function NavDesktop() {
         } ${isMobile && menuOpen ? "open" : ""}`}
       >
         <li>
-          <Link href="/products/baiml" onClick={toggleMenu}>Linea Baiml</Link>
+          <Link href="/products/baiml" onClick={toggleMenu}>
+            BAIML
+          </Link>
         </li>
         <li>
-          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>Toxic Shine</Link>
+          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>
+            Toxic Shine
+          </Link>
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "Electricidad", slug: "Electricidad" }}
+            options={[
+              {
+                slug: "cable-tpr",
+                name: "Cable TPR",
+                variantSubCategory: [
+                  { name: "Coelpla", slug: "coelpla" },
+                ],
+              },
+              {
+                slug: "enchufes",
+                name: "Enchufes",
+                variantSubCategory: [
+                  {
+                    name: "Enchufes de Aluminio",
+                    slug: "enchufes-de-aluminio",
+                  },
+                  {
+                    name: "Enchufes de PVC",
+                    slug: "enchufes-de-pvc",
+                  },
+                  {
+                    name: "Enchufes  Vulcanizados",
+                    slug: "enchufes-vulcanizados",
+                  },
+                ],
+              },
+              {
+                slug: "caño-corrugado-abierto",
+                name: "Caño Corrugado Abierto",
+              },
+              { slug: "cinta-aisladora", name: "Cinta Aisladora" },
+              { slug: "cinta-helicoidal", name: "Cinta Helicoidal" },
+              { slug: "fichas-plasticas", name: "Fichas Plasticas" },
+              { slug: "fusibles", name: "Fusibles" },
+              { slug: "grampas", name: "Grampas" },
+              { slug: "interruptores", name: "Interruptores" },
+              { slug: "precintos", name: "Precintos" },
+              { slug: "spaghetti-pvc", name: "Spaghetti PVC" },           
+              { slug: "terminales-pala", name: "Terminales Pala" },
+              { slug: "tubo-termocontraible", name: "Tubo Termocontraible" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "Accesorios", slug: "Accesorios" }}
+            options={[
+              { slug: "accesorios-para-motos", name: "Accesorios para Motos" },
+              { slug: "accesorios-para-niños", name: "Accesorios para Niños" },
+              { slug: "antenas", name: "Antenas" },
+              { slug: "anti-robo", name: "Anti Robo" },
+              { slug: "asientos-y-respaldos", name: "Asientos y Respaldos" },
+              { slug: "compresores", name: "Compresores" },
+              { slug: "cubre-alfombras", name: "Cubre Alfombras" },
+              { slug: "cubre-asientos", name: "Cubre Asientos" },
+              { slug: "cubre-volantes", name: "Cubre Volantes" },
+              { slug: "detailing", name: "Detailing" },
+              { slug: "escobillas", name: "Escobillas" },
+              { slug: "seguridad", name: "Seguridad" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
         </li>
         <li>
           <Dropdown
@@ -77,12 +151,27 @@ function NavDesktop() {
             options={[
               { slug: "cree-led", name: "Cree Led" },
               { slug: "Lamparas-halogenas", name: "Lamparas Halogenas" },
+              { slug: "reflectores y barras", name: "Reflectores y Barras" },
+            ]}
+            baseUrl={"/products/store"}
+            toggleMenu={toggleMenu}
+          />
+        </li>
+        <li>
+          <Dropdown
+            category={{ name: "3M", slug: "3M" }}
+            options={[
+              { slug: "bandas-reflectivas", name: "Bandas Reflectivas" },
+              { slug: "circulos-de-velocidad", name: "Circulos de Velocidad" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
           />
         </li>
       </ul>
+      <div className="nav-desktop-search-container">
+        <NavSearch />
+      </div>
       <div className="nav-desktop-cart items-end justify-end py-2 h-full w-1/12">
         <NavCart />
       </div>

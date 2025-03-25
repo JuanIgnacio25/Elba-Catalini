@@ -1,9 +1,9 @@
 import cloudinary from "@/libs/cloudinary";
 
-// Subir a Cloudinary las imágenes 1 por 1 y luego devolver un objeto con las respuestas de cada imagen
-const uploadImagesToCloudinary = async (images) => {
+export const uploadImagesToCloudinary = async (images) => {
   const uploadPromises = images.map(async (image) => {
-    // Convertir el archivo a un buffer
+    const fileName = image.name.split(".").slice(0, -1).join(".");
+
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -13,6 +13,9 @@ const uploadImagesToCloudinary = async (images) => {
         .upload_stream(
           {
             upload_preset: "product_images_preset",
+            public_id: fileName, // Usa el nombre del archivo sin extensión
+            overwrite: true, // Sobrescribe si ya existe
+            unique_filename: false, // Mantiene el nombre original
             transformation: [
               {
                 width: 485,
@@ -40,10 +43,15 @@ const uploadImagesToCloudinary = async (images) => {
     return response;
   });
 
-  // Esperar a que todas las imágenes se suban
   const uploadResults = await Promise.all(uploadPromises);
 
   return uploadResults;
 };
 
-export default uploadImagesToCloudinary;
+export const deleteImageFromCloudinary = async (public_id) => {
+  try {
+    await cloudinary.uploader.destroy(public_id);
+  } catch (error) {
+    throw new Error("Failed to delete images.");
+  }
+};

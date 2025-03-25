@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState , useCallback} from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
@@ -19,27 +19,27 @@ function ProductDetailMain() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`/api/products/${id}`);
       setProduct(res.data);
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data?.message || "Error desconocido");
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (error) {
       router.push("/not-found");
     }
-  }, [error]);
+  }, [error,router]);
 
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [fetchProduct]);
 
   if (loading)
     return (

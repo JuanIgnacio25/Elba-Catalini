@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation"; // Importa useRouter
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 
 import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
@@ -20,7 +20,6 @@ function ProductsByCategoryMain() {
         const res = await axios.get(`/api/products/kind/${kind}/${category}`);
         setFilteredProducts(res.data.filteredProducts);
       } catch (error) {
-        console.error(error);
         router.push("/404");
       }
     };
@@ -32,7 +31,7 @@ function ProductsByCategoryMain() {
     <div className="products-by-category-products-cards">
       <ProductsCards
         products={filteredProducts}
-        ITEMS_PER_PAGE={15}
+        ITEMS_PER_PAGE={30}
         ProductCard={kind === "Baiml" ? BaimlProductCard : ProductCard}
       />
     </div>

@@ -16,17 +16,31 @@
   --soft-grey: #cdc8c6;
   --light-grey:#F5EDED;
   --extra-light-grey:#FBF7F7;
+  --nav-main-height:14.5vh;
+  --nav-main-height-scrolled:11vh;
 }
 
 body {
   display:flex;
   flex-flow:column wrap;
-  background: var(--extra-light-grey);
-  margin-top:25vh;
+  background: var(--light-grey);
+  margin-top:20vh;
 }
 
 @media (max-width:903px){
   body{
-    margin-top:16vh;
+    margin-top: calc(11vh + 40px);
+  }
+}
+
+@media (max-width:620px){
+  body{
+    margin-top: calc(10vh + 40px);
+  }
+}
+
+@media (max-width:475px){
+  body{
+    margin-top: calc(7vh + 40px);
   }
 }

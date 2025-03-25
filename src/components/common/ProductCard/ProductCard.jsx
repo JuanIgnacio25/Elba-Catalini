@@ -1,11 +1,16 @@
-import "@/components/common/ProductCard/productCard.css"
+import "@/components/common/ProductCard/productCard.css";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 
-function ProductCard({prod}) {
+import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
+
+import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
+import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+
+function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
   const [loading, setLoading] = useState(false);
@@ -15,7 +20,7 @@ function ProductCard({prod}) {
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
-      if((quantity) < 1 ) setQuantity(1);
+      if (quantity < 1) setQuantity(1);
       const res = await addProductToCart(id, quantity);
       const addedProduct = res.data;
       setPopToast(addedProduct);
@@ -61,11 +66,11 @@ function ProductCard({prod}) {
         >
           <Image
             className="product-card-img"
-            src={prod.images[0]}
+            src={prod.images[0].url}
             alt="Logo-Product"
             width={485}
             height={485}
-            priority
+            loading="lazy"
           />
         </Link>
       </div>
@@ -75,7 +80,21 @@ function ProductCard({prod}) {
           className="product-card-info-link"
         >
           <p>{prod.name}</p>
-          <p className="product-card-info-unit">Cantidad x {prod.unit}</p>
+          <p className="product-card-info-unit">
+            {prod.kind === "Baiml"
+              ? `${formatBaimlProductQuantityLabel(
+                  prod.category,
+                  prod.sku,
+                  prod.kind
+                )} x ${prod.unit} ${formatBaimlProductSetLabel(
+                  prod.productSet,
+                  prod.unit
+                )} `
+              : `Cantidad x ${formatStoreProductUnit(
+                  prod.subCategory,
+                  prod.unit
+                )}`}
+          </p>
         </Link>
       </div>
       <div className="product-card-add">
@@ -86,6 +105,7 @@ function ProductCard({prod}) {
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          aria-label="Store Product Quantity Input"
         />
         <button
           className="product-card-add-button"
@@ -112,4 +132,4 @@ function ProductCard({prod}) {
   );
 }
 
-export default ProductCard
+export default ProductCard;

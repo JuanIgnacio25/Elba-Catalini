@@ -1,7 +1,7 @@
 function FooterDeveloped() {
   return (
     <div className="footer-developed">
-      <p className="footer-developed-sign">La Casa del Accesorio © 2024</p>
+      <p className="footer-developed-sign">La Casa del Accesorio © 2025</p>
       <p className="footer-developed-for">
         Desarrollado por
         <span>

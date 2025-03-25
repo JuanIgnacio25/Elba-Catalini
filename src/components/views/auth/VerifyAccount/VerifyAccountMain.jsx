@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 function VerifyAccountMain() {
   const { token } = useParams();
@@ -13,24 +13,23 @@ function VerifyAccountMain() {
   const [error, setError] = useState("");
   const hasFetched = useRef(false);
 
-  const fetchVerification = async () => {
+  const fetchVerification = useCallback(async () => {
     if (!token || hasFetched.current) return;
     hasFetched.current = true;
     setLoading(true);
     try {
       const res = await axios.get(`/api/auth/verify-account/${token}`);
-      console.log(res);
       setIsVerify(res.data);
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]); 
 
   useEffect(() => {
     fetchVerification();
-  }, [token]);
+  }, [fetchVerification]); 
 
   if (loading) return <div className="verify-account-main-container"><h3>Verificando Cuenta...</h3></div>;
 
@@ -38,7 +37,7 @@ function VerifyAccountMain() {
     return (
       <div className="verify-account-main-container">
         <h3>{error}</h3>
-        <p>Use un link valido o vuelva a <span className="verify-account-main-error-span"><Link href={"/auth/register"}>registrarse</Link></span> </p>
+        <p>Use un link válido o vuelva a <span className="verify-account-main-error-span"><Link href={"/auth/register"}>registrarse</Link></span></p>
       </div>
     );
 

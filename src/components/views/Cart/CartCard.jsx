@@ -23,7 +23,7 @@ function CartCard({ product }) {
           <Link href={`/products/${product.productId}`} className="cart-card-img-link">
             <Image
               className="cart-card-img"
-              src={product.images[0]}
+              src={product.images[0].url}
               alt="Logo-Product"
               width={485}
               height={485}
@@ -47,6 +47,7 @@ function CartCard({ product }) {
             name="cart-product-quantity"
             value={quantity}
             onChange={handleQuantityChange}
+            aria-label="Cart Product Quantity Input"
           />
         </div>
       </td>

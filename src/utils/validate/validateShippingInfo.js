@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
@@ -42,7 +42,7 @@ export const isValidShippingInfo = (data) => {
   try {
     const isValid = validateShippingInfo(data);
     if (!isValid) {
-      throw new Error(ajv.errorsText(validateShippingInfo.errors))
+      throw new Error(validateShippingInfo.errors[0]?.message || "Error de validación");
     }
   } catch (error) {
     throw error;

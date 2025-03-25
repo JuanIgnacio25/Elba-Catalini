@@ -51,6 +51,9 @@ const DropdownSelect = () => {
       case "orders":
         router.push("/orderHistory");
         break;
+      case "contact":
+        router.push("/contact"); 
+        break; 
       case "dashboard":
         router.push("/admin/dashboard");
         break;
@@ -67,8 +70,9 @@ const DropdownSelect = () => {
   const options = [];
   if (authState.status === "authenticated") {
     options.push({ value: "orders", label: "Pedidos" });
+    options.push({ value: "contact", label: "Contacto" });
     if (authState.session?.user?.rol === "admin") {
-      options.push({ value: "dashboard", label: "Dashboard" });
+      options.push({ value: "dashboard", label: "Panel Admin" });
     }
     options.push({ value: "signOut", label: "Cerrar Sesión" });
   }
@@ -80,7 +84,7 @@ const DropdownSelect = () => {
       backgroundColor: "var(--red)",
       color: "var(--light-grey)",
       borderRadius: "10px",
-      fontSize: "16px",
+      fontSize: "14px",
       padding: "0px 5px",
       height: "35px",
       boxShadow: "none",

@@ -9,11 +9,12 @@ export const BAIML_CATEGORIES = [
   "Faros de stop / Antiniebla",
   "Faros traseros",
   "Traseros electrónicos",
+  "Faros flexibles",
   "Faros flexibles electrónicos",
   "Soportes",
   "Soportes electrónicos",
   "Faros de advertencia",
-  "Reflectores",
+  "Reflectivos",
   "Reflectores de alta potencia",
   "Lentes de repuestos",
   "Accesorios",
@@ -38,8 +39,47 @@ export const TOXIC_SHINE_CATEGORIES = [
   "Toxic Gallon´s Company",
 ];
 
-
 export const STORE_CATEGORIES = [
   "Toxic Shine",
-  "Iluminacion"
+  "Electricidad",
+  "Accesorios",
+  "Iluminacion",
+  "3M",
+];
+
+export const STORE_ELECTRICIDAD_SUBCATEGORIES = [
+  "Caño Corrugado Abierto",
+  "Cinta Aisladora",
+  "Cinta Helicoidal",
+  "Fichas Plasticas",
+  "Fusibles",
+  "Grampas",
+  "Interruptores",
+  "Precintos",
+  "Spaghetti PVC",
+  "Terminales Pala",
+  "Tubo Termocontraible",
+  "Cable TPR",
+  "Enchufes",
+];
+
+export const STORE_ACCESORIOS_SUBCATEGORIES = [
+  "Accesorios para Motos",
+  "Accesorios para Niños",
+  "Antenas",
+  "Anti Robo",
+  "Asientos y Respaldos",
+  "Compresores",
+  "Cubre Alfombras",
+  "Cubre Asientos",
+  "Cubre Volantes",
+  "Detailing",
+  "Escobillas",
+  "Seguridad"
 ]
+
+export const STORE_ILUMINACION_SUBCATEGORIES = [
+  "Cree Led",
+  "Lamparas Halogenas",
+  "Reflectores y Barras",
+];

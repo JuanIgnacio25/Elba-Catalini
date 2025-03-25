@@ -7,6 +7,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
       (item) => `
         <tr>
           <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.name}</td>
+          <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.unit}</td>
           <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.quantity}</td>
         </tr>
     `
@@ -31,7 +32,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
         .header-logo {
           display: flex;
           align-items: center;
-          background-color: #D72323;
+          background-color: #cdc8c6;
           padding: 10px;
           color: white;
         }
@@ -70,12 +71,12 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     <body>
       <div class="email-container">
         <div class="header-logo">
-          <img src="https://la-casa-del-accesorio-production.up.railway.app/logo-main.png" alt="Logo de la empresa" />
+          <img src="https://elbacatalini.com/elbacatalini-main-logo.png" alt="Logo de la empresa" />
         </div>
         <div class="header">
           <h2>Gracias por elegirnos!</h2>
           <p>Tu pedido ha sido recibido y está siendo procesado.</p>
-          <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto y coordinar el pago y el transporte.</p>
+          <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto , y luego coordinar el pago.</p>
         </div>
         <div class="order-details">
           <h3>Detalles del Pedido</h3>
@@ -83,6 +84,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
             <thead>
               <tr>
                 <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5;">Producto</th>
+                <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5;">Unidad</th>
                 <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5;">Cantidad</th>
               </tr>
             </thead>
@@ -92,8 +94,8 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
           </table>
         </div>
         <div class="footer">
-          <p>Si tienes alguna pregunta, responde a este correo o contacta con nuestro servicio de atención al cliente.</p>
-          <p>&copy; ${new Date().getFullYear()} La Casa del Accesorio. Todos los derechos reservados.</p>
+          <p>Si tenes alguna pregunta, contacta con nuestro servicio de atención al cliente.</p>
+          <p>&copy; ${new Date().getFullYear()} Elba Catalini. Todos los derechos reservados.</p>
         </div>
       </div>
     </body>
@@ -105,13 +107,12 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
   try {
     // Enviar el correo
     await transporter.sendMail({
-      from: `LaCasaDelAccesorio <${process.env.EMAIL_USER}>`,
+      from: `Elba Susana Catalini <${process.env.EMAIL_USER}>`,
       to: customerEmail,
       subject: `Confirmación de tu pedido, orden n°: ${orderId}`,
       html: emailHtml,
     });
   } catch (error) {
-    console.error("Error al enviar el correo:", error);
     throw error;
   }
 }

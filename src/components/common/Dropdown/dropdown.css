@@ -1,13 +1,23 @@
+.dropdown-category, 
+.dropdown-item {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: none;
+}
+
 .dropdown {
   position: relative;
 }
 
 .dropdown-category {
-  display:flex;
+  display: flex;
   align-items: center;
   text-decoration: none;
   color: var(--white);
   cursor: pointer;
+  padding: 0px;
 }
 
 .dropdown-menu {
@@ -17,17 +27,19 @@
   top: 100%;
   left: 0;
   background: var(--light-grey);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  z-index: 30;
-  padding: 10px 0;
-  max-width: 400px;
+  z-index: 9999 !important;
+  padding: 5px 0;
+  min-width: 200px;
   transform: translateY(-10px);
-  pointer-events: none;
+  pointer-events: auto;
+  opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown-item:hover > .dropdown-submenu {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -35,16 +47,16 @@
 
 .dropdown-item {
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
   font-size: 14px;
-  padding: 5px 20px;
+  padding: 8px 10px;
   gap: 5px;
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--black);
+  cursor: pointer;
   transition: background 0.2s ease-in-out;
 }
 
@@ -54,4 +66,36 @@
 
 .dropdown-icon {
   font-size: 16px;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: var(--light-grey);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  z-index: 35;
+  min-width: 180px;
+  padding: 5px 0;
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-item:hover > .dropdown-submenu {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.dropdown-submenu .dropdown-item {
+  padding: 6px 15px;
+  font-size: 13px;
+}
+
+.dropdown-submenu .dropdown-item:hover {
+  background: var(--soft-grey);
 }

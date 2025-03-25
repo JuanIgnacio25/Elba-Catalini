@@ -3,7 +3,7 @@ import Ajv from "ajv";
 import addErrors from "ajv-errors";
 import { BAIML_CATEGORIES, TOXIC_SHINE_CATEGORIES } from "@/constants/categories";
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
@@ -41,7 +41,6 @@ export const isValidProductInfo = (product) => {
   try {
     const isValid = validateProductInfo(product);
     if (!isValid) {
-      /* throw new Error(ajv.errorsText(validateProductInfo.errors)); */
       throw new Error("No existe esta categoria");
     }
   } catch (error) {

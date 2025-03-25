@@ -54,7 +54,7 @@ function SimplifiedViewProductCard({ prod }) {
         >
           <Image
             className="simplified-view-product-card-image"
-            src={prod.images[0]}
+            src={prod.images[0].url}
             alt="Product Image"
             width={485}
             height={485}
@@ -70,6 +70,7 @@ function SimplifiedViewProductCard({ prod }) {
           <input
             className="simplified-view-product-card-info-add-input"
             type="number"
+            name="quantity-input"
             min="1"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}

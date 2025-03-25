@@ -1,4 +1,4 @@
-import mongoose from "@/libs/mongodb";
+import mongoose from "mongoose";
 import AutoIncrementFactory from "mongoose-sequence";
 
 const AutoIncrement = AutoIncrementFactory(mongoose.connection);
@@ -16,6 +16,12 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "El nombre es requerido"],
       minLength: [2, "El nombre debe tener almenos 2 caracteres"],
       maxLength: [80, "El nombre debe tener menos de 80 caracteres"],
+    },
+    nameForOrders: {
+      type: String,
+      required: [true, "El nombre para pedidos es requerido"],
+      minLength: [2, "El nombre para pedidos debe tener almenos 2 caracteres"],
+      maxLength: [80, "El nombre para pedidos debe tener menos de 80 caracteres"],
     },
     sku: {
       type: String,
@@ -35,7 +41,7 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "La unidad es requerida"],
     },
     images: {
-      type: [String],
+      type: [Object],
       required: true,
     },
   },
@@ -56,6 +62,12 @@ const BaimlSchema = new mongoose.Schema({
 const StoreSchema = new mongoose.Schema({
   subCategory: {
     type: String,
+  },
+  variantSubCategory: {
+    type: String,
+    required: function () {
+      return ["Cables TPR", "Enchufes"].includes(this.subCategory);
+    },
   },
 });
 

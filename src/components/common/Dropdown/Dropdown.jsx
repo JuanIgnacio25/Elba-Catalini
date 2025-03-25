@@ -1,20 +1,20 @@
 "use client";
 
 import "./dropdown.css";
-
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
 import { IoIosArrowForward } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-function Dropdown({ category, options, baseUrl , toggleMenu}) {
+function Dropdown({ category, options, baseUrl, toggleMenu }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
   const handleClose = () => {
     setIsOpen(false);
-    if(isMobile){
+    setOpenSubmenu(null);
+    if (isMobile) {
       toggleMenu();
     }
   };
@@ -29,16 +29,14 @@ function Dropdown({ category, options, baseUrl , toggleMenu}) {
     const handleResize = () => {
       const mobile = window.innerWidth < 903;
       setIsMobile(mobile);
-  
-      // Cierra el dropdown al cambiar entre modos
       if (!mobile) {
         setIsOpen(false);
+        setOpenSubmenu(null);
       }
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -60,10 +58,18 @@ function Dropdown({ category, options, baseUrl , toggleMenu}) {
           <IoMdArrowDropdown />
         </Link>
       ) : (
-        <div className="dropdown-category" onClick={(e) => {
-          e.stopPropagation();
-          toggleDropdown();
-        }}>
+        <div
+          className="dropdown-category"
+          role="button"
+          tabIndex="0"
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            if (!isOpen) {
+              e.preventDefault();
+            }
+            toggleDropdown();
+          }}
+        >
           {category.name}
           <IoMdArrowDropdown />
         </div>
@@ -72,15 +78,41 @@ function Dropdown({ category, options, baseUrl , toggleMenu}) {
       {isOpen && (
         <div className="dropdown-menu">
           {options.map((option) => (
-            <Link
+            <div
               key={option.slug}
-              href={`${baseUrl}/${category.slug}/${option.slug}`}
-              className="dropdown-item"
-              onClick={handleClose}
+              className="dropdown-item-wrapper"
+              onMouseEnter={() => setOpenSubmenu(option.slug)}
+              onMouseLeave={() => setOpenSubmenu(null)}
             >
-              <IoIosArrowForward className="dropdown-icon" />
-              {option.name}
-            </Link>
+              {option.variantSubCategory ? (
+                <div className="dropdown-item has-submenu">
+                  {option.name}
+                  <IoIosArrowForward className="dropdown-icon" />
+                  {openSubmenu === option.slug && (
+                    <div className="dropdown-submenu">
+                      {option.variantSubCategory.map((sub) => (
+                        <Link
+                          key={sub.slug}
+                          href={`${baseUrl}/${category.slug}/${option.slug}/${sub.slug}`}
+                          className="dropdown-item"
+                          onClick={handleClose}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href={`${baseUrl}/${category.slug}/${option.slug}`}
+                  className="dropdown-item"
+                  onClick={handleClose}
+                >
+                  {option.name}
+                </Link>
+              )}
+            </div>
           ))}
         </div>
       )}

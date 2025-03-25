@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo} from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import ProductsCards from "@/components/common/ProductsCards/ProductsCards"
@@ -22,7 +22,7 @@ function ToxicShineMain() {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const categories = searchParams.get("categories");
-  const selectedCategories = categories ? categories.split(",") : [];
+  const selectedCategories = useMemo(() => categories ? categories.split(",") : [], [categories]);
 
   useEffect(() => {
     const filtered =
@@ -34,7 +34,7 @@ function ToxicShineMain() {
       setFilteredProducts(filtered);
     }
 
-  }, [toxicShineProducts, selectedCategories]);
+  }, [toxicShineProducts, selectedCategories, filterToxicShineProducts, filteredProducts]);
 
   const onCategoryChange = (category) => {
     const updatedCategories = selectedCategories.includes(category)
@@ -69,7 +69,7 @@ function ToxicShineMain() {
           enabledButton={false}
           deleteFilters={deleteFilters}
         />
-        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={12} enabledResetAnimation={true}/>
+        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={24} enabledResetAnimation={true}/>
       </div>
     </div>
   );

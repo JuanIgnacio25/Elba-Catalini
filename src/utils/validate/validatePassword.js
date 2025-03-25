@@ -16,14 +16,12 @@ validatePasswordRules
   .has()
   .lowercase()
   .has()
-  .digits(2)
-  .has()
-  .symbols()
+  .digits(1)
   .has()
   .not()
   .spaces();
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addFormats(ajv, ["password"]);
@@ -48,7 +46,8 @@ const isValidPassword = (password) => {
       throw new Error("Formato de contraseña incorrecto");
     }
     const valid = validatePassword(password);
-    if (!valid) throw new Error(ajv.errorsText(validatePassword.errors));
+    
+    if (!valid)throw new Error(validatePassword.errors[0]?.message || "Error de validación");
   } catch (error) {
     throw error;
   }

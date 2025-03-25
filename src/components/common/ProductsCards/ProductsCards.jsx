@@ -2,7 +2,7 @@
 
 import "@/components/common/ProductsCards/productsCards.css";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState , useCallback} from "react";
 
 import AnimatedProductCard from "@/components/common/AnimatedProductCard";
 import FallbackSpinner from "@/components/common/FallbackSpinner/FallbackSpinner";
@@ -34,58 +34,58 @@ function ProductsCards({
 
       if (enabledResetAnimation) setResetAnimationKey((prevKey) => prevKey + 1);
     }
-  }, [products]);
+  }, [products , ITEMS_PER_PAGE, enabledResetAnimation]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.innerHeight + window.scrollY;
-      const bottomPosition = document.documentElement.offsetHeight - 280; // Detectar 280px antes del final
-
-      // Solo cargar automáticamente si el contador es menor a 2
-      if (
-        scrollPosition >= bottomPosition &&
-        !loadingMore &&
-        !allLoaded &&
-        autoLoadCount < 2
-      ) {
-        loadMoreProducts(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [products, visibleProducts, loadingMore, allLoaded, autoLoadCount]);
-
-  const loadMoreProducts = (isAutoLoad = false) => {
+  const loadMoreProducts = useCallback((isAutoLoad = false) => {
     if (loadingMore || allLoaded) return;
-
-    setLoadingMore(true); // Activar spinner inmediatamente
-
+  
+    setLoadingMore(true); // Activate spinner immediately
+  
     setTimeout(() => {
       setPage((prevPage) => {
         const nextPage = prevPage + 1;
         const newProducts = products.slice(0, nextPage * ITEMS_PER_PAGE);
-
+  
         if (newProducts.length > visibleProducts.length) {
           setVisibleProducts(newProducts);
         }
-
+  
         if (newProducts.length >= products.length) {
           setAllLoaded(true);
         }
-
+  
         if (isAutoLoad) {
-          setAutoLoadCount((prevCount) => prevCount + 1); // Incrementar contador si es carga automática
+          setAutoLoadCount((prevCount) => prevCount + 1); // Increment counter for auto load
         }
-
-        setLoadingMore(false); // Detener spinner después de cargar productos
+  
+        setLoadingMore(false); // Stop spinner after products are loaded
         return nextPage;
       });
-    }, 800); // Simular retraso en la carga
-  };
+    }, 800); // Simulate loading delay
+  }, [loadingMore, allLoaded, products, ITEMS_PER_PAGE, visibleProducts]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bottomPosition = document.documentElement.offsetHeight - 280; // 280px from bottom of page
+  
+      if (
+        scrollPosition >= bottomPosition &&
+        !loadingMore &&
+        !allLoaded &&
+        autoLoadCount < 1
+      ) {
+        loadMoreProducts(true); // Call the memoized function
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [products, visibleProducts, loadingMore, allLoaded, autoLoadCount, loadMoreProducts]);;
+
 
   return (
     <div className="products-cards">
@@ -114,7 +114,7 @@ function ProductsCards({
         </div>
       )}
 
-      {!loadingMore && autoLoadCount >= 2 && !allLoaded && (
+      {!loadingMore && autoLoadCount >= 1 && !allLoaded && (
         <button
           className="products-load-more-button"
           onClick={() => loadMoreProducts(false)}

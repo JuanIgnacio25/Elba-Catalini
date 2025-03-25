@@ -14,12 +14,13 @@ import ConfirmOrderCloseOrder from "@/components/views/Cart/ConfirmOrder/Confirm
 function ConfirmOrderMain() {
   const router = useRouter();
   const { cart, loading, fetchCart } = useCart();
-  const { authState , refreshToken } = useAuth();
+  const { authState, refreshToken } = useAuth();
 
   const [selectedCarrier, setSelectedCarrier] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState(null);
   const [comments, setComments] = useState("");
   const [error, setError] = useState(null);
+  const [closedOrder, setClosedOrder] = useState(false); // Nuevo estado
 
   const handleError = (error) => {
     setError(error);
@@ -38,12 +39,12 @@ function ConfirmOrderMain() {
   };
 
   useEffect(() => {
-    if (!loading && cart && cart.products) {
-      if (cart.products.length === 0) {
-        router.push("/cart");
-      }
+    if (closedOrder) {
+      fetchCart();
+    } else if (!loading && cart && cart.products.length === 0) {
+      router.push("/cart");
     }
-  }, [cart, loading, router]);
+  }, [cart, loading, router, closedOrder , fetchCart]);
 
   return (
     <div className="confirm-order">
@@ -70,6 +71,7 @@ function ConfirmOrderMain() {
           deliveryOption={deliveryOption}
           handleError={handleError}
           comments={comments}
+          setClosedOrder={setClosedOrder} // Pasamos el setter
         />
       </div>
       <ConfirmOrderDetail cart={cart} loading={loading} />

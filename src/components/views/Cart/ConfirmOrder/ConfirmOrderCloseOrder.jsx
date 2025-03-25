@@ -1,41 +1,36 @@
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import axios from "axios";
+
+import { useCart } from "@/context/CartContext";
 import ConfirmModal from "@/components/common/ConfirmModal/ConfirmModal";
 
-function ConfirmOrderCloseOrder({ fetchCart , deliveryOption , handleError , comments}) {
- 
+function ConfirmOrderCloseOrder({ deliveryOption, handleError, comments, setClosedOrder }) {
   const router = useRouter();
+  
+  const {cart} = useCart();
 
   const [loadingCloseOrder, setLoadingCloseOrder] = useState(false);
-  const [closedOrder, setClosedOrder] = useState(false);
-  const [isCloseCartModalOpen , setIsCloseCartModalOpen] = useState(false);
-  
+  const [isCloseCartModalOpen, setIsCloseCartModalOpen] = useState(false);
 
   const openCloseCartModal = () => setIsCloseCartModalOpen(true);
   const closeCloseCartModal = () => setIsCloseCartModalOpen(false);
 
-  useEffect(() => {
-    if (closedOrder) {
-      router.push("/cart/closedOrder");
-    }
-  }, [closedOrder, router]);
-
   const handleCloseOrder = async () => {
     try {
       setLoadingCloseOrder(true);
-      await axios.post(`/api/orders/close-order`, { cartData: {deliveryOption: deliveryOption , comments : comments} });
-      fetchCart();
+      await axios.post(`/api/orders/close-order`, { cartData: { deliveryOption, comments , productsCartInContext:cart.products} });
+  
       setClosedOrder(true);
-      closeCloseCartModal()
-      setLoadingCloseOrder(false);
+      closeCloseCartModal();
+      router.replace("/cart/closedOrder");
+  
     } catch (error) {
-      console.log(error);
-      closeCloseCartModal()
+      closeCloseCartModal();
+      handleError(error.response?.data?.message || "Error al cerrar el pedido");
+    } finally {
       setLoadingCloseOrder(false);
-      handleError(error.response.data.message);
-    } 
+    }
   };
 
   if (loadingCloseOrder)
@@ -49,18 +44,11 @@ function ConfirmOrderCloseOrder({ fetchCart , deliveryOption , handleError , com
 
   return (
     <div className="confirm-order-close-order">
-      <button
-        className="confirm-order-close-order-button"
-        onClick={openCloseCartModal}
-      >
+      <button className="confirm-order-close-order-button" onClick={openCloseCartModal}>
         Cerrar Pedido
       </button>
-      <ConfirmModal
-        isOpen={isCloseCartModalOpen}
-        onClose={closeCloseCartModal}
-        onConfirm={handleCloseOrder}
-      > 
-        ¿Esta seguro que desea cerrar el pedido?
+      <ConfirmModal isOpen={isCloseCartModalOpen} onClose={closeCloseCartModal} onConfirm={handleCloseOrder}>
+        ¿Está seguro que desea cerrar el pedido?
       </ConfirmModal>
     </div>
   );

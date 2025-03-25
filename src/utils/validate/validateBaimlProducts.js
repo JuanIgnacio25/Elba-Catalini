@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import Ajv from "ajv";
 import addErrors from "ajv-errors";
 
-const ajv = new Ajv({ allErrors: true })
+const ajv = new Ajv({allErrors:true, errorsLimit: 5})
   .addKeyword("kind")
   .addKeyword("modifier");
 addErrors(ajv);
@@ -14,6 +14,13 @@ const baimlProductDtoSchema = Type.Object(
       errorMessage: {
         type: "Name debe ser un String",
         minLength: "Name debe tener más de un carácter",
+      },
+    }),
+    nameForOrders: Type.String({
+      minLength: 2,
+      errorMessage: {
+        type: "Name for orders debe ser un String",
+        minLength: "Name for orders debe tener más de un carácter",
       },
     }),
     sku: Type.String({
@@ -53,6 +60,7 @@ const baimlProductDtoSchema = Type.Object(
       additionalProperties: "No debe tener propiedades adicionales",
       required: {
         name: "Falta la propiedad: name",
+        nameForOrders: "Falta la propiedad: nameForOrders",
         sku:"Falta la propiedad sku",
         category: "Falta la propiedad: category",
         description: "Falta la propiedad: description",
@@ -70,7 +78,7 @@ export const isValidBaimlProduct = (product) => {
   try {
     const isValid = validateBaimlProduct(product);
     if (!isValid) {
-      throw new Error(ajv.errorsText(validateBaimlProduct.errors));
+      throw new Error(validateBaimlProduct.errors[0]?.message || "Error de validación");
     }
   } catch (error) {
     throw error;

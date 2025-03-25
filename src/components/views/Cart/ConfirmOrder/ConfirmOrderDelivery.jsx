@@ -64,7 +64,6 @@ function ConfirmOrderDelivery({
       await refreshToken();
       setIsEditing(false);
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
       setUserInfo(prevUserInfo);
     } finally {

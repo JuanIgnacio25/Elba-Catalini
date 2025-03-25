@@ -28,7 +28,6 @@ function ProductCard({ prod }) {
       }, 3000);
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -64,11 +63,11 @@ function ProductCard({ prod }) {
         >
           <Image
             className="baiml-p-card-img"
-            src={prod.images[0]}
+            src={prod.images[0].url}
             alt="Logo-Product"
             width={485}
             height={485}
-            priority
+            loading="lazy"
           />
         </Link>
       </div>
@@ -79,7 +78,12 @@ function ProductCard({ prod }) {
         >
           <p>{prod.name}</p>
           <p className="baiml-p-card-info-unit">
-            {formatBaimlProductQuantityLabel(prod.category , prod.sku , prod.kind)} x {prod.unit}{" "}
+            {formatBaimlProductQuantityLabel(
+              prod.category,
+              prod.sku,
+              prod.kind
+            )}{" "}
+            x {prod.unit}{" "}
             {formatBaimlProductSetLabel(prod.productSet, prod.unit)}{" "}
           </p>
         </Link>
@@ -92,6 +96,7 @@ function ProductCard({ prod }) {
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          aria-label="Baiml Product Quantity Input"
         />
         <button
           className="baiml-p-card-add-button"

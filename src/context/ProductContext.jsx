@@ -34,7 +34,6 @@ export function ProductProvider({ children }) {
       setBaimlProducts(baimlRes.data.products);
       setStoreProducts(storeRes.data.products);
     } catch (error) {
-      console.log(error);
       setError("ocurrio un error");
     } finally {
       setLoading(false);
@@ -43,41 +42,93 @@ export function ProductProvider({ children }) {
 
   const filterBaimlProducts = (categories = []) => {
     return categories.length > 0
-      ? baimlProducts.filter((product) => categories.includes(product.category))
+      ? baimlProducts.filter((product) =>
+          categories.some((cat) => product.category === cat)
+        )
       : baimlProducts;
   };
 
   const filterToxicShineProducts = (categories = []) => {
     return categories.length > 0
-      ? toxicShineProducts.filter((product) => categories.includes(product.subCategory))
+      ? toxicShineProducts.filter((product) =>
+          categories.includes(product.subCategory)
+        )
       : toxicShineProducts;
-  }
+  };
 
   const searchProducts = (query) => {
     const lowerCaseQuery = query.toLowerCase();
-
-    return allProducts.filter(
-      (product) =>
-        product.name.toLowerCase().includes(lowerCaseQuery) ||
-        product.description.toLowerCase().includes(lowerCaseQuery)
-    );
+    const wordsInQuery = lowerCaseQuery.split(/\s+/); // Divide la búsqueda en palabras
+  
+    const filteredProducts = allProducts
+      .map((product) => {
+        const name = product.name.toLowerCase();
+        const description = product.description.toLowerCase();
+  
+        let nameScore = 0;
+        let descScore = 0;
+  
+        wordsInQuery.forEach((word) => {
+          if (name.includes(word)) {
+            if (name.startsWith(word)) {
+              nameScore += 300; // Coincidencia al inicio del nombre (máxima prioridad)
+            } else {
+              nameScore += 200; // Coincidencia en cualquier parte del nombre
+            }
+          }
+  
+          if (description.includes(word)) {
+            if (description.startsWith(word)) {
+              descScore += 100; // Coincidencia al inicio de la descripción
+            } else {
+              descScore += 50; // Coincidencia en cualquier parte de la descripción
+            }
+          }
+        });
+  
+        return { ...product, score: nameScore + descScore };
+      })
+      .filter((product) => product.score > 0)
+      .sort((a, b) => b.score - a.score); // Ordenar por puntuación
+  
+    return filteredProducts;
   };
 
-  const filterStoreProductsByCategory = (category, subcategory) => {
-    
-    if (subcategory) {
-      return storeProducts.filter(
-        (product) =>{
-          return (product.category.toLowerCase() === category?.split("-").join(" ").toLowerCase() &&
-          product.subCategory.toLowerCase() === subcategory?.split("-").join(" ").toLowerCase())
-          }
-      );
+  const filterStoreProductsByCategory = (
+    category,
+    subcategory,
+    variantSubCategory
+  ) => {
+  
+    category = decodeURIComponent(category || "").split("-").join(" ").toLowerCase();
+    subcategory = decodeURIComponent(subcategory || "").split("-").join(" ").toLowerCase();
+    variantSubCategory = decodeURIComponent(variantSubCategory || "").split("-").join(" ").toLowerCase();
+  
+    if (variantSubCategory) {
+      return storeProducts.filter((product) => {
+        return (
+          product.category.toLowerCase() === category &&
+          product.subCategory.toLowerCase() === subcategory &&
+          product.variantSubCategory.toLowerCase() === variantSubCategory
+        );
+      });
     }
+  
+    if (subcategory) {
+      return storeProducts.filter((product) => {
+        return (
+          product.category.toLowerCase() === category &&
+          product.subCategory.toLowerCase() === subcategory
+        );
+      });
+    }
+  
     if (category) {
       return storeProducts.filter(
-        (product) => product.category.toLowerCase() === category?.toLowerCase()
+        (product) => product.category.toLowerCase() === category
       );
     }
+  
     return storeProducts;
   };
 
@@ -98,7 +149,7 @@ export function ProductProvider({ children }) {
         filterToxicShineProducts,
         fetchAllProducts,
         searchProducts,
-        filterStoreProductsByCategory
+        filterStoreProductsByCategory,
       }}
     >
       {children}

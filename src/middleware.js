@@ -11,6 +11,12 @@ export async function middleware(req) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
+  const blockedPaths = ["/wordpress", "/wp-admin", "/wp-login.php"];
+
+  if (blockedPaths.some((path) => req.nextUrl.pathname.includes(path))) {
+    return NextResponse.json({ message: "Access denied" }, { status: 403 });
+  }
+
   const url = req.nextUrl.clone();
   if (!token) {
     if (req.nextUrl.pathname.startsWith("/admin")) {
@@ -87,6 +93,15 @@ export async function middleware(req) {
     }
   }
 
+  if (req.nextUrl.pathname === "/api/users") {
+    if (!token || token.user.rol !== "admin") {
+      return NextResponse.json(
+        { message: "No tiene permiso para hacer esta petición" },
+        { status: 401 }
+      );
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -99,5 +114,10 @@ export const config = {
     "/api/products",
     "/api/carts/:path*",
     "/api/orders/:path*",
+    "/api/users/:path*",
+
+    "/wordpress/:path*",
+    "/wp-admin/:path*",
+    "/wp-login.php",
   ],
 };

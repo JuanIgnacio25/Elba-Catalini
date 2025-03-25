@@ -3,10 +3,10 @@ import Image from "next/image";
 import "./productDetail.css";
 
 function ProductDetailCarouselSlider({ product }) {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const [selectedImage, setSelectedImage] = useState(product.images[0].url);
 
   const handleImageClick = (image) => {
-    setSelectedImage(image);
+    setSelectedImage(image.url);
   };
 
   return (
@@ -17,12 +17,13 @@ function ProductDetailCarouselSlider({ product }) {
           {product.images.map((image, index) => (
             <div key={index} className="product-deatil-carousel-slider-side-bar-image-container">
               <Image
-                src={image}
+                src={image.url}
                 alt={`${product.name} image`}
                 width={"70"}
                 height={"70"}
+                priority
                 className={`product-deatil-carousel-slider-side-bar-image ${
-                  selectedImage === image ? "selected" : ""
+                  selectedImage === image.url ? "selected" : ""
                 }`}
                 onClick={() => handleImageClick(image)}
               />

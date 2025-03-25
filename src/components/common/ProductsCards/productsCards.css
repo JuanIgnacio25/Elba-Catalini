@@ -3,7 +3,7 @@
 .products-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  grid-auto-rows: 450px;
+  grid-auto-rows: 55vh;
   gap: 10px;
   width: 100%;
   margin: 0 auto;
@@ -58,13 +58,13 @@
 @media (max-width: 1422px) {
   .products-cards {
     grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-    grid-auto-rows: 450px;
+    grid-auto-rows: 55vh;
   }
 }
 
 @media (max-width: 1140px) {
   .products-cards {
-    grid-auto-rows: 400px;
+    grid-auto-rows: 50vh;
   }
 }
 

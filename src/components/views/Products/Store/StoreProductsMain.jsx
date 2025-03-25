@@ -10,10 +10,10 @@ import { useEffect } from "react";
 
 function StoreProductsMain() {
   const { filterStoreProductsByCategory, loading } = useProduct();
-  const { category, subcategory } = useParams();
+  const { category, subcategory , variantSubCategory} = useParams();
   const router = useRouter();
 
-  const filteredProducts = filterStoreProductsByCategory(category, subcategory);
+  const filteredProducts = filterStoreProductsByCategory(category, subcategory , variantSubCategory);
 
   // Manejo de redirección en caso de que no haya productos
   useEffect(() => {
@@ -34,7 +34,7 @@ function StoreProductsMain() {
 
   return (
     <div className="store-products">
-      <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={15} ProductCard={ProductCard}/>
+      <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={30} ProductCard={ProductCard}/>
     </div>
   );
 }

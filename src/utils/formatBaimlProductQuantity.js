@@ -5,7 +5,7 @@ export const formatBaimlProductQuantityLabel = (
 ) => {
   if (productKind === "Baiml") {
     switch (productCategory) {
-      case "Lentes de Repuesto":
+      case "Lentes de repuestos":
       case "Repuestos":
         return "Paquete";
 
@@ -39,5 +39,5 @@ export const formatBaimlProductSetLabel = (productSet, productUnit) => {
     return `(${productSet} ${productSet > 1 ? "juegos" : "juego"} de ${
       productUnit / productSet
     } unidades)`;
-  return null;
+  return "";
 };
