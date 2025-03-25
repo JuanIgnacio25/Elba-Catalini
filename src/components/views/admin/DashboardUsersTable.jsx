@@ -1,11 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 import DashboardUsersTableSearch from "./DashboardUsersTableSearch";
 import AdminUserTableFallback from "@/components/Fallbacks/AdminUserTableFallback";
+
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 function DashboardUsersTable() {
   const searchParams = useSearchParams();
@@ -71,6 +74,11 @@ function DashboardUsersTable() {
 
   return (
     <div className="w-full min-h-[60vh] flex flex-col items-center my-8">
+      <button className="w-full max-w-[99vw] lg:max-w-[94vw] flex justify-end mb-2 text-red-600 text-3xl">
+        <Link href="/admin/dashboard">
+          <FaArrowLeftLong />
+        </Link>
+      </button>
       <div className="overflow-x-auto max-h-[60vh] mb-8 shadow-md sm:rounded-lg">
         <div className="sticky top-0 z-20 py-2 px-2 bg-white">
           <label htmlFor="table-search" className="sr-only">
@@ -81,7 +89,7 @@ function DashboardUsersTable() {
         <table className="w-full max-w-[99vw] lg:max-w-[94vw] min-w-[99vw] lg:min-w-[94vw] table-fixed text-sm text-left rtl:text-right text-gray-500">
           <thead className="sticky top-[46px] z-10 text-xs text-gray-700 uppercase bg-gray-200">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 w-[5vw]">
                 ID
               </th>
               <th scope="col" className="px-6 py-3">
