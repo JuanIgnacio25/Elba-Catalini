@@ -67,16 +67,6 @@ function NavDesktop() {
         } ${isMobile && menuOpen ? "open" : ""}`}
       >
         <li>
-          <Link href="/products/baiml" onClick={toggleMenu}>
-            BAIML
-          </Link>
-        </li>
-        <li>
-          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>
-            Toxic Shine
-          </Link>
-        </li>
-        <li>
           <Dropdown
             category={{ name: "Electricidad", slug: "Electricidad" }}
             options={[
@@ -130,6 +120,7 @@ function NavDesktop() {
             options={[
               { slug: "accesorios-para-motos", name: "Accesorios para Motos" },
               { slug: "accesorios-para-niños", name: "Accesorios para Niños" },
+              { slug: "accesorios-para-trailer", name: "Accesorios para Trailer" },
               { slug: "antenas", name: "Antenas" },
               { slug: "anti-robo", name: "Anti Robo" },
               { slug: "asientos-y-respaldos", name: "Asientos y Respaldos" },
@@ -140,6 +131,7 @@ function NavDesktop() {
               { slug: "detailing", name: "Detailing" },
               { slug: "escobillas", name: "Escobillas" },
               { slug: "seguridad", name: "Seguridad" },
+              { slug: "varios", name: "Varios" },
             ]}
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
@@ -167,6 +159,16 @@ function NavDesktop() {
             baseUrl={"/products/store"}
             toggleMenu={toggleMenu}
           />
+        </li>
+        <li>
+          <Link href="/products/baiml" onClick={toggleMenu}>
+            BAIML
+          </Link>
+        </li>
+        <li>
+          <Link href={"/products/toxic-shine"} onClick={toggleMenu}>
+            Toxic Shine
+          </Link>
         </li>
       </ul>
       <div className="nav-desktop-search-container">
