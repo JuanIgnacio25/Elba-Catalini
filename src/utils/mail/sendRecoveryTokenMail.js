@@ -15,7 +15,7 @@ const sendRecoveryTokenMail = async (userEmail, recoveryToken) => {
         <div style="text-align: center; margin: 20px 0;">
           <a href="${recoveryLink}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #ef4444; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease">Restablecer Contraseña</a>
         </div>
-        <p style="color: #555;">Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
+        <p style="width: 100%; text-align:center; color: #555;">Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
         <p style="color: #999; font-size: 12px; text-align: center;">Este enlace expirará en 1 hora.</p>
       </div>
       <style>
