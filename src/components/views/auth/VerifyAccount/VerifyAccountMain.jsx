@@ -9,7 +9,7 @@ function VerifyAccountMain() {
   const { token } = useParams();
 
   const [isVerify, setIsVerify] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const hasFetched = useRef(false);
 
@@ -25,28 +25,54 @@ function VerifyAccountMain() {
     } finally {
       setLoading(false);
     }
-  }, [token]); 
+  }, [token]);
 
   useEffect(() => {
     fetchVerification();
-  }, [fetchVerification]); 
+  }, [fetchVerification]);
 
-  if (loading) return <div className="verify-account-main-container"><h3>Verificando Cuenta...</h3></div>;
+  if (loading)
+    return (
+      <div className="w-full flex flex-row gap-2  justify-center items-center">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+          Verificando cuenta...
+        </h3>
+        <div className="flex justify-center items-center">
+          <div className="w-6 sm:w-8 h-6 sm:h-8 border-2 sm:border-[3px] border-gray-300 border-t-red-500 rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
 
   if (error)
     return (
-      <div className="verify-account-main-container">
-        <h3>{error}</h3>
-        <p>Use un link válido o vuelva a <span className="verify-account-main-error-span"><Link href={"/auth/register"}>registrarse</Link></span></p>
+      <div className="w-full flex flex-col items-center text-center p-2 sm:p-6 space-y-4">
+        <h3 className="bg-red-50 border-l-4 border-red-500 text-red-700 p-3 text-sm sm:text-base font-semibold rounded-lg shadow-sm">
+          {error}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-600">
+          Usa un link válido o vuelve a{" "}
+          <Link
+            href="/auth/register"
+            className="text-red-600 font-bold underline transition-colors duration-200 hover:text-red-500"
+          >
+            registrarte
+          </Link>
+        </p>
       </div>
     );
 
   return (
-    <div className="verify-account-main-container">
-      <h3>Email <span className="verify-account-main-span">{isVerify.email}</span> verificado correctamente</h3>
-      <button className="verify-account-main-button">
-        <Link href="/auth/login">Ingresá</Link>
-      </button>
+    <div className="w-full flex flex-col items-center text-center p-1 sm:p-6 space-y-4">
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+        Email <span className="text-red-600 font-bold">{isVerify.email}</span>{" "}
+        verificado correctamente
+      </h3>
+      <Link
+        href="/auth/login"
+        className="px-3 sm:px-5 py-1 sm:py-2 bg-gradient-to-r from-red-500 to-red-700 text-sm sm:text-base text-white font-semibold rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:brightness-110 active:scale-95"
+      >
+        Ingresá
+      </Link>
     </div>
   );
 }
