@@ -13,7 +13,7 @@ const sendVerificationMail = async (userEmail, verificationToken) => {
         <h2 style="color: #333; text-align: center;">Verificacion de Cuenta</h2>
         <p style="color: #555;">Gracias por registrarte. Para verificar tu cuenta, haz clic en el botón de abajo:</p>
         <div style="text-align: center; margin: 20px 0;">
-          <a href="${verificationToken}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #ef4444; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease">Verificar Cuenta</a>
+          <a href="${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/auth/verify-account/${verificationToken}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #ef4444; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease">Verificar Cuenta</a>
         </div>
         <p style="width: 100%; text-align:center; color: #555;">Si no creaste esta cuenta, puedes ignorar este mensaje.</p>
         <p style="color: #999; font-size: 12px; text-align: center;">Este enlace expirará en 1 hora.</p>
