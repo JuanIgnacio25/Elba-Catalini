@@ -133,6 +133,7 @@ function RegisterMain() {
               type="email"
               name="email"
               placeholder="ejemplo@gmail.com"
+              autoComplete="email"
               value={formData.email}
               onChange={handleChange}
               className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
@@ -147,6 +148,7 @@ function RegisterMain() {
               placeholder="********"
               value={formData.password}
               onChange={handleChange}
+              autoComplete="new-password"
               onFocus={() => setTooltipVisible(true)}
               onBlur={() => setTooltipVisible(false)}
               className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
@@ -185,6 +187,7 @@ function RegisterMain() {
               placeholder="********"
               value={formData.validatePassword}
               onChange={handleChange}
+              autoComplete="validate-new-password"
               className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
               required
             />
