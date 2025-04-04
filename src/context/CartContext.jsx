@@ -13,7 +13,6 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
-
   const { data: session, status } = useSession();
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -93,12 +92,27 @@ export function CartProvider({ children }) {
   };
 
   const deleteProductFromCart = async (id) => {
-    try {
-      setLoading(true);
-      await axios.delete(`/api/carts/products/${id}`);
-      await fetchCart();
-    } catch (error) {
-      console.error("Error al eliminar el producto:", error);
+    if (status === "authenticated") {
+      try {
+        setLoading(true);
+        await axios.delete(`/api/carts/products/${id}`);
+        await fetchCart();
+      } catch (error) {
+        console.error("Error al eliminar el producto:", error);
+      }
+    } else if (status === "unauthenticated") {
+      try {
+        setLoading(true);
+        const storedCart = localStorage.getItem("cart");
+        const localCart = storedCart ? JSON.parse(storedCart) : [];
+
+        const updatedCart = localCart.filter((item) => item.productId !== id);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        await fetchCart();
+
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
