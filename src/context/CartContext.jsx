@@ -1,14 +1,19 @@
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
-  const router = useRouter();
+
   const { data: session, status } = useSession();
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,8 +30,21 @@ export function CartProvider({ children }) {
         setLoading(false);
       }
     } else if (status === "unauthenticated") {
-      setLoading(false);
-      setCart({ products: [] });
+      setLoading(true);
+
+      try {
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const mappedCart = {
+          products: localCart,
+        };
+
+        setCart(mappedCart);
+      } catch (error) {
+        setCart({ products: [] });
+      } finally {
+        setLoading(false);
+      }
     }
   }, [status]);
 
@@ -40,9 +58,37 @@ export function CartProvider({ children }) {
         throw error;
       }
     } else {
-      router.push(
-        `/auth/login?error=para añadir productos al carrito, primero debes iniciar sesión`
-      );
+      try {
+        const intQuantity = Number(quantity);
+        const storedCart = localStorage.getItem("cart");
+        const localCart = storedCart ? JSON.parse(storedCart) : [];
+
+        const existingProduct = localCart.find((item) => {
+          return item.productId === id;
+        });
+
+        if (existingProduct) {
+          existingProduct.quantity += intQuantity;
+
+          localStorage.setItem("cart", JSON.stringify(localCart));
+          await fetchCart();
+
+          return {
+            data: { name: existingProduct.name, quantity: intQuantity },
+          };
+        } else {
+          const res = await axios.get(`/api/products/${id}`);
+
+          localCart.push({ ...res.data, quantity: intQuantity });
+
+          localStorage.setItem("cart", JSON.stringify(localCart));
+          await fetchCart();
+
+          return { data: { name: res.data.name, quantity: intQuantity } };
+        }
+      } catch (error) {
+        throw error;
+      }
     }
   };
 
@@ -83,7 +129,7 @@ export function CartProvider({ children }) {
     if (status !== "loading") {
       fetchCart();
     }
-  }, [fetchCart,status]);
+  }, [fetchCart, status]);
 
   return (
     <CartContext.Provider
