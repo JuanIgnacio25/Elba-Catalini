@@ -46,6 +46,7 @@ function NavSearch() {
           ref={inputRef}
           placeholder="¿Qué estás buscando?"
           className="nav-main-search-form-input"
+          name="nav-main-search-form-input"
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
