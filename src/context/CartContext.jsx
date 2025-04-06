@@ -117,12 +117,25 @@ export function CartProvider({ children }) {
   };
 
   const clearTheCart = async () => {
-    try {
-      setLoading(true);
-      await axios.delete("/api/carts/products");
-      await fetchCart();
-    } catch (error) {
-      console.log(error);
+    if (status === "authenticated") {
+      try {
+        setLoading(true);
+        await axios.delete("/api/carts/products");
+        await fetchCart();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    } else if (status === "unauthenticated"){
+      try {
+        setLoading(true);
+
+        localStorage.setItem("cart", JSON.stringify([]));
+        await fetchCart();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
