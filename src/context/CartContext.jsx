@@ -56,7 +56,7 @@ export function CartProvider({ children }) {
       } catch (error) {
         throw error;
       }
-    } else {
+    } else if(status === "unauthenticated") {
       try {
         const intQuantity = Number(quantity);
         const storedCart = localStorage.getItem("cart");
