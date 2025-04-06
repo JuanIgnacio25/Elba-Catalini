@@ -1,16 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { signIn } from "next-auth/react";
+
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+
+import { useCart } from "@/context/CartContext";
+
+import axios from "axios";
+
 import { ImSpinner8 } from "react-icons/im";
 
 function LoginMain() {
   const router = useRouter();
   const { status, data: session } = useSession();
   const searchParams = useSearchParams();
+
+  const { fetchCart } = useCart();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,15 +34,12 @@ function LoginMain() {
     }
   }, [searchParams]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (status === "authenticated") {
       let callbackUrl = searchParams.get("callbackUrl") || "/";
-      if (callbackUrl.startsWith("/cart/")) {
-        callbackUrl = `/cart/${session.user.cartId}`;
-      }
       window.location.assign(callbackUrl);
     }
-  }, [status, session, router, searchParams]);
+  }, [status, session, router, searchParams]); */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +53,18 @@ function LoginMain() {
         redirect: false,
       });
       if (!nextAuthResponse.ok) throw nextAuthResponse.error;
+
+      const storedCart = localStorage.getItem("cart");
+      const localCart = storedCart ? JSON.parse(storedCart) : [];
+
+      await axios.patch("/api/carts", { localCart });
+
+      localStorage.setItem("cart", []);
+      await fetchCart();
+
+
+      let callbackUrl = searchParams.get("callbackUrl") || "/";
+      window.location.assign(callbackUrl);
     } catch (error) {
       setError(error);
     } finally {
@@ -57,10 +74,17 @@ function LoginMain() {
 
   return (
     <div className="flex flex-col items-center justify-center w-[88%] ">
-      <h1 className="w-[80%] text-center pb-2 text-xl md:text-2xl font-bold text-gray-800 border-b">Ingresá a tu cuenta</h1>
-      <form className="w-full max-w-md bg-white p-2 rounded-lg" onSubmit={handleSubmit}>
+      <h1 className="w-[80%] text-center pb-2 text-xl md:text-2xl font-bold text-gray-800 border-b">
+        Ingresá a tu cuenta
+      </h1>
+      <form
+        className="w-full max-w-md bg-white p-2 rounded-lg"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-4">
-          <label className="block text-sm font-bold text-gray-700">Correo Electrónico</label>
+          <label className="block text-sm font-bold text-gray-700">
+            Correo Electrónico
+          </label>
           <input
             type="email"
             placeholder="Usuario@gmail.com"
@@ -71,7 +95,9 @@ function LoginMain() {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold text-gray-700">Contraseña</label>
+          <label className="block text-sm font-bold text-gray-700">
+            Contraseña
+          </label>
           <input
             type="password"
             placeholder="********"
@@ -81,7 +107,11 @@ function LoginMain() {
             required
           />
         </div>
-        {error && <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 text-xs sm:text-sm font-semibold rounded-md">{error}</div>}
+        {error && (
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 text-xs sm:text-sm font-semibold rounded-md">
+            {error}
+          </div>
+        )}
         <div className="text-right text-sm text-red-500 hover:text-red-700">
           <Link href="/auth/password-recovery">¿Olvidaste la contraseña?</Link>
         </div>
@@ -98,8 +128,11 @@ function LoginMain() {
         </div>
       </form>
       <p className="mt-4 text-sm text-gray-600">
-        ¿No tenes una cuenta? {" "}
-        <Link href="/auth/register" className="text-red-500 hover:text-red-700 font-bold">
+        ¿No tenes una cuenta?{" "}
+        <Link
+          href="/auth/register"
+          className="text-red-500 hover:text-red-700 font-bold"
+        >
           Registrarse
         </Link>
       </p>
