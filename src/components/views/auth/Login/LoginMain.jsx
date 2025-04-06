@@ -56,14 +56,15 @@ function LoginMain() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-[84%] ">
+    <div className="flex flex-col items-center justify-center w-[88%] ">
       <h1 className="w-[80%] text-center pb-2 text-xl md:text-2xl font-bold text-gray-800 border-b">Ingresá a tu cuenta</h1>
-      <form className="w-full max-w-md bg-white p-6 rounded-lg" onSubmit={handleSubmit}>
+      <form className="w-full max-w-md bg-white p-2 rounded-lg" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-bold text-gray-700">Correo Electrónico</label>
           <input
             type="email"
             placeholder="Usuario@gmail.com"
+            autoComplete="username"
             className="w-full mt-1 p-1 md:p-2 placeholder:text-sm lg:placeholder:text-base border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 bg-gray-100"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -74,22 +75,23 @@ function LoginMain() {
           <input
             type="password"
             placeholder="********"
+            autoComplete="current-password"
             className="w-full mt-1 p-1 md:p-2 placeholder:text-sm lg:placeholder:text-base border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 bg-gray-100"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        {error && <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 text-sm font-semibold rounded-md">{error}</div>}
+        {error && <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 text-xs sm:text-sm font-semibold rounded-md">{error}</div>}
         <div className="text-right text-sm text-red-500 hover:text-red-700">
           <Link href="/auth/password-recovery">¿Olvidaste la contraseña?</Link>
         </div>
         <div className="flex justify-center mt-4">
           {loading ? (
-            <button className="w-36 h-9 bg-red-700 text-white font-bold rounded-lg flex items-center justify-center">
+            <button className="w-28 md:w-36 h-7 md:h-9 bg-red-700 text-white font-bold rounded-lg flex items-center justify-center">
               <ImSpinner8 className="animate-spin w-5 h-5" />
             </button>
           ) : (
-            <button className="w-36 h-9 bg-red-700 hover:bg-red-900 text-white font-bold rounded-lg focus:outline-none">
+            <button className="w-28 md:w-36 h-7 md:h-9 bg-red-700 hover:bg-red-900 text-sm md:text-base text-white font-bold rounded-lg focus:outline-none">
               Ingresar
             </button>
           )}
