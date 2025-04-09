@@ -5,7 +5,7 @@ function FooterDeveloped() {
       <p className="footer-developed-for">
         Desarrollado por
         <span>
-          <a href="https://boisterous-zabaione-b01b8d.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <a href="https://juanignaciocolli.netlify.app/" target="_blank" rel="noopener noreferrer">
             Juan Ignacio Colli
           </a>
         </span>
