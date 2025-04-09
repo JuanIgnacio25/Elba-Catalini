@@ -25,12 +25,12 @@ export default function FixedActions() {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 flex flex-col items-center gap-4 z-50">
-      <div className="w-11 h-11">
+    <div className="fixed bottom-6 right-3 flex flex-col items-center gap-4 z-50">
+      <div className="w-9 md:w-11 h-9 md:h-11">
         {showScrollButton && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-11 h-11 bg-gray-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-500 hover:text-gray-600 hover:scale-110 transition-all"
+            className="w-9 md:w-11 h-9 md:h-11 bg-gray-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-500 hover:text-gray-600 hover:scale-110 transition-all"
             aria-label="Volver arriba"
           >
             <IoMdArrowUp className="w-8 h-8" />
@@ -42,7 +42,7 @@ export default function FixedActions() {
         href="https://wa.me/5493471589042"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="w-9 md:w-11 h-9 md:h-11 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         aria-label="WhatsApp"
       >
         <Image
