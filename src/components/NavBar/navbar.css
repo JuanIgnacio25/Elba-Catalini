@@ -350,35 +350,41 @@
   left: 0;
   width: 100%;
   max-height: 0;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
-  background: var(--red);
-  border-top: 1px solid var(--soft-grey);
   padding: 0 15px;
   gap: 10px;
   font-size: 19px;
   z-index: 20;
+  background: var(--red);
+  border-top: 1px solid var(--soft-grey);
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+
+  /* transición por defecto (cerrando) */
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
 }
 
 .nav-desktop-menu-mobile.open {
   max-height: 36vh;
   padding: 20px 15px;
   pointer-events: auto;
+
+  /* transición al abrir */
+  transition: max-height 0.25s ease-in, padding 0.2s ease-in;
 }
 
 .nav-desktop-menu-mobile li {
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in;
 }
 
 .nav-desktop-menu-mobile.open li {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 /* NavBar Media query */
