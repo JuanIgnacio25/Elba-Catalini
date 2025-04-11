@@ -69,6 +69,8 @@ export function CartProvider({ children }) {
         if (existingProduct) {
           existingProduct.quantity += intQuantity;
 
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
           localStorage.setItem("cart", JSON.stringify(localCart));
           await fetchCart();
 
