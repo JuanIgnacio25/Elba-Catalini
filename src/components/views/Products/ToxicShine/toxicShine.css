@@ -40,6 +40,15 @@
 @media screen and (max-width: 650px) {
   .toxic-products-main {
     grid-template-columns: 40% 60%;
-    gap:0px;
+    gap: 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  .toxic-products-main {
+    grid: none;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 10px 0px;
   }
 }
