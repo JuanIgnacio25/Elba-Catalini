@@ -1,14 +1,18 @@
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export function CartProvider({ children }) {
-  const router = useRouter();
   const { data: session, status } = useSession();
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,8 +29,21 @@ export function CartProvider({ children }) {
         setLoading(false);
       }
     } else if (status === "unauthenticated") {
-      setLoading(false);
-      setCart({ products: [] });
+      setLoading(true);
+
+      try {
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const mappedCart = {
+          products: localCart,
+        };
+
+        setCart(mappedCart);
+      } catch (error) {
+        setCart({ products: [] });
+      } finally {
+        setLoading(false);
+      }
     }
   }, [status]);
 
@@ -39,30 +56,88 @@ export function CartProvider({ children }) {
       } catch (error) {
         throw error;
       }
-    } else {
-      router.push(
-        `/auth/login?error=para añadir productos al carrito, primero debes iniciar sesión`
-      );
+    } else if(status === "unauthenticated") {
+      try {
+        const intQuantity = Number(quantity);
+        const storedCart = localStorage.getItem("cart");
+        const localCart = storedCart ? JSON.parse(storedCart) : [];
+
+        const existingProduct = localCart.find((item) => {
+          return item.productId === id;
+        });
+
+        if (existingProduct) {
+          existingProduct.quantity += intQuantity;
+
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          localStorage.setItem("cart", JSON.stringify(localCart));
+          await fetchCart();
+
+          return {
+            data: { name: existingProduct.name, quantity: intQuantity },
+          };
+        } else {
+          const res = await axios.get(`/api/products/${id}`);
+
+          localCart.push({ ...res.data, quantity: intQuantity });
+
+          localStorage.setItem("cart", JSON.stringify(localCart));
+          await fetchCart();
+
+          return { data: { name: res.data.name, quantity: intQuantity } };
+        }
+      } catch (error) {
+        throw error;
+      }
     }
   };
 
   const deleteProductFromCart = async (id) => {
-    try {
-      setLoading(true);
-      await axios.delete(`/api/carts/products/${id}`);
-      await fetchCart();
-    } catch (error) {
-      console.error("Error al eliminar el producto:", error);
+    if (status === "authenticated") {
+      try {
+        setLoading(true);
+        await axios.delete(`/api/carts/products/${id}`);
+        await fetchCart();
+      } catch (error) {
+        console.error("Error al eliminar el producto:", error);
+      }
+    } else if (status === "unauthenticated") {
+      try {
+        setLoading(true);
+        const storedCart = localStorage.getItem("cart");
+        const localCart = storedCart ? JSON.parse(storedCart) : [];
+
+        const updatedCart = localCart.filter((item) => item.productId !== id);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        await fetchCart();
+
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   const clearTheCart = async () => {
-    try {
-      setLoading(true);
-      await axios.delete("/api/carts/products");
-      await fetchCart();
-    } catch (error) {
-      console.log(error);
+    if (status === "authenticated") {
+      try {
+        setLoading(true);
+        await axios.delete("/api/carts/products");
+        await fetchCart();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    } else if (status === "unauthenticated"){
+      try {
+        setLoading(true);
+
+        localStorage.setItem("cart", JSON.stringify([]));
+        await fetchCart();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -83,7 +158,7 @@ export function CartProvider({ children }) {
     if (status !== "loading") {
       fetchCart();
     }
-  }, [fetchCart,status]);
+  }, [fetchCart, status]);
 
   return (
     <CartContext.Provider

@@ -168,7 +168,7 @@ function DashboardProductsTable() {
                         name: prod.name,
                       });
                     }}
-                    className="pr-1 focus:outline-none"
+                    className="pr-1 focus:outline-none text-red-400"
                   >
                     {isDeleting === prod.productId ? (
                       <div className="border-2 border-t-2 border-t-gray-500 border-white border-solid w-6 h-6 rounded-full animate-spin"></div>
@@ -180,7 +180,7 @@ function DashboardProductsTable() {
                     onClick={() =>
                       router.push(`/admin/editProduct/${prod.productId}`)
                     }
-                    className="pl-1 focus:outline-none"
+                    className="pl-1 focus:outline-none text-blue-400"
                   >
                     <MdEdit className="text-xl" />
                   </button>

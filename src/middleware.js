@@ -29,7 +29,7 @@ export async function middleware(req) {
       return NextResponse.redirect(url);
     }
 
-    if (req.nextUrl.pathname.startsWith("/cart")) {
+    if (req.nextUrl.pathname.startsWith("/cart/confirmOrder") || req.nextUrl.pathname.startsWith("/cart/closedOrder")) {
       url.pathname = "/auth/login";
       url.searchParams.set(
         "callbackUrl",
@@ -37,7 +37,7 @@ export async function middleware(req) {
       );
       url.searchParams.set(
         "error",
-        "Para ver tu carrito , primero debes iniciar sesión"
+        "Para continuar con tu pedido, primero debes iniciar sesión"
       );
       return NextResponse.redirect(url);
     }
@@ -108,7 +108,8 @@ export async function middleware(req) {
 export const config = {
   matcher: [
     "/admin/:path*",
-    "/cart/:path*",
+    "/cart/confirmOrder",
+    "/cart/closedOrder", 
     "/orderHistory",
     
     "/api/products",

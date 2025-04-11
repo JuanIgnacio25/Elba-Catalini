@@ -25,6 +25,9 @@
   height: 50%;
 }
 
+.products-main-fallback-responsive-buttons {
+  display: none;
+}
 
 @media screen and (max-width: 1050px) {
   .products-categories-simplified-view-button {
@@ -54,28 +57,41 @@
 @media screen and (max-width: 650px) {
   .products-main-fallback {
     grid-template-columns: 40% 60%;
-    gap:0px;
+    gap: 0px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .products-categories-simplified-view-button {
-    font-size: 11px;
+@media (max-width: 500px) {
+  .products-main-fallback-categories {
+    display: none;
   }
 
-  .filter-checkbox {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+  .products-main-fallback-container {
+    height: 50vh;
+    justify-content:start;
+    align-items: center;
+    margin-bottom: 0px;
   }
 
-  .filter-checkbox-label {
-    font-size: 10px;
+  .products-main-fallback {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 90%;
+    height: 100%;
+    margin-top: 10px;
   }
-}
 
-@media screen and (max-width: 330px) {
-  .products-categories-simplified-view-button {
-    font-size: 9px;
+  .products-main-fallback-responsive-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:space-between;
+    padding: 20px 0px;
+  }
+
+  .products-main-cards-fallback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 }

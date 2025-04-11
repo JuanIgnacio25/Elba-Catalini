@@ -3,58 +3,46 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
 import { Tooltip } from "react-tooltip";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { ImSpinner8 } from "react-icons/im";
 
 function RegisterMain() {
   const router = useRouter();
-
-  const [companyName, setCompranyName] = useState("");
-  const [cuit, setCuit] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [purchasingManagerName, setPurchasingManagerName] = useState("");
-  const [location, setLocation] = useState("");
-  const [address, setAddress] = useState("");
-  const [carrier, setCarrier] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [validatePassword, setValidatePassword] = useState("");
+  const [formData, setFormData] = useState({
+    companyName: "",
+    cuit: "",
+    phoneNumber: "",
+    purchasingManagerName: "",
+    location: "",
+    address: "",
+    carrier: "",
+    email: "",
+    password: "",
+    validatePassword: "",
+  });
   const [error, setError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
-  const handleInputChange = (e, setState) => {
-    const inputValue = e.target.value;
-
-    if (/^\d*$/.test(inputValue)) {
-      setState(inputValue);
-    }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     try {
-      const res = await axios.post("/api/auth/signup", {
-        companyName,
-        cuit,
-        phoneNumber,
-        purchasingManagerName,
-        location,
-        address,
-        carrier,
-        email,
-        password,
-        validatePassword,
-      });
-
+      const res = await axios.post("/api/auth/signup", formData);
       router.refresh();
       router.push(
         `/auth/verifying-account/${res.data.savedTemporalUser.email}`
       );
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,117 +56,106 @@ function RegisterMain() {
   }, [tooltipVisible]);
 
   return (
-    <form onSubmit={handleSubmit} className="register-main-container">
-      <h1 className="register-main-title">Registro de Empresa</h1>
-      <div className="register-main-data-container">
-        <div className="register-main-data">
-          <p>Razon Social</p>
-          <input
-            type="text"
-            placeholder="La Casa del Accesorio"
-            name="sign"
-            autoComplete="sign"
-            required={true}
-            onChange={(e) => setCompranyName(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>CUIT</p>
-          <input
-            type="text"
-            value={cuit}
-            placeholder="20431266629"
-            name="cuit"
-            autoComplete="cuit"
-            required={true}
-            onChange={(e) => handleInputChange(e, setCuit)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>
-            Celular<span>{"(codigo de area + numero)"}</span>
-          </p>
-          <input
-            type="text"
-            placeholder="ej: 3471670274"
-            value={phoneNumber}
-            name="phone-number"
-            autoComplete="phone-number"
-            required={true}
-            onChange={(e) => handleInputChange(e, setPhoneNumber)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Nombre del encargado de Compras</p>
-          <input
-            type="text"
-            placeholder="Leandro"
-            name="purchasing-manager-name"
-            autoComplete="name"
-            required={true}
-            onChange={(e) => setPurchasingManagerName(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Localidad/Provincia</p>
-          <input
-            type="text"
-            placeholder="Ciudad, Provincia"
-            name="location"
-            autoComplete="location"
-            required={true}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Direccion de la Empresa</p>
-          <input
-            type="text"
-            placeholder="Arevalo 1440"
-            name="address"
-            autoComplete="address"
-            required={true}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Transporte</p>
-          <input
-            type="text"
-            placeholder="Transporte Miguel"
-            name="carrier"
-            autoComplete="carrier"
-            required={true}
-            onChange={(e) => setCarrier(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Email</p>
-          <input
-            type="email"
-            placeholder="ejemplo@gmail.com"
-            name="email"
-            autoComplete="email"
-            required={true}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="register-main-data">
-          <p>Contraseña</p>
-          <div className="relative">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full mx-auto p-6 bg-white shadow-md rounded-lg"
+    >
+      <h1 className="text-2xl font-bold text-gray-700 mb-3 border-b pb-1 md:pb-2">
+        Crear una Cuenta
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          {
+            label: "Razón Social",
+            name: "companyName",
+            type: "text",
+            placeholder: "Elba Susana Catalini",
+          },
+          {
+            label: "Nombre del encargado de Compras",
+            name: "purchasingManagerName",
+            type: "text",
+            placeholder: "Leandro",
+          },
+          {
+            label: "Localidad/Provincia",
+            name: "location",
+            type: "text",
+            placeholder: "Ciudad, Provincia",
+          },
+          {
+            label: "Dirección de la Empresa",
+            name: "address",
+            type: "text",
+            placeholder: "Arevalo 1440",
+          },
+          {
+            label: "CUIT",
+            name: "cuit",
+            type: "text",
+            placeholder: "20227895529",
+          },
+          {
+            label: "Celular (código de área + número)",
+            name: "phoneNumber",
+            type: "text",
+            placeholder: "ej: 3471670274",
+          },
+          {
+            label: "Transporte",
+            name: "carrier",
+            type: "text",
+            placeholder: "Transporte Miguel",
+          },
+        ].map(({ label, name, type, placeholder }) => (
+          <div key={name} className="flex flex-col">
+            <label className="font-semibold text-gray-600">{label}</label>
+            <input
+              type={type}
+              name={name}
+              placeholder={placeholder}
+              value={formData[name]}
+              onChange={handleChange}
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
+              required
+            />
+          </div>
+        ))}
+        <h3 className="col-span-1  md:col-span-2 lg:col-span-3 text-lg md:text-xl font-semibold text-gray-700 border-b pb-1 md:pb-2">
+          Datos de acceso
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:col-span-2 lg:grid-cols-3 lg:col-span-3 gap-4">
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-600">
+              Correo Electronico
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="ejemplo@gmail.com"
+              autoComplete="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
+              required
+            />
+          </div>
+          <div className="flex flex-col relative">
+            <label className="font-semibold text-gray-600">Contraseña</label>
             <input
               type="password"
-              placeholder="********"
               name="password"
-              autoComplete="password"
-              required={true}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+              value={formData.password}
+              onChange={handleChange}
+              autoComplete="new-password"
               onFocus={() => setTooltipVisible(true)}
               onBlur={() => setTooltipVisible(false)}
-              data-tooltip-id="password-tooltip"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
+              required
             />
             <div
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+              className="absolute right-3 top-11 -translate-y-1/2 text-gray-500 cursor-pointer"
               data-tooltip-id="password-tooltip"
               onMouseEnter={() => setTooltipVisible(true)}
               onMouseLeave={() => setTooltipVisible(false)}
@@ -200,21 +177,41 @@ function RegisterMain() {
               </ul>
             </Tooltip>
           </div>
+          <div className="flex flex-col">
+            <label className="font-semibold text-gray-600">
+              Confirmar Contraseña
+            </label>
+            <input
+              type="password"
+              name="validatePassword"
+              placeholder="********"
+              value={formData.validatePassword}
+              onChange={handleChange}
+              autoComplete="validate-new-password"
+              className="border border-gray-300 p-2 rounded-md focus:outline-none focus:border-red-500 bg-gray-100"
+              required
+            />
+          </div>
         </div>
-        <div className="register-main-data">
-          <p>Confirmar Contraseña</p>
-          <input
-            type="password"
-            placeholder="********"
-            name="validate-password"
-            autoComplete="validate-password"
-            required={true}
-            onChange={(e) => setValidatePassword(e.target.value)}
-          />
-        </div>
-        {error && <div className="register-main-error">{error}</div>}
       </div>
-      <button className="register-main-button">Registrarse</button>
+      {error && (
+        <div className="w-full flex justify-center my-2">
+          <div className="w-[50%] bg-red-100 border-l-4 border-red-500 text-red-700 p-2 text-sm font-semibold rounded-md">
+            {error}
+          </div>
+        </div>
+      )}
+      <div className="mt-4 flex justify-center">
+        {loading ? (
+          <button className="min-w-[130px]  bg-red-500 text-white py-1.5 px-6 rounded-lg flex items-center justify-center">
+            <ImSpinner8 className="w-5 h-5 animate-spin" />
+          </button>
+        ) : (
+          <button className="bg-red-700 hover:bg-red-900 text-white py-1 px-5 rounded-lg font-bold transition-colors">
+            Registrarse
+          </button>
+        )}
+      </div>
     </form>
   );
 }

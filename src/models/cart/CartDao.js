@@ -65,6 +65,14 @@ class CartDao {
     }
   }
 
+  async replaceProductsArray(cartId, products) {
+    try {
+      return Cart.updateOne({ cartId }, { $set: { products } });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   /* Busca el carrito por cartId y elimina el producto por productId */
   async removeProductFromCart(cartId, productId) {
     try {
@@ -94,12 +102,10 @@ class CartDao {
   /* Elimina un producto por productId de todos los carritos */
   async removeProductFromAllCarts(productId) {
     try {
-      const result = await this.collection.updateMany(
+       await this.collection.updateMany(
         { "products.productId": productId },
         { $pull: { products: { productId: productId } } }
       );
-
-      return result;
     } catch (error) {
       throw error;
     }

@@ -5,18 +5,9 @@ import Link from "next/link";
 import { BsCart3 } from "react-icons/bs";
 
 function NavCart() {
-  const { cart, loading, isAuthenticated } = useCart();
+  const { cart, loading } = useCart();
 
   if (loading) {
-    return (
-      <Link href="/cart" className="nav-main-menu-cart-link">
-        <BsCart3 className="nav-main-menu-icon-cart" />
-        <span className="nav-main-menu-cart-counter-empty"></span>
-      </Link>
-    );
-  }
-
-  if (!isAuthenticated) {
     return (
       <Link href="/cart" className="nav-main-menu-cart-link">
         <BsCart3 className="nav-main-menu-icon-cart" />

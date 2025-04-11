@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   height: auto;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
 
 .baiml-p-standard-container {
@@ -30,11 +30,28 @@
   .baiml-p-main-container {
     grid-template-columns: 25% 75%;
   }
+
+  .baiml-p{
+    margin-bottom: 100px;
+  }
 }
 
 @media screen and (max-width: 650px) {
   .baiml-p-main-container {
     grid-template-columns: 40% 60%;
     gap:0px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .baiml-p-main-container{
+    grid: none;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 10px 0px;
+  }
+
+  .baiml-p{
+    margin-bottom: 50px;
   }
 }

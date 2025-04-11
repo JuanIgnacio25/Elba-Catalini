@@ -66,6 +66,7 @@ export const STORE_ELECTRICIDAD_SUBCATEGORIES = [
 export const STORE_ACCESORIOS_SUBCATEGORIES = [
   "Accesorios para Motos",
   "Accesorios para Niños",
+  "Accesorios para Trailer",
   "Antenas",
   "Anti Robo",
   "Asientos y Respaldos",
@@ -75,7 +76,8 @@ export const STORE_ACCESORIOS_SUBCATEGORIES = [
   "Cubre Volantes",
   "Detailing",
   "Escobillas",
-  "Seguridad"
+  "Seguridad",
+  "Varios",
 ]
 
 export const STORE_ILUMINACION_SUBCATEGORIES = [

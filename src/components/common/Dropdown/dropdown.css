@@ -99,3 +99,26 @@
 .dropdown-submenu .dropdown-item:hover {
   background: var(--soft-grey);
 }
+
+@media (max-width: 903px) {
+  .dropdown-category {
+    font-size: 15px;
+  }
+
+  li a {
+    font-size: 15px;
+  }
+
+  .dropdown-menu {
+    top: 130%;
+  }
+
+  .dropdown-item {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .dropdown-submenu .dropdown-item {
+    font-size: 12px;
+  }
+}

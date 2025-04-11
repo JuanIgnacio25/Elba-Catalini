@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
 
 .store-products{
@@ -23,5 +23,15 @@
 @media screen and (max-width: 870px) {
   .store-products {
     width: 90%;
+  }
+
+  .store-products-container{
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .store-products-container{
+    margin-bottom: 50px;
   }
 }

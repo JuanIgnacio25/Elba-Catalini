@@ -1,8 +1,13 @@
+import { Suspense } from "react"
+
 import DashboardUsersTable from "@/components/views/admin/DashboardUsersTable"
+import AdminUserTableFallback from "@/components/Fallbacks/AdminUserTableFallback"
 
 function UsersPage() {
   return (
-    <DashboardUsersTable/>
+    <Suspense fallback={<AdminUserTableFallback />}>
+      <DashboardUsersTable/>
+    </Suspense>
   )
 }
 

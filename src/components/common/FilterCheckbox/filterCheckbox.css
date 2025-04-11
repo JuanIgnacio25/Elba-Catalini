@@ -48,14 +48,8 @@
   }
 }
 
-@media screen and (max-width: 435px) {
-  .filter-checkbox {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-  }
-
+@media screen and (max-width:500px) {
   .filter-checkbox-label {
-    font-size: 10px;
+    font-size: 14px;
   }
 }

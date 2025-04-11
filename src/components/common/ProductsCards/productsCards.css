@@ -94,13 +94,13 @@
   }
 
   .products-loading-more-spinner {
-    bottom: -70px;
+    bottom: -45px;
     min-width: 30px;
     min-height: 30px;
   }
 
   .products-load-more-button {
-    bottom: -70px;
+    bottom: -45px;
     padding: 2px 6px;
     font-size: 11px;
   }
