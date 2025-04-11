@@ -365,7 +365,7 @@
 }
 
 .nav-desktop-menu-mobile.open {
-  max-height: 30vh;
+  max-height: 36vh;
   padding: 20px 15px;
   pointer-events: auto;
 }
