@@ -4,6 +4,7 @@
 
 .products-by-category-products-cards {
   width: 80%;
+  margin-bottom: 150px;
 }
 
 @media (max-width: 870px) {
@@ -12,5 +13,12 @@
   }
   .products-by-category-products-cards {
     width: 90%;
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .products-by-category-products-cards {
+    margin-bottom: 50px;
   }
 }
