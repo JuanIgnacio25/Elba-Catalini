@@ -2,8 +2,7 @@ import cloudinary from "@/libs/cloudinary";
 
 export const uploadImagesToCloudinary = async (images) => {
   const uploadPromises = images.map(async (image) => {
-    const fileName = image.name.split(".").slice(0, -1).join(".");
-
+   
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -13,7 +12,6 @@ export const uploadImagesToCloudinary = async (images) => {
         .upload_stream(
           {
             upload_preset: "product_images_preset",
-            public_id: fileName, // Usa el nombre del archivo sin extensión
             overwrite: true, // Sobrescribe si ya existe
             unique_filename: false, // Mantiene el nombre original
             transformation: [
