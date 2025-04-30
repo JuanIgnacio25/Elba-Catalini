@@ -102,7 +102,7 @@ class CartDao {
   /* Elimina un producto por productId de todos los carritos */
   async removeProductFromAllCarts(productId) {
     try {
-       await this.collection.updateMany(
+       return await this.collection.updateMany(
         { "products.productId": productId },
         { $pull: { products: { productId: productId } } }
       );
