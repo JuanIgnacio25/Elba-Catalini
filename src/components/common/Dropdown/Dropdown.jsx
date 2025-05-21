@@ -77,43 +77,44 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
 
       {isOpen && (
         <div className="dropdown-menu">
-          {options.map((option) => (
-            <div
-              key={option.slug}
-              className="dropdown-item-wrapper"
-              onMouseEnter={() => setOpenSubmenu(option.slug)}
-              onMouseLeave={() => setOpenSubmenu(null)}
-            >
-              {option.variantSubCategory ? (
-                <div className="dropdown-item has-submenu">
-                  {option.name}
-                  <IoIosArrowForward className="dropdown-icon" />
-                  {openSubmenu === option.slug && (
-                    <div className="dropdown-submenu">
-                      {option.variantSubCategory.map((sub) => (
-                        <Link
-                          key={sub.slug}
-                          href={`${baseUrl}/${category.slug}/${option.slug}/${sub.slug}`}
-                          className="dropdown-item"
-                          onClick={handleClose}
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href={`${baseUrl}/${category.slug}/${option.slug}`}
-                  className="dropdown-item"
-                  onClick={handleClose}
-                >
-                  {option.name}
-                </Link>
-              )}
-            </div>
-          ))}
+          <div className="dropdown-menu-scroll">
+            {options.map((option) => (
+              <div
+                key={option.slug}
+                onMouseEnter={() => setOpenSubmenu(option.slug)}
+                onMouseLeave={() => setOpenSubmenu(null)}
+              >
+                {option.variantSubCategory ? (
+                  <div className="dropdown-item has-submenu">
+                    {option.name}
+                    <IoIosArrowForward className="dropdown-icon" />
+                    {openSubmenu === option.slug && (
+                      <div className="dropdown-submenu">
+                        {option.variantSubCategory.map((sub) => (
+                          <Link
+                            key={sub.slug}
+                            href={`${baseUrl}/${category.slug}/${option.slug}/${sub.slug}`}
+                            className="dropdown-item"
+                            onClick={handleClose}
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={`${baseUrl}/${category.slug}/${option.slug}`}
+                    className="dropdown-item"
+                    onClick={handleClose}
+                  >
+                    {option.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 55vh;
+  height: clamp(280px, 50vh , 500px);
   padding-bottom: 10px;
   gap: 8px;
   background: var(--white);
@@ -186,20 +186,12 @@
 }
 
 @media (max-width: 1422px) {
-  .baiml-p-card {
-    height: 55vh;
-  }
-
   .baiml-p-card-info {
     font-size: 14px;
   }
 }
 
 @media (max-width: 1140px){
-  .baiml-p-card {
-    height: 50vh;
-  }
-
   .baiml-p-card-img-container {
     max-width: 150px;
   }
