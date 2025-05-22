@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import CartService from "@/models/cart/CartService";
 import OrderService from "@/models/order/OrderService";
 import { isValidCommentsData } from "@/utils/validate/validateComments";

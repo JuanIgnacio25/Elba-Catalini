@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import UserService from "@/models/user/UserService";
 import isValidPassword from "@/utils/validate/validatePassword";
 

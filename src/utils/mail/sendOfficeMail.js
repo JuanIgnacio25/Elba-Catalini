@@ -1,4 +1,4 @@
-import createTransporter from "@/libs/nodemailer";
+import createTransporter from "@/lib/nodemailer";
 import ExcelJS from "exceljs";
 import path from "path";
 

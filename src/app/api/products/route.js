@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import ProductService from "@/models/product/ProductService";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";

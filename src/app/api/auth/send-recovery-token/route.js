@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import isValidEmail from "@/utils/validate/validateUserEmail";
 import UserService from "@/models/user/UserService";
 

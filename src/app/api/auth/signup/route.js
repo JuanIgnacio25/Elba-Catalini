@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import { isValidSignup } from "@/utils/validate/validateUser";
 import generateVerificationToken from "@/utils/token/generateVerificationToken";
 import sendVerificationMail from "@/utils/mail/sendVerificationMail";

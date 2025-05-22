@@ -1,4 +1,4 @@
-import createTransporter from "@/libs/nodemailer";
+import createTransporter from "@/lib/nodemailer";
 
 async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
   // Formatear los elementos del pedido en HTML

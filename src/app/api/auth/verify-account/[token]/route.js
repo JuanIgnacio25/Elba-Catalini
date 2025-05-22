@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import UserService from "@/models/user/UserService";
 import TemporalUserService from "@/models/temporalUser/TemporalUserService";
 import CartService from "@/models/cart/CartService";

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 
 import ProductService from "@/models/product/ProductService";
 
