@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
     "@react-google-maps/api": "^2.19.3",
     "@sinclair/typebox": "^0.32.31",
     "ajv": "^8.14.0",
@@ -19,6 +20,8 @@
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.5.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "exceljs": "^4.4.0",
     "framer-motion": "^11.11.11",
     "googleapis": "^140.0.1",
