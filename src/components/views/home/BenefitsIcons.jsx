@@ -16,7 +16,7 @@ const BenefitItem = ({ title, text, IconComponent , hiddenMobile}) => {
 
 function BenefitsIcons() {
   return (
-    <div className="w-full flex justify-center items-center my-10 md:my-20 px-2 md:px-4">
+    <div className="w-full flex justify-center items-center mt-10 md:mt-20 px-2 md:px-4">
       <div className="w-full flex justify-center max-w-6xl gap-8">
         <BenefitItem
           title="30 años de trayectoria"
