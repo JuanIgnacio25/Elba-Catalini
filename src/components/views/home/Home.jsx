@@ -1,4 +1,5 @@
 import BenefitsIcons from "./BenefitsIcons";
+import Brands from "./Brands";
 /* import MainCarousel from "./MainCarousel" */
 import News from "./News";
 
@@ -8,6 +9,7 @@ function Home() {
       {/* <MainCarousel/> */}
       <BenefitsIcons />
       <News />
+      <Brands/>
     </div>
   );
 }
