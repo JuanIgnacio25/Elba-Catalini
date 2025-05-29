@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+import GradientSubtitle from "@/components/common/GradientSubtitle";
+
 function News() {
   const images = [
     { src: "/7550ED.jpg" },
@@ -29,9 +31,7 @@ function News() {
 
   return (
     <div className="w-full flex-col justify-center items-center mt-36">
-      <h2 className="text-3xl md:text-[2.50rem] text-center font-medium text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-red-700 to-black mb-6">
-        Novedades
-      </h2>
+      <GradientSubtitle text={"Novedades"}/>
       <Carousel
         className="w-[97vw] xs:w-[80vw] lg:w-[67vw] xl:w-[67vw] m-auto py-6"
         opts={{
