@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.11",
     "@radix-ui/react-slot": "^1.2.3",
     "@react-google-maps/api": "^2.19.3",
     "@sinclair/typebox": "^0.32.31",
