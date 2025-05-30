@@ -1,6 +1,6 @@
-# 🚗 La Casa del Accesorio
+# 🚗 Elba Catalini Web
 
-La Casa del Accesorio es un sistema de gestión de pedidos con catálogo online, orientado a ventas de faros de iluminacion universal BAIML y accesorios para vehículos. Está desarrollado íntegramente con Next.js, tanto para el back-end como el front-end, y utiliza MongoDB como base de datos. La aplicación está desplegada en Railway.
+La web Elba Catalini es un sistema de gestión de pedidos con catálogo online, orientado a ventas de faros de iluminacion universal BAIML y accesorios para vehículos. Está desarrollado íntegramente con Next.js, tanto para el back-end como el front-end, y utiliza MongoDB como base de datos. La aplicación está desplegada en Railway.
 
 ## 🌐 URL de Producción
 
@@ -24,7 +24,7 @@ Puedes ver el sitio en funcionamiento en: [https://elbacatalini.com/](https://el
 - Nodemailer, jwt, ajv, exceljs, framer motion
 - Railway , MongoDB Atlas , Cloudinary
 
-## Instalacion
+<!-- ## Instalacion
 
 1. Clona el repositorio:
 
@@ -65,4 +65,4 @@ yarn dev
 # o
 pnpm dev
 # o
-bun dev
+bun dev -->
