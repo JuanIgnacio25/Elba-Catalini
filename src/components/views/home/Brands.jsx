@@ -63,11 +63,11 @@ function Brands() {
           align: "start",
           loop: true,
         }}
-        /* plugins={[
+        plugins={[
           Autoplay({
-            delay: 2000,
+            delay: 1500,
           }),
-        ]} */
+        ]}
       >
         <CarouselContent className="mx-1">
           {images.map((img, index) => (
