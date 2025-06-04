@@ -5,64 +5,49 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import DropdownSelectFallback from "@/components/Fallbacks/DropdownSelectFallback";
-import DropdownSelect from "@/components/NavBar/DropdownSelect";
+import NavDesktop from "@/components/NavBar/NavDesktop";
+import NavDesktopMobile from "@/components/NavBar/NavDesktopMobile";
 import NavCart from "@/components/NavBar/NavCart";
 import NavSearch from "@/components/NavBar/NavSearch";
+import DropdownMenuAccount from "@/components/NavBar/DropdownMenuAccount";
 
-function NavMain() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+function NavMain({ isScrolled = false }) {
   return (
-    <nav className={`nav-main ${isScrolled ? "nav-main-scrolled" : ""}`}>
-      <ul className={`nav-main-responsive-image-container`}>
-        <li
-          className={`nav-main-responsive-image ${
-            isScrolled ? "nav-main-responsive-image-scrolled" : ""
-          }`}
-        >
-          <Link href="/" className="nav-main-responsive-image-link">
-            <Image
-              src="/elbacatalini-main-logo.png"
-              alt="Logo-Main"
-              width={500}
-              height={500}
-              className="nav-main-responsive-image"
-              priority
-            />
-          </Link>
-        </li>
-      </ul>
-      <ul className="nav-main-menu">
-        <li className="nav-main-menu-cart-container">
-          <NavCart />
-        </li>
-        <li>
-          <Suspense fallback={<DropdownSelectFallback />}>
-            <DropdownSelect />
-          </Suspense>
-        </li>
-      </ul>
-      <div className="nav-main-search-responsive-container">
+    <nav
+      className={`w-full flex justify-center items-center bg-neutral-900 ${
+        isScrolled ? "!h-[11vh]" : "h-[14.5vh]"
+      }`}
+    >
+      <div className="container mx-auto h-full flex justify-between items-center">
+        <Link href="/" className="flex justify-center">
+          <Image
+            src="/logoelbarojo.png"
+            alt="Logo-Main"
+            width={1100}
+            height={420}
+            className={`${
+              isScrolled
+                ? "max-w-[150px] md:max-w-[180px] lg:max-w-[200px] h-auto object-contain"
+                : "max-w-[170px] md:max-w-[200px] lg:max-w-[250px] h-auto object-contain"
+            }`}
+            priority
+          />
+        </Link>
+
+        <NavDesktop />
+
+        <ul className="flex flex-row items-center justify-center gap-2">
           <NavSearch />
+          <li className="flex items-center">
+            <DropdownMenuAccount />
+          </li>
+          <li className="nav-main-menu-cart-container">
+            <NavCart />
+          </li>
+          <li className="flex items-center ml-2">
+            <NavDesktopMobile />
+          </li>
+        </ul>
       </div>
     </nav>
   );
