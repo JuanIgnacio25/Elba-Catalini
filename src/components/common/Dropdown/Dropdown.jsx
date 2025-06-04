@@ -27,7 +27,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 903;
+      const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
       if (!mobile) {
         setIsOpen(false);
@@ -44,14 +44,14 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
 
   return (
     <div
-      className="dropdown"
+      className="dropdown "
       onMouseEnter={!isMobile ? () => setIsOpen(true) : undefined}
       onMouseLeave={!isMobile ? () => setIsOpen(false) : undefined}
     >
       {!isMobile ? (
         <Link
           href={`${baseUrl}/${category.slug}`}
-          className="dropdown-category"
+          className={`dropdown-category ${isOpen ? "!text-red-500 transition" : ""}`}
           onClick={handleClose}
         >
           {category.name}
@@ -59,7 +59,7 @@ function Dropdown({ category, options, baseUrl, toggleMenu }) {
         </Link>
       ) : (
         <div
-          className="dropdown-category"
+          className={`dropdown-category ${isOpen ? "!text-red-500 transition" : ""}`}
           role="button"
           tabIndex="0"
           onPointerDown={(e) => {
