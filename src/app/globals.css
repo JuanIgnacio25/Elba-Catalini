@@ -20,32 +20,15 @@
   --nav-main-height-scrolled:11vh;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   display:flex;
   flex-flow:column wrap;
   background: var(--light-grey);
-  margin-top:20vh;
 }
-
-@media (max-width:903px){
-  body{
-    margin-top: calc(11vh + 40px);
-  }
-}
-
-@media (max-width:620px){
-  body{
-    margin-top: calc(10vh + 40px);
-  }
-}
-
-@media (max-width:475px){
-  body{
-    margin-top: calc(7vh + 40px);
-  }
-}
-
-
 
 @layer base {
   :root {
