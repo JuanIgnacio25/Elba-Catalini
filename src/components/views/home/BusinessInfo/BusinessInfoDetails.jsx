@@ -95,7 +95,7 @@ const BusinessDetails = () => {
       {/*Google Maps */}
       <div className="flex-1 min-h-[300px] md:min-h-[auto]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7975.044051815019!2d-61.39376042423263!3d-32.8163013452258!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c9de5b72d76f3b%3A0xe43492c01786c6aa!2sLa%20casa%20del%20Accesorio!5e0!3m2!1ses-419!2sar!4v1748555560385!5m2!1ses-419!2sar"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d838.28412990619!2d-61.39023922926582!3d-32.81514754529267!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c9de5b72d76f3b%3A0xe43492c01786c6aa!2sLa%20casa%20del%20Accesorio!5e0!3m2!1ses-419!2sar!4v1749074736085!5m2!1ses-419!2sar"
           width="100%"
           height="100%"
           style={{ border: 0 }}
