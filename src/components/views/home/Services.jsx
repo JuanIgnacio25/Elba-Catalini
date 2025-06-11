@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 
 import Autoplay from "embla-carousel-autoplay"
 
-// Importa los componentes de Carousel de shadcn/ui
 import {
   Carousel,
   CarouselContent,

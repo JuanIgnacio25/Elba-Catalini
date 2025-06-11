@@ -1,4 +1,4 @@
-import MainCarousel from "./MainCarousel"
+import MainCarousel from "./MainCarousel/MainCarousel"
 import BenefitsIcons from "./BenefitsIcons";
 import News from "./News";
 import Services from "./Services";
