@@ -36,6 +36,24 @@ class BrandsDao {
     }
   }
 
+  async updateBrand(brandId, dataToUpdate) {
+    try {
+      const updatedBrand = this.collection.findOneAndUpdate(
+        {
+          brandId,
+        },
+        dataToUpdate,
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedBrand) throw new Error("La Marca no existe");
+
+      return updatedBrand;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async deleteBrand(brandId) {
     try {
       const deletedBrand = await this.collection.findOneAndDelete({ brandId });
