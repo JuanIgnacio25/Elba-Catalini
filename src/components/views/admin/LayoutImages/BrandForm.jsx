@@ -24,21 +24,23 @@ function BrandForm({ brand, onSubmit, onCancel }) {
     resolver: zodResolver(brandFormSchema),
     defaultValues: {
       name: brand?.name || "",
-      image: brand?.image || "",
-      order: brand?.order || 1,
+      image: brand?.image.url || "",
+      order: brand?.order || "",
     },
   });
 
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(brand?.image || "");
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(
+    brand?.image.url || ""
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     form.reset({
       name: brand?.name || "",
-      image: brand?.image || "",
-      order: brand?.order || 1,
+      image: brand?.image.url || "",
+      order: brand?.order || "",
     });
-    setImagePreviewUrl(brand?.image || "");
+    setImagePreviewUrl(brand?.image.url || "");
 
     return () => {
       if (imagePreviewUrl.startsWith("blob:")) {
@@ -49,24 +51,33 @@ function BrandForm({ brand, onSubmit, onCancel }) {
 
   const onFormSubmit = async (values) => {
     setIsSubmitting(true);
-    let imageUrl = values.image;
-    let publicId = brand?.public_id || null;
-
     try {
-      if (values.image && typeof values.image !== "string") {
-        const file = values.image[0];
-        const formData = new FormData();
-        formData.append("image", file);
-        formData.append("order", values.order);
-        formData.append("name" , values.name);
+      const formData = new FormData();
+      
+      const isNewImage = values.image instanceof FileList;
 
-        const res = await axios.post("/api/layoutImages", formData);
-        console.log(res);
+      if (isNewImage && values.image.length > 0) {
+        const file = values.image[0];
+        formData.append("image", file);
       }
 
-      /*  onSubmit(brand
-        ? { ...brand, ...values, image: imageUrl, public_id: publicId }
-        : { ...values, image: imageUrl, public_id: publicId }); */
+      formData.append("order", values.order);
+      formData.append("name", values.name);
+
+      let res;
+
+      if (brand) {
+        res = await axios.put(
+          `/api/layoutImages/brands/${brand.brandId}`,
+          formData
+        );
+      } else {
+        res = await axios.post("/api/layoutImages/brands", formData);
+      }
+
+      console.log(res);
+      
+      onSubmit(res.data);
     } catch (err) {
       console.error(err);
     } finally {
@@ -98,7 +109,7 @@ function BrandForm({ brand, onSubmit, onCancel }) {
             <FormItem>
               <FormLabel>Imagen de la Marca</FormLabel>
               <FormControl>
-                <>
+                <div>
                   <Input
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
@@ -123,14 +134,7 @@ function BrandForm({ brand, onSubmit, onCancel }) {
                       />
                     </div>
                   )}
-                  {brand &&
-                    typeof value === "string" &&
-                    !imagePreviewUrl.startsWith("blob:") && (
-                      <p className="text-sm text-gray-500 mt-1">
-                        Imagen actual: {brand.image.split("/").pop()}
-                      </p>
-                    )}
-                </>
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>

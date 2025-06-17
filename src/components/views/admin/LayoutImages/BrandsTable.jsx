@@ -68,7 +68,7 @@ function BrandsTable() {
   const handleEditBrand = (updatedBrand) => {
     setBrands((prevBrands) =>
       prevBrands.map((brand) =>
-        brand.id === updatedBrand.id ? updatedBrand : brand
+        brand.brandId === updatedBrand.brandId ? updatedBrand : brand
       )
     );
     setIsFormOpen(false);
