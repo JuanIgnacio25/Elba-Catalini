@@ -2,7 +2,7 @@ import MainCarousel from "./MainCarousel/MainCarousel"
 import BenefitsIcons from "./BenefitsIcons";
 import News from "./News";
 import Services from "./Services";
-import Brands from "./Brands";
+import Brands from "./Brands/Brands";
 import BusinessInfo from "./BusinessInfo/BusinessInfo";
 
 function Home() {
