@@ -1,9 +1,6 @@
 import BrandsDao from "./BrandsDao";
-
-import {
-  deleteImageFromCloudinary,
-  uploadImagesToCloudinary,
-} from "@/utils/imageHandler/cloudinaryLayoutImagesHandler";
+import toNumericId from "@/utils/toNumericId";
+import { deleteImageFromCloudinary } from "@/utils/imageHandler/cloudinaryLayoutImagesHandler";
 
 class BrandsService {
   constructor() {
@@ -28,10 +25,17 @@ class BrandsService {
     }
   }
 
-  async getAllImageUrls() {
+  async deleteBrand(id) {
     try {
-      const brands = await this.dao.getAllImageUrls();
-      return brands;
+      const brandId = toNumericId(id);
+      const brand = await this.dao.getBrandById(brandId);
+      
+      if(!brand) throw new Error('La marca no existe');
+
+      await deleteImageFromCloudinary(brand.image.public_id);
+      const deletedBrand = await this.dao.deleteBrand(brandId);
+      
+      return deletedBrand;
     } catch (error) {
       throw error;
     }

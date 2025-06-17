@@ -13,46 +13,55 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription
+} from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { PlusCircle, Edit, Trash2 } from "lucide-react";
 
 import BrandForm from "./BrandForm";
 
-/* // Datos de ejemplo para probar (reemplazarás esto con datos de tu backend)
-const initialBrands = [
-  { id: "1", name: "Baiml", image: "/assets/brands/BaimlBrand.png", order: 1 },
-  { id: "2", name: "Toxic Shine", image: "/assets/brands/ToxicShineBrand.png", order: 2 },
-  { id: "3", name: "3m", image: "/assets/brands/3mBrand.png", order: 3 },
-]; */
-
 function BrandsTable() {
   useEffect(() => {
-    const fetchBrands = async() => {
-      setIsLoading(true)
+    const fetchBrands = async () => {
+      setIsLoading(true);
       try {
-        const res = await axios.get('/api/layoutImages');
+        const res = await axios.get("/api/layoutImages/brands");
         setBrands(res.data.brands);
       } catch (error) {
         console.log(error);
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
     fetchBrands();
   }, []);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const [brands, setBrands] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingBrand, setEditingBrand] = useState(null); // null para agregar, objeto para editar
 
   const handleAddBrand = (newBrand) => {
-    setBrands((prevBrands) => [
-      ...prevBrands,
-      { ...newBrand, id: String(prevBrands.length + 1) }, // Generar un ID simple para el ejemplo
-    ]);
+    setBrands((prevBrands) => [...prevBrands, { ...newBrand }]);
     setIsFormOpen(false);
   };
 
@@ -66,8 +75,19 @@ function BrandsTable() {
     setEditingBrand(null);
   };
 
-  const handleDeleteBrand = (id) => {
-    setBrands((prevBrands) => prevBrands.filter((brand) => brand.id !== id));
+  const handleDeleteBrand = async (id) => {
+    setIsDeleting(true);
+
+    try {
+      await axios.delete(`/api/layoutImages/brands/${id}`);
+      setBrands((prevBrands) =>
+        prevBrands.filter((brand) => brand.brandId !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const openEditDialog = (brand) => {
@@ -80,13 +100,13 @@ function BrandsTable() {
     setIsFormOpen(true);
   };
 
-  if(isLoading) return <div>Cargando...</div>
+  if (isLoading) return <div>Cargando...</div>;
 
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">Gestión de Marcas del Home</h2>
-        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen} >
+        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
           <DialogTrigger asChild>
             <Button onClick={openAddDialog}>
               <PlusCircle className="mr-2 h-4 w-4" /> Añadir Marca
@@ -94,7 +114,14 @@ function BrandsTable() {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>{editingBrand ? "Editar Marca" : "Añadir Nueva Marca"}</DialogTitle>
+              <DialogTitle>
+                {editingBrand ? "Editar Marca" : "Añadir Nueva Marca"}
+              </DialogTitle>
+              <DialogDescription>
+                {editingBrand
+                  ? "Modificá los datos de la marca seleccionada."
+                  : "Completá el formulario para añadir una nueva marca."}
+              </DialogDescription>
             </DialogHeader>
             <BrandForm
               brand={editingBrand}
@@ -118,7 +145,10 @@ function BrandsTable() {
           <TableBody>
             {brands.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="h-24 text-center text-gray-500">
+                <TableCell
+                  colSpan={4}
+                  className="h-24 text-center text-gray-500"
+                >
                   No hay marcas para mostrar.
                 </TableCell>
               </TableRow>
@@ -129,7 +159,7 @@ function BrandsTable() {
                     <Image
                       src={brand.image.url}
                       alt={brand.name}
-                      width={60} // Tamaño fijo para la tabla
+                      width={60}
                       height={60}
                       className="object-contain rounded-md"
                     />
@@ -152,16 +182,22 @@ function BrandsTable() {
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>¿Estás absolutamente seguro?</AlertDialogTitle>
+                          <AlertDialogTitle>
+                            ¿Estás absolutamente seguro?
+                          </AlertDialogTitle>
                           <AlertDialogDescription>
                             Esta acción no se puede deshacer. Esto eliminará
-                            permanentemente la marca &quot;{brand.name}&quot; y la removerá de tu
-                            carrusel.
+                            permanentemente la marca &quot;{brand.name}&quot; y
+                            la removerá de tu carrusel.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => handleDeleteBrand(brand.id)}>
+                          <AlertDialogCancel disabled={isDeleting}>
+                            Cancelar
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDeleteBrand(brand.brandId)}
+                          >
                             Eliminar
                           </AlertDialogAction>
                         </AlertDialogFooter>
