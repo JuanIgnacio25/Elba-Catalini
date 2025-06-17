@@ -20,9 +20,6 @@
   --nav-main-height-scrolled:11vh;
 }
 
-html {
-  overflow-y: scroll;
-}
 
 body {
   display:flex;
