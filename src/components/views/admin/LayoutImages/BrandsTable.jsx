@@ -41,7 +41,7 @@ function BrandsTable() {
     const fetchBrands = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.get("/api/layoutImages/brands");
+        const res = await axios.get("/api/layoutImages/brands");            
         setBrands(res.data.brands);
       } catch (error) {
         console.log(error);
@@ -60,17 +60,13 @@ function BrandsTable() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingBrand, setEditingBrand] = useState(null); // null para agregar, objeto para editar
 
-  const handleAddBrand = (newBrand) => {
-    setBrands((prevBrands) => [...prevBrands, { ...newBrand }]);
+  const handleAddBrand = (newBrandsOrder) => {
+    setBrands(newBrandsOrder);
     setIsFormOpen(false);
   };
 
-  const handleEditBrand = (updatedBrand) => {
-    setBrands((prevBrands) =>
-      prevBrands.map((brand) =>
-        brand.brandId === updatedBrand.brandId ? updatedBrand : brand
-      )
-    );
+  const handleEditBrand = (newBrandsOrder) => {
+    setBrands(newBrandsOrder)
     setIsFormOpen(false);
     setEditingBrand(null);
   };
@@ -79,10 +75,8 @@ function BrandsTable() {
     setIsDeleting(true);
 
     try {
-      await axios.delete(`/api/layoutImages/brands/${id}`);
-      setBrands((prevBrands) =>
-        prevBrands.filter((brand) => brand.brandId !== id)
-      );
+      const res = await axios.delete(`/api/layoutImages/brands/${id}`);
+      setBrands(res.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -127,6 +121,7 @@ function BrandsTable() {
               brand={editingBrand}
               onSubmit={editingBrand ? handleEditBrand : handleAddBrand}
               onCancel={() => setIsFormOpen(false)}
+              brandsLength={brands.length}
             />
           </DialogContent>
         </Dialog>

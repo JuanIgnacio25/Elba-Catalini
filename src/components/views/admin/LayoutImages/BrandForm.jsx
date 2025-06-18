@@ -19,13 +19,13 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
-function BrandForm({ brand, onSubmit, onCancel }) {
+function BrandForm({ brand, onSubmit, onCancel, brandsLength }) {
   const form = useForm({
     resolver: zodResolver(brandFormSchema),
     defaultValues: {
       name: brand?.name || "",
       image: brand?.image.url || "",
-      order: brand?.order || "",
+      order: Number.isFinite(brand?.order) ? brand.order : brandsLength + 1,
     },
   });
 
@@ -38,7 +38,7 @@ function BrandForm({ brand, onSubmit, onCancel }) {
     form.reset({
       name: brand?.name || "",
       image: brand?.image.url || "",
-      order: brand?.order || "",
+      order: Number.isFinite(brand?.order) ? brand.order : brandsLength + 1,
     });
     setImagePreviewUrl(brand?.image.url || "");
 
@@ -53,7 +53,7 @@ function BrandForm({ brand, onSubmit, onCancel }) {
     setIsSubmitting(true);
     try {
       const formData = new FormData();
-      
+
       const isNewImage = values.image instanceof FileList;
 
       if (isNewImage && values.image.length > 0) {
@@ -75,8 +75,6 @@ function BrandForm({ brand, onSubmit, onCancel }) {
         res = await axios.post("/api/layoutImages/brands", formData);
       }
 
-      console.log(res);
-      
       onSubmit(res.data);
     } catch (err) {
       console.error(err);
@@ -148,7 +146,18 @@ function BrandForm({ brand, onSubmit, onCancel }) {
             <FormItem>
               <FormLabel>Orden</FormLabel>
               <FormControl>
-                <Input type="number" {...field} />
+                <Input
+                  type="number"
+                  value={field.value ?? ""}
+                  min={1}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value === ""
+                        ? "" // permite borrar momentáneamente
+                        : parseInt(e.target.value, 10)
+                    )
+                  }
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
