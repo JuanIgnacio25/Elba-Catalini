@@ -13,7 +13,7 @@ const brandsSchema = new mongoose.Schema({
     required: true
   },
   order: {
-    type: String,
+    type: Number,
     required: true
   },
   image: {
