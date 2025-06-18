@@ -19,20 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription
+  DialogDescription,
 } from "@/components/ui/dialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { PlusCircle, Edit, Trash2 } from "lucide-react";
+import { PlusCircle, Edit } from "lucide-react";
 
 import BrandForm from "./BrandForm";
 import BrandDeleteDialog from "./BrandDeleteDialog";
@@ -42,7 +31,7 @@ function BrandsTable() {
     const fetchBrands = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.get("/api/layoutImages/brands");            
+        const res = await axios.get("/api/layoutImages/brands");
         setBrands(res.data.brands);
       } catch (error) {
         console.log(error);
@@ -66,7 +55,7 @@ function BrandsTable() {
   };
 
   const handleEditBrand = (newBrandsOrder) => {
-    setBrands(newBrandsOrder)
+    setBrands(newBrandsOrder);
     setIsFormOpen(false);
     setEditingBrand(null);
   };
@@ -88,9 +77,9 @@ function BrandsTable() {
   if (isLoading) return <div>Cargando...</div>;
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 px-2 sm:px-0">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold">Gestión de Marcas del Home</h2>
+        <h2 className="text-3xl font-bold">Carusel de Marcas</h2>
         <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
           <DialogTrigger asChild>
             <Button onClick={openAddDialog}>
@@ -118,14 +107,22 @@ function BrandsTable() {
         </Dialog>
       </div>
 
-      <div className="rounded-md border">
-        <Table>
+      <div className="relative rounded-md border max-h-[400px] overflow-auto">
+        <Table className=" min-w-full  ">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Imagen</TableHead>
-              <TableHead>Nombre</TableHead>
-              <TableHead className="w-[80px] text-center">Orden</TableHead>
-              <TableHead className="text-right">Acciones</TableHead>
+              <TableHead className="sticky top-0 z-20 bg-white w-[100px]">
+                Imagen
+              </TableHead>
+              <TableHead className="sticky top-0 z-20 bg-white">
+                Nombre
+              </TableHead>
+              <TableHead className="sticky top-0 z-20 bg-white w-[80px] text-center">
+                Orden
+              </TableHead>
+              <TableHead className="sticky top-0 z-20 bg-white text-right">
+                Acciones
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -152,7 +149,7 @@ function BrandsTable() {
                   </TableCell>
                   <TableCell className="font-medium">{brand.name}</TableCell>
                   <TableCell className="text-center">{brand.order}</TableCell>
-                  <TableCell className="text-right space-x-2">
+                  <TableCell className="text-right space-x-2 space-y-1 sm:space-y-0">
                     <Button
                       variant="outline"
                       size="icon"
@@ -160,7 +157,10 @@ function BrandsTable() {
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <BrandDeleteDialog brand={brand} onConfirm={handleDeleteBrand}/>
+                    <BrandDeleteDialog
+                      brand={brand}
+                      onConfirm={handleDeleteBrand}
+                    />
                   </TableCell>
                 </TableRow>
               ))
