@@ -16,7 +16,8 @@ class BrandsDao {
 
   async getAllBrands() {
     try {
-      const brands = await this.collection.find().lean();
+      const brands = await this.collection.find().sort({ order: 1 }).lean();
+
       const cleaned = brands.map(({ _id, ...rest }) => rest);
 
       return cleaned;
@@ -61,6 +62,21 @@ class BrandsDao {
       if (!deletedBrand) throw new Error("La marca no existe");
 
       return deletedBrand;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateAllOrdersBrands(brandsOrders) {
+    try {
+      const operations = brandsOrders.map((brand) => ({
+        updateOne: {
+          filter: { brandId: brand.brandId },
+          update: { $set: { order: brand.order } },
+        },
+      }));
+
+      await this.collection.bulkWrite(operations);
     } catch (error) {
       throw error;
     }

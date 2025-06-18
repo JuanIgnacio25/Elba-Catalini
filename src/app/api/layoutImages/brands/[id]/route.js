@@ -12,8 +12,8 @@ export async function DELETE(req, { params }) {
     const { id } = params;
 
     await connectDB();
-    const deletedBrand = await brandsService.deleteBrand(id);
-    return NextResponse.json(deletedBrand, { status: 200 });
+    const newBrandsOrder = await brandsService.deleteBrand(id);
+    return NextResponse.json(newBrandsOrder, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
@@ -47,8 +47,8 @@ export async function PUT(req, { params }) {
     }
 
     await connectDB();
-    const updatedBrand = await brandsService.updateBrand(id, brandToUpdate);
-    return NextResponse.json(updatedBrand, { status: 200 });
+    const newBrandsOrder = await brandsService.updateBrand(id, brandToUpdate);
+    return NextResponse.json(newBrandsOrder, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
