@@ -25,6 +25,7 @@ import { PlusCircle, Edit } from "lucide-react";
 
 import BrandForm from "./BrandForm";
 import BrandDeleteDialog from "./BrandDeleteDialog";
+import BrandSkeleton from "./BrandSkeleton";
 
 function BrandsTable() {
   useEffect(() => {
@@ -74,7 +75,7 @@ function BrandsTable() {
     setIsFormOpen(true);
   };
 
-  if (isLoading) return <div>Cargando...</div>;
+  if (isLoading) return <BrandSkeleton/>;
 
   return (
     <div className="container mx-auto py-10 px-2 sm:px-0">
