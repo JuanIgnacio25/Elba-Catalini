@@ -35,6 +35,7 @@ import {
 import { PlusCircle, Edit, Trash2 } from "lucide-react";
 
 import BrandForm from "./BrandForm";
+import BrandDeleteDialog from "./BrandDeleteDialog";
 
 function BrandsTable() {
   useEffect(() => {
@@ -54,7 +55,6 @@ function BrandsTable() {
   }, []);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const [brands, setBrands] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -71,17 +71,8 @@ function BrandsTable() {
     setEditingBrand(null);
   };
 
-  const handleDeleteBrand = async (id) => {
-    setIsDeleting(true);
-
-    try {
-      const res = await axios.delete(`/api/layoutImages/brands/${id}`);
-      setBrands(res.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsDeleting(false);
-    }
+  const handleDeleteBrand = async (newBrandsOrder) => {
+    setBrands(newBrandsOrder);
   };
 
   const openEditDialog = (brand) => {
@@ -169,35 +160,7 @@ function BrandsTable() {
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="destructive" size="icon">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            ¿Estás absolutamente seguro?
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Esta acción no se puede deshacer. Esto eliminará
-                            permanentemente la marca &quot;{brand.name}&quot; y
-                            la removerá de tu carrusel.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel disabled={isDeleting}>
-                            Cancelar
-                          </AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => handleDeleteBrand(brand.brandId)}
-                          >
-                            Eliminar
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                    <BrandDeleteDialog brand={brand} onConfirm={handleDeleteBrand}/>
                   </TableCell>
                 </TableRow>
               ))

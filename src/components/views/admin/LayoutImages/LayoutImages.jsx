@@ -1,4 +1,4 @@
-import BrandsTable from "@/components/views/admin/LayoutImages/BrandsTable"
+import BrandsTable from "@/components/views/admin/LayoutImages/Brands/BrandsTable"
 
 function LayoutImages() {
   return (
