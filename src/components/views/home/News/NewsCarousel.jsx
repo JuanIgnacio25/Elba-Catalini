@@ -18,17 +18,7 @@ import { Button } from "@/components/ui/button";
 
 import GradientSubtitle from "@/components/common/GradientSubtitle";
 
-function News() {
-  const images = [
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-    { src: "/7550ED.jpg" },
-  ];
-
+function NewsCarousel({news}) {
   return (
     <div className="w-full flex-col justify-center items-center mt-36">
       <GradientSubtitle text={"Novedades"}/>
@@ -40,7 +30,7 @@ function News() {
         }}
       >
         <CarouselContent className="mx-1">
-          {images.map((img, index) => (
+          {news.map((nw, index) => (
             <CarouselItem
               key={index}
               className="basis-1/2 sm:basis-1/3 lg:basis-1/4 px-2 py-4"
@@ -48,7 +38,7 @@ function News() {
               <Card className="flex flex-col justify-between h-[43vh] sm:h-[50vh] rounded-lg border-none shadow-md hover:shadow-lg transition">
                 <CardHeader className="overflow-hidden rounded-t-lg relative h-2/5">
                   <Image
-                    src={img.src}
+                    src={nw.image.url}
                     alt={`Imagen ${index + 1}`}
                     fill
                     sizes="(max-width: 768px) 35vw, (max-width: 1024px) 23.33vw, 17.5vw"
@@ -90,4 +80,4 @@ function News() {
   );
 }
 
-export default News;
+export default NewsCarousel;
