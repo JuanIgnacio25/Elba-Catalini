@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,6 +16,9 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+
+import Autoplay from "embla-carousel-autoplay";
+
 import { Button } from "@/components/ui/button";
 
 import GradientSubtitle from "@/components/common/GradientSubtitle";
@@ -28,6 +33,11 @@ function NewsCarousel({news}) {
           align: "start",
           loop: true,
         }}
+        plugins={[
+          Autoplay({
+            delay: 1500,
+          }),
+        ]}
       >
         <CarouselContent className="mx-1">
           {news.map((nw, index) => (
