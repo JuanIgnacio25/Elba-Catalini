@@ -25,7 +25,7 @@ import { PlusCircle, Edit } from "lucide-react";
 
 import BrandForm from "./BrandForm";
 import BrandDeleteDialog from "./BrandDeleteDialog";
-import BrandSkeleton from "./BrandSkeleton";
+import LayoutImagesSkeleton from "@/components/views/admin/LayoutImages/LayoutImagesSkeleton";
 
 function BrandsTable() {
   useEffect(() => {
@@ -75,7 +75,7 @@ function BrandsTable() {
     setIsFormOpen(true);
   };
 
-  if (isLoading) return <BrandSkeleton/>;
+  if (isLoading) return <LayoutImagesSkeleton carouselName={"Carousel de Marcas"} addButtonName={"Añadir Marca"}/>;
 
   return (
     <div className="container mx-auto py-10 px-2 sm:px-0">

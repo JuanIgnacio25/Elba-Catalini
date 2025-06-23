@@ -12,14 +12,14 @@ import { PlusCircle } from "lucide-react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function BrandSkeleton() {
+export default function LayoutImagesSkeleton({carouselName,addButtonName}) {
   return (
     <div className="container mx-auto py-10 px-2 sm:px-0">
       {/* 1. Esqueleto del encabezado de la página */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold">Carusel de Marcas</h2>
+        <h2 className="text-3xl font-bold">{carouselName}</h2>
         <Button>
-          <PlusCircle className="mr-2 h-4 w-4" /> Añadir Marca
+          <PlusCircle className="mr-2 h-4 w-4" /> {addButtonName}
         </Button>
       </div>
 
