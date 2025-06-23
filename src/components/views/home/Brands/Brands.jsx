@@ -1,4 +1,4 @@
-import getBrands from "@/lib/getBrands";
+import getBrands from "@/lib/api/getBrands";
 import BrandsCarousel from "./BrandsCarousel";
 
 export const revalidate = 60;
