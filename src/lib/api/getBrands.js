@@ -1,5 +1,5 @@
 import BrandsService from "@/models/brands/BrandsService";
-import { connectDB } from "./mongodb";
+import { connectDB } from "../mongodb";
 
 const brandsService = new BrandsService();
 
@@ -10,7 +10,6 @@ async function getBrands(){
     
     return brands;
   } catch (error) {
-    console.log(error);
     return null;
   }
 }
