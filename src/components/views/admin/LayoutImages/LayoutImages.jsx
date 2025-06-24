@@ -4,11 +4,11 @@ import SaleTable from "@/components/views/admin/LayoutImages/Sale/SaleTable"
 
 function LayoutImages() {
   return (
-    <div>
+    <>
       <SaleTable />
       <BrandsTable/>
       <NewsTable/>
-    </div>
+    </>
   );
 }
 

@@ -32,7 +32,7 @@ function SaleTable() {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-[12vh] mb-10">
       <div className="container flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 md:gap-0 mx-auto py-6 md:py-10 px-2 sm:px-0">
         <h2 className="text-3xl font-bold">Imagen del pop up</h2>
         {isLoading ? (
