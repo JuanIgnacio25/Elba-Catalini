@@ -109,15 +109,16 @@ function SaleForm({ saleImage, onSubmit }) {
 
                   {/* Previsualización */}
                   {imagePreviewUrl && (
-                    <div className="mt-2 text-center">
-                      <Image
-                        src={imagePreviewUrl}
-                        alt="Previsualización"
-                        width={150}
-                        height={150}
-                        className="object-contain rounded-md border mx-auto"
-                      />
-                    </div>
+                    <div className="relative w-[150px] aspect-video overflow-hidden rounded-md bg-muted border">
+                    <Image
+                      src={imagePreviewUrl}
+                      alt="Imagen del popup"
+                      fill
+                      className="object-contain"
+                      sizes="150px"
+                      priority
+                    />
+                  </div>
                   )}
                 </div>
               </FormControl>
