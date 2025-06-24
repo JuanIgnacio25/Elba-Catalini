@@ -17,11 +17,11 @@ import {
 export default function MainCarousel() {
   const slidesData = [
     {
-      src: "/autopista-noche.jpeg",
+      src: "https://res.cloudinary.com/dzvwrmykh/image/upload/f_auto,q_auto/v1750791980/autopista-noche_wpzddp.jpg",
       overlayComponent: BaimlOverlay,
     },
     {
-      src: "/toxic-shine-portada.jpeg",
+      src: "https://res.cloudinary.com/dzvwrmykh/image/upload/f_auto,q_auto/v1750792143/toxic-shine-portada_zoycje.jpg",
       overlayComponent: ToxicShineOverlay,
     },
   ];
