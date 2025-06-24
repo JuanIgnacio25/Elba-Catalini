@@ -17,6 +17,7 @@ function BaimlOverlay() {
             width={100}
             height={100}
             className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-lg absolute left-full top-1/2 -translate-y-1/2 ml-4"
+            priority
           />
         </div>
         <div className="hidden xs:block w-[80%] md:w-[60%] lg:w-[40%]">
