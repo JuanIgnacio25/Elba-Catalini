@@ -29,6 +29,8 @@ export async function PUT(req, { params }) {
       [...data.entries()].filter(([key]) => key !== "image")
     );
 
+    formFields.order = parseInt(formFields.order, 10);
+
     let brandToUpdate = formFields;
 
     isValidBrand(formFields);

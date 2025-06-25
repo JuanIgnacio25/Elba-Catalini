@@ -17,7 +17,9 @@ export async function POST(request) {
     const formFields = Object.fromEntries(
       [...data.entries()].filter(([key]) => key !== "image")
     );
-    
+
+    formFields.order = parseInt(formFields.order, 10);
+
     isValidBrand(formFields);
 
     if (validateImage([image]).length !== 0) {
@@ -40,7 +42,7 @@ export async function POST(request) {
 
     const newBrand = await brandsService.createBrand(brand);
 
-    return NextResponse.json(newBrand, { status: 201 });
+    return NextResponse.json("newBrand", { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }

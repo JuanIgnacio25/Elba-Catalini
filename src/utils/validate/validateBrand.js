@@ -16,11 +16,11 @@ const brandSchema = Type.Object(
         minLength: "name debe tener más de un carácter",
       },
     }),
-    order: Type.String({
-      minLength: 1,
+    order: Type.Number({
+      minimum: 1,
       errorMessage: {
-        type: "order debe ser un String",
-        minLength: "order debe tener más de un carácter",
+        type: "order debe ser un Number",
+        minimum: "order debe tener al menos un numero",
       },
     }),
   },
