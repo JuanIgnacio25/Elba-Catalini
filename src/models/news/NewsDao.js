@@ -1,4 +1,5 @@
 import News from "@/models/news/news";
+import Product from "@/models/product/product";
 
 class NewsDao {
   constructor() {
@@ -14,15 +15,48 @@ class NewsDao {
     }
   }
 
-  async getAllNews() {
+  async getNews() {
     try {
       const news = await this.collection.find().sort({ order: 1 }).lean();
-
       const cleaned = news.map(({ _id, ...rest }) => rest);
 
       return cleaned;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async getAllNews() {
+    try {
+      const news = await News.aggregate([
+        {
+          $lookup: {
+            from: "products", // nombre de la colección en MongoDB
+            localField: "productId", // campo en news
+            foreignField: "productId", // campo en products
+            as: "product",
+          },
+        },
+        {
+          $unwind: "$product", // para que devuelva un solo objeto en vez de un array
+        },
+        {
+          $project: {
+            _id: 0,
+            "product._id": 0,
+          },
+        },
+        {
+          $sort: { order: 1 },
+        },
+      ]);
+
+      const cleaned = news.map(({ _id, ...rest }) => rest);
+
+      return cleaned;
+    } catch (error) {
+      console.error("Error fetching news:", error);
+      throw new Error("Could not fetch news");
     }
   }
 
@@ -59,7 +93,7 @@ class NewsDao {
     try {
       const deletedNews = await this.collection.findOneAndDelete({ newsId });
 
-      if (!deletedNews) throw new Error("La marca no existe");
+      if (!deletedNews) throw new Error("La novedad no existe");
 
       return deletedNews;
     } catch (error) {

@@ -4,24 +4,21 @@ import AutoIncrementFactory from "mongoose-sequence";
 const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
 const newsSchema = new mongoose.Schema({
-  newId: {
+  newsId: {
     type: Number,
     unique: true,
   },
-  name: {
-    type: String,
-    required: true
-  },
   order: {
     type: Number,
-    required: true
-  },
-  image: {
-    type: Object,
     required: true,
+  },
+  productId: {
+    type: Number,
+    required: true,
+    ref: "Product",
   },
 });
 
-newsSchema.plugin(AutoIncrement, { inc_field: "newId" });
+newsSchema.plugin(AutoIncrement, { inc_field: "newsId" });
 
-export default mongoose.models.news || mongoose.model("news", newsSchema);
+export default mongoose.models.News || mongoose.model("News", newsSchema);

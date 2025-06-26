@@ -12,18 +12,18 @@ class NewsService {
 
   async createNews(news) {
     try {
-      const allNews = await this.dao.getAllnews();
+      const allNews = await this.dao.getAllNews();
       const total = allNews.length;
 
       // Si el orden es mayor al largo del array se pone el valor del largo del array
       const order = news.order > total + 1 ? total + 1 : news.order;
       const newNewsData = { ...news, order };
+      
+      const newNews = await this.dao.createNews(newNewsData);
 
-      const newNews = await this.dao.createnews(newNewsData);
-
-      const newNewsOrder = await this.reorderNews(newNews.newsId , null , true);
-
-      return newNewsOrder;
+      await this.reorderNews(newNews.newsId , null , true);
+      
+      return await this.dao.getAllNews();;
     } catch (error) {
       throw error;
     }
@@ -43,41 +43,28 @@ class NewsService {
       const newsId = toNumericId(id);
       const news = await this.dao.getNewsById(newsId);
 
-      if (!news) throw new Error("La marca no existe");
+      if (!news) throw new Error("La novedad no existe");
 
-      await deleteImageFromCloudinary(news.image.public_id);
       await this.dao.deleteNews(newsId);
+      await this.reorderNews();
 
-      return await this.reorderNews();
+      return await this.dao.getAllNews();
     } catch (error) {
       throw error;
     }
   }
 
-  async updateNews(id, dataToUpdate) {
+  async updateNews(id, newsToUpdate) {
     try {
-      let newsToUpdate;
       const newsId = toNumericId(id);
 
       const news = await this.dao.getNewsById(newsId);
-      if (!news) throw new Error("La Marca no existe");
-
-      if (dataToUpdate.image) {
-        const { secure_url, public_id } = await this.handleUpdateNewsImage(
-          dataToUpdate.image,
-          news.image.public_id
-        );
-
-        newsToUpdate = {
-          ...dataToUpdate,
-          image: { url: secure_url, public_id },
-        };
-      } else {
-        newsToUpdate = dataToUpdate;
-      }
+      if (!news) throw new Error("La novedad no existe");
+      
       const updatedNews = await this.dao.updateNews(newsId, newsToUpdate);
+      await this.reorderNews(updatedNews.newsId, news.order , false);
 
-      return await this.reordernewss(updatedNews.newsId, news.order , false);
+      return await this.getAllNews();
     } catch (error) {
       throw error;
     }
@@ -94,8 +81,8 @@ class NewsService {
 
   async reorderNews(modifiedNewsId = null, previousOrder = null, isNew = false) {
     try {
-      let allNews = await this.dao.getAllNews();
-  
+      let allNews = await this.dao.getNews();
+
       const sortedNews = [...allNews].sort((a, b) => {
         if (a.order === b.order) {
           const aIsModified = a.newsId === modifiedNewsId;
