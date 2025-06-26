@@ -61,7 +61,7 @@ function NewsTable() {
     setEditingNews(null);
   };
 
-  const handleDeleteNews = async (newNewsOrder) => {
+  const handleDeleteNews = (newNewsOrder) => {
     setNews(newNewsOrder);
   };
 
@@ -75,7 +75,13 @@ function NewsTable() {
     setIsFormOpen(true);
   };
 
-  if (isLoading) return <LayoutImagesSkeleton carouselName={"Carousel de Novedades"} addButtonName={"Añadir Novedad"}/>;
+  if (isLoading)
+    return (
+      <LayoutImagesSkeleton
+        carouselName={"Carousel de Novedades"}
+        addButtonName={"Añadir Novedad"}
+      />
+    );
 
   return (
     <div className="container mx-auto py-10 px-2 sm:px-0">
@@ -118,8 +124,11 @@ function NewsTable() {
               <TableHead className="sticky top-0 z-20 bg-white">
                 Nombre
               </TableHead>
-              <TableHead className="sticky top-0 z-20 bg-white w-[80px] text-center">
+              <TableHead className="sticky top-0 z-20 bg-white  text-center">
                 Orden
+              </TableHead>
+              <TableHead className="sticky top-0 z-20 bg-white text-center">
+                ID
               </TableHead>
               <TableHead className="sticky top-0 z-20 bg-white text-right">
                 Acciones
@@ -141,15 +150,20 @@ function NewsTable() {
                 <TableRow key={news.newsId}>
                   <TableCell>
                     <Image
-                      src={news.image.url}
-                      alt={news.name}
+                      src={news.product.images[0].url}
+                      alt={news.product.name}
                       width={60}
                       height={60}
                       className="object-contain rounded-md"
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{news.name}</TableCell>
+                  <TableCell className="font-medium">
+                    {news.product.name}
+                  </TableCell>
                   <TableCell className="text-center">{news.order}</TableCell>
+                  <TableCell className="text-center">
+                    {news.product.productId}
+                  </TableCell>
                   <TableCell className="text-right space-x-2 space-y-1 sm:space-y-0">
                     <Button
                       variant="outline"

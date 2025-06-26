@@ -4,8 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { brandFormSchema } from '@/utils/validate/schemas/brandFormsSchema';
-import { handleImagePreview } from "@/utils/imageHelpers";
+import { newsFormSchema } from "@/utils/validate/schemas/newsFormsSchema";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,68 +16,43 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
-
 
 function NewsForm({ news, onSubmit, onCancel, newsLength }) {
   const form = useForm({
-    resolver: zodResolver(brandFormSchema),
+    resolver: zodResolver(newsFormSchema(news)),
     defaultValues: {
-      name: news?.name || "",
-      image: news?.image.url || "",
+      productId: news?.productId || "",
       order: Number.isFinite(news?.order) ? news.order : newsLength + 1,
     },
   });
 
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(
-    news?.image.url || ""
-  );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     form.reset({
-      name: news?.name || "",
-      image: news?.image.url || "",
+      productId: news?.productId || "",
       order: Number.isFinite(news?.order) ? news.order : newsLength + 1,
     });
-    setImagePreviewUrl(news?.image.url || "");
-
-    return () => {
-      if (imagePreviewUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(imagePreviewUrl);
-      }
-    };
   }, [news]);
 
   const onFormSubmit = async (values) => {
     setIsSubmitting(true);
+    setError(false);
     try {
-      const formData = new FormData();
-
-      const isNewImage = values.image instanceof FileList;
-
-      if (isNewImage && values.image.length > 0) {
-        const file = values.image[0];
-        formData.append("image", file);
-      }
-
-      formData.append("order", values.order);
-      formData.append("name", values.name);
-
       let res;
 
       if (news) {
-        res = await axios.put(
-          `/api/layoutImages/news/${news.newId}`,
-          formData
-        );
+        res = await axios.put(`/api/layoutImages/news/${news.newsId}`, {
+          order: values.order,
+        });
       } else {
-        res = await axios.post("/api/layoutImages/news", formData);
-      }
+        res = await axios.post(`/api/layoutImages/news/`, values);
+      } 
 
       onSubmit(res.data);
     } catch (err) {
-      console.error(err);
+      setError(err.response.data.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -87,58 +61,33 @@ function NewsForm({ news, onSubmit, onCancel, newsLength }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onFormSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre de la Marca</FormLabel>
-              <FormControl>
-                <Input placeholder="Ej. Toxic Shine" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field: { value, onChange, ...rest } }) => (
-            <FormItem>
-              <FormLabel>Imagen de la Marca</FormLabel>
-              <FormControl>
-                <div>
+        {!news && (
+          <FormField
+            control={form.control}
+            name="productId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Id del Producto</FormLabel>
+                <FormControl>
                   <Input
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    {...rest}
-                    onChange={(e) => {
-                      onChange(e.target.files);
-                      handleImagePreview(
-                        e,
-                        imagePreviewUrl,
-                        setImagePreviewUrl
-                      );
-                    }}
+                    type="number"
+                    value={field.value ?? ""}
+                    min={1}
+                    onClick={() => setError(false)}
+                    onChange={(e) =>
+                      field.onChange(
+                        e.target.value === ""
+                          ? ""
+                          : parseInt(e.target.value, 10)
+                      )
+                    }
                   />
-                  {imagePreviewUrl && (
-                    <div className="mt-2 text-center">
-                      <Image
-                        src={imagePreviewUrl}
-                        alt="Previsualización"
-                        width={100}
-                        height={100}
-                        className="object-contain rounded-md border p-1 mx-auto"
-                      />
-                    </div>
-                  )}
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
 
         <FormField
           control={form.control}
@@ -151,6 +100,7 @@ function NewsForm({ news, onSubmit, onCancel, newsLength }) {
                   type="number"
                   value={field.value ?? ""}
                   min={1}
+                  onClick={() => setError(false)}
                   onChange={(e) =>
                     field.onChange(
                       e.target.value === ""
@@ -183,6 +133,9 @@ function NewsForm({ news, onSubmit, onCancel, newsLength }) {
           </Button>
         </div>
       </form>
+      <div className="bg-red-500/50">
+        <p className="text-sm text-bold text-center">{error}</p>
+      </div>
     </Form>
   );
 }

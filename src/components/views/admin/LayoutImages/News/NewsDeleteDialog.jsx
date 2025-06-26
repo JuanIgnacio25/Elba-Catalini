@@ -26,6 +26,7 @@ export default function NewsDeleteDialog({ news, onConfirm }) {
     setIsDeleting(true);
     try {
       const res = await axios.delete(`/api/layoutImages/news/${news.newsId}`);
+      
       onConfirm(res.data);
     } catch (error) {
       throw error;
@@ -45,7 +46,7 @@ export default function NewsDeleteDialog({ news, onConfirm }) {
         <AlertDialogHeader>
           <AlertDialogTitle>¿Estás absolutamente seguro?</AlertDialogTitle>
           <AlertDialogDescription>
-            Esta acción no se puede deshacer. Esto eliminará permanentemente la novedad &quot;{news.name}&quot; y la removerá de tu carrusel.
+            Esta acción no se puede deshacer. Esto eliminará permanentemente la novedad &quot;{news.product.name}&quot; y la removerá de tu carrusel.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
