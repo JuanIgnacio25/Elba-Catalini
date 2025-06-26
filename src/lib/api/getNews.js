@@ -1,47 +1,13 @@
-
+import NewsService from "@/models/news/NewsService";
 import { connectDB } from "../mongodb";
 
-
+const newsService = new NewsService();
 
 async function getNews(){
   try {
-    const news = [
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-      {
-        image: {
-          url: "/7550ED.jpg",
-        },
-      },
-    ];
+    await connectDB();
+    const news = await newsService.getAllNews();
+    
     return news;
   } catch (error) {
     return null;
