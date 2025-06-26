@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -22,11 +22,15 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 
 import GradientSubtitle from "@/components/common/GradientSubtitle";
+import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
 
-function NewsCarousel({news}) {
+import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
+import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+
+function NewsCarousel({ news }) {
   return (
     <div className="w-full flex-col justify-center items-center mt-36">
-      <GradientSubtitle text={"Novedades"}/>
+      <GradientSubtitle text={"Novedades"} />
       <Carousel
         className="w-[97vw] xs:w-[80vw] lg:w-[67vw] xl:w-[67vw] m-auto py-6"
         opts={{
@@ -46,25 +50,39 @@ function NewsCarousel({news}) {
               className="basis-1/2 sm:basis-1/3 lg:basis-1/4 px-2 py-4"
             >
               <Card className="flex flex-col justify-between h-[43vh] sm:h-[50vh] rounded-lg border-none shadow-md hover:shadow-lg transition">
-                <CardHeader className="overflow-hidden rounded-t-lg relative h-2/5">
-                  <Image
-                    src={nw.image.url}
-                    alt={`Imagen ${index + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 35vw, (max-width: 1024px) 23.33vw, 17.5vw"
-                    className="object-cover rounded-t-md transition-transform duration-300 hover:scale-105"
-                  />
+                <CardHeader className="relative aspect-square overflow-hidden rounded-t-lg">
+                  <Link href={`/products/${nw.product.productId}`}>
+                    <Image
+                      src={nw.product.images[0].url}
+                      alt={`Imagen ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 35vw, (max-width: 1024px) 23.33vw, 17.5vw"
+                      className="object-cover transition-transform duration-300 hover:scale-105 p-2"
+                    />
+                  </Link>
                 </CardHeader>
                 <CardContent className="flex flex-col justify-center text-base text-start font-light gap-3 p-4">
                   <Link
                     href={"/products/145"}
                     className="text-black hover:text-red-600 text-center transition font-semibold"
                   >
-                    Faro Baiml 7550ED Giro Amplio
+                    {nw.product.name}
                   </Link>
                   <div className="flex justify-center">
-                    <p className="w-fit bg-[--soft-grey] rounded-full px-2 py-0.5 text-sm font-medium text-gray-700">
-                      Bolsa x1
+                    <p className="w-fit bg-[--soft-grey] rounded-full px-1.5 py-1 text-center text-xs font-medium text-gray-700">
+                      {nw.product.kind === "Baiml"
+                        ? `${formatBaimlProductQuantityLabel(
+                            nw.product.category,
+                            nw.product.sku,
+                            nw.product.kind
+                          )} x ${nw.product.unit} ${formatBaimlProductSetLabel(
+                            nw.product.productSet,
+                            nw.product.unit
+                          )} `
+                        : `Cantidad x ${formatStoreProductUnit(
+                            nw.product.subCategory,
+                            nw.product.unit
+                          )}`}
                     </p>
                   </div>
                 </CardContent>
@@ -72,12 +90,14 @@ function NewsCarousel({news}) {
                   <Button className="w-1/2 sm:w-[45%] bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md transition-colors">
                     Añadir
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="w-1/2 sm:w-[45%] text-red-500 hover:bg-red-600 hover:text-white font-semibold rounded-md transition-colors"
-                  >
-                    Ver
-                  </Button>
+                  <Link href={`/products/${nw.product.productId}`} className="w-1/2 sm:w-[45%]">
+                    <Button
+                      variant="outline"
+                      className="w-full text-red-500 hover:bg-red-600 hover:text-white font-semibold rounded-md transition-colors"
+                    >
+                      Ver
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </CarouselItem>
