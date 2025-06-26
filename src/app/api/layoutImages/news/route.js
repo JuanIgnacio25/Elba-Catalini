@@ -2,45 +2,30 @@ import { NextResponse } from "next/server";
 
 import { connectDB } from "@/lib/mongodb";
 import NewsService from "@/models/news/NewsService";
-
-import { uploadImageToCloudinary } from "@/utils/imageHandler/cloudinaryLayoutImagesHandler";
-import { isValidBrand } from '@/utils/validate/validateBrand';
-import validateImage from "@/utils/validate/validateImage";
+import ProductService from "@/models/product/ProductService";
 
 const newsService = new NewsService();
+const productsService = new ProductService();
 
-export async function POST(request) {
+export async function POST(req) {
   try {
-    const data = await request.formData();
-    const image = data.get("image");
+    const {productId , order} = await req.json();
 
-    const formFields = Object.fromEntries(
-      [...data.entries()].filter(([key]) => key !== "image")
-    );
     
-    isValidBrand(formFields);
-
-    if (validateImage([image]).length !== 0) {
-      return NextResponse.json(
-        { message: "No se subio imagen o exece los 3MB" },
-        {
-          status: 400,
-        }
-      );
-    }
-
-    const { secure_url, public_id } = await uploadImageToCloudinary(image, "news_preset");
-
     await connectDB();
 
+    const product = await productsService.findProductById(productId);
+    if(!product) throw new Error(`No existe un producto con el id ${productId}`);
+    
     const news = {
-      ...formFields,
-      image: { url:secure_url, public_id },
-    };
+      order: order,
+      productId: product.productId
+    }
 
-    const newNews = await newsService.createNews(news);
-
-    return NextResponse.json(newNews, { status: 201 });
+    
+    const newNewsOrder = await newsService.createNews(news);
+    
+    return NextResponse.json(newNewsOrder, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
