@@ -76,7 +76,7 @@ function Services() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-6 md:gap-10 mt-28">
+    <div className="w-full flex flex-col items-center justify-center gap-6 md:gap-10 mt-20 sm:mt-28">
       <div className="w-11/12 sm:w-4/5 flex flex-row items-center justify-between px-2 gap-4 md:gap-0">
         <div className="inline-block w-fit">
           <GradientSubtitle text={"Servicios"} />

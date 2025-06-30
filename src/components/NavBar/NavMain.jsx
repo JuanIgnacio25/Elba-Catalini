@@ -18,7 +18,7 @@ function NavMain({ isScrolled = false }) {
         isScrolled ? "!h-[11vh]" : "h-[14.5vh]"
       }`}
     >
-      <div className="container mx-auto h-full flex justify-between items-center">
+      <div className="container mx-auto h-full flex justify-between items-center px-2 sm:px-0">
         <Link href="/" className="flex justify-center">
           <Image
             src="/logoelbarojo.png"

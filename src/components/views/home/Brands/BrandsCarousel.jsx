@@ -42,7 +42,7 @@ function BrandsCarousel({ brands }) {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-2 mt-10 sm:mt-14 lg:mt-24">
+    <div className="w-full flex flex-col justify-center items-center gap-2 mt-20 sm:mt-28">
       <GradientSubtitle text={"Nuestras Marcas"} />
       <Carousel
         setApi={setApi}

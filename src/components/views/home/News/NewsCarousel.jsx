@@ -40,7 +40,7 @@ function NewsCarousel({ news }) {
   };
 
   return (
-    <div className="w-full flex-col justify-center items-center mt-36">
+    <div className="w-full flex-col justify-center items-center mt-20 sm:mt-28">
       <GradientSubtitle text={"Novedades"} />
       <Carousel
         className="w-[97vw] xs:w-[80vw] lg:w-[67vw] xl:w-[67vw] m-auto py-6"
