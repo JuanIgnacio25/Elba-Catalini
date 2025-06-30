@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
 import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+import { toast } from "sonner"
 
 import "./baimlProductCard.css";
 
@@ -12,42 +13,18 @@ function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
   const [loading, setLoading] = useState(false);
-  const [popToast, setPopToast] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(true);
 
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
       if (quantity < 1) setQuantity(1);
       const res = await addProductToCart(id, quantity);
-      const addedProduct = res.data;
-      setPopToast(addedProduct);
+      toast.success(`${res.data.name} x ${res.data.quantity} se agrego al carrito.`);
       setLoading(false);
-      setTimeout(() => {
-        setPopToast(false);
-      }, 3000);
     } catch (error) {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className={`baiml-p-card ${loading ? "loading" : ""}`}>
@@ -105,20 +82,6 @@ function ProductCard({ prod }) {
           Añadir al carrito
         </button>
       </div>
-      {popToast && (
-        <div
-          className={`baiml-p-card-toast ${
-            isScrolled ? "baiml-p-card-toast-scrolled" : ""
-          }`}
-        >
-          <p>
-            {`${popToast.name} x${popToast.quantity} `}
-            <span className="baiml-p-card-toast-span">
-              se agrego al carrito.
-            </span>
-          </p>
-        </div>
-      )}
     </div>
   );
 }

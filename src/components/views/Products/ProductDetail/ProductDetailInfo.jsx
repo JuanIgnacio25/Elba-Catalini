@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
 import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
 import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
 import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
+import { toast } from "sonner";
 
 import { BiCategory } from "react-icons/bi";
 
@@ -12,42 +13,18 @@ function ProductDetailInfo({ product }) {
   const [loadingAddToCart, setLoadingAddToCart] = useState(false);
   const { addProductToCart } = useCart();
   const [quantity, setQuantity] = useState("1");
-  const [popToast, setPopToast] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(true);
 
   const handleAddToCart = async (id) => {
     try {
       setLoadingAddToCart(true);
       const res = await addProductToCart(id, quantity);
-      const addedProduct = res.data;
-      setPopToast(addedProduct);
+      toast.success(`${res.data.name} x ${res.data.quantity} se agrego al carrito.`);
       setLoadingAddToCart(false);
-      setTimeout(() => {
-        setPopToast(false);
-      }, 3000);
     } catch (error) {
       setLoadingAddToCart(false);
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className="product-detail-main-info">
@@ -115,20 +92,6 @@ function ProductDetailInfo({ product }) {
       <div className="product-detail-main-info-description-text">
         {product.description}
       </div>
-      {popToast && (
-        <div
-          className={`product-detail-main-toast ${
-            isScrolled ? "product-detail-main-toast-scrolled" : ""
-          }`}
-        >
-          <p>
-            {`${popToast.name} x${popToast.quantity} `}
-            <span className="product-detail-main-toast-span">
-              se agrego al carrito.
-            </span>
-          </p>
-        </div>
-      )}
     </div>
   );
 }

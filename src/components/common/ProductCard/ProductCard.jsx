@@ -2,55 +2,32 @@ import "@/components/common/ProductCard/productCard.css";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 
 import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
 
 import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
 import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+import { toast } from "sonner"
 
 function ProductCard({ prod }) {
   const [quantity, setQuantity] = useState("1");
   const { addProductToCart } = useCart();
   const [loading, setLoading] = useState(false);
-  const [popToast, setPopToast] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(true);
 
   const handleAddToCart = async (id) => {
     try {
       setLoading(true);
       if (quantity < 1) setQuantity(1);
       const res = await addProductToCart(id, quantity);
-      const addedProduct = res.data;
-      setPopToast(addedProduct);
+      toast.success(`${res.data.name} x ${res.data.quantity} se agrego al carrito.`);
       setLoading(false);
-      setTimeout(() => {
-        setPopToast(false);
-      }, 3000);
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className={`product-card ${loading ? "loading" : ""}`}>
@@ -114,20 +91,6 @@ function ProductCard({ prod }) {
           Añadir al carrito
         </button>
       </div>
-      {popToast && (
-        <div
-          className={`product-card-toast ${
-            isScrolled ? "product-card-toast-scrolled" : ""
-          }`}
-        >
-          <p>
-            {`${popToast.name} x${popToast.quantity} `}
-            <span className="product-card-toast-span">
-              se agrego al carrito.
-            </span>
-          </p>
-        </div>
-      )}
     </div>
   );
 }
