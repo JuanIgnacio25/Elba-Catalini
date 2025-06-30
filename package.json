@@ -40,6 +40,7 @@
     "mongoose-sequence": "^6.0.1",
     "next": "^14.2.16",
     "next-auth": "^4.24.7",
+    "next-themes": "^0.4.6",
     "nodemailer": "^6.9.14",
     "password-validator": "^5.3.0",
     "react": "^18",
@@ -49,6 +50,7 @@
     "react-select": "^5.8.0",
     "react-tooltip": "^5.28.0",
     "sharp": "^0.33.5",
+    "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.25.62"

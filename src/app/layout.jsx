@@ -6,6 +6,8 @@ import Footer from "@/components/Footer/Footer";
 import FixedActions from "@/components/FixedActions/FixedActions";
 import Providers from "./Providers";
 
+import { Toaster } from "@/components/ui/sonner";
+
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
@@ -36,7 +38,8 @@ export const metadata = {
     twitter: {
       card: "summary_large_image",
       title: "Elba Catalini - Tienda Online",
-      description: "Compra productos Baiml , Toxic Shine y mucho mas a precio promocional!.",
+      description:
+        "Compra productos Baiml , Toxic Shine y mucho mas a precio promocional!.",
       images: ["/og-image.png"],
     },
   },
@@ -55,8 +58,15 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          <Sale/>
+          <Sale />
           {children}
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              className: "!bg-black !text-white !border !border-white z-[9999]",
+              duration: 4000,
+            }}
+          />
           <FixedActions />
           <Footer />
         </Providers>
