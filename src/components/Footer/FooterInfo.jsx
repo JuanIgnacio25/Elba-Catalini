@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { FaWhatsapp } from "react-icons/fa";
+import { GiCarDoor, GiCarSeat } from "react-icons/gi";
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa6";
+import { TbSteeringWheelFilled } from "react-icons/tb";
 
 import {
   Accordion,
@@ -15,6 +17,11 @@ import {
 } from "@/components/ui/accordion";
 
 function FooterInfo() {
+  const whatsappUrl = (serviceName) =>
+    `https://web.whatsapp.com/send/?phone=5493471589042&text=${encodeURIComponent(
+      `¡Hola! Me gustaría solicitar información sobre ${serviceName}.`
+    )}`;
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col lg:flex-row w-full justify-around items-start md:items-center lg:items-start gap-3 lg:gap-0 text-white">
@@ -52,8 +59,43 @@ function FooterInfo() {
                 </AccordionContent>
               </AccordionItem>
 
-              {/* Acordeón de Contactanos */}
+              {/* Acordeon de Servicios */}
               <AccordionItem value="item-2">
+                <AccordionTrigger className="text-red-600 font-semibold text-lg py-2 hover:no-underline">
+                  Servicios
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col gap-1 text-left pt-2">
+                    <Link
+                      href={whatsappUrl("Colocación de Polarizados")}
+                      target="_blank"
+                      className="flex items-center  gap-1"
+                    >
+                      <GiCarDoor className="text-lg" />
+                      Polarizados
+                    </Link>
+
+                    <Link
+                      href={whatsappUrl("Instalación de Cubre Asientos")}
+                      className="flex items-center  gap-1 "
+                    >
+                      <GiCarSeat className="text-lg" />
+                      Cubre Asientos
+                    </Link>
+
+                    <Link
+                      href={whatsappUrl("Colocación de Cubre Volantes Cocidos")}
+                      className="flex items-center  gap-1 "
+                    >
+                      <TbSteeringWheelFilled className="text-lg" />
+                      Cubre Volantes
+                    </Link>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Acordeón de Contactanos */}
+              <AccordionItem value="item-3">
                 <AccordionTrigger className="text-red-600 font-semibold text-lg py-2 hover:no-underline">
                   Contactanos
                 </AccordionTrigger>
@@ -88,7 +130,7 @@ function FooterInfo() {
 
             <div className="flex justify-between mt-2">
               <div className="flex flex-col items-center gap-1">
-                <h3 className="text-lg text-red-500 font-semibold">Seguínos</h3>
+                <h3 className="text-lg text-red-600 font-semibold">Seguínos</h3>
                 <div className="flex gap-2 text-2xl">
                   <Link
                     href={"https://www.instagram.com/la_casa_del_acceso_/"}
@@ -104,19 +146,6 @@ function FooterInfo() {
                   </Link>
                 </div>
               </div>
-              <Link
-                href={"https://www.afip.gob.ar/960/"}
-                target="_blank"
-                className=" flex justify-center"
-              >
-                <Image
-                  src={"/assets/datafiscal.jpg"}
-                  width={239}
-                  height={327}
-                  alt="data fiscal"
-                  className="w-auto h-auto max-h-[60px] object-contain"
-                />
-              </Link>
             </div>
           </div>
         </div>
@@ -155,6 +184,35 @@ function FooterInfo() {
             </p>
           </div>
 
+          {/* Servicios */}
+          <div className="flex flex-col gap-1">
+            <h3 className="text-red-600 font-semibold text-lg mb-1 md:mb-2">
+              Servicios
+            </h3>
+            <Link
+              href={whatsappUrl("Colocación de Polarizados")}
+              target="_blank"
+              className="flex items-center justify-start gap-1 hover:text-gray-500 transition"
+            >
+              <GiCarDoor className="text-lg" />
+              Polarizados
+            </Link>
+            <Link
+              href={whatsappUrl("Instalación de Cubre Asientos")}
+              className="flex items-center justify-start gap-1 hover:text-gray-500 transition"
+            >
+              <GiCarSeat className="text-lg" />
+              Cubre Asientos
+            </Link>
+            <Link
+              href={whatsappUrl("Colocación de Cubre Volantes Cocidos")}
+              className="flex items-center justify-center md:justify-start gap-1 hover:text-gray-500 transition"
+            >
+              <TbSteeringWheelFilled className="text-lg" />
+              Cubre Volantes
+            </Link>
+          </div>
+
           {/* Contactanos */}
           <div className="flex flex-col gap-1">
             <h3 className="text-red-600 font-semibold text-lg mb-1 md:mb-2">
@@ -183,21 +241,6 @@ function FooterInfo() {
               ventascatalini@gmail.com
             </Link>
           </div>
-
-          {/* Data Fiscal */}
-          <Link
-            href={"https://www.afip.gob.ar/960/"}
-            target="_blank"
-            className="hidden sm:block mt-4 md:mt-0 w-auto"
-          >
-            <Image
-              src={"/assets/datafiscal.jpg"}
-              width={239}
-              height={327}
-              alt="data fiscal"
-              className="w-auto h-auto max-h-[100px] object-contain"
-            />
-          </Link>
         </div>
       </div>
     </div>
