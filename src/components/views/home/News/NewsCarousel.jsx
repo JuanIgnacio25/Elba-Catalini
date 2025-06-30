@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+
+import { AnimatePresence } from "framer-motion";
 
 import {
   Carousel,
@@ -26,8 +30,15 @@ import formatStoreProductUnit from "@/utils/formatStoreProductUnit";
 
 import { formatBaimlProductQuantityLabel } from "@/utils/formatBaimlProductQuantity";
 import { formatBaimlProductSetLabel } from "@/utils/formatBaimlProductQuantity";
+import NewsAddToCart from "./NewsAddToCart";
 
 function NewsCarousel({ news }) {
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
+  const onCancel = () => {
+    setIsOverlayOpen(false);
+  };
+
   return (
     <div className="w-full flex-col justify-center items-center mt-36">
       <GradientSubtitle text={"Novedades"} />
@@ -49,15 +60,23 @@ function NewsCarousel({ news }) {
               key={index}
               className="basis-1/2 sm:basis-1/3 lg:basis-1/4 px-2 py-4"
             >
-              <Card className="flex flex-col justify-between h-[43vh] sm:h-[50vh] rounded-lg border-none shadow-md hover:shadow-lg transition">
-                <CardHeader className="relative aspect-square overflow-hidden rounded-t-lg">
-                  <Link href={`/products/${nw.product.productId}`}>
+              <Card className="relative flex flex-col justify-between h-[43vh] sm:h-[50vh] rounded-lg border-none shadow-md hover:shadow-lg transition">
+                <AnimatePresence>
+                  {isOverlayOpen && isOverlayOpen === nw.product.productId && (
+                    <NewsAddToCart productId={nw.product.productId} onCancel={onCancel} />
+                  )}
+                </AnimatePresence>
+                <CardHeader className="relative aspect-square overflow-hidden rounded-t-lg p-2">
+                  <Link
+                    href={`/products/${nw.product.productId}`}
+                    className="block w-full h-full relative"
+                  >
                     <Image
                       src={nw.product.images[0].url}
                       alt={`Imagen ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 35vw, (max-width: 1024px) 23.33vw, 17.5vw"
-                      className="object-cover transition-transform duration-300 hover:scale-105 p-2"
+                      className="object-contain transition-transform duration-300 hover:scale-105"
                     />
                   </Link>
                 </CardHeader>
@@ -87,10 +106,16 @@ function NewsCarousel({ news }) {
                   </div>
                 </CardContent>
                 <CardFooter className="flex justify-around px-1 sm:px-2 py-2 sm:py-4 gap-1">
-                  <Button className="w-1/2 sm:w-[45%] bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md transition-colors">
+                  <Button
+                    className="w-1/2 sm:w-[45%] bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md transition-colors"
+                    onClick={() => setIsOverlayOpen(nw.product.productId)}
+                  >
                     Añadir
                   </Button>
-                  <Link href={`/products/${nw.product.productId}`} className="w-1/2 sm:w-[45%]">
+                  <Link
+                    href={`/products/${nw.product.productId}`}
+                    className="w-1/2 sm:w-[45%]"
+                  >
                     <Button
                       variant="outline"
                       className="w-full text-red-500 hover:bg-red-600 hover:text-white font-semibold rounded-md transition-colors"
