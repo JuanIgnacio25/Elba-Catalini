@@ -1,8 +1,8 @@
 import ProductDetail from "@/components/views/Products/ProductDetail/ProductDetail";
 
-function productDetailPage() {
+function productDetailPage({params}) {
   return (
-    <ProductDetail/>
+    <ProductDetail id={params.id}/>
   )
 }
 

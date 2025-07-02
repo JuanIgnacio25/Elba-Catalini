@@ -1,34 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
 function ProductDetailHeader({ product }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div
-      className={`product-detail-header-container ${
-        isScrolled ? "product-detail-header-container-scrolled" : ""
-      }`}
+      className={`product-detail-header-container`}
     >
       <div className="product-detail-header">
         <div className="flex align-center gap-1">
