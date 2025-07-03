@@ -82,6 +82,7 @@ function EditProduct() {
         unit: product.unit,
         category: product.category,
         productSet: Number(product.productSet),
+        isElectronic: product.isElectronic === "true" ? true : false,
       };
     }
 
@@ -341,6 +342,31 @@ function EditProduct() {
                     id="ProductSet"
                     className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg outline-none focus:border-red-600 block w-full p-2.5"
                   />
+                </div>
+                <div>
+                  <label
+                    htmlFor="isElectronic-options"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    ¿Es Electronico?
+                  </label>
+                  <select
+                    id="isElectronic-options"
+                    value={product.isElectronic}
+                    onChange={(e) => {
+                      setProduct((prevProduct) => ({
+                        ...prevProduct,
+                        isElectronic: e.target.value,
+                      }));
+                    }}
+                    className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg outline-none focus:border-red-500 block w-full p-2.5"
+                  >
+                    <option value="" disabled hidden>
+                      Categoria
+                    </option>
+                    <option value={true}>Si</option>
+                    <option value={false}>No</option>
+                  </select>
                 </div>
               </>
             )}

@@ -21,6 +21,8 @@ export async function POST(request) {
 
     if (kind === "Baiml") {
       formFields.productSet = Number(formFields.productSet);
+      formFields.isElectronic = formFields.isElectronic === "true" ? true : false;
+      
       isValidBaimlProduct(formFields);
     } else if (kind === "Store") {
       isValidStoreProduct(formFields);

@@ -48,6 +48,11 @@ const baimlProductDtoSchema = Type.Object(
         type: "ProductSet debe ser un Number",
       },
     }),
+    isElectronic: Type.Boolean({
+      errorMessage: {
+        type: "IsElectronic debe ser un Boolean"
+      }
+    }),
     kind: Type.String({
       errorMessage: {
         type: "Kind debe ser String",
@@ -66,6 +71,7 @@ const baimlProductDtoSchema = Type.Object(
         description: "Falta la propiedad: description",
         unit: "Falta la propiedad: unit",
         productSet: "Falta la propiedad: productSet",
+        isElectronic: "Falta la propiedad: isElectronic",
         kind: "Falta la propiedad: kind"
       },
     },
