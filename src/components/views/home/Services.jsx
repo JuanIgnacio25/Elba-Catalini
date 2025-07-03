@@ -34,21 +34,21 @@ function Services() {
       description:
         "Contamos con instalador oficial con licencia 3M, garantizando un trabajo de máxima calidad. Reducí el calor y protegé tu interior de los rayos UV. ",
       imageSrc: "/assets/services/polarizados.jpg",
-      serviceNameForWhatsapp: "Polarizados",
+      serviceNameForWhatsapp: "Colocación de Polarizados",
     },
     {
       title: "Instalación de Cubre asientos",
       description:
         "Renová el interior de tu auto con estilo. Protegé tus asientos originales de desgastes y derrames.",
       imageSrc: "/assets/services/cubre-asientos.jpg",
-      serviceNameForWhatsapp: "Cubre Asientos",
+      serviceNameForWhatsapp: "Instalación de Cubre Asientos",
     },
     {
       title: "Cubre volantes cocidos",
       description:
         "Confort y protección para tu volante. Mejorá el agarre y personalizá tu interior.",
       imageSrc: "/assets/services/cubre-volantes.jpg",
-      serviceNameForWhatsapp: "Cubre Volantes",
+      serviceNameForWhatsapp: "Colocación Cubre Volantes Cocidos",
     },
   ];
 
