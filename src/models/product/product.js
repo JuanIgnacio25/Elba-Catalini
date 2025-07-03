@@ -57,6 +57,10 @@ const BaimlSchema = new mongoose.Schema({
   productSet: {
     type: Number,
   },
+  isElectronic: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const StoreSchema = new mongoose.Schema({
