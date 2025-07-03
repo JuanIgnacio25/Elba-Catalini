@@ -18,7 +18,7 @@ import {
 
 function FooterInfo() {
   const whatsappUrl = (serviceName) =>
-    `https://web.whatsapp.com/send/?phone=5493471589042&text=${encodeURIComponent(
+    `https://wa.me/5493471589042?text=${encodeURIComponent(
       `¡Hola! Me gustaría solicitar información sobre ${serviceName}.`
     )}`;
 

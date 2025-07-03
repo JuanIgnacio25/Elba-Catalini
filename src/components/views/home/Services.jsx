@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import Link from "next/link";
 import GradientSubtitle from "@/components/common/GradientSubtitle";
 import { Button } from "@/components/ui/button";
 
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 
 import {
   Carousel,
@@ -21,7 +21,7 @@ function Services() {
   const [count, setCount] = useState(0);
 
   const whatsappUrl = (service) =>
-    `https://web.whatsapp.com/send/?phone=5493471589042&text=${encodeURIComponent(
+    `https://wa.me/5493471589042?text=${encodeURIComponent(
       `¡Hola! Me gustaría solicitar información sobre ${
         service ? service : "colocación de [ej. Polarizados]"
       }.`
