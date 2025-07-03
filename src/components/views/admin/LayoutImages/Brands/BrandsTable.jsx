@@ -33,6 +33,8 @@ function BrandsTable() {
       setIsLoading(true);
       try {
         const res = await axios.get("/api/layoutImages/brands");
+        console.log({fetch:res});
+        
         setBrands(res.data.brands);
       } catch (error) {
         console.log(error);
