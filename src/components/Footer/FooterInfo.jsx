@@ -27,9 +27,9 @@ function FooterInfo() {
       <div className="flex flex-col lg:flex-row w-full justify-around items-start md:items-center lg:items-start gap-3 lg:gap-0 text-white">
         <div className="order-first flex self-center justify-center lg:self-start items-center w-8/12 md:w-4/12 lg:w-3/12">
           <Image
-            src={"/logoelbarojo.png"}
-            width={1100}
-            height={420}
+            src={"/logo-elba.png"}
+            width={1480}
+            height={400}
             alt="Main Logo"
             className="max-w-[200px] md:max-w-[250px] lg:max-w-[300px]"
           />

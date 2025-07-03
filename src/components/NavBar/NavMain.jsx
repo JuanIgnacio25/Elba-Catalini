@@ -21,14 +21,14 @@ function NavMain({ isScrolled = false }) {
       <div className="container mx-auto h-full flex justify-between items-center px-2 sm:px-0">
         <Link href="/" className="flex justify-center">
           <Image
-            src="/logoelbarojo.png"
+            src="/logo-elba.png"
             alt="Logo-Main"
-            width={1100}
-            height={420}
+            width={1480}
+            height={400}
             className={`${
               isScrolled
-                ? "max-w-[150px] md:max-w-[180px] lg:max-w-[200px] h-auto object-contain"
-                : "max-w-[170px] md:max-w-[200px] lg:max-w-[250px] h-auto object-contain"
+                ? "max-w-[150px] md:max-w-[180px] lg:max-w-[260px] h-auto object-contain"
+                : "max-w-[170px] md:max-w-[200px] lg:max-w-[330px] h-auto object-contain"
             }`}
             priority
           />
