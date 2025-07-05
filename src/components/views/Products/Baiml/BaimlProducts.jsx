@@ -11,6 +11,10 @@ function BaimlProducts() {
   return (
     <div className="baiml-p">
       <PathHeader/>
+      <div className="w-full flex justify-center">
+        <h1 className="w-[90%] md:w-[80%] text-3xl text-red-500 font-bold">Faros Baiml</h1>
+      </div>
+      
       <Suspense fallback={<ProductsMainFallback categories={BAIML_CATEGORIES} enabled={true}/>}>
         <BaimlPMain/>
       </Suspense>

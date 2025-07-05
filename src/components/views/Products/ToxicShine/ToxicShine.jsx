@@ -12,6 +12,9 @@ function ToxicShine() {
   return (
     <div className="toxic-products-container">
       <PathHeader />
+      <div className="w-full flex justify-center">
+        <h1 className="w-[90%] md:w-[80%] text-3xl text-red-500 font-bold">Toxic Shine</h1>
+      </div>
       <Suspense
         fallback={
           <ProductsMainFallback
