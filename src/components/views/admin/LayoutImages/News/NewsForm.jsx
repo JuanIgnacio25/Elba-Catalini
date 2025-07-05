@@ -34,7 +34,7 @@ function NewsForm({ news, onSubmit, onCancel, newsLength }) {
       productId: news?.productId || "",
       order: Number.isFinite(news?.order) ? news.order : newsLength + 1,
     });
-  }, [news]);
+  }, [news , form , newsLength]);
 
   const onFormSubmit = async (values) => {
     setIsSubmitting(true);

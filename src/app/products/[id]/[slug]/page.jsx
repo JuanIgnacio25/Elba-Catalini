@@ -10,12 +10,17 @@ export async function generateMetadata({ params }) {
   const product = await res.json();
   
   return {
-    title: `${product.name}`,
+    title: product.name,
     description: product.description,
     openGraph: {
       title: product.name,
       description: product.description,
-      images: [{ url: product.image }],
+      images: product.images.map((img) => ({
+        url: img.url,
+        width: 485, 
+        height: 485, 
+        alt: product.name,
+      })),
     },
   };
 }
