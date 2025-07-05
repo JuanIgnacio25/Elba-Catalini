@@ -38,7 +38,7 @@ function ProductCard({ prod }) {
       )}
       <div className="product-card-img-container">
         <Link
-          href={`/products/${prod.productId}`}
+          href={`/products/${prod.productId}/${prod.slug}`}
           className="product-card-img-link"
         >
           <Image
@@ -53,7 +53,7 @@ function ProductCard({ prod }) {
       </div>
       <div className="product-card-info">
         <Link
-          href={`/products/${prod.productId}`}
+          href={`/products/${prod.productId}/${prod.slug}`}
           className="product-card-info-link"
         >
           <p>{prod.name}</p>

@@ -20,7 +20,7 @@ function CartCard({ product }) {
     <tr>
       <td className="cart-card-img-td">
         <div className="cart-card-img-container">
-          <Link href={`/products/${product.productId}`} className="cart-card-img-link">
+          <Link href={`/products/${product.productId}/${!product.slug ? "slug" : product.slug}`} className="cart-card-img-link">
             <Image
               className="cart-card-img"
               src={product.images[0].url}

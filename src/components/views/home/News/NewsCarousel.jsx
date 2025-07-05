@@ -63,12 +63,15 @@ function NewsCarousel({ news }) {
               <Card className="relative flex flex-col justify-between h-[43vh] sm:h-[50vh] rounded-lg border-none shadow-md hover:shadow-lg transition">
                 <AnimatePresence>
                   {isOverlayOpen && isOverlayOpen === nw.product.productId && (
-                    <NewsAddToCart productId={nw.product.productId} onCancel={onCancel} />
+                    <NewsAddToCart
+                      productId={nw.product.productId}
+                      onCancel={onCancel}
+                    />
                   )}
                 </AnimatePresence>
                 <CardHeader className="relative aspect-square overflow-hidden rounded-t-lg p-2">
                   <Link
-                    href={`/products/${nw.product.productId}`}
+                    href={`/products/${nw.product.productId}/${nw.product.slug}`}
                     className="block w-full h-full relative"
                   >
                     <Image
@@ -82,7 +85,7 @@ function NewsCarousel({ news }) {
                 </CardHeader>
                 <CardContent className="flex flex-col justify-center text-base text-start font-light gap-3 p-4">
                   <Link
-                    href={"/products/145"}
+                    href={`/products/${nw.product.productId}/${nw.product.slug}`}
                     className="text-black hover:text-red-600 text-center transition font-semibold"
                   >
                     {nw.product.name}
@@ -113,7 +116,7 @@ function NewsCarousel({ news }) {
                     Añadir
                   </Button>
                   <Link
-                    href={`/products/${nw.product.productId}`}
+                    href={`/products/${nw.product.productId}/${nw.product.slug}`}
                     className="w-1/2 sm:w-[45%]"
                   >
                     <Button
