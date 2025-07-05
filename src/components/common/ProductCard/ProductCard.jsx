@@ -44,7 +44,7 @@ function ProductCard({ prod }) {
           <Image
             className="product-card-img"
             src={prod.images[0].url}
-            alt="Logo-Product"
+            alt={`Foto de ${prod.name}`}
             width={485}
             height={485}
             loading="lazy"

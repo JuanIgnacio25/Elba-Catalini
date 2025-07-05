@@ -76,7 +76,7 @@ function NewsCarousel({ news }) {
                   >
                     <Image
                       src={nw.product.images[0].url}
-                      alt={`Imagen ${index + 1}`}
+                      alt={`Foto de ${nw.product.name}`}
                       fill
                       sizes="(max-width: 768px) 35vw, (max-width: 1024px) 23.33vw, 17.5vw"
                       className="object-contain transition-transform duration-300 hover:scale-105"
