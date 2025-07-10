@@ -5,6 +5,9 @@ export async function GET() {
   const products = await getAllProducts()
 
   const baseUrl = `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}`
+  const normalizedBaseURL = baseUrl.endsWith('/')
+  ? baseUrl.slice(0, -1)
+  : baseUrl;
 
   const staticRoutes = [
     '',
@@ -33,7 +36,7 @@ ${allRoutes
   .map(
     (route) => `
   <url>
-    <loc>${baseUrl}${route}</loc>
+    <loc>${normalizedBaseURL}${route}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
