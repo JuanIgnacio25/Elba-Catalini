@@ -47,7 +47,7 @@ function BaimlOverlay() {
           </button>
           <button className="px-5 py-2 bg-gray-100 text-sm xs:text-base text-red-800 font-semibold rounded-full shadow-md hover:bg-red-700 hover:text-white hover:scale-105 transition">
             <Link
-              href={`https://web.whatsapp.com/send/?phone=5493471589042&text=${encodeURIComponent(
+              href={`https://wa.me/5493471589042?text=${encodeURIComponent(
                 "¡Hola! Me gustaría solicitar cotización de faros BAIML."
               )}`}
               target={"_blank"}
