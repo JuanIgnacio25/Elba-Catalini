@@ -1,5 +1,5 @@
 import ProductService from "@/models/product/ProductService";
-import connectDB from "@/libs/mongodb";
+import { connectDB } from "../mongodb";
 
 const productService = new ProductService();
 
