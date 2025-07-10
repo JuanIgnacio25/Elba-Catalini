@@ -1,3 +1,4 @@
+// src/components/MainCarousel.jsx
 "use client";
 
 import Image from "next/image";
@@ -14,17 +15,13 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-export default function MainCarousel() {
-  const slidesData = [
-    {
-      src: "https://res.cloudinary.com/dzvwrmykh/image/upload/f_auto,q_auto/v1750791980/autopista-noche_wpzddp.jpg",
-      overlayComponent: BaimlOverlay,
-    },
-    {
-      src: "https://res.cloudinary.com/dzvwrmykh/image/upload/f_auto,q_auto/v1750792143/toxic-shine-portada_zoycje.jpg",
-      overlayComponent: ToxicShineOverlay,
-    },
-  ];
+const overlayComponentsMap = {
+  BaimlOverlay: BaimlOverlay,
+  ToxicShineOverlay: ToxicShineOverlay,
+};
+
+export default function MainCarousel({ initialSlidesData }) {
+  const slidesData = initialSlidesData || []; // Fallback por seguridad
 
   return (
     <Carousel
@@ -39,23 +36,31 @@ export default function MainCarousel() {
       ]}
     >
       <CarouselContent>
-        {slidesData.map((slide, index) => (
-          <CarouselItem key={index} className="p-0">
-            <Card className="rounded-none border-none">
-              <CardContent className="flex w-full h-[80vh] m-0 p-0 relative">
-                <Image
-                  src={slide.src}
-                  alt={`Imagen ${index + 1}`}
-                  fill
-                  quality={100}
-                  priority={index === 0}
-                  className="object-cover object-center"
-                />
-                {slide.overlayComponent && <slide.overlayComponent />}
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
+        {slidesData.map((slide, index) => {
+          const OverlayComponent = overlayComponentsMap[slide.overlayKey];
+
+          return (
+            <CarouselItem key={slide.src} className="p-0">
+              <Card className="rounded-none border-none">
+                <CardContent className="flex w-full h-[80vh] m-0 p-0 relative">
+                  <Image
+                    src={slide.src}
+                    alt={`Imagen ${index + 1}`}
+                    fill
+                    quality={100}
+                    priority={index === 0}
+                    className="object-cover object-center"
+                    placeholder="blur"
+                    blurDataURL={slide.blurDataURL}
+                    sizes="100vw"
+                  />
+                  {/* Renderizar el Overlay Component si existe */}
+                  {OverlayComponent && <OverlayComponent />}
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
     </Carousel>
   );

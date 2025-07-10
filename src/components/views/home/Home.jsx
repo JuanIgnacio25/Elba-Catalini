@@ -1,14 +1,24 @@
-import MainCarousel from "./MainCarousel/MainCarousel"
-import BenefitsIcons from "./BenefitsIcons";
-import News from "./News/News";
-import Services from "./Services";
-import Brands from "./Brands/Brands";
-import BusinessInfo from "./BusinessInfo/BusinessInfo";
+import dynamic from "next/dynamic";
 
-function Home() {
+import MainCarousel from "./MainCarousel/MainCarousel"
+import News from "./News/News";
+import Brands from "./Brands/Brands";
+
+const Services = dynamic(() => import("./Services")); // Podrías añadir { ssr: false }
+const BenefitsIcons = dynamic(() => import("./BenefitsIcons")); // Podrías añadir { ssr: false }
+const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo")); // Podrías añadir { ssr: false }
+
+
+
+
+import { getSlidesDataWithBlur } from "@/lib/api/getSlidesDataWithBlur";
+
+async function Home() {
+  const slidesData = await getSlidesDataWithBlur();
+
   return (
     <>
-      <MainCarousel/>
+      <MainCarousel initialSlidesData={slidesData}/>
       <BenefitsIcons />
       <News/>
       <Services/>
