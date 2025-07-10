@@ -11,7 +11,7 @@ Disallow: /cart/confirmOrder
 Disallow: /orderHistory
 Disallow: /admin/
 
-Sitemap: https://${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/sitemap.xml
+Sitemap: ${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/sitemap.xml
   `.trim()
 
   return new NextResponse(content, {

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const products = await getAllProducts()
 
-  const baseUrl = 'https://elbacatalini.com'
+  const baseUrl = `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}`
 
   const staticRoutes = [
     '',
