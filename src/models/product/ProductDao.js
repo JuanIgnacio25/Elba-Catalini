@@ -23,6 +23,14 @@ class ProductDao {
     }
   }
 
+  async fetchProducts () {
+    try {
+      return await this.collection.find().select('productId slug');
+    } catch (error) {
+      throw error
+    }
+  }
+
   async getAllProducts() {
     try {
       const products = await this.collection.find();
