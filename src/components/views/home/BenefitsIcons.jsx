@@ -6,9 +6,9 @@ const BenefitItem = ({ title, text, IconComponent , hiddenMobile}) => {
   return (
     <div className={`${hiddenMobile ? "hidden sm:flex" : ""} flex flex-col justify-start items-center gap-2`}>
       <IconComponent className="text-2xl lg:text-3xl text-red-600" />
-      <h3 className="text-gray-800 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-center">
+      <h2 className="text-gray-800 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-center">
         {title}
-      </h3>
+      </h2>
       <p className="hidden sm:flex text-center text-xs lg:text-sm text-gray-600">{text}</p>
     </div>
   );

@@ -12,10 +12,17 @@ function NavBarHeader() {
           <Link
             href={"https://www.instagram.com/la_casa_del_acceso_/"}
             target="_blank"
+            aria-label="Síguenos en Instagram"
+            rel="noopener noreferrer"
           >
             <RiInstagramFill className="hover:text-neutral-900 transition" />
           </Link>
-          <Link href={"https://www.facebook.com/ElbaCatalini"} target="_blank">
+          <Link
+            href={"https://www.facebook.com/ElbaCatalini"}
+            target="_blank"
+            aria-label="Síguenos en Facebook"
+            rel="noopener noreferrer"
+          >
             <FaFacebookF className="hover:text-neutral-900 transition" />
           </Link>
         </div>

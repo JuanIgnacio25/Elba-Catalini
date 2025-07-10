@@ -20,7 +20,7 @@ const BusinessCard = () => {
     >
       {/* Encabezado del componente */}
       <CollapsibleTrigger asChild>
-        <div className="flex items-center justify-between p-6 cursor-pointer">
+        <button className="w-full flex items-center justify-between p-6 cursor-pointer outline-none">
           <div className="flex items-center space-x-3">
             <MdKeyboardArrowDown
               className={`h-6 w-6 text-red-500 transition-transform duration-300 ${
@@ -31,7 +31,7 @@ const BusinessCard = () => {
               Casa Central
             </span>
           </div>
-        </div>
+        </button>
       </CollapsibleTrigger>
 
       {/* Contenido desplegable */}

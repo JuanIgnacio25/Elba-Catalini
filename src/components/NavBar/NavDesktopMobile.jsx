@@ -27,7 +27,7 @@ function NavDesktopMobile() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <button className="lg:hidden text-white">
+        <button className="lg:hidden text-white" aria-label="Abrir menú de navegación">
           <Menu size={34} />
         </button>
       </SheetTrigger>
