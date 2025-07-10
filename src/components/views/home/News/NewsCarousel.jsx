@@ -50,7 +50,7 @@ function NewsCarousel({ news }) {
         }}
         plugins={[
           Autoplay({
-            delay: 1500,
+            delay: 2000,
           }),
         ]}
       >
