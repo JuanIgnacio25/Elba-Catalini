@@ -41,6 +41,8 @@ export default function SaleModal({ saleImage }) {
             className="object-contain rounded-lg"
             sizes="(max-width: 768px) 95vw, 700px"
             priority
+            placeholder="blur"
+            blurDataURL={saleImage.blurDataURL || "data:image/png;base64,iVBORw0KGgoAAAANSUg honourable"}
           />
         </div>
       </DialogContent>
