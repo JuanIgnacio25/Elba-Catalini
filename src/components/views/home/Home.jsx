@@ -4,9 +4,9 @@ import MainCarousel from "./MainCarousel/MainCarousel"
 import News from "./News/News";
 import Brands from "./Brands/Brands";
 
-const Services = dynamic(() => import("./Services")); // Podrías añadir { ssr: false }
-const BenefitsIcons = dynamic(() => import("./BenefitsIcons")); // Podrías añadir { ssr: false }
-const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo")); // Podrías añadir { ssr: false }
+const Services = dynamic(() => import("./Services"));
+const BenefitsIcons = dynamic(() => import("./BenefitsIcons"));
+const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo"));
 
 
 
