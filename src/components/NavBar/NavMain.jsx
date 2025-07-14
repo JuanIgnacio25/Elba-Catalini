@@ -13,7 +13,7 @@ function NavMain({ isScrolled = false }) {
   return (
     <nav
       className={`w-full flex justify-center items-center bg-neutral-900 ${
-        isScrolled ? "!h-[11vh]" : "h-[14.5vh]"
+        isScrolled ? "!h-14 lg:!h-20" : "!h-14 md:!h-16 lg:!h-24"
       }`}
     >
       <div className="container mx-auto h-full flex justify-between items-center px-2 sm:px-0">
@@ -25,8 +25,8 @@ function NavMain({ isScrolled = false }) {
             height={400}
             className={`${
               isScrolled
-                ? "max-w-[150px] md:max-w-[180px] lg:max-w-[260px] h-auto object-contain"
-                : "max-w-[170px] md:max-w-[200px] lg:max-w-[330px] h-auto object-contain"
+                ? "max-w-[150px] md:max-w-[180px] lg:max-w-[240px] h-auto object-contain"
+                : "max-w-[170px] md:max-w-[200px] lg:max-w-[315px] h-auto object-contain"
             }`}
             priority
           />

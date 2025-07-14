@@ -11,7 +11,7 @@ function ToxicShineOverlayContent() {
             alt="Logo Toxic Shine"
             height={225}
             width={225}
-            className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 drop-shadow-lg object-contain"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44  lg:h-48 lg:w-48 drop-shadow-lg object-contain"
             priority
           />
           <h1 className="text-white text-3xl sm:text-4xl md:text-4xl font-extrabold leading-tight drop-shadow-lg text-center sm:text-left">
