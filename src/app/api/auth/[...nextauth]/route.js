@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import UserService from "@/models/user/UserService";
 
 const userService = new UserService();

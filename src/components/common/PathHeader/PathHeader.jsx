@@ -1,7 +1,6 @@
-"use client";
+"use client"
 
 import "./pathHeader.css";
-import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -9,28 +8,8 @@ function PathHeader() {
   const path = usePathname();
   const pathArray = path.split("/").slice(1).map(decodeURIComponent);
 
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div className={`path-header-container ${isScrolled ? "scrolled" : ""}`}>
+    <div className={`path-header-container`}>
       <div className="path-header">
         {pathArray.map((namePath, index, arr) => {
           if (namePath === "store") return null;

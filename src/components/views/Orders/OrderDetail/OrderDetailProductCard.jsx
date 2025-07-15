@@ -6,7 +6,7 @@ function OrderDetailProductCard({ product }) {
     <tr>
       <td className="order-detail-product-card-img-td">
         <div className="order-detail-product-card-img-container">
-          <Link href={`/products/${product.productId}`} className="order-detail-product-card-img-link">
+          <Link href={`/products/${product.productId}/${!product.slug ? "slug" : product.slug }`} className="order-detail-product-card-img-link">
             <Image
               className="order-detail-product-card-img"
               src={product.images[0].url}

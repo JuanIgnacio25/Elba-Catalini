@@ -22,6 +22,14 @@ class ProductService {
     }
   }
 
+  async fetchProducts(){
+    try {
+      return await this.dao.fetchProducts();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getProducts(filter = {}) {
     try {
       const products = await this.dao.getProducts(filter);

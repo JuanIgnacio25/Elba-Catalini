@@ -1,4 +1,4 @@
-import createTransporter from "@/libs/nodemailer";
+import createTransporter from "@/lib/nodemailer";
 
 const sendContactMessageMail = async (data) => {
   const transporter = createTransporter();

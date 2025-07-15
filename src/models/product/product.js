@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import AutoIncrementFactory from "mongoose-sequence";
+import slugify from "slugify";
 
 const AutoIncrement = AutoIncrementFactory(mongoose.connection);
 
@@ -31,7 +32,11 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, "La categoria es requerido"],
     },
-
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     description: {
       type: String,
       required: [true, "La descripcion del producto es requerida"],
@@ -48,6 +53,14 @@ const ProductSchema = new mongoose.Schema(
   options
 );
 
+// generar slug desde name
+ProductSchema.pre("save", function (next) {
+  if (this.isModified("name") || !this.slug) {
+    this.slug = slugify(this.name, { lower: true, strict: true });
+  }
+  next();
+});
+
 ProductSchema.plugin(AutoIncrement, { inc_field: "productId" });
 
 const Product =
@@ -57,6 +70,10 @@ const BaimlSchema = new mongoose.Schema({
   productSet: {
     type: Number,
   },
+  isElectronic: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const StoreSchema = new mongoose.Schema({

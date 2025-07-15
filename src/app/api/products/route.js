@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import ProductService from "@/models/product/ProductService";
 import { isValidBaimlProduct } from "@/utils/validate/validateBaimlProducts";
 import { isValidStoreProduct } from "@/utils/validate/validateStoreProduct";
@@ -21,6 +21,8 @@ export async function POST(request) {
 
     if (kind === "Baiml") {
       formFields.productSet = Number(formFields.productSet);
+      formFields.isElectronic = formFields.isElectronic === "true" ? true : false;
+      
       isValidBaimlProduct(formFields);
     } else if (kind === "Store") {
       isValidStoreProduct(formFields);

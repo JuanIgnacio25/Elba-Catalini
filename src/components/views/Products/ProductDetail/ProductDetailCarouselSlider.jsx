@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import Image from "next/image";
 import "./productDetail.css";
@@ -18,7 +20,7 @@ function ProductDetailCarouselSlider({ product }) {
             <div key={index} className="product-deatil-carousel-slider-side-bar-image-container">
               <Image
                 src={image.url}
-                alt={`${product.name} image`}
+                alt={`Foto de ${product.name}`}
                 width={"70"}
                 height={"70"}
                 priority
@@ -34,7 +36,7 @@ function ProductDetailCarouselSlider({ product }) {
         <div className="product-deatil-carousel-slider-main-image-container">
           <Image
             src={selectedImage}
-            alt="Selected Product Image"
+            alt={`Foto de ${product.name}`}
             width={"300"}
             height={"300"}
             className="product-deatil-carousel-slider-main-image"

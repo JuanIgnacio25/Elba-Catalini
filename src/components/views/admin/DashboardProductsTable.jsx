@@ -61,9 +61,15 @@ function DashboardProductsTable() {
           Search
         </label>
         <DashboardProductsTableSearch />
-        <button className="px-2 py-1 bg-green-600 hover:bg-green-800 text-white font-bold rounded-md transition-colors">
-          <Link href="/admin/users">Ver Usuarios</Link>
-        </button>
+        <div className="flex gap-2">
+          <button className="px-2 py-1 bg-green-600 hover:bg-green-800 text-white font-bold rounded-md transition-colors">
+            <Link href="/admin/users">Panel de Usuarios</Link>
+          </button>
+          <button className="px-2 py-1 bg-blue-600 hover:bg-blue-800 text-white font-bold rounded-md transition-colors">
+            <Link href="/admin/layout-images">Panel de Imagenes</Link>
+          </button>
+        </div>
+
       </div>
       <table className="w-full max-w-[99vw] lg:max-w-[90vw] min-w-[99vw] lg:min-w-[90vw] table-fixed text-sm text-left rtl:text-right text-gray-500">
         <thead className="sticky top-[46px] z-10 text-xs text-gray-700 uppercase bg-gray-200">

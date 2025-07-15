@@ -1,55 +1,31 @@
+import dynamic from "next/dynamic";
 
-function Home() {
+import MainCarousel from "./MainCarousel/MainCarousel"
+import News from "./News/News";
+import Brands from "./Brands/Brands";
+
+const Services = dynamic(() => import("./Services"));
+const BenefitsIcons = dynamic(() => import("./BenefitsIcons"));
+const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo"));
+
+
+
+
+import { getSlidesDataWithBlur } from "@/lib/api/getSlidesDataWithBlur";
+
+async function Home() {
+  const slidesData = await getSlidesDataWithBlur();
+
   return (
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, veniam explicabo illo fugiat neque tenetur. Voluptatibus corporis optio minus assumenda ratione a repellat reiciendis deserunt illo unde? Recusandae, delectus nobis.
-    </div>
-  )
+    <>
+      <MainCarousel initialSlidesData={slidesData}/>
+      <BenefitsIcons />
+      <News/>
+      <Services/>
+      <Brands/>
+      <BusinessInfo/>
+    </>
+  );
 }
 
-export default Home
+export default Home;

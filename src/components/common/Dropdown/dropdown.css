@@ -120,7 +120,7 @@
   background: var(--soft-grey);
 }
 
-@media (max-width: 903px) {
+@media (max-width: 1024px) {
   .dropdown-category {
     font-size: 15px;
   }

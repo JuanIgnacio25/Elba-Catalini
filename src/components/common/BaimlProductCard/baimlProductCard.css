@@ -140,51 +140,6 @@
   border-radius: 10px;
 }
 
-.baiml-p-card-toast {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: calc(var(--nav-main-height) + 40px);
-  right: 5vw;
-  max-width: 25vw;
-  min-width: 25vw;
-  padding: 15px 25px;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0;
-  transition: top 0.3s ease-in-out;
-  animation: slideIn 0.3s forwards, fadeOut 0.3s 2.7s forwards;
-  z-index: 1000;
-}
-
-.baiml-p-card-toast-scrolled {
-  top: calc(var(--nav-main-height-scrolled) + 40px);
-}
-
-.baiml-p-card-toast-span {
-  color: var(--soft-grey);
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 1422px) {
   .baiml-p-card-info {
     font-size: 14px;
@@ -194,16 +149,6 @@
 @media (max-width: 1140px){
   .baiml-p-card-img-container {
     max-width: 150px;
-  }
-}
-
-@media (max-width:903px){
-  .baiml-p-card-toast{
-    top: calc(11vh + 40px);
-    max-width: 35vw;
-    min-width: 35vw;
-    padding: 10px 20px;
-    font-size: 12px;
   }
 }
 
@@ -259,24 +204,5 @@
   .baiml-p-card-add-button{
     padding:5px;
     font-size: 10px;
-  }
-}
-
-@media (max-width: 620px){
-  .baiml-p-card-toast{
-    top: calc(10vh + 40px);
-    max-width: 45vw;
-    min-width: 45vw;
-    padding: 8px 15px;
-  }
-}
-
-@media (max-width: 475px){
-  .baiml-p-card-toast{
-    top: calc(7vh + 40px);
-    max-width: 55vw;
-    min-width: 55vw;
-    padding: 8px 12px;
-    font-size: 11px;
   }
 }

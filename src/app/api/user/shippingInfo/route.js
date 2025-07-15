@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-import { connectDB } from "@/libs/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import UserService from "@/models/user/UserService";
 import { isValidShippingInfo } from "@/utils/validate/validateShippingInfo";
 

@@ -43,6 +43,7 @@ function DashboardProductForm() {
   const [unit, setUnit] = useState("");
   const [productSet, setProductSet] = useState("");
   const [variantSubCategory, setVariantSubCategory] = useState("");
+  const [isElectronic, setIsElectronic] = useState("");
 
   const [images, setImages] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
@@ -67,6 +68,7 @@ function DashboardProductForm() {
       formData.append("unit", unit);
       formData.append("kind", kind);
       formData.append("productSet", productSet);
+      formData.append("isElectronic", isElectronic);
     }
 
     if (kind === "Store") {
@@ -301,6 +303,28 @@ function DashboardProductForm() {
                   id="ProductSet"
                   className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg outline-none focus:border-red-600 block w-full p-2.5"
                 />
+              </div>
+              <div className="w-full">
+                <label
+                  htmlFor="IsElectronic"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  ¿Es electronico?
+                </label>
+                <select
+                  id="isElectronic-options"
+                  value={isElectronic}
+                  onChange={(e) => setIsElectronic(e.target.value)}
+                  className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg outline-none focus:border-red-500 block w-full p-2.5"
+                >
+                  <option value="" disabled >Selecciona una opcion</option>
+                  <option value={true}>
+                    Si
+                  </option>
+                  <option value={false}>
+                    No
+                  </option>
+                </select>
               </div>
             </>
           )}

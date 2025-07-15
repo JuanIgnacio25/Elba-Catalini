@@ -1,8 +1,8 @@
-import BaimlProducts from "@/components/views/Products/Baiml/BaimlProducts"
+import Home from "@/components/views/home/Home"
 
 function HomePage() {
   return (
-    <BaimlProducts/>
+    <Home/>
   )
 }
 

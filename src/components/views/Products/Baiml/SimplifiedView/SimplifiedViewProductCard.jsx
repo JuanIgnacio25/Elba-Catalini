@@ -1,49 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useCart } from "@/context/CartContext";
+import { toast } from "sonner"
 
 function SimplifiedViewProductCard({ prod }) {
   const { addProductToCart } = useCart();
   const [quantity, setQuantity] = useState("1");
-  const [popToast, setPopToast] = useState(false);
   const [loadingAddToCart, setloadingAddToCart] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(true);
 
   const handleAddToCart = async () => {
     try {
       setloadingAddToCart(true);
       const res = await addProductToCart(prod.productId, quantity);
-      const addedProduct = res.data;
-      setPopToast(addedProduct);
+      toast.success(`${res.data.name} x ${res.data.quantity} se agrego al carrito.`);
       setloadingAddToCart(false);
-      setTimeout(() => {
-        setPopToast(false);
-      }, 3000);
     } catch (error) {
       setloadingAddToCart(false);
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <div className="simplified-view-product-card">
@@ -88,20 +65,6 @@ function SimplifiedViewProductCard({ prod }) {
           </button>
         </div>
       </div>
-      {popToast && (
-        <div
-          className={`simplified-view-toast ${
-            isScrolled ? "simplified-view-toast-scrolled" : ""
-          }`}
-        >
-          <p>
-            {`${popToast.name} x${popToast.quantity} `}
-            <span className="simplified-view-toast-span">
-              se agrego al carrito.
-            </span>
-          </p>
-        </div>
-      )}
     </div>
   );
 }

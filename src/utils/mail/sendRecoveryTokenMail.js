@@ -1,4 +1,4 @@
-import createTransporter from "@/libs/nodemailer";
+import createTransporter from "@/lib/nodemailer";
 
 const sendRecoveryTokenMail = async (userEmail, recoveryToken) => {
   const transporter = createTransporter();

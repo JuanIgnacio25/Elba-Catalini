@@ -1,21 +1,18 @@
+import FooterInfo from "./FooterInfo"
+import FooterBottom from "./FooterBottom"
 
-import "@/components/Footer/footer.css";
-import FooterLogo from "@/components/Footer/FooterLogo"
-import FooterInfo from "@/components/Footer/FooterInfo"
-import FooterSocialmedia from "@/components/Footer/FooterSocialmedia"
-import FooterDeveloped from "@/components/Footer/FooterDeveloped"
+import { Separator } from "@/components/ui/separator"
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <div className="footer-main">
-        <FooterLogo/>
+    <div className="flex justify-center bg-neutral-900 py-10">
+      <div className="w-11/12 sm:w-10/12">
         <FooterInfo/>
-        <FooterSocialmedia/>
+        <Separator decorative={true} orientation={"horizontal"} className=" h-[0.1px] mx-auto my-6 bg-gray-300/40"/>
+        <FooterBottom/>
       </div>
-      <FooterDeveloped/>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
