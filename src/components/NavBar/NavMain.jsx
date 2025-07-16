@@ -19,10 +19,10 @@ function NavMain({ isScrolled = false }) {
       <div className="container mx-auto h-full flex justify-between items-center px-2 sm:px-0">
         <Link href="/" className="flex justify-center">
           <Image
-            src="/logo-elba.png"
+            src="https://res.cloudinary.com/dpjefhpjj/image/upload/f_auto,q_auto,w_315/v1752665181/logo-elba_i1polx.png"
             alt="Logo-Main"
-            width={1480}
-            height={400}
+            width={315}
+            height={85}
             className={`${
               isScrolled
                 ? "max-w-[150px] md:max-w-[180px] lg:max-w-[240px] h-auto object-contain"
