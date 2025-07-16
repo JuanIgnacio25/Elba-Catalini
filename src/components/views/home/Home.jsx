@@ -10,12 +10,7 @@ const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo"));
 
 
 
-
-import { getSlidesDataWithBlur } from "@/lib/api/getSlidesDataWithBlur";
-
-async function Home() {
-  const slidesData = await getSlidesDataWithBlur();
-
+async function Home({slidesData}) {
   return (
     <>
       <MainCarousel initialSlidesData={slidesData}/>
