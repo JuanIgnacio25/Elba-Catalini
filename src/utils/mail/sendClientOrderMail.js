@@ -71,7 +71,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     <body>
       <div class="email-container">
         <div class="header-logo">
-          <img src="https://elbacatalini.com/elbacatalini-main-logo.png" alt="Logo de la empresa" />
+          <img src="https://res.cloudinary.com/dpjefhpjj/image/upload/v1752665181/logo-elba_i1polx.png" alt="Logo de la empresa" />
         </div>
         <div class="header">
           <h2>Gracias por elegirnos!</h2>

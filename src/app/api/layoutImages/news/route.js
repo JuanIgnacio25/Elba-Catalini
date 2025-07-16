@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { revalidatePath } from 'next/cache';
 import { connectDB } from "@/lib/mongodb";
 import NewsService from "@/models/news/NewsService";
 import ProductService from "@/models/product/ProductService";
@@ -24,7 +24,8 @@ export async function POST(req) {
 
     
     const newNewsOrder = await newsService.createNews(news);
-    
+    revalidatePath('/');
+
     return NextResponse.json(newNewsOrder, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });

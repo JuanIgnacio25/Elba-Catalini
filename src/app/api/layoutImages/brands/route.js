@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { revalidatePath } from 'next/cache';
 import { connectDB } from "@/lib/mongodb";
 import BrandsService from "@/models/brands/BrandsService";
 
@@ -41,7 +41,7 @@ export async function POST(request) {
     };
 
     const newBrand = await brandsService.createBrand(brand);
-
+    revalidatePath('/');
     return NextResponse.json(newBrand, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });

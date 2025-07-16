@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { revalidatePath } from 'next/cache';
 import { connectDB } from "@/lib/mongodb";
 import SaleService from "@/models/sale/SaleService";
 import validateImage from "@/utils/validate/validateImage";
@@ -35,8 +35,10 @@ export async function PUT(req) {
     const saleImageToUpdate = {image: {secure_url , public_id}};
     
     await connectDB();
+
     const uploadedSaleImage = await saleService.updateSale(saleImageToUpdate);
-    
+    revalidatePath('/');
+
     return NextResponse.json(uploadedSaleImage, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
