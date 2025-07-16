@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { revalidatePath } from 'next/cache';
 import { connectDB } from "@/lib/mongodb";
 import BrandsService from "@/models/brands/BrandsService";
 import validateImage from "@/utils/validate/validateImage";
@@ -12,7 +12,10 @@ export async function DELETE(req, { params }) {
     const { id } = params;
 
     await connectDB();
+
     const newBrandsOrder = await brandsService.deleteBrand(id);
+    revalidatePath('/');
+
     return NextResponse.json(newBrandsOrder, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
@@ -49,7 +52,10 @@ export async function PUT(req, { params }) {
     }
 
     await connectDB();
+
     const newBrandsOrder = await brandsService.updateBrand(id, brandToUpdate);
+    revalidatePath('/');
+
     return NextResponse.json(newBrandsOrder, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
