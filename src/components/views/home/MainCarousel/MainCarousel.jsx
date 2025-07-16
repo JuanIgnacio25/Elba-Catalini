@@ -47,7 +47,7 @@ export default function MainCarousel({ initialSlidesData }) {
                     src={slide.src}
                     alt={`Imagen ${index + 1}`}
                     fill
-                    quality={100}
+                    quality={75}
                     priority={index === 0}
                     className="object-cover object-center"
                     placeholder="blur"
