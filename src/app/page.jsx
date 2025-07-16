@@ -1,8 +1,12 @@
 import Home from "@/components/views/home/Home"
+import { getSlidesDataWithBlur } from "@/lib/api/getSlidesDataWithBlur";
 
-function HomePage() {
+export const revalidate = 86400;
+
+async function HomePage() {
+  const slidesData = await getSlidesDataWithBlur();
   return (
-    <Home/>
+    <Home slidesData={slidesData}/>
   )
 }
 
