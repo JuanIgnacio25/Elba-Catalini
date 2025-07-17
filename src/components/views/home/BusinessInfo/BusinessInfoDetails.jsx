@@ -93,7 +93,7 @@ const BusinessDetails = () => {
       </div>
 
       {/*Google Maps */}
-      <>
+      <div className="w-full md:w-10/12">
         <a
           href="https://www.google.com/maps/place/?q=place_id:ChIJO2_XclveyZURqsaGF8CSNOQ"
           target="_blank"
@@ -102,12 +102,10 @@ const BusinessDetails = () => {
           <img
             src={`https://maps.googleapis.com/maps/api/staticmap?center=-32.81514,-61.39023&zoom=15&size=600x300&markers=color:red%7Clabel:A%7C-32.81514,-61.39023&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
             alt="Ubicación en Google Maps"
-            width={200}
-            height={200}
             className="rounded-lg shadow-md w-full h-auto"
           />
         </a>
-      </>
+      </div>
     </div>
   );
 };
