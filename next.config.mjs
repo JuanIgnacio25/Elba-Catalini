@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**', 
       },
+      {
+        protocol: 'https',
+        hostname: 'maps.googleapis.com',
+        pathname: '/**'
+      }
     ],
   },
   async headers() {
