@@ -16,13 +16,13 @@ const BusinessDetails = () => {
     <div className="flex flex-col md:flex-row gap-6 p-4">
       {/* Información de Contacto */}
       <div className="w-full md:w-2/5 flex flex-col gap-2">
-        <div>
+        <div className="relative w-2/3 md:w-3/4 aspect-[1/1]">
           <Image
             src={"/assets/frenteLocal.jpg"}
-            alt={`Frente Local`}
-            width={1844}
-            height={1835}
-            className="w-2/3 md:w-3/4 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+            alt="Frente Local"
+            fill
+            sizes="(max-width: 768px) 60vw, (max-width: 1024px) 25vw, 20vw"
+            className="object-cover rounded-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
         <div className={infoStyles}>
