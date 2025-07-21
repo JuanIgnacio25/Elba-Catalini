@@ -18,10 +18,10 @@ const BusinessDetails = () => {
       <div className="w-full md:w-2/5 flex flex-col gap-2">
         <div className="relative w-2/3 md:w-3/4 aspect-[1/1]">
           <Image
-            src={"/assets/frenteLocal.jpg"}
+            src={"https://res.cloudinary.com/dpjefhpjj/image/upload/w_600,f_auto,q_auto/v1753131194/frente_local_ndpl2d.jpg"}
             alt="Frente Local"
-            width={430}
-            height={430}
+            width={400}
+            height={400}
             className="object-cover rounded-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
