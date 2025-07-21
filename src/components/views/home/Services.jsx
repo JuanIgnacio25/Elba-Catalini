@@ -121,7 +121,8 @@ function Services() {
                           src={service.imageSrc}
                           alt={`Imagen de ${service.title}`}
                           fill
-                          sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw"
+                          sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 25vw"
+                          quality={60}
                           className="absolute inset-0 w-full h-full object-cover"
                         />
                         <h3 className="w-full absolute top-0 text-lg md:text-xl font-semibold py-3 px-2 bg-gradient-to-b from-black/80 to-transparent text-red-500 z-50">

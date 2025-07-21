@@ -21,7 +21,6 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
   openGraph: {
     title: "Elba Catalini - Tienda Online",
     description: "Compra productos Baiml , Toxic Shine y mucho mas al mejor precio!.",

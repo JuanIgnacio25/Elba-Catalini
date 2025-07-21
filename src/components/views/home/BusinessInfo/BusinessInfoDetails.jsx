@@ -16,13 +16,13 @@ const BusinessDetails = () => {
     <div className="flex flex-col md:flex-row gap-6 p-4">
       {/* Información de Contacto */}
       <div className="w-full md:w-2/5 flex flex-col gap-2">
-        <div >
+        <div className="relative w-2/3 md:w-3/4 aspect-[1/1]">
           <Image
-            src={"/assets/frenteLocal.jpg"}
-            alt={`Frente Local`}
-            width={1844}
-            height={1835}
-            className="w-2/3 md:w-3/4 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+            src={"https://res.cloudinary.com/dpjefhpjj/image/upload/w_600,f_auto,q_auto/v1753131194/frente_local_ndpl2d.jpg"}
+            alt="Frente Local"
+            width={400}
+            height={400}
+            className="object-cover rounded-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
         <div className={infoStyles}>
@@ -93,18 +93,20 @@ const BusinessDetails = () => {
       </div>
 
       {/*Google Maps */}
-      <div className="flex-1 min-h-[300px] md:min-h-[auto]">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d838.28412990619!2d-61.39023922926582!3d-32.81514754529267!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95c9de5b72d76f3b%3A0xe43492c01786c6aa!2sLa%20casa%20del%20Accesorio!5e0!3m2!1ses-419!2sar!4v1749074736085!5m2!1ses-419!2sar"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación de Casa Central"
-          className="rounded-lg shadow-md h-[300px] md:h-full"
-        ></iframe>
+      <div className="w-full md:w-10/12">
+        <a
+          href="https://www.google.com/maps/place/?q=place_id:ChIJO2_XclveyZURqsaGF8CSNOQ"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={`https://maps.googleapis.com/maps/api/staticmap?center=-32.81514,-61.39023&zoom=15&size=680x340&markers=color:red%7Clabel:A%7C-32.81514,-61.39023&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+            alt="Ubicación en Google Maps"
+            width={680}
+            height={340}
+            className="rounded-lg shadow-md w-full h-auto"
+          />
+        </a>
       </div>
     </div>
   );

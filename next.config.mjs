@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**', 
       },
+      {
+        protocol: 'https',
+        hostname: 'maps.googleapis.com',
+        pathname: '/**'
+      }
     ],
   },
   async headers() {
@@ -24,19 +29,6 @@ const nextConfig = {
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
-          },
-        ],
-      },
-      {
-        source: "/site.webmanifest", // Específicamente para el manifest
-        headers: [
-          {
-            key: "Content-Type",
-            value: "application/manifest+json",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=604800, immutable", // Cache por 7 días
           },
         ],
       },
