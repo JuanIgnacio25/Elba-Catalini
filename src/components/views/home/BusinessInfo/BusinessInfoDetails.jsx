@@ -99,9 +99,11 @@ const BusinessDetails = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            src={`https://maps.googleapis.com/maps/api/staticmap?center=-32.81514,-61.39023&zoom=15&size=600x300&markers=color:red%7Clabel:A%7C-32.81514,-61.39023&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
+          <Image
+            src={`https://maps.googleapis.com/maps/api/staticmap?center=-32.81514,-61.39023&zoom=15&size=680x340&markers=color:red%7Clabel:A%7C-32.81514,-61.39023&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
             alt="Ubicación en Google Maps"
+            width={680}
+            height={340}
             className="rounded-lg shadow-md w-full h-auto"
           />
         </a>

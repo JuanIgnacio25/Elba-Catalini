@@ -11,6 +11,7 @@ function ToxicShineOverlayContent() {
             alt="Logo Toxic Shine"
             height={225}
             width={225}
+            quality={70}
             className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44  lg:h-48 lg:w-48 drop-shadow-lg object-contain"
             priority
           />
