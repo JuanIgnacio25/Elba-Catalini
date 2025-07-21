@@ -20,8 +20,8 @@ const BusinessDetails = () => {
           <Image
             src={"/assets/frenteLocal.jpg"}
             alt="Frente Local"
-            fill
-            sizes="(max-width: 768px) 60vw, (max-width: 1024px) 25vw, 20vw"
+            width={430}
+            height={430}
             className="object-cover rounded-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
