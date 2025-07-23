@@ -7,6 +7,16 @@ import { uploadImageToCloudinary } from "@/utils/imageHandler/cloudinaryLayoutIm
 
 const saleService = new SaleService();
 
+export async function GET() {
+  try {
+    await connectDB();
+    const sale = await saleService.getSale();
+    return NextResponse.json(sale, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: error.message }, { status: 400 });
+  }
+}
+
 export async function PUT(req) {
   try {
     const data = await req.formData();

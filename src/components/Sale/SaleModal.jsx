@@ -21,7 +21,7 @@ export default function SaleModal({ saleImage }) {
     const now = Date.now();
 
     if (!lastShown || now - Number(lastShown) > SHOW_INTERVAL_MINUTES * 60 * 1000) {
-      setOpen(true); // Solo se abre si pasaron 30 min o nunca se mostró
+      setOpen(true);
     }
   }, []);
 

@@ -18,7 +18,7 @@ function SaleTable() {
   const fetchSaleImage = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get("/api/layoutImages/sale");
+      const res = await axios.get("/api/layoutImages/saleImage");
       setSaleImage(res.data.image.secure_url);
     } catch (error) {
       console.log(error);
