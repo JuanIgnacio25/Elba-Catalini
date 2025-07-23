@@ -19,7 +19,7 @@ export async function GET() {
 
 export async function PUT(req) {
   try {
-    const data = await req.formData();
+    /* const data = await req.formData();
     const image = data.get("image");
 
     if (validateImage([image]).length !== 0) {
@@ -37,9 +37,9 @@ export async function PUT(req) {
     await connectDB();
 
     const uploadedSaleImage = await saleService.updateSale(saleImageToUpdate);
-    revalidatePath('/');
+    revalidatePath('/'); */
 
-    return NextResponse.json(uploadedSaleImage, { status: 200 });
+    return NextResponse.json("Llegue", { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 400 });
   }
