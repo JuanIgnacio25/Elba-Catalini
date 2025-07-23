@@ -55,7 +55,8 @@ function SaleForm({ saleImage, onSubmit }) {
       }
 
       const res = await axios.put(`/api/layoutImages/sale`, formData);
-
+      console.log(res);
+      
       onSubmit(res.data.image.secure_url);
     } catch (err) {
       console.error(err);
