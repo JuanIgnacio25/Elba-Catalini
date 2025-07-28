@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "rm -rf .next node_modules/.cache",
     "build": "npm install --omit=dev && next build",
     "start": "next start",
     "lint": "next lint"
