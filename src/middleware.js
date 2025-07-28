@@ -84,7 +84,7 @@ export async function middleware(req) {
     }
   }
 
-  if (req.nextUrl.pathname === "/api/layoutImages") {
+  if (req.nextUrl.pathname.startsWith("/api/layoutImages")) {
     if (!token || token.user.rol !== "admin") {
       return NextResponse.json(
         { message: "No tiene permiso para hacer esta petición" },

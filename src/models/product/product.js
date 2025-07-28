@@ -54,7 +54,7 @@ const ProductSchema = new mongoose.Schema(
 );
 
 // generar slug desde name
-ProductSchema.pre("save", function (next) {
+ProductSchema.pre("validate", function (next) {
   if (this.isModified("name") || !this.slug) {
     this.slug = slugify(this.name, { lower: true, strict: true });
   }

@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar/NavBar";
-/* import Sale from "@/components/Sale/Sale"; */
+import Sale from "@/components/Sale/Sale";
 import Footer from "@/components/Footer/Footer";
 import FixedActions from "@/components/FixedActions/FixedActions";
 import Providers from "./Providers";
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          {/* <Sale /> */}
+          <Sale />
           {children}
           <Toaster
             position="bottom-right"
