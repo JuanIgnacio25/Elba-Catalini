@@ -1,0 +1,16 @@
+[phases.setup]
+nixpkgs = ["nodejs", "bash"]
+
+[phases.install]
+cmds = [
+  "rm -rf .next node_modules/.cache",
+  "npm install"
+]
+
+[phases.build]
+cmds = [
+  "npm run build"
+]
+
+[variables]
+cache_directories = []
