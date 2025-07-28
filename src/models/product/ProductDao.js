@@ -93,16 +93,17 @@ class ProductDao {
 
   async updateProduct(productToUpdate, productId) {
     const { kind, ...productData } = productToUpdate;
-
+  
     try {
-      const updatedProduct = await this.discriminators[kind].findOneAndUpdate(
-        { productId },
-        productData,
-        { new: true, runValidators: true }
-      );
-      if (!updatedProduct) {
+      const product = await this.discriminators[kind].findOne({ productId });
+      if (!product) {
         throw new Error("El producto no existe");
       }
+  
+      product.set(productData);
+  
+      const updatedProduct = await product.save();
+  
       return updatedProduct;
     } catch (error) {
       throw error;
