@@ -236,13 +236,43 @@ const generateExcelBuffer = async (clientData, products, order) => {
   }
 };
 
-const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
+const sendEmailWithAttachment = async (
+  clientData,
+  attachmentBuffer,
+  products
+) => {
   const transporter = createTransporter();
+
+  const orderItemsTableHtml = `
+  <h3 style="margin-top: 30px;">Detalle del Pedido</h3>
+  <table width="100%" style="border-collapse: collapse; margin-top: 10px;">
+    <thead>
+      <tr>
+        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Producto</th>
+        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Unidad</th>
+        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${products
+        .map(
+          (item) => `
+            <tr>
+              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.name}</td>
+              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.unit}</td>
+              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.quantity}</td>
+            </tr>
+          `
+        )
+        .join("")}
+    </tbody>
+  </table>
+`;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.RECIEVER_EMAIL_USER,
-    subject: `Pedido de Cotización de ${clientData.companyName}`,
+    subject: `Pedido de ${clientData.companyName}`,
     html: `
          <html>
             <head>
@@ -367,6 +397,13 @@ const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
                   </td>
                 </tr>
               </table>
+              <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+                <h2>Nuevo pedido recibido</h2>
+
+                ${orderItemsTableHtml}
+
+                 <p style="margin-top: 30px;">Adjunto encontrarás el archivo con los detalles completos del pedido.</p>
+               </div>
             </body>
           </html>
     `,
@@ -394,7 +431,7 @@ const createAndSendExcelEmail = async (clientData, products, order) => {
       products,
       order
     );
-    await sendEmailWithAttachment(clientData, attachmentBuffer);
+    await sendEmailWithAttachment(clientData, attachmentBuffer, products);
   } catch (error) {
     throw error;
   }
