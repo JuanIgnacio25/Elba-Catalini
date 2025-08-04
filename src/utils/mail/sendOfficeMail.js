@@ -134,7 +134,6 @@ const generateExcelBuffer = async (clientData, products, order) => {
     orderedProducts.forEach((item, index) => {
       const currentRow = startRow + index;
 
-      // Insertar una nueva fila para cada producto
       worksheet.insertRow(currentRow);
 
       worksheet.getRow(currentRow).height = 23;
@@ -172,7 +171,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
     // Rellenar con filas vacías si hay menos de 10 productos
     const totalRows = 10;
-    let filledRows = products.length;
+    let filledRows = orderedProducts.length;
 
     if (filledRows < totalRows) {
       for (let i = filledRows; i < totalRows; i++) {
@@ -211,7 +210,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
     }
 
     // Mover la fila con "Armador, Controlo, Fecha" a la última fila disponible
-    const rowAfterProducts = startRow + totalRows;
+    const rowAfterProducts = startRow + orderedProducts.length;
     worksheet.spliceRows(rowAfterProducts, 1); // Mueve la fila existente hacia abajo en lugar de crear una nueva
 
     // Definir el ancho de las columnas
@@ -239,35 +238,8 @@ const generateExcelBuffer = async (clientData, products, order) => {
 const sendEmailWithAttachment = async (
   clientData,
   attachmentBuffer,
-  products
 ) => {
   const transporter = createTransporter();
-
-  const orderItemsTableHtml = `
-  <h3 style="margin-top: 30px;">Detalle del Pedido</h3>
-  <table width="100%" style="border-collapse: collapse; margin-top: 10px;">
-    <thead>
-      <tr>
-        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Producto</th>
-        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Unidad</th>
-        <th style="padding: 8px 12px; border: 1px solid #ddd; background-color: #f5f5f5; text-align: center;">Cantidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${products
-        .map(
-          (item) => `
-            <tr>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.name}</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.unit}</td>
-              <td style="padding: 8px 12px; border: 1px solid #ddd; text-align: center; font-weight: 500;">${item.quantity}</td>
-            </tr>
-          `
-        )
-        .join("")}
-    </tbody>
-  </table>
-`;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -397,13 +369,6 @@ const sendEmailWithAttachment = async (
                   </td>
                 </tr>
               </table>
-              <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
-                <h2>Nuevo pedido recibido</h2>
-
-                ${orderItemsTableHtml}
-
-                 <p style="margin-top: 30px;">Adjunto encontrarás el archivo con los detalles completos del pedido.</p>
-               </div>
             </body>
           </html>
     `,
@@ -431,7 +396,7 @@ const createAndSendExcelEmail = async (clientData, products, order) => {
       products,
       order
     );
-    await sendEmailWithAttachment(clientData, attachmentBuffer, products);
+    await sendEmailWithAttachment(clientData, attachmentBuffer);
   } catch (error) {
     throw error;
   }

@@ -35,8 +35,8 @@ const orderProductsForOrders = (products) => {
   const baimlLate = baimlNonElectronics.filter((p) =>
     baimlLateCategories.includes(p.category)
   );
-  const baimlEarly = baimlNonElectronics.filter((p) =>
-    !baimlLateCategories.includes(p.category)
+  const baimlEarly = baimlNonElectronics.filter(
+    (p) => !baimlLateCategories.includes(p.category)
   );
 
   // Agrupar
@@ -69,7 +69,7 @@ const orderProductsForOrders = (products) => {
     ...baimlLateOrdered,
     ...storeOrdered,
   ];
-
+  
   return ordered;
 };
 
