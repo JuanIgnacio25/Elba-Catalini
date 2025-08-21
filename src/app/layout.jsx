@@ -15,7 +15,7 @@ export const metadata = {
   title: "Elba Catalini | Autopartes Eléctricas - Accesorios y Más",
   description: "Encuentra las mejores autopartes eléctricas y accesorios para tu vehículo en Elba Catalini. Amplia variedad de productos Baiml, Toxic Shine y más. ¡Envíos a todo el país!",
   author: "Juan Ignacio Colli",
-  keywords: "autopartes eléctricas, accesorios automotor, cosmetica automotor , faros para el agro Baiml, Toxic Shine, Lux Led , Iron Led , Iael , QKL , 3M ,  iluminación automotriz, faros universales, venta online, Cañada de Gómez, Argentina, envío a domicilio",
+  keywords: "autopartes eléctricas, accesorios automotor, cosmetica automotor , Faros universales Baiml , Baiml ,Faros Baiml ,faros para el agro Baiml, Toxic Shine, Lux Led , Iron Led , Iael , QKL , 3M ,  iluminación automotriz, faros universales, venta online, Cañada de Gómez, Argentina, envío a domicilio",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

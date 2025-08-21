@@ -22,6 +22,14 @@
   margin-top: 30px;
 }
 
+.baiml-p-header{
+  width: 80%;
+}
+
+.baiml-p-header-accordion{
+  width: 75%;
+}
+
 @media screen and (max-width: 870px) {
   .baiml-p-standard-container {
     width: 90%;
@@ -34,12 +42,34 @@
   .baiml-p{
     margin-bottom: 100px;
   }
+
+  .baiml-p-header{
+    width: 90%;
+  }
+
+  .baiml-p-header-accordion{
+    width: 68%;
+  }
 }
 
 @media screen and (max-width: 650px) {
   .baiml-p-main-container {
     grid-template-columns: 40% 60%;
     gap:0px;
+  }
+
+  .baiml-p-header{
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .baiml-p-header-accordion{
+    width: fit-content;
+  }
+
+  .baiml-p-header-accordion-trigger{
+    justify-content: start;
   }
 }
 

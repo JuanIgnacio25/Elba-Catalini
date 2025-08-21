@@ -5,7 +5,7 @@ import Dropdown from "@/components/common/Dropdown/Dropdown";
 function NavDesktop() {
 
   return (
-    <ul className="hidden lg:flex flex-row  w-[49%] min-w-[530px] justify-around items-center gap-2">
+    <ul className="hidden lg:flex flex-row  w-[49%] min-w-[571px] justify-around items-center gap-2">
       <li>
         <Dropdown
           category={{ name: "Electricidad", slug: "Electricidad" }}
@@ -99,7 +99,7 @@ function NavDesktop() {
       </li>
       <li>
         <Link href="/products/baiml" className="text-white hover:text-red-500 transition">
-          BAIML
+          Faros BAIML
         </Link>
       </li>
       <li>
