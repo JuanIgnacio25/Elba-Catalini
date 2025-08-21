@@ -1,4 +1,5 @@
 import ProductDetail from "@/components/views/Products/ProductDetail/ProductDetail";
+import notFound from "@/app/not-found";
 
 export async function generateMetadata({ params }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/api/products/${params.id}`, {

@@ -43,7 +43,7 @@ function BaimlOverlay() {
         </div>
         <div className="w-full sm:w-2/3 flex justify-center sm:justify-end gap-2 ">
           <button className="px-5 py-2 text-sm xs:text-base text-white font-semibold rounded-full border-none bg-red-600 hover:bg-red-700 hover:text-white hover:scale-105 transition">
-            <Link href={"/products/baiml"}>Ver Productos</Link>
+            <Link href={"/products/baiml"}>Ver Faros Baiml</Link>
           </button>
           <button className="px-5 py-2 bg-gray-100 text-sm xs:text-base text-red-800 font-semibold rounded-full shadow-md hover:bg-red-700 hover:text-white hover:scale-105 transition">
             <Link
