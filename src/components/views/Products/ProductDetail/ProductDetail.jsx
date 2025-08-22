@@ -20,16 +20,10 @@ async function ProductDetail({ id }) {
     image: product.images,
     description: product.description,
     sku: product.sku,
+    category: product.category,
     brand: {
       "@type": "Brand",
       name: "Baiml",
-    },
-    offers: {
-      "@type": "Offer",
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/products/${product.productId}/${product.slug}`,
-      priceCurrency: "ARS",
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
     },
   };
 

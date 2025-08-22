@@ -42,18 +42,37 @@ export const metadata = {
       images: ["/og-image.png"],
     },
   },
-  /* charset: "UTF-8",
-  ogTitle: "Tu Aplicación Next.js",
-  ogDescription: "Descripción de tu aplicación Next.js para redes sociales",
-  ogImage: "/path/to/your/image.jpg",
-  ogUrl: "https://la-casa-del-accesorio-production.up.railway.app/",
-  twitterCard: "summary_large_image",
-  twitterCreator: "@tuTwitterHandle", */
 };
 
 export default function RootLayout({ children }) {
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Elba Catalini",
+    "url": "https://elbacatalini.com",
+    "logo": "https://elbacatalini.com/logo.png",
+    "description":
+      "Autopartes eléctricas y accesorios para automotor. Distribuidor oficial Baiml, Toxic Shine, Lux Led, Iron Led y más.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cañada de Gómez",
+      "addressRegion": "Santa Fe",
+      "addressCountry": "AR"
+    },
+    "sameAs": [
+      "https://www.facebook.com/tu-pagina",
+      "https://www.instagram.com/tu-perfil"
+    ]
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+      </head>
       <body className={inter.className}>
         <Providers>
           <NavBar />

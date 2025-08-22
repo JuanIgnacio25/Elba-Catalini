@@ -3,9 +3,9 @@ import { getBaimlProducts } from "@/lib/api/getBaimlProducts";
 
 export async function generateMetadata() {
   return {
-    title: "Faros Baiml | Elba Catalini",
+    title: "Faros Baiml - Distribuidor Oficial | Elba Catalini",
     description:
-      "Descubrí todos los modelos de Faros Baiml originales en Elba Catalini. Faros para camiones y trailers, calidad garantizada y envío a todo el país.",
+      "Faros Baiml originales. Distribuidor oficial en Argentina. Encontrá faros y repuestos Baiml para trailers y camiones en Elba Catalini.",
     keywords: [
       "Faros Baiml",
       "Baiml",
@@ -14,7 +14,7 @@ export async function generateMetadata() {
       "Faros universales",
     ],
     openGraph: {
-      title: "Faros Baiml | Distribuidor oficial en Argentina",
+      title: "Faros Baiml - Distribuidor Oficial | Elba Catalini",
       description:
         "Descubrí la línea completa de Faros Baiml en Elba Catalini.",
       url: "https://elbacatalini.com/products/baiml",
@@ -52,12 +52,6 @@ async function baimlProductsPage() {
       name: product.name,
       image: product.images?.[0],
       sku: product.sku,
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "ARS",
-        availability: "https://schema.org/InStock",
-        itemCondition: "https://schema.org/NewCondition",
-      },
     })),
   };
 
