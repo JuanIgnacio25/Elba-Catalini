@@ -6,7 +6,7 @@ export const BAIML_CATEGORIES = [
   "Plafonier electrónicos",
   "Faros ilumina patente",
   "Ilumina patente electrónicos",
-  "Faros de stop / Antiniebla",
+  "Faros de stop - Antiniebla",
   "Faros traseros",
   "Traseros electrónicos",
   "Faros flexibles",
