@@ -26,6 +26,9 @@ function ProductsMain() {
 
   return (
     <div className="products">
+      <h1 className="text-3xl text-red-500 font-bold mb-4 text-left capitalize">
+        Productos
+      </h1>
       {filteredProducts.length > 0 ? (
         <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={30} ProductCard={ProductCard}/>
       ) : (

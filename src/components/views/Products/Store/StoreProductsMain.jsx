@@ -32,8 +32,14 @@ function StoreProductsMain() {
   // Mientras redirige, no renderiza nada
   if (!filteredProducts.length) return null;
 
+  const pageTitle =
+  variantSubCategory || subcategory || category || "Productos";
+
   return (
     <div className="store-products">
+      <h1 className="text-3xl text-red-500 font-bold mb-4 text-left capitalize">
+        {pageTitle.replace(/-/g, " ")}
+      </h1>
       <ProductsCards products={filteredProducts} ITEMS_PER_PAGE={30} ProductCard={ProductCard}/>
     </div>
   );
