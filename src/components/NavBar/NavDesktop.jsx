@@ -5,7 +5,12 @@ import Dropdown from "@/components/common/Dropdown/Dropdown";
 function NavDesktop() {
 
   return (
-    <ul className="hidden lg:flex flex-row  w-[49%] min-w-[571px] justify-around items-center gap-2">
+    <ul className="hidden lg:flex flex-row  min-w-[620px] items-center text-[15px] xl:text-base gap-2 xl:gap-6 px-1">
+      <li>
+        <Link href="/products" className="text-white hover:text-red-500 transition">
+          Productos
+        </Link>
+      </li>
       <li>
         <Dropdown
           category={{ name: "Electricidad", slug: "Electricidad" }}

@@ -27,8 +27,13 @@ function ProductsByCategoryMain() {
     fetchFilteredProducts();
   }, [kind, category, router]);
 
+  const decodedCategory = decodeURIComponent(category);
+
   return (
     <div className="products-by-category-products-cards">
+      <h1 className="text-3xl text-red-500 font-bold mb-4 text-left capitalize">
+        {decodedCategory}
+      </h1>
       <ProductsCards
         products={filteredProducts}
         ITEMS_PER_PAGE={30}
