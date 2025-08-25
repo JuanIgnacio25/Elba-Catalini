@@ -1,17 +1,11 @@
 import ProductDetailMain from "@/components/views/Products/ProductDetail/ProductDetailMain";
 import notFound from "@/app/not-found";
+import { getProductById } from "@/lib/api/getProductById";
 
 async function ProductDetail({ id }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/api/products/${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const product = await getProductById(id);
 
-  if (!res.ok) return notFound();
-
-  const product = await res.json();
+  if (!product) return notFound();
 
   const productSchema = {
     "@context": "https://schema.org/",
