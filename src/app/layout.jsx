@@ -22,7 +22,7 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Elba Catalini - Tienda Online",
+    title: "Elba Catalini - Tienda Online - Distribuidor oficial Baiml",
     description: "Compra productos Baiml , Toxic Shine y mucho mas al mejor precio!.",
     url: "https://elbacatalini.com",
     siteName: "Elba Catalini",
