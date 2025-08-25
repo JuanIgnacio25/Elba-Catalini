@@ -47,11 +47,18 @@ async function baimlProductsPage() {
     description: "Listado de faros Baiml disponibles en nuestra tienda.",
     itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
-      position: product.productId,
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/products/${product.productId}/${product.slug}`,
-      name: product.name,
-      image: product.images?.[0],
-      sku: product.sku,
+      position: index + 1,
+      url: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN.replace(/\/$/, "")}/products/${product.productId}/${product.slug}`,
+      item: {
+        "@type": "Product",
+        name: product.name,
+        sku: product.sku,
+        image: product.images?.[0]?.url || "",
+      },
+      brand: {
+        "@type": "Brand",
+        name: "Baiml",
+      },
     })),
   };
 
