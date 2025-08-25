@@ -1,18 +1,18 @@
 import ProductDetail from "@/components/views/Products/ProductDetail/ProductDetail";
 import notFound from "@/app/not-found";
+import { getProductById } from "@/lib/api/getProductById";
 
 export async function generateMetadata({ params }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/api/products/${params.id}`, {
-    cache: "no-store",
-  });
+  const product = await getProductById(params.id);
 
-  if (!res.ok) return notFound();
+  if (!product) return notFound();
 
-  const product = await res.json();
-  
   return {
     title: product.name,
     description: product.description,
+    alternates: {
+      canonical: `https://elbacatalini.com/products/${params.id}/${product.slug}`,
+    },
     openGraph: {
       title: product.name,
       description: product.description,
@@ -23,6 +23,10 @@ export async function generateMetadata({ params }) {
         alt: product.name,
       })),
     },
+    robots: {
+      index: true,
+      follow: true,
+    }
   };
 }
 
