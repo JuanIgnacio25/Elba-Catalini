@@ -10,6 +10,9 @@ export async function generateMetadata({ params }) {
   return {
     title: product.name,
     description: product.description,
+    alternates: {
+      canonical: `https://elbacatalini.com/products/${params.id}/${product.slug}`,
+    },
     openGraph: {
       title: product.name,
       description: product.description,
@@ -20,6 +23,10 @@ export async function generateMetadata({ params }) {
         alt: product.name,
       })),
     },
+    robots: {
+      index: true,
+      follow: true,
+    }
   };
 }
 
