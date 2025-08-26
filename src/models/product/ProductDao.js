@@ -23,11 +23,11 @@ class ProductDao {
     }
   }
 
-  async fetchProducts () {
+  async fetchProducts() {
     try {
-      return await this.collection.find().select('productId slug');
+      return await this.collection.find().select("productId slug");
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -40,9 +40,17 @@ class ProductDao {
     }
   }
 
-  async getProducts(filter) {
+  async getProducts(kind, category) {
     try {
-      const products = await this.collection.find({ kind: filter });
+      const query = {};
+
+      if (kind) query.kind = kind;
+
+      if (kind === "Store" && category) {
+        query.category = category;
+      }
+
+      const products = await this.collection.find(query);
       return products;
     } catch (error) {
       throw error;
@@ -93,17 +101,17 @@ class ProductDao {
 
   async updateProduct(productToUpdate, productId) {
     const { kind, ...productData } = productToUpdate;
-  
+
     try {
       const product = await this.discriminators[kind].findOne({ productId });
       if (!product) {
         throw new Error("El producto no existe");
       }
-  
+
       product.set(productData);
-  
+
       const updatedProduct = await product.save();
-  
+
       return updatedProduct;
     } catch (error) {
       throw error;

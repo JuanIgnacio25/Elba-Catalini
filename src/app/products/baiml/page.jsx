@@ -1,5 +1,5 @@
 import BaimlProducts from "@/components/views/Products/Baiml/BaimlProducts";
-import { getBaimlProducts } from "@/lib/api/getBaimlProducts";
+import { getProducts } from "@/lib/api/getProducts";
 
 export async function generateMetadata() {
   return {
@@ -26,19 +26,19 @@ export async function generateMetadata() {
         },
       ],
       type: "website",
-      alternates: {
-        canonical: "https://elbacatalini.com/products/baiml",
-      },
-      robots: {
-        index: true,
-        follow: true,
-      },
+    },
+    alternates: {
+      canonical: "https://elbacatalini.com/products/baiml",
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
 
 async function baimlProductsPage() {
-  const products = await getBaimlProducts();
+  const products = await getProducts();
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -48,16 +48,19 @@ async function baimlProductsPage() {
     itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN.replace(/\/$/, "")}/products/${product.productId}/${product.slug}`,
+      url: `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN.replace(
+        /\/$/,
+        ""
+      )}/products/${product.productId}/${product.slug}`,
       item: {
         "@type": "Product",
         name: product.name,
         sku: product.sku,
         image: product.images?.[0]?.url || "",
-      },
-      brand: {
-        "@type": "Brand",
-        name: "Baiml",
+        brand: {
+          "@type": "Brand",
+          name: "Baiml",
+        },
       },
     })),
   };

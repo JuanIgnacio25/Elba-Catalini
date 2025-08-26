@@ -30,9 +30,9 @@ class ProductService {
     }
   }
 
-  async getProducts(filter = {}) {
+  async getProducts(kind , category) {
     try {
-      const products = await this.dao.getProducts(filter);
+      const products = await this.dao.getProducts(kind , category);
       return products;
     } catch (error) {
       throw error;
