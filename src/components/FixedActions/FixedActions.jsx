@@ -41,7 +41,7 @@ export default function FixedActions() {
       <a
         href="https://wa.me/5493471589042"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noopener noreferrer"
         className="w-9 md:w-11 h-9 md:h-11 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         aria-label="WhatsApp"
       >
