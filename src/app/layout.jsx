@@ -60,8 +60,8 @@ export default function RootLayout({ children }) {
       "addressCountry": "AR"
     },
     "sameAs": [
-      "https://www.facebook.com/tu-pagina",
-      "https://www.instagram.com/tu-perfil"
+      "https://www.instagram.com/la_casa_del_acceso_/",
+      "https://www.facebook.com/ElbaCatalini"
     ]
   };
 
