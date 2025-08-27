@@ -27,7 +27,7 @@ export async function generateMetadata() {
       type: "website",
     },
     alternates: {
-      canonical: "https://elbacatalini.com/products/simplifiedView",
+      canonical: "https://elbacatalini.com/products/baiml/simplifiedView",
     },
     robots: {
       index: true,
