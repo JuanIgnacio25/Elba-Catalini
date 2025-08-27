@@ -13,7 +13,14 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 export const metadata = {
   metadataBase: new URL("https://elbacatalini.com"),
   title: "Elba Catalini | Autopartes Eléctricas - Accesorios y Más",
-  description: "Encuentra las mejores autopartes eléctricas y accesorios para tu vehículo en Elba Catalini. Amplia variedad de productos Baiml, Toxic Shine y más. ¡Envíos a todo el país!",
+  description: "Encontra toda la linea de productos Baiml, Toxic Shine y más en Elba Catalini. ¡Envíos a todo el país!",
+  alternates: {
+    canonical: "https://elbacatalini.com/products/baiml",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   author: "Juan Ignacio Colli",
   keywords: "autopartes eléctricas, accesorios automotor, cosmetica automotor , Faros universales Baiml , Baiml ,Faros Baiml ,faros para el agro Baiml, Toxic Shine, Lux Led , Iron Led , Iael , QKL , 3M ,  iluminación automotriz, faros universales, venta online, Cañada de Gómez, Argentina, envío a domicilio",
   icons: {
@@ -22,7 +29,7 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Elba Catalini - Tienda Online",
+    title: "Elba Catalini - Tienda Online - Distribuidor oficial Baiml",
     description: "Compra productos Baiml , Toxic Shine y mucho mas al mejor precio!.",
     url: "https://elbacatalini.com",
     siteName: "Elba Catalini",
@@ -50,7 +57,7 @@ export default function RootLayout({ children }) {
     "@type": "Organization",
     "name": "Elba Catalini",
     "url": "https://elbacatalini.com",
-    "logo": "https://elbacatalini.com/logo.png",
+    "logo": "https://elbacatalini.com/logo-elba.png",
     "description":
       "Autopartes eléctricas y accesorios para automotor. Distribuidor oficial Baiml, Toxic Shine, Lux Led, Iron Led y más.",
     "address": {
@@ -60,8 +67,8 @@ export default function RootLayout({ children }) {
       "addressCountry": "AR"
     },
     "sameAs": [
-      "https://www.facebook.com/tu-pagina",
-      "https://www.instagram.com/tu-perfil"
+      "https://www.instagram.com/la_casa_del_acceso_/",
+      "https://www.facebook.com/ElbaCatalini"
     ]
   };
 
