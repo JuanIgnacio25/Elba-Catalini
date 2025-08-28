@@ -386,7 +386,6 @@ const sendEmailWithAttachment = async (
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.log(error);
-    
     throw new Error("No se pudo enviar el mail intentelo mas tarde");
   }
 };
