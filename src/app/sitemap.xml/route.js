@@ -40,16 +40,16 @@ export async function GET() {
     },
     {
       route:
-        "/products/store/Electricidad/cable-tpr/enchufes/enchufes-de-aluminio",
+        "/products/store/Electricidad/enchufes/enchufes-de-aluminio",
       priority: "0.7",
     },
     {
-      route: "/products/store/Electricidad/cable-tpr/enchufes/enchufes-de-pvc",
+      route: "/products/store/Electricidad/enchufes/enchufes-de-pvc",
       priority: "0.7",
     },
     {
       route:
-        "/products/store/Electricidad/cable-tpr/enchufes/enchufes-vulcanizados",
+        "/products/store/Electricidad/enchufes/enchufes-vulcanizados",
       priority: "0.7",
     },
   ];
