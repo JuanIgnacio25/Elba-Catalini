@@ -1,4 +1,5 @@
 import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 import ExcelJS from "exceljs";
 import path from "path";
 import orderProductsForOrders from "@/utils/orderProductsForOrders";
@@ -239,10 +240,9 @@ const sendEmailWithAttachment = async (
   clientData,
   attachmentBuffer,
 ) => {
-  const transporter = createTransporter();
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
+try{
+  const response  = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL,
     to: process.env.RECIEVER_EMAIL_USER,
     subject: `Pedido de ${clientData.companyName}`,
     html: `
@@ -375,15 +375,16 @@ const sendEmailWithAttachment = async (
     attachments: [
       {
         filename: `${clientData.companyName}.xlsx`,
-        content: attachmentBuffer,
+        content: attachmentBuffer.toString("base64"),
         contentType:
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       },
     ],
-  };
+  })
 
-  try {
-    await transporter.sendMail(mailOptions);
+  console.log(response);
+  
+
   } catch (error) {
     console.log(error);
     throw new Error("No se pudo enviar el mail intentelo mas tarde");

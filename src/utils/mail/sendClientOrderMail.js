@@ -1,6 +1,6 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 
-async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
+async function sendClientOrderEmail(customerEmail, orderItems, orderId) {
   // Formatear los elementos del pedido en HTML
   const orderItemsHtml = orderItems
     .map(
@@ -102,18 +102,22 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     </html>
   `;
 
-  const transporter = createTransporter();
-
   try {
-    // Enviar el correo
-    await transporter.sendMail({
-      from: `Elba Susana Catalini <${process.env.EMAIL_USER}>`,
+    const { data, error } = await resend.emails.send({
+      from: `Elba Susana Catalini <${process.env.RESEND_FROM_EMAIL}>`,
       to: customerEmail,
       subject: `Confirmación de tu pedido, orden n°: ${orderId}`,
       html: emailHtml,
     });
-  } catch (error) {
-    throw error;
+
+    if (error) {
+      console.error("Error enviando correo:", error);
+      throw new Error(error.message);
+    }
+
+    return data;
+  } catch (err) {
+    throw err;
   }
 }
 
