@@ -103,19 +103,13 @@ async function sendClientOrderEmail(customerEmail, orderItems, orderId) {
   `;
 
   try {
-    const { data, error } = await resend.emails.send({
+    await resend.emails.send({
       from: `Elba Susana Catalini <${process.env.RESEND_FROM_EMAIL}>`,
       to: customerEmail,
       subject: `Confirmación de tu pedido, orden n°: ${orderId}`,
       html: emailHtml,
     });
 
-    if (error) {
-      console.error("Error enviando correo:", error);
-      throw new Error(error.message);
-    }
-
-    return data;
   } catch (err) {
     throw err;
   }

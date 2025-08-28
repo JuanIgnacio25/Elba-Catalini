@@ -1,4 +1,3 @@
-import createTransporter from "@/lib/nodemailer";
 import { resend } from "@/lib/resend";
 import ExcelJS from "exceljs";
 import path from "path";
@@ -241,9 +240,9 @@ const sendEmailWithAttachment = async (
   attachmentBuffer,
 ) => {
 try{
-  const response  = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL,
-    to: process.env.RECIEVER_EMAIL_USER,
+  await resend.emails.send({
+    from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+    to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
     subject: `Pedido de ${clientData.companyName}`,
     html: `
          <html>
@@ -381,12 +380,7 @@ try{
       },
     ],
   })
-
-
-  if(response.error) throw new Error("Error al cerrar el carrito , intentelo mas tarde");
-  console.log(response);
   
-
   } catch (error) {
     throw error;
   }

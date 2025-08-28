@@ -1,9 +1,6 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 
 const sendContactMessageMail = async (data) => {
-  const transporter = createTransporter();
-  
-
   const htmlContent = `
   <!DOCTYPE html>
   <html>
@@ -75,9 +72,9 @@ const sendContactMessageMail = async (data) => {
 `;
 
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+      to: process.env.OFFICE_EMAIL,
       subject: `Consulta de ${data.company}`,
       html: htmlContent,
     });
