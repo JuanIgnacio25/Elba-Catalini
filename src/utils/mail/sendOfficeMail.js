@@ -382,12 +382,13 @@ try{
     ],
   })
 
+
+  if(response.error) throw new Error("Error al cerrar el carrito , intentelo mas tarde");
   console.log(response);
   
 
   } catch (error) {
-    console.log(error);
-    throw new Error("No se pudo enviar el mail intentelo mas tarde");
+    throw error;
   }
 };
 
