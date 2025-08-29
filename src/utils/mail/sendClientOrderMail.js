@@ -77,6 +77,7 @@ async function sendClientOrderEmail(customerEmail, orderItems, orderId) {
           <h2>Gracias por elegirnos!</h2>
           <p>Tu pedido ha sido recibido y está siendo procesado.</p>
           <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto , y luego coordinar el pago.</p>
+          <p>Este mensaje se generó automáticamente. Si tiene alguna consulta, no dude en escribirnos a ventascatalini@gmail.com o al 3471 589042</p>
         </div>
         <div class="order-details">
           <h3>Detalles del Pedido</h3>

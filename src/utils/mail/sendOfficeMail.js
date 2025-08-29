@@ -240,7 +240,7 @@ const sendEmailWithAttachment = async (
   attachmentBuffer,
 ) => {
 try{
-  await resend.emails.send({
+  const response = await resend.emails.send({
     from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
     to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
     subject: `Pedido de ${clientData.companyName}`,
@@ -381,6 +381,9 @@ try{
     ],
   })
   
+  console.log(response);
+  
+
   } catch (error) {
     throw error;
   }
