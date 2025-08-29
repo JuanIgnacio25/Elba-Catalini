@@ -235,16 +235,13 @@ const generateExcelBuffer = async (clientData, products, order) => {
   }
 };
 
-const sendEmailWithAttachment = async (
-  clientData,
-  attachmentBuffer,
-) => {
-try{
-  const response = await resend.emails.send({
-    from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
-    to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
-    subject: `Pedido de ${clientData.companyName}`,
-    html: `
+const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
+  try {
+    await resend.emails.send({
+      from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+      to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
+      subject: `Pedido de ${clientData.companyName}`,
+      html: `
          <html>
             <head>
               <style>
@@ -371,19 +368,15 @@ try{
             </body>
           </html>
     `,
-    attachments: [
-      {
-        filename: `${clientData.companyName}.xlsx`,
-        content: attachmentBuffer.toString("base64"),
-        contentType:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      },
-    ],
-  })
-  
-  console.log(response);
-  
-
+      attachments: [
+        {
+          filename: `${clientData.companyName}.xlsx`,
+          content: attachmentBuffer.toString("base64"),
+          contentType:
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        },
+      ],
+    });
   } catch (error) {
     throw error;
   }
