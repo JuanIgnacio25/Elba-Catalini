@@ -1,14 +1,9 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 
 const sendVerificationMail = async (userEmail, verificationToken) => {
-  const transporter = createTransporter();
 
   try {
-    await transporter.sendMail({
-      from: `LaCasaDelAccesorio <${process.env.EMAIL_USER}>`,
-      to: userEmail,
-      subject: "Link de verificacion de cuenta",
-      html: `
+      const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; width: 100%; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9; box-sizing: border-box;">
         <h2 style="color: #333; text-align: center;">Verificacion de Cuenta</h2>
         <p style="color: #555;">Gracias por registrarte. Para verificar tu cuenta, haz clic en el botón de abajo:</p>
@@ -38,8 +33,14 @@ const sendVerificationMail = async (userEmail, verificationToken) => {
           }
         }
       </style>
-    `,
-    });
+    `
+    await resend.emails.send({
+      from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+      to: userEmail,
+      subject: "Link de verificacion de cuenta",
+      html: htmlContent
+    })
+
   } catch (error) {
     throw error;
   }

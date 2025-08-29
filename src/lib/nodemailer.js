@@ -6,12 +6,14 @@ const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 const createTransporter = () => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true para el puerto 465, false para el puerto 587
+    port: 587,
+    secure: false,
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASSWORD,
     },
+    logger: true,
+    debug: true,
   });
 
   return transporter;

@@ -15,7 +15,7 @@ export const metadata = {
   title: "Elba Catalini | Autopartes Eléctricas - Accesorios y Más",
   description: "Encontra toda la linea de productos Baiml, Toxic Shine y más en Elba Catalini. ¡Envíos a todo el país!",
   alternates: {
-    canonical: "https://elbacatalini.com/products/baiml",
+    canonical: "https://elbacatalini.com/baiml",
   },
   robots: {
     index: true,

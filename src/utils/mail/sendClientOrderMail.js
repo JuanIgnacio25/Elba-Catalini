@@ -1,6 +1,6 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 
-async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
+async function sendClientOrderEmail(customerEmail, orderItems, orderId) {
   // Formatear los elementos del pedido en HTML
   const orderItemsHtml = orderItems
     .map(
@@ -77,6 +77,7 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
           <h2>Gracias por elegirnos!</h2>
           <p>Tu pedido ha sido recibido y está siendo procesado.</p>
           <p>Nuestro equipo de compras se pondrá en contacto con usted para enviarle el presupuesto , y luego coordinar el pago.</p>
+          <p>Este mensaje se generó automáticamente. Si tiene alguna consulta, no dude en escribirnos a ventascatalini@gmail.com o al 3471 589042</p>
         </div>
         <div class="order-details">
           <h3>Detalles del Pedido</h3>
@@ -102,18 +103,16 @@ async function sendClientOrderEmail(customerEmail, orderItems , orderId) {
     </html>
   `;
 
-  const transporter = createTransporter();
-
   try {
-    // Enviar el correo
-    await transporter.sendMail({
-      from: `Elba Susana Catalini <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: `Elba Susana Catalini <${process.env.RESEND_FROM_EMAIL}>`,
       to: customerEmail,
       subject: `Confirmación de tu pedido, orden n°: ${orderId}`,
       html: emailHtml,
     });
-  } catch (error) {
-    throw error;
+
+  } catch (err) {
+    throw err;
   }
 }
 

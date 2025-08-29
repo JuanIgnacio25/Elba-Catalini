@@ -1,14 +1,9 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 
 const sendRecoveryTokenMail = async (userEmail, recoveryToken) => {
-  const transporter = createTransporter();
   const recoveryLink = `${process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}/auth/password-recovery/${recoveryToken}`;
 
-  const mailOptions = {
-    from: `Elba Susana Catalini <${process.env.EMAIL_USER}>`,
-    to: userEmail,
-    subject: "Recuperación de Cuenta",
-    html: `
+  const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; width: 100%; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9; box-sizing: border-box;">
         <h2 style="color: #333; text-align: center;">Recuperación de Cuenta</h2>
         <p style="color: #555;">Hemos recibido una solicitud para restablecer tu contraseña. Para continuar, haz clic en el botón de abajo:</p>
@@ -38,11 +33,15 @@ const sendRecoveryTokenMail = async (userEmail, recoveryToken) => {
           }
         }
       </style>
-    `,
-  };
+    `;
 
   try {
-    await transporter.sendMail(mailOptions);
+    await resend.emails.send({
+      from: `Elba Susana Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+      to: userEmail,
+      subject: "Recuperación de Cuenta",
+      html: htmlContent,
+    });
   } catch (error) {
     throw error;
   }

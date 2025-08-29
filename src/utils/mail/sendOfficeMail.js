@@ -1,4 +1,4 @@
-import createTransporter from "@/lib/nodemailer";
+import { resend } from "@/lib/resend";
 import ExcelJS from "exceljs";
 import path from "path";
 import orderProductsForOrders from "@/utils/orderProductsForOrders";
@@ -235,17 +235,13 @@ const generateExcelBuffer = async (clientData, products, order) => {
   }
 };
 
-const sendEmailWithAttachment = async (
-  clientData,
-  attachmentBuffer,
-) => {
-  const transporter = createTransporter();
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.RECIEVER_EMAIL_USER,
-    subject: `Pedido de ${clientData.companyName}`,
-    html: `
+const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
+  try {
+    await resend.emails.send({
+      from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
+      to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
+      subject: `Pedido de ${clientData.companyName}`,
+      html: `
          <html>
             <head>
               <style>
@@ -372,20 +368,17 @@ const sendEmailWithAttachment = async (
             </body>
           </html>
     `,
-    attachments: [
-      {
-        filename: `${clientData.companyName}.xlsx`,
-        content: attachmentBuffer,
-        contentType:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      },
-    ],
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
+      attachments: [
+        {
+          filename: `${clientData.companyName}.xlsx`,
+          content: attachmentBuffer.toString("base64"),
+          contentType:
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        },
+      ],
+    });
   } catch (error) {
-    throw new Error("Failed to send email");
+    throw error;
   }
 };
 
