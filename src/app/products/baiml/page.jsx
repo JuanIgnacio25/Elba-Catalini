@@ -52,16 +52,6 @@ async function baimlProductsPage() {
         /\/$/,
         ""
       )}/products/${product.productId}/${product.slug}`,
-      item: {
-        "@type": "Product",
-        name: product.name,
-        sku: product.sku,
-        image: product.images?.[0]?.url || "",
-        brand: {
-          "@type": "Brand",
-          name: "Baiml",
-        },
-      },
     })),
   };
 
