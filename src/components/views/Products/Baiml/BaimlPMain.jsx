@@ -1,78 +1,79 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 import { BAIML_CATEGORIES } from "@/constants/categories";
 
-import ProductsCards from "@/components/common/ProductsCards/ProductsCards";
-import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard"
+import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard";
+import ProductsCardsTest from "@/components/common/ProductsCards/ProductsCardsTest";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
-import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback";
 
-import { useProduct } from "@/context/ProductContext";
-
-function BaimlPMain() { 
-
+function BaimlPMain({
+  products,
+  currentPage,
+  totalPages,
+  totalProducts,
+  searchParams,
+  itemsPerPage,
+  initialCategories,
+}) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathName = usePathname();
+  const params = useSearchParams();
 
-  const { baimlProducts, loading, filterBaimlProducts } = useProduct();
-
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  
-  const selectedCategories = useMemo(() => {
-    const categories = searchParams.get("categories");
-    return categories ? categories.split(",") : [];
-  }, [searchParams]);
-
-  useEffect(() => {
-    const filtered =
-      selectedCategories.length > 0
-        ? filterBaimlProducts(selectedCategories)
-        : baimlProducts;
-
-    if (JSON.stringify(filtered) !== JSON.stringify(filteredProducts)) {
-      setFilteredProducts(filtered);
-    }
-
-  }, [baimlProducts, selectedCategories,filterBaimlProducts, filteredProducts]);
+  const buildUrl = (pageNum, currentParams) => {
+    const queryString = currentParams.toString();
+    return queryString
+      ? `/products/baiml/page/${pageNum}?${queryString}`
+      : `/products/baiml/page/${pageNum}`;
+  };
 
   const onCategoryChange = (category) => {
-    const updatedCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter((c) => c !== category)
-      : [...selectedCategories, category];
+    const current = new URLSearchParams(params.toString());
+    let categories = current.get("categories")?.split(",") || [];
 
-    const newParams = new URLSearchParams(searchParams);
-    if (updatedCategories.length > 0) {
-      newParams.set("categories", updatedCategories.join(","));
+    if (categories.includes(category)) {
+      categories = categories.filter((c) => c !== category);
     } else {
-      newParams.delete("categories");
+      categories.push(category);
     }
 
-    const newUrl = `${pathName}?${newParams.toString().replace(/%2C/g, ",")}`;
-    router.push(newUrl);
+    if (categories.length > 0) {
+      current.set("categories", categories.join(","));
+    } else {
+      current.delete("categories");
+    }
+
+    // Resetear a la página 1 siempre
+    router.push(buildUrl(1, current));
   };
 
   const deleteFilters = () => {
-    const newUrl = pathName;
-    router.push(newUrl);
-  }
+    const current = new URLSearchParams(params.toString());
+    current.delete("categories");
 
-  if (loading) return <ProductsMainFallback categories={BAIML_CATEGORIES} enabled={true}/>;
+    // Resetear a la página 1
+    router.push(buildUrl(1, current));
+  };
 
   return (
     <div className="baiml-p-standard-container">
       <div className="baiml-p-main-container">
         <ProductsFilterCategories
           categories={BAIML_CATEGORIES}
-          selectedCategories={selectedCategories}
+          selectedCategories={initialCategories}
           onCategoryChange={onCategoryChange}
           enabledButton={true}
           deleteFilters={deleteFilters}
         />
-        <ProductsCards products={filteredProducts} enabledResetAnimation={true} ITEMS_PER_PAGE={24} ProductCard={BaimlProductCard}/>
+
+        <ProductsCardsTest
+          products={products}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalProducts={totalProducts}
+          searchParams={searchParams}
+          itemsPerPage={itemsPerPage}
+          ProductCard={BaimlProductCard}
+        />
       </div>
     </div>
   );
