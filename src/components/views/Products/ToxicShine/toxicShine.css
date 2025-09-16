@@ -52,7 +52,7 @@
   .toxic-products-main {
     grid: none;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     margin: 10px 0px;
   }
 
