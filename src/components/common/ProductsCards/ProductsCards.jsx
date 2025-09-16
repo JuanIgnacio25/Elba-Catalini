@@ -21,6 +21,8 @@ function ProductsCards({
 
   // Inicializar productos cuando cambian
   useEffect(() => {
+    console.log(products);
+    
     if (products.length > 0) {
       const initialProducts = products.slice(0, ITEMS_PER_PAGE);
       setVisibleProducts(initialProducts);

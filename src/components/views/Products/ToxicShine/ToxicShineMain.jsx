@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import ProductCard from "@/components/common/ProductCard/ProductCard";
-import ProductsCardsTest from "@/components/common/ProductsCards/ProductsCardsTest";
+import ProductsCardsServerSide from "@/components/common/ProductsCards/ProductsCardsServerSide";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
 
 import { TOXIC_SHINE_CATEGORIES } from "@/constants/categories";
@@ -67,7 +67,7 @@ function ToxicShineMain(
           deleteFilters={deleteFilters}
         />
 
-        <ProductsCardsTest
+        <ProductsCardsServerSide
           products={products}
           currentPage={currentPage}
           totalPages={totalPages}

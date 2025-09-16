@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { BAIML_CATEGORIES } from "@/constants/categories";
 
 import BaimlProductCard from "@/components/common/BaimlProductCard/BaimlProductCard";
-import ProductsCardsTest from "@/components/common/ProductsCards/ProductsCardsTest";
+import ProductsCardsServerSide from "@/components/common/ProductsCards/ProductsCardsServerSide";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
 
 function BaimlPMain({
@@ -65,7 +65,7 @@ function BaimlPMain({
           deleteFilters={deleteFilters}
         />
 
-        <ProductsCardsTest
+        <ProductsCardsServerSide
           products={products}
           currentPage={currentPage}
           totalPages={totalPages}
