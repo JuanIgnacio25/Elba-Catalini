@@ -39,6 +39,34 @@ class ProductService {
     }
   }
 
+  async getPaginatedBaimlProducts(categories, skip, limit) {
+    try {
+      const {products , total} = await this.dao.getPaginatedBaimlProducts(
+        categories,
+        skip,
+        limit
+      );
+
+      return {products , total};
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getPaginatedToxicShineProducts(categories, skip, limit) {
+    try {
+      const {products , total} = await this.dao.getPaginatedToxicShineProducts(
+        categories,
+        skip,
+        limit
+      );
+
+      return {products , total};
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async findProductById(productId) {
     try {
       const product = await this.dao.findProductById(toNumericId(productId));

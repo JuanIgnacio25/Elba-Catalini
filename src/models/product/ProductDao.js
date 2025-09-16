@@ -1,3 +1,4 @@
+import { BAIML_CATEGORIES , TOXIC_SHINE_CATEGORIES} from "@/constants/categories";
 import { Product, Baiml, Store } from "@/models/product/product";
 
 class ProductDao {
@@ -56,6 +57,54 @@ class ProductDao {
       throw error;
     }
   }
+
+async getPaginatedBaimlProducts(categories, skip, limit) {
+  try {
+    const query = { kind: "Baiml" };
+
+    // Filtrar solo categorías válidas
+    const validCategories = categories.filter(cat =>
+      BAIML_CATEGORIES.includes(cat)
+    );
+
+    if (validCategories.length > 0) {
+      query.category = { $in: validCategories };
+    }
+
+    const [productsFromDB, total] = await Promise.all([
+      Product.find(query).skip(skip).limit(limit).select({ _id: 0 }).lean(),
+      Product.countDocuments(query),
+    ]);
+
+    return { products: productsFromDB, total };
+  } catch (error) {
+    throw error;
+  }
+}
+
+async getPaginatedToxicShineProducts(categories, skip, limit) {
+  try {
+    const query = { kind: "Store" };
+
+    // Filtrar solo categorías válidas
+    const validCategories = categories.filter(cat =>
+      TOXIC_SHINE_CATEGORIES.includes(cat)
+    );
+
+    if (validCategories.length > 0) {
+      query.subCategory = { $in: validCategories };
+    }
+
+    const [productsFromDB, total] = await Promise.all([
+      Product.find(query).skip(skip).limit(limit).select({ _id: 0 }).lean(),
+      Product.countDocuments(query),
+    ]);
+
+    return { products: productsFromDB, total };
+  } catch (error) {
+    throw error;
+  }
+}
 
   async findProductById(productId) {
     try {

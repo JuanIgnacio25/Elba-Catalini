@@ -1,75 +1,81 @@
 "use client";
 
-import { useState, useEffect, useMemo} from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import ProductsCards from "@/components/common/ProductsCards/ProductsCards"
 import ProductCard from "@/components/common/ProductCard/ProductCard";
+import ProductsCardsServerSide from "@/components/common/ProductsCards/ProductsCardsServerSide";
 import ProductsFilterCategories from "@/components/common/ProductsFilterCategories/ProductsFilterCategories";
-import ProductsMainFallback from "@/components/Fallbacks/ProductsMainFallback/ProductsMainFallback"
 
 import { TOXIC_SHINE_CATEGORIES } from "@/constants/categories";
 
-import { useProduct } from "@/context/ProductContext";
-
-function ToxicShineMain() {
+function ToxicShineMain(
+  {products,
+  currentPage,
+  totalPages,
+  totalProducts,
+  searchParams,
+  itemsPerPage,
+  initialCategories}
+) {
+  
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathName = usePathname();
+  const params = useSearchParams();
 
-  const { toxicShineProducts, loading, filterToxicShineProducts } =
-    useProduct();
-
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const categories = searchParams.get("categories");
-  const selectedCategories = useMemo(() => categories ? categories.split(",") : [], [categories]);
-
-  useEffect(() => {
-    const filtered =
-      selectedCategories.length > 0
-        ? filterToxicShineProducts(selectedCategories)
-        : toxicShineProducts;
-
-    if (JSON.stringify(filtered) !== JSON.stringify(filteredProducts)) {
-      setFilteredProducts(filtered);
-    }
-
-  }, [toxicShineProducts, selectedCategories, filterToxicShineProducts, filteredProducts]);
+   const buildUrl = (pageNum, currentParams) => {
+    const queryString = currentParams.toString();
+    return queryString
+      ? `/products/toxic-shine/page/${pageNum}?${queryString}`
+      : `/products/toxic-shine/page/${pageNum}`;
+  };
 
   const onCategoryChange = (category) => {
-    const updatedCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter((c) => c !== category)
-      : [...selectedCategories, category];
+    const current = new URLSearchParams(params.toString());
+    let categories = current.get("categories")?.split(",") || [];
 
-    const newParams = new URLSearchParams(searchParams);
-    if (updatedCategories.length > 0) {
-      newParams.set("categories", updatedCategories.join(","));
+    if (categories.includes(category)) {
+      categories = categories.filter((c) => c !== category);
     } else {
-      newParams.delete("categories");
+      categories.push(category);
     }
 
-    const newUrl = `${pathName}?${newParams.toString()}`;
-    router.push(newUrl);
+    if (categories.length > 0) {
+      current.set("categories", categories.join(","));
+    } else {
+      current.delete("categories");
+    }
+
+    // Resetear a la página 1 siempre
+    router.push(buildUrl(1, current));
   };
 
   const deleteFilters = () => {
-    const newUrl = pathName;
-    router.push(newUrl);
-  }
+    const current = new URLSearchParams(params.toString());
+    current.delete("categories");
 
-  if (loading) return <ProductsMainFallback categories={TOXIC_SHINE_CATEGORIES} enabled={false}/>;
+    // Resetear a la página 1
+    router.push(buildUrl(1, current));
+  };
 
   return (
     <div className="toxic-products-main-container">
       <div className="toxic-products-main">
         <ProductsFilterCategories
           categories={TOXIC_SHINE_CATEGORIES}
-          selectedCategories={selectedCategories}
+          selectedCategories={initialCategories}
           onCategoryChange={onCategoryChange}
           enabledButton={false}
           deleteFilters={deleteFilters}
         />
-        <ProductsCards products={filteredProducts} ProductCard={ProductCard} ITEMS_PER_PAGE={24} enabledResetAnimation={true}/>
+
+        <ProductsCardsServerSide
+          products={products}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalProducts={totalProducts}
+          searchParams={searchParams}
+          itemsPerPage={itemsPerPage}
+          ProductCard={ProductCard}
+        />
       </div>
     </div>
   );
