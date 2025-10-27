@@ -103,6 +103,7 @@ function NavDesktopMobile() {
                 name: "Accesorios para Trailer",
               },
               { slug: "antenas", name: "Antenas" },
+              { slug: "audio", name: "Audio" },
               { slug: "anti-robo", name: "Anti Robo" },
               { slug: "asientos-y-respaldos", name: "Asientos y Respaldos" },
               { slug: "compresores", name: "Compresores" },

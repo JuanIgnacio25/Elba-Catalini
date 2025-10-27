@@ -3,11 +3,13 @@ import Link from "next/link";
 import Dropdown from "@/components/common/Dropdown/Dropdown";
 
 function NavDesktop() {
-
   return (
     <ul className="hidden lg:flex flex-row  min-w-[620px] items-center text-[15px] xl:text-base gap-2 xl:gap-6 px-1">
       <li>
-        <Link href="/products" className="text-white hover:text-red-500 transition">
+        <Link
+          href="/products"
+          className="text-white hover:text-red-500 transition"
+        >
           Productos
         </Link>
       </li>
@@ -66,6 +68,7 @@ function NavDesktop() {
               slug: "accesorios-para-trailer",
               name: "Accesorios para Trailer",
             },
+            { slug: "audio", name: "Audio" },
             { slug: "antenas", name: "Antenas" },
             { slug: "anti-robo", name: "Anti Robo" },
             { slug: "asientos-y-respaldos", name: "Asientos y Respaldos" },
@@ -103,12 +106,18 @@ function NavDesktop() {
         />
       </li>
       <li>
-        <Link href="/products/baiml" className="text-white hover:text-red-500 transition">
+        <Link
+          href="/products/baiml"
+          className="text-white hover:text-red-500 transition"
+        >
           Faros BAIML
         </Link>
       </li>
       <li>
-        <Link href={"/products/toxic-shine"} className="text-white hover:text-red-500 transition">
+        <Link
+          href={"/products/toxic-shine"}
+          className="text-white hover:text-red-500 transition"
+        >
           Toxic Shine
         </Link>
       </li>

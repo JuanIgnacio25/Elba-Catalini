@@ -67,6 +67,7 @@ export const STORE_ACCESORIOS_SUBCATEGORIES = [
   "Accesorios para Motos",
   "Accesorios para Niños",
   "Accesorios para Trailer",
+  "Audio",
   "Antenas",
   "Anti Robo",
   "Asientos y Respaldos",
