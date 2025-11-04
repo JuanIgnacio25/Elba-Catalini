@@ -142,6 +142,8 @@ const generateExcelBuffer = async (clientData, products, order) => {
       worksheet.getCell(`A${currentRow}`).value =
         item.productSet !== 0 && item.kind == "Baiml"
           ? item.productSet * item.quantity
+          : item.subCategory === "Precintos"
+          ? item.quantity
           : item.unit * item.quantity;
       worksheet.getCell(`A${currentRow}`).border = { ...borderStyle };
       worksheet.getCell(`A${currentRow}`).font = { size: 16 };
