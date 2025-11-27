@@ -44,7 +44,7 @@ function Services() {
       serviceNameForWhatsapp: "Instalación de Cubre Asientos",
     },
     {
-      title: "Cubre volantes cocidos",
+      title: "Cubre volantes cosidos",
       description:
         "Confort y protección para tu volante. Mejorá el agarre y personalizá tu interior.",
       imageSrc: "/assets/services/cubre-volantes.jpg",
