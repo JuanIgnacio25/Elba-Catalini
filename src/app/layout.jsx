@@ -10,6 +10,8 @@ import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   metadataBase: new URL("https://elbacatalini.com"),
   title: "Elba Catalini | Autopartes Eléctricas - Accesorios y Más",
