@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import MainCarousel from "./MainCarousel/MainCarousel"
 import News from "./News/News";
 import Brands from "./Brands/Brands";
