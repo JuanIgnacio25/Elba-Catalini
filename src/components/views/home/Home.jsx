@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import MainCarousel from "./MainCarousel/MainCarousel"
 import News from "./News/News";
 import Brands from "./Brands/Brands";
@@ -7,6 +5,8 @@ import Brands from "./Brands/Brands";
 const Services = dynamic(() => import("./Services"));
 const BenefitsIcons = dynamic(() => import("./BenefitsIcons"));
 const BusinessInfo = dynamic(() => import("./BusinessInfo/BusinessInfo"));
+
+export const revalidate = 86400;
 
 
 
