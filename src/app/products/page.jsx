@@ -1,5 +1,7 @@
 import Products from "@/components/views/Products/Products/Products"
 
+export const dynamic = "force-dynamic";
+
 export const generateMetadata = async () => {
   return {
     title: "Productos - Elba Catalini",

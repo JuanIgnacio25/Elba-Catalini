@@ -1,7 +1,7 @@
 import Home from "@/components/views/home/Home"
 import { getSlidesDataWithBlur } from "@/lib/api/getSlidesDataWithBlur";
 
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 async function HomePage() {
   const slidesData = await getSlidesDataWithBlur();
