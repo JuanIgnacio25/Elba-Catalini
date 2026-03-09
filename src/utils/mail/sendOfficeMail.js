@@ -239,7 +239,7 @@ const generateExcelBuffer = async (clientData, products, order) => {
 
 const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: `Elba Catalini <${process.env.RESEND_FROM_EMAIL}>`,
       to: [process.env.RECIEVER_EMAIL_USER, process.env.OFFICE_EMAIL],
       subject: `Pedido de ${clientData.companyName}`,
@@ -379,6 +379,9 @@ const sendEmailWithAttachment = async (clientData, attachmentBuffer) => {
         },
       ],
     });
+    
+    console.log(result);
+    
   } catch (error) {
     throw error;
   }
